@@ -1,7 +1,21 @@
-function enmapa () {
+function loadScript() {
+  var script = document.createElement("script");
+  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=initialize";
 
- alert("en mapa.js");
- 
+  document.body.appendChild(script);
 }
 
- alert("en mapa2.js");
+function initialize() {
+	alert("en initialize");
+  var mapProp = {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+
+window.onload = loadScript;
+
+
+//google.maps.event.addDomListener(window, 'load', initialize);
