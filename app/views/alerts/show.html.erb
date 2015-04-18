@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mensaje:</strong>
+  <%= @alert.mensaje %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @alert.fecha %>
+</p>
+
+<p>
+  <strong>Zone:</strong>
+  <%= @alert.zone %>
+</p>
+
+<%= link_to 'Edit', edit_alert_path(@alert) %> |
+<%= link_to 'Back', alerts_path %>

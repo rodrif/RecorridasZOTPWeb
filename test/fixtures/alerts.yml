@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mensaje: MyString
+  fecha: 2015-04-17 22:23:11
+  zone_id: 
+
+two:
+  mensaje: MyString
+  fecha: 2015-04-17 22:23:11
+  zone_id: 
