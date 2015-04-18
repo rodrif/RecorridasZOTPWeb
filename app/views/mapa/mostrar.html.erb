@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>PersonViewModel</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Fecha</th>
+      <th>Latitud</th>
+      <th>Longitud</th>      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personas.each do |person| %>
+      <tr>
+        <td><%= person.nombre %></td>
+        <td><%= person.apellido %></td>
+        <td><%= person.fecha %></td>
+        <td><%= person.latitud %></td>
+        <td><%= person.longitud %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+
+
+</table>
+
+

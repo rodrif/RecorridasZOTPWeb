@@ -6,7 +6,7 @@ function loadScript() {
 }
 
 function initialize() {
-	alert("en initialize");
+
   var mapProp = {
     center:new google.maps.LatLng(51.508742,-0.120850),
     zoom:5,
@@ -16,6 +16,3 @@ function initialize() {
 }
 
 window.onload = loadScript;
-
-
-//google.maps.event.addDomListener(window, 'load', initialize);

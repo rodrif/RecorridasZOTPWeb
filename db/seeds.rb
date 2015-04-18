@@ -13,6 +13,7 @@ zonas = Zone.create([ { nombre: 'Liniers' }, { nombre: 'Ramos' } ])
   zonas << Zone.create!(nombre: "Zona#{i}")
 end 
 
+
 personas = Array.new
 
 10.times do |i|
@@ -20,8 +21,18 @@ personas = Array.new
 end
 
 
-Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now,
+visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now,
  latitud: '-34.6444825', longitud: '-58.5175375' } ])
+
+10.times do |i|
+  visits << Visit.create!(descripcion: 'Descripcion1', person: personas[i], fecha: Time.now.ago(2.days),
+  	latitud: '-34.6444825', longitud: '-58.5175375')
+
+  visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now,
+  	latitud: '-34.6444825', longitud: '-58.5175375')  
+end
+
+
 
 
 
