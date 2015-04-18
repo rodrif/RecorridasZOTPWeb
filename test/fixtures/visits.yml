@@ -4,10 +4,8 @@ one:
   descripcion: MyText
   fecha: 2015-04-17 22:48:54
   person_id: 
-  location_id: 
 
 two:
   descripcion: MyText
   fecha: 2015-04-17 22:48:54
-  person_id: 
-  location_id: 
+  person_id:

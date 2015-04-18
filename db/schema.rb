@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418014951) do
+ActiveRecord::Schema.define(version: 20150418132200) do
 
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre"
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 20150418014951) do
     t.text     "descripcion"
     t.datetime "fecha"
     t.integer  "person_id"
-    t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.decimal  "latitud"
+    t.decimal  "longitud"
   end
 
-  add_index "visits", ["location_id"], name: "index_visits_on_location_id"
   add_index "visits", ["person_id"], name: "index_visits_on_person_id"
 
   create_table "zones", force: :cascade do |t|
