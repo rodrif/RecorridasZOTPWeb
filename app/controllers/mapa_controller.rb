@@ -1,6 +1,7 @@
 class MapaController < ApplicationController
 
 	def index
+		@personas = PersonDataAccess.listPersonaMapa
 	end
 
 	def mostrar
