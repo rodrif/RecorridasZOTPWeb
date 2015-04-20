@@ -5,9 +5,8 @@
 <div id="googleMap" style="width:500px;height:380px;"></div>
 
 
-
-<%= content_tag "div", id: "personas", data: {personas: @personas } %>
- 
+<%= content_tag "div", id: "personas", data: {personas: @personas } do %>
+<% end %>
 
 <script defer>
     loadIndexAction();
