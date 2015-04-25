@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 zonas = Zone.create([ { nombre: 'Liniers' }, { nombre: 'Ramos' } ])
 
 10.times do |i|
@@ -16,20 +15,22 @@ end
 
 personas = Array.new
 
+personas << Person.create!(nombre: "Facundo", apellido: "Rodriguez", zone: zonas[0])
+
 10.times do |i|
   personas << Person.create!(nombre: "Persona#{i}", apellido: "Apellido#{i}", zone: zonas[i])  
 end
 
 
 visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now,
- latitud: '-34.6444825', longitud: '-58.5175375' } ])
+ latitud: '-34.6425867', longitud: '-58.5659176' } ])
 
-10.times do |i|
+1.upto(10) do |i|
   visits << Visit.create!(descripcion: 'Descripcion1', person: personas[i], fecha: Time.now.ago(2.days),
-  	latitud: '-34.6444825', longitud: '-58.5175375')
+  	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude)
 
   visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now,
-  	latitud: '-34.6444825', longitud: '-58.5175375')  
+  	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude)  
 end
 
 

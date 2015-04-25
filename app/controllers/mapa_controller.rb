@@ -7,4 +7,6 @@ class MapaController < ApplicationController
 	def mostrar
 		@personas = PersonDataAccess.listPersonaMapa
 	end
+
+	
 end

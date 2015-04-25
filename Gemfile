@@ -43,5 +43,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'therubyracer'
+
+  gem 'faker'
 end
 
