@@ -30,8 +30,11 @@ visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fec
   	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude)
 
   visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now,
-  	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude)  
+  	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude)
 end
+
+
+tipoAlertas = AlertType.create!([ { nombre: 'Novedad' } ])
 
 
 
