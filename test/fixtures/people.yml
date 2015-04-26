@@ -9,3 +9,13 @@ two:
   nombre: MyString
   apellido: MyString
   zone_id: 
+
+facundo:
+  nombre: Facundo
+  apellido: Rodriguez
+  zone: liniers
+
+juan:
+  nombre: Juan
+  apellido: Perez
+  zone: liniers 

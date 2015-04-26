@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
   get 'mapa/mostrar' => 'mapa#mostrar'
+  get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
 
   resources :alert_types
   resources :visits

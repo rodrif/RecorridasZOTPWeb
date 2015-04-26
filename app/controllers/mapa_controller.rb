@@ -8,5 +8,7 @@ class MapaController < ApplicationController
 		@personas = PersonDataAccess.listPersonaMapa
 	end
 
-	
+	def mobMapaPersonas
+		render :json => PersonDataAccess.listPersonaMapa.to_json
+	end
 end
