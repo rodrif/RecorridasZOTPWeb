@@ -5,3 +5,9 @@ one:
 
 two:
   nombre: MyString
+
+novedad:
+  nombre: Novedad
+
+recordatorio:
+  nombre: Recordatorio

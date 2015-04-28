@@ -34,10 +34,9 @@ visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fec
 end
 
 
-tipoAlertas = AlertType.create!([ { nombre: 'Novedad' } ])
+tipoAlertas = AlertType.create!([ { nombre: 'Novedad' }, { nombre: 'Recordatorio' } ])
 
 
-
-
-
-
+Alert.create!([ { mensaje: 'mensaje alerta1', fecha: '2015-01-01 20:03:11', alert_type: tipoAlertas[0],
+	zone: zonas[0]}, { mensaje: 'mensaje alerta2', fecha: '2015-03-12 20:03:11', alert_type: tipoAlertas[1],
+	zone: zonas[1]} ])

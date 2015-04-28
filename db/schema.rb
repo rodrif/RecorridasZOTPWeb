@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426145003) do
+ActiveRecord::Schema.define(version: 20150426182007) do
 
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(version: 20150426145003) do
     t.string   "mensaje"
     t.datetime "fecha"
     t.integer  "zone_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "alert_type_id"
   end
 
+  add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id"
   add_index "alerts", ["zone_id"], name: "index_alerts_on_zone_id"
 
   create_table "people", force: :cascade do |t|

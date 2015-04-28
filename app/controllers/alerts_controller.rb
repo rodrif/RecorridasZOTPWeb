@@ -61,6 +61,11 @@ class AlertsController < ApplicationController
     end
   end
 
+  def mobMostrarAlertas
+    render :json => AlertDataAccess.listAlertas(params[:fecha], params[:zona], params[:alertType]).to_json
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alert
@@ -69,6 +74,7 @@ class AlertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alert_params
-      params.require(:alert).permit(:mensaje, :fecha, :zone_id)
+      params.require(:alert).permit(:mensaje, :fecha, :zone_id, :alert_type_id)
     end
+
 end

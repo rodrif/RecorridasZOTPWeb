@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'alerts/mobMostrarAlertas' => 'alerts#mobMostrarAlertas'
 
   get 'mapa/mostrar' => 'mapa#mostrar'
   get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
+  get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
+
 
   resources :alert_types
   resources :visits

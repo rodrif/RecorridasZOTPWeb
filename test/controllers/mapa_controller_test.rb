@@ -1,16 +1,8 @@
 require 'test_helper'
+require 'helpers/test_module'
 
 class MapaControllerTest < ActionController::TestCase
-
-  def jsonComp paramId, id, parametro
-
-    json.find { |p| p[paramId] == id }[parametro]
-  end
-
-  def json
-  	ActiveSupport::JSON.decode @response.body
-  end
-
+  include TestModule
 
   test "should get index" do
     get :index
