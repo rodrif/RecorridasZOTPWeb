@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150426182007) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150426182007) do
     t.integer  "alert_type_id"
   end
 
-  add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id"
-  add_index "alerts", ["zone_id"], name: "index_alerts_on_zone_id"
+  add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id", using: :btree
+  add_index "alerts", ["zone_id"], name: "index_alerts_on_zone_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "nombre"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150426182007) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "people", ["zone_id"], name: "index_people_on_zone_id"
+  add_index "people", ["zone_id"], name: "index_people_on_zone_id", using: :btree
 
   create_table "visits", force: :cascade do |t|
     t.text     "descripcion"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150426182007) do
     t.decimal  "longitud"
   end
 
-  add_index "visits", ["person_id"], name: "index_visits_on_person_id"
+  add_index "visits", ["person_id"], name: "index_visits_on_person_id", using: :btree
 
   create_table "zones", force: :cascade do |t|
     t.string   "nombre"
@@ -59,4 +62,8 @@ ActiveRecord::Schema.define(version: 20150426182007) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "alerts", "alert_types"
+  add_foreign_key "alerts", "zones"
+  add_foreign_key "people", "zones"
+  add_foreign_key "visits", "people"
 end

@@ -3,7 +3,7 @@ class CreateAlerts < ActiveRecord::Migration
     create_table :alerts do |t|
       t.string :mensaje
       t.datetime :fecha
-      t.references :zona, index: true, foreign_key: true
+      t.references :zone, index: true, foreign_key: true
 
       t.timestamps null: false
     end
