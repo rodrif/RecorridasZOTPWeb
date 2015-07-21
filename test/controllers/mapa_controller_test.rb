@@ -17,8 +17,8 @@ class MapaControllerTest < ActionController::TestCase
 
   	assert_response :success
 
-    assert_equal @facundo.nombre, json.find { |p| p['idPersona'] == @facundo.id}['nombre']
-    assert_equal @facundo.apellido, jsonComp('idPersona', @facundo.id, 'apellido')
+    assert_equal @facundo.nombre, json.find { |p| p['persona_id'] == @facundo.id}['nombre']
+    assert_equal @facundo.apellido, jsonComp('persona_id', @facundo.id, 'apellido')
   end
  
 

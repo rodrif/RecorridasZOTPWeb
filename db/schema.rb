@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426182007) do
+ActiveRecord::Schema.define(version: 20150706233120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20150426182007) do
 
   add_index "visits", ["person_id"], name: "index_visits_on_person_id", using: :btree
 
+  create_table "welcome_messages", force: :cascade do |t|
+    t.string   "mensaje"
+    t.datetime "fecha_desde"
+    t.datetime "fecha_hasta"
+    t.integer  "person_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "welcome_messages", ["person_id"], name: "index_welcome_messages_on_person_id", using: :btree
+
   create_table "zones", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -66,4 +77,5 @@ ActiveRecord::Schema.define(version: 20150426182007) do
   add_foreign_key "alerts", "zones"
   add_foreign_key "people", "zones"
   add_foreign_key "visits", "people"
+  add_foreign_key "welcome_messages", "people"
 end
