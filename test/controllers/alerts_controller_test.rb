@@ -56,9 +56,9 @@ class AlertsControllerTest < ActionController::TestCase
 
     @alerta = alerts(:alertaCompleta)
    
-    assert_equal @alerta.mensaje, jsonComp('idAlerta', @alerta.id, 'mensaje')
-    assert_equal @alerta.zone.nombre, jsonComp('idAlerta', @alerta.id, 'nombreZona')
-    assert_equal @alerta.alert_type.nombre, jsonComp('idAlerta', @alerta.id, 'nombreAlertaTipo')
+    assert_equal @alerta.mensaje, jsonComp('alerta_id', @alerta.id, 'mensaje')
+    assert_equal @alerta.zone.nombre, jsonComp('alerta_id', @alerta.id, 'nombre_zona')
+    assert_equal @alerta.alert_type.nombre, jsonComp('alerta_id', @alerta.id, 'nombre_alerta_tipo')
 
     get :mobMostrarAlertas, {fecha: '2100-01-01', zona: 'Liniers', alertType: 'Novedad'}
     assert_response :success
@@ -72,9 +72,9 @@ class AlertsControllerTest < ActionController::TestCase
 
     @alerta = alerts(:alertaSoloMensaje)
    
-    assert_equal @alerta.mensaje, jsonComp('idAlerta', @alerta.id, 'mensaje')
-    assert_nil jsonComp('idAlerta', @alerta.id, 'nombreZona')
-    assert_nil jsonComp('idAlerta', @alerta.id, 'nombreAlertaTipo')
+    assert_equal @alerta.mensaje, jsonComp('alerta_id', @alerta.id, 'mensaje')
+    assert_nil jsonComp('alerta_id', @alerta.id, 'nombre_zona')
+    assert_nil jsonComp('alerta_id', @alerta.id, 'nombre_alerta_tipo')
   end
 
   test "mobListAlertasConZona" do
@@ -83,9 +83,9 @@ class AlertsControllerTest < ActionController::TestCase
 
     @alerta = alerts(:alertaConZona)
    
-    assert_equal @alerta.mensaje, jsonComp('idAlerta', @alerta.id, 'mensaje')
-    assert_equal @alerta.zone.nombre, jsonComp('idAlerta', @alerta.id, 'nombreZona')
-    assert_nil jsonComp('idAlerta', @alerta.id, 'nombreAlertaTipo')
+    assert_equal @alerta.mensaje, jsonComp('alerta_id', @alerta.id, 'mensaje')
+    assert_equal @alerta.zone.nombre, jsonComp('alerta_id', @alerta.id, 'nombre_zona')
+    assert_nil jsonComp('alerta_id', @alerta.id, 'nombre_alerta_tipo')
   end
 
   test "mobListAlertasConTipo" do
@@ -94,8 +94,8 @@ class AlertsControllerTest < ActionController::TestCase
 
     @alerta = alerts(:alertaConTipo)
    
-    assert_equal @alerta.mensaje, jsonComp('idAlerta', @alerta.id, 'mensaje')
-    assert_nil jsonComp('idAlerta', @alerta.id, 'nombreZona')
-    assert_equal @alerta.alert_type.nombre, jsonComp('idAlerta', @alerta.id, 'nombreAlertaTipo')
+    assert_equal @alerta.mensaje, jsonComp('alerta_id', @alerta.id, 'mensaje')
+    assert_nil jsonComp('alerta_id', @alerta.id, 'nombre_zona')
+    assert_equal @alerta.alert_type.nombre, jsonComp('alerta_id', @alerta.id, 'nombre_alerta_tipo')
   end
 end

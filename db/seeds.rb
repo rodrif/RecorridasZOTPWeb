@@ -40,3 +40,19 @@ tipoAlertas = AlertType.create!([ { nombre: 'Novedad' }, { nombre: 'Recordatorio
 Alert.create!([ { mensaje: 'mensaje alerta1', fecha: '2015-01-01 20:03:11', alert_type: tipoAlertas[0],
 	zone: zonas[0]}, { mensaje: 'mensaje alerta2', fecha: '2015-03-12 20:03:11', alert_type: tipoAlertas[1],
 	zone: zonas[1]} ])
+
+WelcomeMessage.create!([ { 
+	mensaje: 'mensaje 1',
+	fecha_desde: '2015-01-01 20:03:11',
+	fecha_hasta: '2016-01-01 20:03:11'
+	},
+	{ 
+	mensaje: 'mensaje 2',
+	fecha_desde: '2015-02-01 20:03:11',
+	fecha_hasta: '2018-01-01 20:03:11'
+	},
+	{ 
+	mensaje: 'mensaje 3',
+	fecha_desde: '2020-02-01 20:03:11',
+	fecha_hasta: '2022-01-01 20:03:11'
+	} ])
