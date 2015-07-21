@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  
+  root 'mapa#index'
+
   get 'alerts/mobMostrarAlertas' => 'alerts#mobMostrarAlertas'
 
   get 'mapa/mostrar' => 'mapa#mostrar'
