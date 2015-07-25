@@ -21,7 +21,7 @@ class WelcomeMessagesControllerTest < ActionController::TestCase
 
   test "should create welcome_message" do
     assert_difference('WelcomeMessage.count') do
-      post :create, welcome_message: { fechaDesde: @welcome_message.fecha_desde, fechaHasta: @welcome_message.fecha_hasta, mensaje: @welcome_message.mensaje, person_id: @welcome_message.person_id }
+      post :create, welcome_message: { fecha_desde: @welcome_message.fecha_desde, fecha_hasta: @welcome_message.fecha_hasta, mensaje: @welcome_message.mensaje, person_id: @welcome_message.person_id }
     end
 
     assert_redirected_to welcome_message_path(assigns(:welcome_message))
@@ -38,7 +38,7 @@ class WelcomeMessagesControllerTest < ActionController::TestCase
   end
 
   test "should update welcome_message" do
-    patch :update, id: @welcome_message, welcome_message: { fechaDesde: @welcome_message.fecha_desde, fechaHasta: @welcome_message.fecha_hasta, mensaje: @welcome_message.mensaje, person_id: @welcome_message.person_id }
+    patch :update, id: @welcome_message, welcome_message: { fecha_desde: @welcome_message.fecha_desde, fecha_hasta: @welcome_message.fecha_hasta, mensaje: @welcome_message.mensaje, person_id: @welcome_message.person_id }
     assert_redirected_to welcome_message_path(assigns(:welcome_message))
   end
 
@@ -57,9 +57,7 @@ class WelcomeMessagesControllerTest < ActionController::TestCase
 
     assert_response :success
 
-    #assert_equal json.Count, 1
-    #assert_true json.find { |m| m['mensaje'] == @mensajeMasActivo.mensaje}
-    #assert_true json.find { |m| m['person_id'] == @mensajeMasActivo.person_id}
-
+    assert jsonComp('mensaje', @mensajeMasActivo.mensaje, 'mensaje')
+    assert jsonComp('id', @mensajeMasActivo.id, 'id')
   end
 end
