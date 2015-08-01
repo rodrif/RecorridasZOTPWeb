@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
-  
+
+  post 'people/mobGuardarNuevasPersonasPost' => 'people#mobGuardarNuevasPersonasPost'
+
   get 'alerts/mobMostrarAlertas' => 'alerts#mobMostrarAlertas'
 
   get 'mapa/mostrar' => 'mapa#mostrar'
@@ -17,7 +18,6 @@ Rails.application.routes.draw do
   resources :alerts
   resources :zones
   resources :mapa
-
   
 
   # The priority is based upon order of creation: first created -> highest priority.

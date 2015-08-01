@@ -1,6 +1,12 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
+  def mobGuardarNuevasPersonasPost
+    respuesta = PersonDataAccess.guardarPersonasFromJson params['personas']
+
+    render :text => respuesta
+  end
+
   # GET /people
   # GET /people.json
   def index
@@ -36,6 +42,7 @@ class PeopleController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
