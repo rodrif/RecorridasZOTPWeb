@@ -2,7 +2,9 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def mobGuardarNuevasPersonasPost
-    respuesta = PersonDataAccess.guardarPersonasFromJson params['personas']
+    jsonString = params['personas'].nil? ? params['_json'] : params['personas']
+
+    respuesta = PersonDataAccess.guardarPersonasFromJson jsonString
 
     render :text => respuesta
   end

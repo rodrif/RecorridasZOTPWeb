@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   get 'mapa/mostrar' => 'mapa#mostrar'
   get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
-  get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
 
   get 'welcome_messages/mobGetMensajeBienvenida' => 'welcome_messages#mobGetMensajeBienvenida'
 
