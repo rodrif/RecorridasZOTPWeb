@@ -17,9 +17,9 @@ class PersonDataAccess
 	      person.apellido = p['apellido']
 
 	      if (person.save)
-	      	respuesta[p['android_id']] = person.id
+	      	respuesta[p['android_id'].to_s] = person.id
 	      else
-	      	respuesta[p['android_id']] = -1
+	      	respuesta[p['android_id'].to_s] = -1
 	      end
 	    end
 
