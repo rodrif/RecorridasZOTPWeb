@@ -26,34 +26,15 @@ class PersonDataAccess
 	    respuesta
 	end
 
-	def self.actualizarPersonasFromJson personasJson
-		respuesta = Hash.new		
-		personas = ActiveSupport::JSON.decode(personasJson)
+	def self.getPersonasDesde fecha
+		if fecha
+			Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido
+				FROM people p") #TODO agregar fecha
+		else
+			Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido
+			 	FROM people p")
+		end
 
-	    personas.each do |p|
-	    	person = Person.new
-			if p['webId'] 
-				person = Person.find(p['webId']);
-				if person.nil?
-					throw Exception "persona con Id que no existe en la BD"
-				end
-			end
-
-      		person.nombre = p['nombre']
-      		person.apellido = p['apellido']
-
-			if person.save
-				respuesta[p['android_id'].to_s] = person.id
-			else
-				respuesta[p['android_id'].to_s] = -1
-			end 
-	    end
-
-	    respuesta
-	end
-
-	def self.listPersonasModificadasDesde fecha
-		#TODO
 	end
 
 end

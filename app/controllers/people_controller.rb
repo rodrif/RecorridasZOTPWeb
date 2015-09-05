@@ -8,9 +8,9 @@ class PeopleController < ApplicationController
   end
 
   def mobRecibirPersonasDesde    
-    respuesta = PersonDataAccess.actualizarPersonasFromJson params['datos']
+    respuesta = PersonDataAccess.getPersonasDesde params['datos']
 
-    render :text => respuesta
+    render :json => respuesta
   end
 
   # GET /people
