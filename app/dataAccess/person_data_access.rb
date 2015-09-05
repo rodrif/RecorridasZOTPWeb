@@ -26,4 +26,34 @@ class PersonDataAccess
 	    respuesta
 	end
 
+	def self.actualizarPersonasFromJson personasJson
+		respuesta = Hash.new		
+		personas = ActiveSupport::JSON.decode(personasJson)
+
+	    personas.each do |p|
+	    	person = Person.new
+			if p['webId'] 
+				person = Person.find(p['webId']);
+				if person.nil?
+					throw Exception "persona con Id que no existe en la BD"
+				end
+			end
+
+      		person.nombre = p['nombre']
+      		person.apellido = p['apellido']
+
+			if person.save
+				respuesta[p['android_id'].to_s] = person.id
+			else
+				respuesta[p['android_id'].to_s] = -1
+			end 
+	    end
+
+	    respuesta
+	end
+
+	def self.listPersonasModificadasDesde fecha
+		#TODO
+	end
+
 end

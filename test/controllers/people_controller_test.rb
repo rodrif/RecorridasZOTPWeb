@@ -5,9 +5,9 @@ class PeopleControllerTest < ActionController::TestCase
     @person = people(:one)
   end
 
-  test "guardar personas nuevas mobile post" do
+  test "guardar personas mobile post" do
     assert_difference('Person.count', 2) do      
-      post :mobGuardarNuevasPersonasPost, personas: '[{"android_id":1,"nombre":"Facundo1"},{"android_id":2,"nombre":"Persona2"}]'
+      post :mobGuardarPersonasPost, datos: '[{"android_id":1,"nombre":"Facundo1"},{"android_id":2,"nombre":"Persona2"}]'
     end
   end
 

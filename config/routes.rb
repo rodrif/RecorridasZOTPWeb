@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  post 'people/mobGuardarNuevasPersonasPost' => 'people#mobGuardarNuevasPersonasPost'
+  post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
+  post 'people/mobRecibirPersonasDesde' => 'people#mobRecibirPersonasDesde'
 
   get 'alerts/mobMostrarAlertas' => 'alerts#mobMostrarAlertas'
 
