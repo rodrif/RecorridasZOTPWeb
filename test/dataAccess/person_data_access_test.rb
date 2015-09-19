@@ -12,4 +12,14 @@ class PersonDataAccessTest < ActiveSupport::TestCase
 		assert (Person.find_by nombre: "GuardarPersonasFromJson2"), "No se guardo la persona en la bd"
 	end
 
+	test "getPersonasDesde" do    
+	    personas = PersonDataAccess.getPersonasDesde
+
+
+	    assert_equal 2, personas.count, "cantidad de personas no coincide"
+
+	    # assert (Person.find_by nombre: "GuardarPersonasFromJson1"), "No se guardo la persona en la bd"
+		# assert (Person.find_by nombre: "GuardarPersonasFromJson2"), "No se guardo la persona en la bd"
+	end
+
 end
