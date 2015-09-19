@@ -26,7 +26,10 @@ class PersonDataAccess
 	    respuesta
 	end
 
-	def self.getPersonasDesde fecha = nil
+	def self.getPersonasDesde fecha
+		datos = ActiveSupport::JSON.decode(personasJson)
+		fecha = p['fecha']
+
 		if fecha.is_nil?
 			Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
 			 	FROM people p")
