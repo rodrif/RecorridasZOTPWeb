@@ -27,12 +27,12 @@ class PersonDataAccess
 	end
 
 	def self.getPersonasDesde fecha = nil
-		if fecha
-			Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
-				FROM people p WHERE p.updated_at >= ?", fecha]
-		else
+		if fecha.is_nil?
 			Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
 			 	FROM people p")
+		else
+			Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
+				FROM people p WHERE p.updated_at >= ?", fecha]
 		end
 
 	end
