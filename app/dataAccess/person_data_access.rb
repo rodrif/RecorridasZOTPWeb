@@ -29,7 +29,9 @@ class PersonDataAccess
 	def self.getPersonasDesde datosJson = nil
 		if !datosJson.nil?
 			datos = ActiveSupport::JSON.decode(datosJson)
-			fecha = datos['fecha']
+			if !datos.blank?
+				fecha = datos['fecha']
+			end
 		end
 
 		if fecha.nil?
