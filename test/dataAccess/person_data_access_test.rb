@@ -1,7 +1,7 @@
 class PersonDataAccessTest < ActiveSupport::TestCase
 	
 	test "guardarPersonasFromJson test" do    
-	    respuesta = PersonDataAccess.guardarPersonasFromJson '[{"android_id":11, "nombre":"GuardarPersonasFromJson1"},{"android_id":2, "nombre":"GuardarPersonasFromJson2"}]'
+	    respuesta = PersonDataAccess.guardarPersonasFromJson '[{"web_id": 1, "android_id":11, "nombre":"GuardarPersonasFromJson1"},{"android_id":2, "nombre":"GuardarPersonasFromJson2"}]'
 	
 	    assert_not_nil respuesta, "respuesta null"
 

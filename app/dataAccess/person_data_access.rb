@@ -11,9 +11,13 @@ class PersonDataAccess
 		personas = ActiveSupport::JSON.decode(personasJson)
 
 	    personas.each do |p|
-	      person = Person.new
+	      if (p['web_id'].nil? || p['web_id'] <= 0)
+	        person = Person.new
+	      else
+	      	person = Person.find(p['web_id']);
+	      end 
 
-	      person.nombre = p['nombre']
+   	      person.nombre = p['nombre']
 	      person.apellido = p['apellido']
 
 	      if (person.save)
