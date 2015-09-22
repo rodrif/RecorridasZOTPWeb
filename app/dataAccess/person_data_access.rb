@@ -17,8 +17,13 @@ class PersonDataAccess
 	      	person = Person.find(p['web_id']);
 	      end 
 
-   	      person.nombre = p['nombre']
-	      person.apellido = p['apellido']
+	      if !p['estado'].nil? && p['estado'] == 3
+	      	person.delete
+	      	next
+	      end
+
+      	  person.nombre = p['nombre']
+          person.apellido = p['apellido']	      
 
 	      if (person.save)
 	      	respuesta[p['android_id'].to_s] = person.id

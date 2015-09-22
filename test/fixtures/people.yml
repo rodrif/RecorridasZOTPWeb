@@ -16,6 +16,13 @@ facundo:
   zone: liniers
 
 juan:
+  id: 3
   nombre: Juan
   apellido: Perez
+  zone: liniers
+
+alberto:
+  id: 1
+  nombre: Alberto
+  apellido: Gonzalez
   zone: liniers 
