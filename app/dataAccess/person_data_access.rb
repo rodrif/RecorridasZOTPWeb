@@ -38,14 +38,19 @@ class PersonDataAccess
 	end
 
 	def self.getPersonasDesde datosJson = nil, fecha = nil
+		respuesta = Hash.new
+		respuesta['datos'] = Hash.new
+		respuesta['fecha'] = DateTime.now.to_time
+
 		if fecha.nil?
-			Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
+			respuesta['datos'] = Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
 			 	FROM people p")
 		else
-			Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
+			respuesta['datos'] = Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
 				FROM people p WHERE p.updated_at >= ?", fecha]
 		end
 
+		respuesta
 	end
 
 end
