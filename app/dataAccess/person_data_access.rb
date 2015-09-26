@@ -20,8 +20,7 @@ class PersonDataAccess
 	      end 
 
 	      if !p['estado'].nil? && p['estado'] == 3
-	      	person.delete
-	      	next
+	      	person.estado = 3
 	      end
 
       	  person.nombre = p['nombre']
