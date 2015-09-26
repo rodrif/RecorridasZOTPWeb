@@ -47,7 +47,7 @@ class PersonDataAccess
 			 	FROM people p")
 		else
 			respuesta['datos'] = Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
-				FROM people p WHERE p.updated_at >= ?", fecha]
+				FROM people p WHERE p.updated_at > ?", fecha]
 		end
 
 		respuesta
