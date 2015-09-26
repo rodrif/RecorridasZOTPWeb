@@ -5,8 +5,8 @@ class PersonDataAccessTest < ActiveSupport::TestCase
 	
 	    assert_not_nil respuesta, "respuesta null"
 
-		assert respuesta["11"] > 0, "respuesta incorrecta de servidor"
-		assert respuesta["2"] > 0, "respuesta incorrecta de servidor"
+		assert respuesta["datos"]["11"] > 0, "respuesta incorrecta de servidor"
+		assert respuesta["datos"]["2"] > 0, "respuesta incorrecta de servidor"
 
 	    assert (Person.find_by nombre: "GuardarPersonasFromJson1"), "No se guardo la persona en la bd"
 		assert (Person.find_by nombre: "GuardarPersonasFromJson2"), "No se guardo la persona en la bd"
