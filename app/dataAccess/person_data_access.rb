@@ -9,7 +9,7 @@ class PersonDataAccess
 	def self.guardarPersonasFromJson personasJson, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
-		respuesta['fecha'] = DateTime.now.to_time
+		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S')
 		personas = ActiveSupport::JSON.decode(personasJson)
 
 	    personas.each do |p|
@@ -40,14 +40,14 @@ class PersonDataAccess
 	def self.getPersonasDesde datosJson = nil, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
-		respuesta['fecha'] = DateTime.now.to_time
+		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S')
 
 		if fecha.nil?
 			respuesta['datos'] = Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
 			 	FROM people p")
 		else
 			respuesta['datos'] = Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
-				FROM people p WHERE p.updated_at > ?", fecha]
+				FROM people p WHERE p.updated_at >= ?", fecha]
 		end
 
 		respuesta
