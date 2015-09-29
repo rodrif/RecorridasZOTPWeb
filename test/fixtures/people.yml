@@ -3,26 +3,31 @@
 one:
   nombre: MyString
   apellido: MyString
-  zone_id: 
+  state: actualizado
+  zone: liniers 
 
 two:
   nombre: MyString
   apellido: MyString
-  zone_id: 
+  state: actualizado
+  zone: liniers
 
 facundo:
   nombre: Facundo
   apellido: Rodriguez
+  state: actualizado
   zone: liniers
 
 juan:
   id: 3
   nombre: Juan
   apellido: Perez
+  state: actualizado
   zone: liniers
 
 alberto:
   id: 1
   nombre: Alberto
   apellido: Gonzalez
-  zone: liniers 
+  state: actualizado
+  zone: liniers

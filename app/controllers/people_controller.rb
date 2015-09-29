@@ -68,7 +68,7 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     #@person.destroy
-    @person.estado = 3
+    @person.state_id = 3
     @person.save
     respond_to do |format|
       format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }

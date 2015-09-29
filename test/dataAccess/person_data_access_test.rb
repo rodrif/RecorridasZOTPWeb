@@ -10,7 +10,7 @@ class PersonDataAccessTest < ActiveSupport::TestCase
 
 	    assert (Person.find_by nombre: "GuardarPersonasFromJson1"), "No se guardo la persona en la bd"
 		assert (Person.find_by nombre: "GuardarPersonasFromJson2"), "No se guardo la persona en la bd"
-		assert !Person.exists?(3)
+		assert_equal 3, Person.find(3).state_id, "fallo borrado logico" 
 	end
 
 	test "getPersonasDesde" do    

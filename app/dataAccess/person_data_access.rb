@@ -20,7 +20,7 @@ class PersonDataAccess
 	      end 
 
 	      if !p['estado'].nil? && p['estado'] == 3
-	      	person.estado = 3
+	      	person.state_id = 3
 	      end
 
       	  person.nombre = p['nombre']
@@ -42,10 +42,10 @@ class PersonDataAccess
 		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S')
 
 		if fecha.nil?
-			respuesta['datos'] = Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
+			respuesta['datos'] = Person.readonly.find_by_sql("SELECT p.id AS web_id, p.nombre, p.apellido, p.state_id AS estado, p.updated_at
 			 	FROM people p")
 		else
-			respuesta['datos'] = Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.updated_at
+			respuesta['datos'] = Person.readonly.find_by_sql ["SELECT p.id AS web_id, p.nombre, p.apellido, p.state_id AS estado, p.updated_at
 				FROM people p WHERE p.updated_at >= ?", fecha]
 		end
 

@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
+
 zonas = Zone.create([ { nombre: 'Liniers' }, { nombre: 'Ramos' } ])
 
 10.times do |i|
@@ -15,10 +17,10 @@ end
 
 personas = Array.new
 
-personas << Person.create!(nombre: "Facundo", apellido: "Rodriguez", zone: zonas[0])
+personas << Person.create!(nombre: "Facundo", apellido: "Rodriguez", zone: zonas[0], state_id: 1)
 
 10.times do |i|
-  personas << Person.create!(nombre: "Persona#{i}", apellido: "Apellido#{i}", zone: zonas[i])  
+  personas << Person.create!(nombre: "Persona#{i}", apellido: "Apellido#{i}", zone: zonas[i], state_id: 1)  
 end
 
 

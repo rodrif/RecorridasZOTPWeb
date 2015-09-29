@@ -46,7 +46,7 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should destroy person" do
-    assert_difference('Person.count', -1) do
+    assert_difference('Person.count', 0) do
       delete :destroy, id: @person
     end
 

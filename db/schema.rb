@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706233120) do
+ActiveRecord::Schema.define(version: 20150928232945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,17 @@ ActiveRecord::Schema.define(version: 20150706233120) do
     t.integer  "zone_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "state_id"
   end
 
+  add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
   add_index "people", ["zone_id"], name: "index_people_on_zone_id", using: :btree
+
+  create_table "states", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "visits", force: :cascade do |t|
     t.text     "descripcion"
@@ -75,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150706233120) do
 
   add_foreign_key "alerts", "alert_types"
   add_foreign_key "alerts", "zones"
+  add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
   add_foreign_key "visits", "people"
   add_foreign_key "welcome_messages", "people"
