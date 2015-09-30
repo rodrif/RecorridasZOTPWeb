@@ -20,8 +20,16 @@
         <td><%= person.id %></td>
         <td><%= person.nombre %></td>
         <td><%= person.apellido %></td>
-        <td><%= person.zone.nombre %></td>
-        <td><%= person.state.nombre %></td>
+        <% if person.zone.nil? %>
+          <td>Sin zona</td>
+        <% else %>
+          <td><%= person.zone.nombre %></td>
+        <% end %>
+        <% if person.state.nil? %>
+          <td>Sin estado</td>
+        <% else %>  
+          <td><%= person.state.nombre %></td>
+        <% end %>
         <td><%= link_to 'Show', person %></td>
         <td><%= link_to 'Edit', edit_person_path(person) %></td>
         <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
