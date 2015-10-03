@@ -1,6 +1,12 @@
 class VisitsController < ApplicationController
   before_action :set_visit, only: [:show, :edit, :update, :destroy]
 
+  def mobRecibirVisitasDesde    
+    respuesta = VisitDataAccess.getVisitasDesde params['datos'], params['fecha']
+
+    render :json => respuesta
+  end
+
   # GET /visits
   # GET /visits.json
   def index

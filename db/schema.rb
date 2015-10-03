@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928232945) do
+ActiveRecord::Schema.define(version: 20151003152702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,11 @@ ActiveRecord::Schema.define(version: 20150928232945) do
     t.datetime "updated_at",  null: false
     t.decimal  "latitud"
     t.decimal  "longitud"
+    t.integer  "state_id"
   end
 
   add_index "visits", ["person_id"], name: "index_visits_on_person_id", using: :btree
+  add_index "visits", ["state_id"], name: "index_visits_on_state_id", using: :btree
 
   create_table "welcome_messages", force: :cascade do |t|
     t.string   "mensaje"
@@ -86,5 +88,6 @@ ActiveRecord::Schema.define(version: 20150928232945) do
   add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
   add_foreign_key "visits", "people"
+  add_foreign_key "visits", "states"
   add_foreign_key "welcome_messages", "people"
 end
