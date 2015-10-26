@@ -21,6 +21,8 @@ class PersonDataAccess
 
 	      if !p['estado'].nil? && p['estado'] == 3
 	      	person.state_id = 3
+	      else	      	
+	      	person.state_id = 1
 	      end
 
       	  person.nombre = p['nombre']
