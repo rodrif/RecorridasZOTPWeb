@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<ul class="nav nav-sidebar leftMenu">
+	<li class="active"><%= link_to 'Inicio', root_path %></li>
+	<li><%= link_to 'Personas', people_path %></li>
+	<li><%= link_to 'Visitas', visits_path %></li>
+	<li><%= link_to 'Configuracion', root_path %></li>
+</ul>
+
 <%= yield %>
 
 </body>

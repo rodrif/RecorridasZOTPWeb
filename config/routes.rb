@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'mapa#index'
+
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
 
   post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
