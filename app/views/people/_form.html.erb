@@ -32,21 +32,28 @@
     </div>
   </div>
 
-
-  <div class="field">
-    <%= f.label :zone_id %><br>
-    <%= f.text_field :zone_id %>
+  <div class="form-group">
+    <%= f.label :dni, class: "col-md-1 control-label", for: "person_dni" %>
+    <div class="col-md-10">
+      <%= f.text_field :dni, class: "form-control", type: "number" %>
+    </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :fecha_nacimiento, class: "col-md-1 control-label", for: "person_fecha_nacimiento" %>
+    <div class="col-md-10">
+      <%= f.text_field :fecha_nacimiento, class: "form-control", type: "date" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Zona", class: "col-md-1 control-label", for: "person_zone_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => "Ninguna"}, {:class => "form-control"} %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
-<!-- <form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-    </div>
-  </div>
-</form> -->

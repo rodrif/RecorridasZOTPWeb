@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003152702) do
+ActiveRecord::Schema.define(version: 20151101144254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 20151003152702) do
     t.string   "nombre"
     t.string   "apellido"
     t.integer  "zone_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "state_id"
+    t.integer  "dni"
+    t.date     "fecha_nacimiento"
   end
 
   add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
