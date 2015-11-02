@@ -60,7 +60,7 @@ function addMarker(personaViewModel) {
   });
 
   google.maps.event.addListener(marker, 'click', function() { 
-    window.location = '/people/' + marker.data.idpersona;
+    window.location = '/people/' + marker.data.persona_id;
   });
 }
 
@@ -71,7 +71,7 @@ function mostrarInfoWindow(event, marker) {
 
   // Replace our Info Window's content and position 
   infowindow.setContent(contentString); 
-  infowindow.idPersona = marker.data.idpersona;
+  infowindow.idPersona = marker.data.persona_id;
   infowindow.open(map, marker);
 } 
 
