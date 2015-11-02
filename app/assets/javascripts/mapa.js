@@ -13,7 +13,7 @@ function loadIndexAction() {
 function loadMapaScript(calllback) {
 
   var script = document.createElement("script");
-  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + calllback;
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + calllback;
 
   document.body.appendChild(script);
 }
