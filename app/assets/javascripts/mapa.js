@@ -60,14 +60,14 @@ function addMarker(personaViewModel) {
   });
 
   google.maps.event.addListener(marker, 'click', function() { 
-    window.location = '/people/' + marker.data.persona_id;
+    window.location = '/people/' + marker.data.persona_id + '/edit';
   });
 }
 
 // Info window trigger function 
 function mostrarInfoWindow(event, marker) { 
   // Create content  
-  var contentString = marker.data.nombre + "<br /><br /><hr />Coordinate: " + marker.data.latitud +"," + marker.data.longitud; 
+  var contentString = marker.data.nombre + " " + marker.data.apellido + "<br /><hr />Coordinate: " + marker.data.latitud +"," + marker.data.longitud; 
 
   // Replace our Info Window's content and position 
   infowindow.setContent(contentString); 
