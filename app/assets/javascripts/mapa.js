@@ -23,13 +23,10 @@ function initialize() {
   };
   
   map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-  map.addListener('rightclick', function() { //TODO no anda
+  map.addListener('rightclick', function() {
     window.location = '/people/new';
   });
-
-console.log(map);
-  console.log("fin");
-
+  
   addPersonasToMap();
 }
 
