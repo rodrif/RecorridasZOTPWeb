@@ -26,7 +26,8 @@ function initialize() {
   map.addListener('rightclick', function() {
     window.location = '/people/new';
   });
-  
+
+  geoLocalizacion();
   addPersonasToMap();
 }
 
@@ -68,6 +69,35 @@ function mostrarInfoWindow(event, marker) {
   infowindow.idPersona = marker.data.persona_id;
   infowindow.open(map, marker);
 } 
+
+function geoLocalizacion() {
+  var infoWindowNav = new google.maps.InfoWindow({map: map});
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindowNav.setPosition(pos);
+      infoWindowNav.setContent('Ubicación encontrada');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindowNav, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindowNav, map.getCenter());
+  }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}
 
  
 
