@@ -8,12 +8,12 @@ function loadIndexAction() {
   loadMapaScript('initialize');
 }
 
-function loadMapaScript(calllback) {
-  var script = document.createElement("script");
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + calllback;
+// function loadMapaScript(calllback) {
+//   var script = document.createElement("script");
+//   script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + calllback;
 
-  document.body.appendChild(script);
-}
+//   document.body.appendChild(script);
+// }
 
 function initialize() {
   mapProp = {
@@ -36,7 +36,7 @@ function addPersonasToMap() {
     addMarker(listaPersonasViewModels[i]);
   }
   infowindow = new google.maps.InfoWindow();
- }
+}
 
 function addMarker(personaViewModel) {
   var latlng = new google.maps.LatLng(personaViewModel.latitud, personaViewModel.longitud);
