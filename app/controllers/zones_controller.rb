@@ -69,6 +69,6 @@ class ZonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def zone_params
-      params.require(:zone).permit(:nombre, :latitud, :longitud)
+      params.require(:zone).permit(:nombre, :latitud, :longitud, :area_id)
     end
 end
