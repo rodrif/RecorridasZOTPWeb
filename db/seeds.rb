@@ -8,12 +8,14 @@
 
 estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
-zonas = Zone.create([ { nombre: 'Liniers' }, { nombre: 'Ramos' } ])
+areas = Area.create([ { nombre: 'Zona Oeste' } ])
 
-10.times do |i|
-  zonas << Zone.create!(nombre: "Zona#{i}")
-end 
-
+zonas = Zone.create([
+	{ nombre: 'Haedo', latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0] },
+	{ nombre: 'Liniers', latitud: '-34.639050702761295', longitud: '-58.52465748801478', area: areas[0] },
+	{ nombre: 'Ramos', latitud: '-34.641027959809676', longitud: '-58.565813303139294', area: areas[0] },
+	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0] }
+])
 
 personas = Array.new
 

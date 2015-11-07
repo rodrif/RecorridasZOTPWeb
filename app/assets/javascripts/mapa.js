@@ -17,7 +17,7 @@ function loadMapaScript(calllback) {
 
 function initialize() {
   mapProp = {
-    center:new google.maps.LatLng(-34.6425867,-58.5659176),
+    center: new google.maps.LatLng(-34.6425867,-58.5659176),
     zoom:15,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };

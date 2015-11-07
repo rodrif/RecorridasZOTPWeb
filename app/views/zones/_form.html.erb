@@ -1,4 +1,4 @@
-<%= form_for(@zone) do |f| %>
+<%= form_for(@zone, :html => {:class => 'form-horizontal container-fluid'} ) do |f| %>
   <% if @zone.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@zone.errors.count, "error") %> prohibited this zone from being saved:</h2>
@@ -11,11 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+  <div class="form-group">
+    <%= f.label :nombre, class: "col-md-1 control-label", for: "zone_nombre" %>
+    <div class="col-md-10">
+      <%= f.text_field :nombre, class: "form-control" %>
+    </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label "Area", class: "col-md-1 control-label", for: "zone_area_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :latitud, class: "col-md-1 control-label", for: "zone_latitud" %>
+    <div class="col-md-10">
+      <%= f.text_field :latitud, class: "form-control" %>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :longitud, class: "col-md-1 control-label", for: "zone_longitud" %>
+    <div class="col-md-10">
+      <%= f.text_field :longitud, class: "form-control" %>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMap" %>
+    <div class="col-md-10">
+      <div id="googleMap" class="mapaUbicacionZona form-control"></div>
+    </div>
+  </div>
+
+  
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
+
+ <script defer>
+  loadMapaScript('cargarUbicacionZona');
+ </script>

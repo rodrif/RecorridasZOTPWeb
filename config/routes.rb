@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :areas
   root 'mapa#index'
 
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101144254) do
+ActiveRecord::Schema.define(version: 20151107120550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 20151101144254) do
 
   add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id", using: :btree
   add_index "alerts", ["zone_id"], name: "index_alerts_on_zone_id", using: :btree
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "people", force: :cascade do |t|
     t.string   "nombre"
@@ -83,7 +89,12 @@ ActiveRecord::Schema.define(version: 20151101144254) do
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "area_id"
+    t.float    "latitud"
+    t.float    "longitud"
   end
+
+  add_index "zones", ["area_id"], name: "index_zones_on_area_id", using: :btree
 
   add_foreign_key "alerts", "alert_types"
   add_foreign_key "alerts", "zones"
@@ -92,4 +103,5 @@ ActiveRecord::Schema.define(version: 20151101144254) do
   add_foreign_key "visits", "people"
   add_foreign_key "visits", "states"
   add_foreign_key "welcome_messages", "people"
+  add_foreign_key "zones", "areas"
 end
