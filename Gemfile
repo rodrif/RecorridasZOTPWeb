@@ -15,6 +15,7 @@ group :production do
 	gem 'rails_12factor'
 end
 
+gem 'filterrific'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
 # Use SCSS for stylesheets
