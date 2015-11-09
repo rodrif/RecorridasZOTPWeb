@@ -75,6 +75,6 @@ class VisitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def visit_params
-      params.require(:visit).permit(:descripcion, :fecha, :person_id, :location_id)
+      params.require(:visit).permit(:descripcion, :fecha, :person_id, :latitud, :longitud)
     end
 end
