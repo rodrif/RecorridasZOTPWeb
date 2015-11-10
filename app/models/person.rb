@@ -5,6 +5,8 @@ class Person < ActiveRecord::Base
   belongs_to :state
   has_many :visits
 
+  self.per_page = 5
+
   filterrific(
     available_filters: [
       :search_query,    

@@ -1,5 +1,9 @@
 <div id="filterrific_results">
 
+  <div>
+    <%= page_entries_info people %>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -40,5 +44,7 @@
     </tbody>
   </table>
   
+  <%= will_paginate people %>
+
 </div>
 

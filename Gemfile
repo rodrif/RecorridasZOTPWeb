@@ -15,6 +15,7 @@ group :production do
 	gem 'rails_12factor'
 end
 
+gem 'will_paginate', '~> 3.0.6'
 gem 'filterrific'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
