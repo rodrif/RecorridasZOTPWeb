@@ -4,35 +4,41 @@
 
 <div class="table-responsive">
 
-<%= form_for_filterrific @filterrific do |f| %>
+  <div class="well">
+    <%= form_for_filterrific @filterrific do |f| %>
 
-  <div>
-    Nombre / Apodo
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%= f.text_field(
-      :search_query,
-      class: 'filterrific-periodically-observed'
-    ) %>
-  </div>
+      <div class="row-fluid">
+        <div class="col-md-3">
+          Zona
+          <%= f.select(
+            :with_zone_id,
+            @filterrific.select_options[:with_zone_id],
+            { include_blank: 'Todas' }
+          ) %>
+        </div>
 
-  <div>
-    Zona
-    <%= f.select(
-      :with_zone_id,
-      @filterrific.select_options[:with_zone_id],
-      { include_blank: 'Todas' }
-    ) %>
-  </div>
+        <div class="col-md-6">
+          Nombre / Apodo
+          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+          <%= f.text_field(
+            :search_query,
+            class: 'filterrific-periodically-observed'
+          ) %>
+        </div>
 
-  <div>
-    <%= link_to(
-      'Reset filters',
-      reset_filterrific_url,
-    ) %>
+        <div class="col-md-3">
+          <%= link_to(
+            'Reset filters',
+            reset_filterrific_url,
+          ) %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
-  <%= render_filterrific_spinner %>
-<% end %>
+</div>
+
+<%# add an automated spinner to your form when the list is refreshed %>
+<%= render_filterrific_spinner %>
 
 <%= render(
   partial: 'people/list',
