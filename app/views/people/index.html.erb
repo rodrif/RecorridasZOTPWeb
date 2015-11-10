@@ -7,11 +7,20 @@
 <%= form_for_filterrific @filterrific do |f| %>
 
   <div>
-    Zone
+    Nombre / Apodo
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+
+  <div>
+    Zona
     <%= f.select(
       :with_zone_id,
       @filterrific.select_options[:with_zone_id],
-      { include_blank: '- Any -' }
+      { include_blank: 'Todas' }
     ) %>
   </div>
 
@@ -29,46 +38,7 @@
   partial: 'people/list',
   locals: { people: @people }
 ) %>
-
-  <!-- <table class="table table-striped">
-    <thead>
-      <tr>
-        <% if !Rails.env.production? %>
-          <th>Id</th>
-        <% end %>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Zona</th>
-        <th>Estado</th>
-        <th>Editar</th>
-        <th>Borrar</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @people.each do |person| %>
-        <tr>
-          <% if !Rails.env.production? %>
-            <td><%= person.id %></td>
-          <% end %>
-          <td><%= person.nombre %></td>
-          <td><%= person.apellido %></td>
-          <% if person.zone.nil? %>
-            <td>Sin zona</td>
-          <% else %>
-            <td><%= person.zone.nombre %></td>
-          <% end %>
-          <% if person.state.nil? %>
-            <td>Sin estado</td>
-          <% else %>  
-            <td><%= person.state.nombre %></td>
-          <% end %>
-          <td><%= link_to 'Editar', edit_person_path(person) %></td>
-          <td><%= link_to 'Borrar', person, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table> -->
+  
 </div>
 <br>
 

@@ -21,7 +21,7 @@ class PeopleController < ApplicationController
     @filterrific = initialize_filterrific(
       Person,
       params[:filterrific],
-      select_options: {       
+      select_options: {   
         with_zone_id: Zone.options_for_select
       },
       default_filter_params: {}
