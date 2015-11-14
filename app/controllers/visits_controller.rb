@@ -10,7 +10,7 @@ class VisitsController < ApplicationController
   # GET /visits
   # GET /visits.json
   def index
-    @visits = Visit.all
+    @visits = Visit.order(fecha: :desc).all
   end
 
   # GET /visits/1

@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   belongs_to :zone
   belongs_to :state
   has_many :visits
+  accepts_nested_attributes_for :visits
 
   self.per_page = 5
 

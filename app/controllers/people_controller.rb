@@ -57,6 +57,7 @@ class PeopleController < ApplicationController
   # GET /people/new
   def new
     @person = Person.new
+    @person.visits.build
   end
 
   # GET /people/1/edit
@@ -68,6 +69,7 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
     @person.state = State.find_by_nombre('Actualizado');
+    @person.visits.first.fecha = Time.now;
 
     respond_to do |format|
       if @person.save
@@ -121,7 +123,11 @@ class PeopleController < ApplicationController
         :dni,
         :telefono,
         :fecha_nacimiento,
+        :area_id,
         :zone_id,
-        :page)
+        :ranchada_id,
+        :familia_id,
+        :page,
+        visits_attributes: [:id, :descripcion, :latitud, :longitud])
     end
 end

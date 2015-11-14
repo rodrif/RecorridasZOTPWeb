@@ -75,6 +75,25 @@
     </div>
   </div>
 
+  <%= f.fields_for :visits do |field| %>
+    <div class="form-group">
+      <%= field.label :latitud, class: "col-md-1 control-label", for: "person_visit_latitud" %>
+      <div class="col-md-5">
+        <%= field.text_field :latitud, class: "form-control" %>
+      </div>
+      <%= field.label :longitud, class: "col-md-1 control-label", for: "person_visit_longitud" %>
+      <div class="col-md-5">
+        <%= field.text_field :longitud, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= field.label 'Ubicación', class: "col-md-1 control-label", for: "googleMap" %>
+      <div class="col-md-10">
+        <div id="googleMap" class="mapaUbicacionPersona form-control"></div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -104,3 +123,8 @@
     </div>
   </div>
 </div>
+
+
+<script async defer>
+  loadMapaScript('cargarUbicacionPersona');
+</script>

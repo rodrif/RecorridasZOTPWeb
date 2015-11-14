@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require turbolinks
 //= require_tree
 //= require filterrific/filterrific-jquery
@@ -69,10 +68,11 @@ function loadMapaScript(calllback) {
   document.body.appendChild(script);
 }
 
-$(function() {
-  $('.datepicker').datepicker({
-  	changeYear: true,
-  	yearRange: "-100:+2",
-	format: 'dd-mm-yyyy'  	
-  });
-});
+
+// $(function() {
+//   $('.datepicker').datepicker({
+//   	changeYear: true,
+//   	yearRange: "-100:+2",
+// 	format: 'dd-mm-yyyy'  	
+//   });
+// });
