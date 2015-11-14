@@ -1,2 +1,3 @@
+$('#person_zone_id').html("<%= escape_javascript options_from_collection_for_select Zone.order(:nombre).all, 'id', 'nombre' %>");
+$('#person_zone_id').val(<%= @zone.id %>);
 $('#new_zone_modal').modal_success();
-$('#person_zone_id').html("<%= escape_javascript options_from_collection_for_select Zone.all, 'id', 'nombre' %>");
