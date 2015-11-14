@@ -30,9 +30,11 @@ class ZonesController < ApplicationController
       if @zone.save
         format.html { redirect_to @zone, notice: 'Zone was successfully created.' }
         format.json { render :show, status: :created, location: @zone }
+        format.js { render :show, status: :created, location: @zone }
       else
         format.html { render :new }
         format.json { render json: @zone.errors, status: :unprocessable_entity }
+        format.js   { render json: @zone.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -48,8 +48,8 @@
 
   <div class="form-group">
     <%= f.label "Zona", class: "col-md-1 control-label", for: "person_zone_id" %>
-    <div class="col-md-10">
-      <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => "Ninguna"}, {:class => "form-control"} %>
+    <div class="col-md-10" id="zoneSelector">
+      <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => "false"}, {:class => "form-control"} %>
     </div>
   </div>
 
@@ -57,3 +57,28 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<%# Zone modal %>
+<%# Added Bootstrap data modal attribute %>
+<%= link_to 'New Zona', '#new_zone_modal', 'data-toggle' => 'modal' %>
+
+
+<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
+<div class="modal fade" id="new_zone_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Nueva Zona</h4>
+      </div>
+      <div class="modal-body">
+        <%# Render the new zone form (passing modal => true to enable remote => true) %>
+        <%= render 'zones/form', :@zone => Zone.new, modal: true %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
