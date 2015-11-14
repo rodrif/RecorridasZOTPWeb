@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :familias
+  resources :ranchadas
   resources :areas
   root 'mapa#index'
 

@@ -34,6 +34,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :telefono, class: "col-md-1 control-label", for: "person_telefono" %>
+    <div class="col-md-10">
+      <%= f.text_field :telefono, class: "form-control", type: "number" %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :fecha_nacimiento, class: "col-md-1 control-label", for: "person_fecha_nacimiento" %>
     <div class="col-md-10">
       <%= f.date_field :fecha_nacimiento, class: "form-control" %>
@@ -41,9 +48,30 @@
   </div>
 
   <div class="form-group">
+    <%= f.label "Area", class: "col-md-1 control-label", for: "person_area_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label "Zona", class: "col-md-1 control-label", for: "person_zone_id" %>
-    <div class="col-md-10" id="zoneSelector">
+    <div class="col-md-10">
       <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Ranchada", class: "col-md-1 control-label", for: "person_ranchada_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :ranchada_id, Ranchada.all, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Grupo Familiar", class: "col-md-1 control-label", for: "person_familia_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :familia_id, Familia.all, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control"} %>
     </div>
   </div>
 

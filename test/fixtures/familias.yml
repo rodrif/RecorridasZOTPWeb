@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  area_id: 
+  zone_id: 
+  ranchada_id: 
+  descripcion: MyText
+
+two:
+  nombre: MyString
+  area_id: 
+  zone_id: 
+  ranchada_id: 
+  descripcion: MyText

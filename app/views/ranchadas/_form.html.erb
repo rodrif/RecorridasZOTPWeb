@@ -1,0 +1,41 @@
+<%= form_for(@ranchada) do |f| %>
+  <% if @ranchada.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ranchada.errors.count, "error") %> prohibited this ranchada from being saved:</h2>
+
+      <ul>
+      <% @ranchada.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :area_id %><br>
+    <%= f.text_field :area_id %>
+  </div>
+  <div class="field">
+    <%= f.label :zone_id %><br>
+    <%= f.text_field :zone_id %>
+  </div>
+  <div class="field">
+    <%= f.label :descripcion %><br>
+    <%= f.text_area :descripcion %>
+  </div>
+  <div class="field">
+    <%= f.label :latitud %><br>
+    <%= f.text_field :latitud %>
+  </div>
+  <div class="field">
+    <%= f.label :longitud %><br>
+    <%= f.text_field :longitud %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
