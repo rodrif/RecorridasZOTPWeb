@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require_tree
 //= require filterrific/filterrific-jquery
@@ -62,9 +63,16 @@ MapaUbicacion.prototype.refreshMarker = function() {
 	});
 }
 
-
 function loadMapaScript(calllback) {
   var script = document.createElement("script");
   script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + calllback;
   document.body.appendChild(script);
-}	
+}
+
+$(function() {
+  $('.datepicker').datepicker({
+  	changeYear: true,
+  	yearRange: "-100:+2",
+	format: 'dd-mm-yyyy'  	
+  });
+});
