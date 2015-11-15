@@ -10,5 +10,5 @@ function cargarUbicacionVisita() {
 		longitud = -58.5659176;
 	}
 
-	var mapaUbicacion = new MapaUbicacion(latitud, longitud, '#visit_latitud', '#visit_longitud');
+	var mapaUbicacion = new MapaUbicacion(latitud, longitud, '#visit_latitud', '#visit_longitud', 'googleMapVisita');
 };

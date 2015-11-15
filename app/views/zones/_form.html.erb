@@ -44,9 +44,9 @@
   </div>
 
    <div class="form-group">
-    <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMap" %>
+    <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapZona" %>
     <div class="col-md-10">
-      <div id="googleMap" class="mapaUbicacionZona form-control"></div>
+      <div id="googleMapZona" class="mapaUbicacionZona form-control"></div>
     </div>
   </div>  
 
@@ -56,6 +56,8 @@
 
 <% end %>
 
- <script defer>
-  loadMapaScript('cargarUbicacionZona');
- </script>
+<% if !remote %>
+  <script defer>
+    loadMapaScript('cargarUbicacionZona');
+  </script>
+<% end %>

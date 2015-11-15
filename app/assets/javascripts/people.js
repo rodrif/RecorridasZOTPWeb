@@ -14,5 +14,7 @@ function cargarUbicacionPersona() {
 		longitud = -58.5659176;
 	}
 
-	var mapaUbicacion = new MapaUbicacion(latitud, longitud, latSelector, lngSelector);
+	var mapaUbicacion = new MapaUbicacion(latitud, longitud, latSelector, lngSelector, "googleMapPersona");
+
+	cargarUbicacionZona();
 };

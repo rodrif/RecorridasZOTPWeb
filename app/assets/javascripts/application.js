@@ -16,7 +16,7 @@
 //= require_tree
 //= require filterrific/filterrific-jquery
 
-function MapaUbicacion(latitud, longitud, selectorLat, selectorLng) {
+function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa) {
 
 	var latitud;
 	var longitud;
@@ -39,7 +39,7 @@ function MapaUbicacion(latitud, longitud, selectorLat, selectorLng) {
 		zoom:15,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
   	};
-	this.map = new google.maps.Map(document.getElementById("googleMap"), this.mapProp);
+	this.map = new google.maps.Map(document.getElementById(idMapa), this.mapProp);
 	this.refreshMarker();
 	var self = this;
 	this.map.addListener('click', function(event) {

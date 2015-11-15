@@ -10,7 +10,14 @@ function cargarUbicacionZona() {
 		longitud = -58.5659176;
 	}
 
-	var mapaUbicacion = new MapaUbicacion(latitud, longitud, '#zone_latitud', '#zone_longitud');
+	var mapaUbicacion = new MapaUbicacion(latitud, longitud, '#zone_latitud', '#zone_longitud', 'googleMapZona');
+
+  $('#new_zone_modal').ready(function() {
+    $('#new_zone_modal').on('shown.bs.modal',function() {
+      google.maps.event.trigger(mapaUbicacion.map, 'resize');
+      mapaUbicacion.center(new google.maps.LatLng(mapaUbicacion.latitud, mapaUbicacion.longitud));
+    });
+  });
 };
 
 $(document).ready(function(){
