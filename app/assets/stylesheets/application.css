@@ -15,11 +15,10 @@
  */
 
  .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
- 	background-color: violet;
+ 	background-color: #80379B;
+ 	color: white;
  }
 
  .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
- 	background-color: yellow;
+ 	background-color: #F0AB00;
  }
-
- 
