@@ -17,4 +17,5 @@ function cargarUbicacionPersona() {
 	var mapaUbicacion = new MapaUbicacion(latitud, longitud, latSelector, lngSelector, "googleMapPersona");
 
 	cargarUbicacionZona();
+	cargarUbicacionRanchada();
 };

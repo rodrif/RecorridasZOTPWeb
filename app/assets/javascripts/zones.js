@@ -15,7 +15,7 @@ function cargarUbicacionZona() {
   $('#new_zone_modal').ready(function() {
     $('#new_zone_modal').on('shown.bs.modal',function() {
       google.maps.event.trigger(mapaUbicacion.map, 'resize');
-      mapaUbicacion.center(new google.maps.LatLng(mapaUbicacion.latitud, mapaUbicacion.longitud));
+      mapaUbicacion.map.center(new google.maps.LatLng(mapaUbicacion.map.latitud, mapaUbicacion.map.longitud));
     });
   });
 };

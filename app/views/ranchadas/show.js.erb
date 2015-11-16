@@ -1,0 +1,3 @@
+$('#person_ranchada_id').html("<%= escape_javascript options_from_collection_for_select Ranchada.order(:nombre).all, 'id', 'nombre' %>");
+$('#person_ranchada_id').val(<%= @ranchada.id %>);
+$('#new_ranchada_modal').modal_success();

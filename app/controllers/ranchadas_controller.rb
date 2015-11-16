@@ -30,9 +30,11 @@ class RanchadasController < ApplicationController
       if @ranchada.save
         format.html { redirect_to @ranchada, notice: 'Ranchada was successfully created.' }
         format.json { render :show, status: :created, location: @ranchada }
+        format.js { render :show, status: :created, location: @ranchada }
       else
         format.html { render :new }
         format.json { render json: @ranchada.errors, status: :unprocessable_entity }
+        format.js   { render json: @ranchada.errors, status: :unprocessable_entity }
       end
     end
   end

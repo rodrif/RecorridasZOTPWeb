@@ -67,8 +67,12 @@
 
   <div class="form-group">
     <%= f.label "Ranchada", class: "col-md-1 control-label", for: "person_ranchada_id" %>
-    <div class="col-md-10">
+    <div class="col-md-9">
       <%= f.collection_select :ranchada_id, Ranchada.all, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
+    </div>
+
+    <div class="col-md-1">
+      <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_ranchada_modal', 'data-toggle' => 'modal' %>
     </div>
   </div>
 
@@ -110,19 +114,33 @@
   </div>
 <% end %>
 
-
-
 <%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade" id="new_zone_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade" id="new_zone_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelZona" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Nueva Zona</h4>
+        <h4 class="modal-title" id="myModalLabelZona">Nueva Zona</h4>
       </div>
       <div class="modal-body">
         <%# Render the new zone form (passing modal => true to enable remote => true) %>
         <%= render 'zones/form', :@zone => Zone.new, modal: true %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
+<div class="modal fade" id="new_ranchada_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRanchada" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabelRanchada">Nueva Ranchada</h4>
+      </div>
+      <div class="modal-body">
+        <%# Render the new zone form (passing modal => true to enable remote => true) %>
+        <%= render 'ranchadas/form', :@ranchada => Ranchada.new, modal: true %>
       </div>
     </div>
   </div>
