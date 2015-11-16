@@ -1,4 +1,4 @@
-<%= form_for(@ranchada) do |f| %>
+<%= form_for(@ranchada, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @ranchada.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ranchada.errors.count, "error") %> prohibited this ranchada from being saved:</h2>
@@ -11,31 +11,60 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+ <div class="form-group">
+    <%= f.label :nombre, class: "col-md-1 control-label", for: "ranchada_nombre" %>
+    <div class="col-md-10">
+      <%= f.text_field :nombre, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :area_id %><br>
-    <%= f.text_field :area_id %>
+
+  <div class="form-group">
+    <%= f.label "Area", class: "col-md-1 control-label", for: "ranchada_area_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :zone_id %><br>
-    <%= f.text_field :zone_id %>
+
+  <div class="form-group">
+    <%= f.label "Zona", class: "col-md-1 control-label", for: "ranchada_zona_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :area_id, Zona.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :descripcion %><br>
-    <%= f.text_area :descripcion %>
+
+  <div class="form-group">
+    <%= f.label :descripcion, class: "col-md-1 control-label", for: "familia_descripcion" %>
+    <div class="col-md-10">
+      <%= f.text_area :descripcion, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :latitud %><br>
-    <%= f.text_field :latitud %>
+
+  <div class="form-group">
+      <%= field.label :latitud, class: "col-md-1 control-label", for: "ranchada_latitud" %>
+      <div class="col-md-5">
+        <%= field.text_field :latitud, class: "form-control" %>
+      </div>
+      <%= field.label :longitud, class: "col-md-1 control-label", for: "ranchada_longitud" %>
+      <div class="col-md-5">
+        <%= field.text_field :longitud, class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :longitud %><br>
-    <%= f.text_field :longitud %>
-  </div>
-  <div class="actions">
+
+  <div class="form-group">
+    <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapRanchada" %>
+    <div class="col-md-10">
+      <div id="googleMapRanchada" class="mapaUbicacionZona form-control"></div>
+    </div>
+  </div> 
+
+   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+    
+
+<% if !remote %>
+  <script defer>
+    loadMapaScript('cargarUbicacionRanchada');
+  </script>
 <% end %>

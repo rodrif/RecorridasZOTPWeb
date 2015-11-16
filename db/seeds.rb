@@ -22,6 +22,10 @@ ranchadas = Ranchada.create([
 	{ nombre: 'Famila Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', area: areas[0], zone: zonas[0] },
 ])
 
+familias = Familia.create([
+	{ nombre: 'Rodriguez', area: areas[0], zone: zonas[0] }
+])
+
 referentes = Referente.create([
 	{ nombre: 'Nadia', apellido: 'Guzman', telefono: '46546569', area: areas[0], dia: 'Lunes' }
 ])
