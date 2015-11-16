@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114125116) do
+ActiveRecord::Schema.define(version: 20151116013655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,18 @@ ActiveRecord::Schema.define(version: 20151114125116) do
   add_index "ranchadas", ["area_id"], name: "index_ranchadas_on_area_id", using: :btree
   add_index "ranchadas", ["zone_id"], name: "index_ranchadas_on_zone_id", using: :btree
 
+  create_table "referentes", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.integer  "telefono"
+    t.integer  "area_id"
+    t.string   "dia"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "referentes", ["area_id"], name: "index_referentes_on_area_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
@@ -144,6 +156,7 @@ ActiveRecord::Schema.define(version: 20151114125116) do
   add_foreign_key "people", "zones"
   add_foreign_key "ranchadas", "areas"
   add_foreign_key "ranchadas", "zones"
+  add_foreign_key "referentes", "areas"
   add_foreign_key "visits", "people"
   add_foreign_key "visits", "states"
   add_foreign_key "welcome_messages", "people"

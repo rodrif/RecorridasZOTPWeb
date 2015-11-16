@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :referentes
   resources :familias
   resources :ranchadas
   resources :areas
