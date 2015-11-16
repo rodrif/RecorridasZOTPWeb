@@ -17,6 +17,11 @@ zonas = Zone.create([
 	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0] }
 ])
 
+ranchadas = Ranchada.create([
+	{ nombre: 'Estacion liners', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0], zone: zonas[1] },
+	{ nombre: 'Famila Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', area: areas[0], zone: zonas[0] },
+])
+
 personas = Array.new
 
 personas << Person.create!(nombre: "Facundo", apellido: "Rodriguez", zone: zonas[0], state_id: 1)

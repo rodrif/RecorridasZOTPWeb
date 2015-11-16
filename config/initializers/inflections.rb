@@ -22,4 +22,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.uncountable %w( fish sheep )
   inflect.irregular 'ranchada', 'ranchadas'
   inflect.irregular 'familia', 'familias'
+  inflect.irregular 'referente', 'referentes'
 end

@@ -1,36 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Ranchadas</h1>
+<h2 class="sub-header">Ranchadas</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Area</th>
-      <th>Zone</th>
-      <th>Descripcion</th>
-      <th>Latitud</th>
-      <th>Longitud</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ranchadas.each do |ranchada| %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= ranchada.nombre %></td>
-        <td><%= ranchada.area %></td>
-        <td><%= ranchada.zone %></td>
-        <td><%= ranchada.descripcion %></td>
-        <td><%= ranchada.latitud %></td>
-        <td><%= ranchada.longitud %></td>
-        <td><%= link_to 'Show', ranchada %></td>
-        <td><%= link_to 'Edit', edit_ranchada_path(ranchada) %></td>
-        <td><%= link_to 'Destroy', ranchada, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th>Area</th>
+        <th>Zona</th>
+        <th>Descripcion</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Ver / Editar</th>
+        <th>Borrar</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @ranchadas.each do |ranchada| %>
+        <tr>
+          <td><%= ranchada.nombre %></td>
+          <td><%= ranchada.area.nombre %></td>
+          <td><%= ranchada.zone.nombre %></td>
+          <td><%= ranchada.descripcion %></td>
+          <td><%= ranchada.latitud %></td>
+          <td><%= ranchada.longitud %></td>
+          <td><%= link_to 'Ver / Editar', edit_ranchada_path(ranchada) %></td>
+          <td><%= link_to 'Borrar', ranchada, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 

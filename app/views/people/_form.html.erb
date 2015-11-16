@@ -98,6 +98,13 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
+    <div class="col-md-10">
+      <%= f.text_area :descripcion, class: "form-control", type: "text" %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
