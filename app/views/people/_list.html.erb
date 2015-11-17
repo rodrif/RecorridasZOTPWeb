@@ -44,7 +44,7 @@
     </tbody>
   </table>
   
-  <%= will_paginate people %>
+  <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
 
 </div>
 

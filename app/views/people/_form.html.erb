@@ -103,6 +103,13 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label "Historial de ubicaciones", class: "col-md-1 control-label" %>
+    <div class="col-md-8">
+       Historial de ubicaciones
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
     <div class="col-md-10">
       <%= f.text_area :descripcion, class: "form-control", type: "text" %>

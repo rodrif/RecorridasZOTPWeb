@@ -2,39 +2,41 @@
 
 <h2 class="sub-header">Visitas</h2>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Persona</th>
-        <th>Fecha</th>
-        <th>Comentario</th>
-        <th>Latitud</th>
-        <th>Longitud</th>
-        <th>Ver / Editar</th>
-        <th>Borrar</th>
-      </tr>
-    </thead>
+<div class="table-responsive well">
 
-    <tbody>
-      <% @visits.each do |visit| %>
-        <tr>
-          <% if visit.person.nil? %>
-            <td>Sin persona</td>
-          <% else %>
-            <td><%= visit.person.nombre  %></td>
-          <% end %>
-          <td><%= visit.fecha %></td>
-          <td><%= visit.descripcion %></td>
-          <td><%= visit.latitud %></td>
-          <td><%= visit.longitud %></td>
-          <td><%= link_to 'Ver / Editar', edit_visit_path(visit) %></td>
-          <td><%= link_to 'Borrar', visit, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= form_for_filterrific @filterrific do |f| %>
+
+    <div class="row-fluid">
+      <div class="col-md-3">
+        Zona
+        <%= f.select(
+          :with_zone_id,
+          @filterrific.select_options[:with_zone_id],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+
+      <div class="col-md-6">
+        Nombre / Apodo
+        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed'
+        ) %>
+      </div>
+    </div>
+  <% end %>
+
 </div>
+
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+
+  <%= render(
+    partial: 'visits/list',
+    locals: { visits: @visits }
+  ) %>
+
 <br>
 
 <%= button_to 'Agregar visita', new_visit_path, :class => 'button btn btn-lg btn-primary pull-right', :method => :get %>
