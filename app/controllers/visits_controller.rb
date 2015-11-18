@@ -11,6 +11,12 @@ class VisitsController < ApplicationController
   # GET /visits.json
   def index
     #@visits = Visit.order(fecha: :desc).all
+    if (params[:person_id])
+      if !params[:filterrific]
+        params[:filterrific] = Hash.new
+      end
+      params[:filterrific][:with_person_id] = params[:person_id]
+    end
 
     @filterrific = initialize_filterrific(
       Visit,

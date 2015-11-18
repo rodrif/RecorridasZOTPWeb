@@ -13,7 +13,7 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Zona</th>
-        <th>Estado</th>
+        <th>Visitas</th>
         <th>Editar</th>
         <th>Borrar</th>
       </tr>
@@ -32,11 +32,9 @@
           <% else %>
             <td><%= person.zone.nombre %></td>
           <% end %>
-          <% if person.state.nil? %>
-            <td>Sin estado</td>
-          <% else %>  
-            <td><%= person.state.nombre %></td>
-          <% end %>
+          <td><%= link_to "Visitas", :controller => 'visits', :action => :index, :person_id => person.id %></td>
+
+
           <td><%= link_to 'Editar', edit_person_path(person) %></td>
           <td><%= link_to 'Borrar', person, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
         </tr>

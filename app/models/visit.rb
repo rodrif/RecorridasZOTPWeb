@@ -7,7 +7,8 @@ class Visit < ActiveRecord::Base
   filterrific(
     available_filters: [
       :search_query,    
-      :with_zone_id
+      :with_zone_id,
+      :with_person_id,
     ]
   )
 
@@ -35,7 +36,11 @@ class Visit < ActiveRecord::Base
 	)
   }
 
-   scope :with_zone_id, lambda { |zone_ids|
+  scope :with_zone_id, lambda { |zone_ids|
 	joins(:person).where("people.zone_id = ?", zone_ids)
+  }
+
+  scope :with_person_id, lambda { |person_id|
+	joins(:person).where("people.id = ?", person_id)
   }
 end
