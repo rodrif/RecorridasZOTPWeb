@@ -1,4 +1,8 @@
-<%= form_for(@familia, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+<%# Conditionally set remote: true. Also, passing model name as data attribute %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+
+<%= form_for(@familia, remote: remote, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @familia.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@familia.errors.count, "error") %> prohibited this familia from being saved:</h2>
@@ -10,7 +14,7 @@
       </ul>
     </div>
   <% end %>
-
+  
 
   <div class="form-group">
     <%= f.label :nombre, class: "col-md-1 control-label", for: "familia_nombre" %>

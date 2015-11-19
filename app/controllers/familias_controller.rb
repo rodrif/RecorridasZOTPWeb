@@ -30,9 +30,11 @@ class FamiliasController < ApplicationController
       if @familia.save
         format.html { redirect_to @familia, notice: 'Familia was successfully created.' }
         format.json { render :show, status: :created, location: @familia }
+        format.js { render :show, status: :created, location: @familia }
       else
         format.html { render :new }
         format.json { render json: @familia.errors, status: :unprocessable_entity }
+        format.js   { render json: @familia.errors, status: :unprocessable_entity }
       end
     end
   end
