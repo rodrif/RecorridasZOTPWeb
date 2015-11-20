@@ -1,0 +1,3 @@
+$('#person_area_id').html("<%= escape_javascript options_from_collection_for_select Area.order(:nombre).all, 'id', 'nombre' %>");
+$('#person_area_id').val(<%= @area.id %>);
+$('#new_area_modal').modal_success();

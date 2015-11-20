@@ -1,27 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Areas</h1>
+<h2 class="sub-header">Areas</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @areas.each do |area| %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= area.nombre %></td>
-        <td><%= link_to 'Show', area %></td>
-        <td><%= link_to 'Edit', edit_area_path(area) %></td>
-        <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th>Ver / Editar</th>
+        <th>Borrar</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @areas.each do |area| %>
+        <tr>
+          <td><%= area.nombre %></td>
+          <td><%= link_to 'Ver / Editar', edit_area_path(area) %></td>
+          <td><%= link_to 'Borrar', area, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Area', new_area_path %>
+<%= button_to 'Nueva Area', new_area_path, :class => 'button btn btn-sb btn-primary pull-right', :method => :get %>
