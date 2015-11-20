@@ -2,6 +2,9 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
 
+<% enProd = Rails.env.production? %> 
+<%# TODO hide lat lng %>
+
 <%= form_for(@zone, remote: remote, :html => {:class => 'form-horizontal container-fluid'} ) do |f| %>
   <% if @zone.errors.any? %>
     <div id="error_explanation">
@@ -28,8 +31,8 @@
       <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
-
-   <div class="form-group">
+         
+  <div class="form-group">
     <%= f.label :latitud, class: "col-md-1 control-label", for: "zone_latitud" %>
     <div class="col-md-10">
       <%= f.text_field :latitud, class: "form-control" %>
@@ -43,7 +46,7 @@
     </div>
   </div>
 
-   <div class="form-group">
+  <div class="form-group">
     <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapZona" %>
     <div class="col-md-10">
       <div id="googleMapZona" class="mapaUbicacionZona form-control"></div>
