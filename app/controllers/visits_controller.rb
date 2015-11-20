@@ -31,7 +31,7 @@ class VisitsController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @visits = @filterrific.find.page(params[:page])
+    @visits = @filterrific.find.order(fecha: :desc).page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -48,6 +48,13 @@ class VisitsController < ApplicationController
   # GET /visits/new
   def new
     @visit = Visit.new
+
+    if (params[:person_id])
+      ubicacion = PersonDataAccess.getUbicacionUltVisita(params[:person_id])
+      @visit.latitud = ubicacion.latitud
+      @visit.longitud = ubicacion.longitud
+    end
+
   end
 
   # GET /visits/1/edit

@@ -54,4 +54,8 @@ class PersonDataAccess
 		respuesta
 	end
 
+	def self.getUbicacionUltVisita(idPersona)
+		Visit.select(:latitud, :longitud).order(fecha: :desc).where(person_id: idPersona).first
+	end
+
 end
