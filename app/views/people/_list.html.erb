@@ -7,9 +7,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <% if !Rails.env.production? %>
-          <th>Id</th>
-        <% end %>
+        <th>Id</th>
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Zona</th>
@@ -22,9 +20,7 @@
     <tbody>
       <% @people.each do |person| %>
         <tr>
-          <% if !Rails.env.production? %>
-            <td><%= person.id %></td>
-          <% end %>
+          <td><%= person.id %></td>
           <td><%= person.nombre %></td>
           <td><%= person.apellido %></td>
           <% if person.zone.nil? %>
