@@ -17,42 +17,67 @@
   
 
   <div class="form-group">
-    <%= f.label :nombre, class: "col-md-1 control-label", for: "familia_nombre" %>
-    <div class="col-md-10">
+    <% if remote %>
+      <%= f.label :nombre, class: "col-md-2 control-label", for: "familia_nombre" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label :nombre, class: "col-md-1 control-label", for: "familia_nombre" %>
+      <div class="col-md-10">
+    <% end %>
       <%= f.text_field :nombre, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Area", class: "col-md-1 control-label", for: "familia_area_id" %>
-    <div class="col-md-10">
+    <% if remote %>
+      <%= f.label "Area", class: "col-md-2 control-label", for: "familia_area_id" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label "Area", class: "col-md-1 control-label", for: "familia_area_id" %>
+      <div class="col-md-10">
+    <% end %>
       <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Zona", class: "col-md-1 control-label", for: "familia_zona_id" %>
-    <div class="col-md-10">
+    <% if remote %>
+      <%= f.label "Zona", class: "col-md-2 control-label", for: "familia_zona_id" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label "Zona", class: "col-md-1 control-label", for: "familia_zona_id" %>
+      <div class="col-md-10">
+    <% end %>
       <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Ranchada", class: "col-md-1 control-label", for: "familia_ranchada_id" %>
-    <div class="col-md-10">
+    <% if remote %>
+      <%= f.label "Ranchada", class: "col-md-2 control-label", for: "familia_ranchada_id" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label "Ranchada", class: "col-md-1 control-label", for: "familia_ranchada_id" %>
+      <div class="col-md-10">
+    <% end %>
       <%= f.collection_select :ranchada_id, Ranchada.all, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :descripcion, class: "col-md-1 control-label", for: "familia_descripcion" %>
-    <div class="col-md-10">
+  <% if remote %>
+      <%= f.label :descripcion, class: "col-md-2 control-label", for: "familia_descripcion" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label :descripcion, class: "col-md-1 control-label", for: "familia_descripcion" %>
+      <div class="col-md-10">
+    <% end %>
       <%= f.text_area :descripcion, class: "form-control" %>
     </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions btn-group col-md-offset-5">
+    <%= f.submit 'Aceptar', class: "btn btn-primary text-center" %>
   </div>
 
 <% end %>
