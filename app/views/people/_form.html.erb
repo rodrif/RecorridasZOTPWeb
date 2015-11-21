@@ -124,9 +124,11 @@
     </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions btn-group col-md-offset-5">
+    <%= f.submit 'Aceptar', class: "btn btn-primary text-center" %>
+    <%= link_to "Cancelar", path, class: "btn btn-primary text-center" %>
   </div>
+
 <% end %>
 
 
