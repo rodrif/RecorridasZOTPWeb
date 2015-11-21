@@ -41,14 +41,19 @@
   </div>
 
   <div class="form-group">
+    <% if !Rails.env.production? %>
       <%= f.label :latitud, class: "#{label_col} control-label", for: "ranchada_latitud" %>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <%= f.text_field :latitud, class: "form-control" %>
       </div>
       <%= f.label :longitud, class: "#{label_col} control-label", for: "ranchada_longitud" %>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <%= f.text_field :longitud, class: "form-control" %>
       </div>
+    <% else %>
+      <%= f.hidden_field :latitud, class: "form-control" %>
+      <%= f.hidden_field :longitud, class: "form-control" %>
+    <% end %>
   </div>
 
   <div class="form-group">

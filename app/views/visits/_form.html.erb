@@ -32,19 +32,20 @@
     </div>
   </div>
 
-
-   <div class="form-group">
-    <%= f.label :latitud, class: "col-md-1 control-label", for: "visit_latitud" %>
-    <div class="col-md-10">
-      <%= f.text_field :latitud, class: "form-control" %>
-    </div>
-  </div>
-
-   <div class="form-group">
-    <%= f.label :longitud, class: "col-md-1 control-label", for: "visit_longitud" %>
-    <div class="col-md-10">
-      <%= f.text_field :longitud, class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <% if !Rails.env.production? %>
+      <%= f.label :latitud, class: "col-md-1 control-label", for: "visit_latitud" %>
+      <div class="col-md-4">
+        <%= f.text_field :latitud, class: "form-control" %>
+      </div>
+      <%= f.label :longitud, class: "col-md-1 control-label", for: "visit_longitud" %>
+      <div class="col-md-4">
+        <%= f.text_field :longitud, class: "form-control" %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :latitud, class: "form-control" %>
+      <%= f.hidden_field :longitud, class: "form-control" %>
+    <% end %>
   </div>
 
    <div class="form-group">

@@ -93,15 +93,21 @@
 
   <%= f.fields_for :visits do |field| %>
     <div class="form-group">
-      <%= field.label :latitud, class: "col-md-1 control-label", for: "person_visit_latitud" %>
-      <div class="col-md-5">
-        <%= field.text_field :latitud, class: "form-control" %>
-      </div>
-      <%= field.label :longitud, class: "col-md-1 control-label", for: "person_visit_longitud" %>
-      <div class="col-md-5">
-        <%= field.text_field :longitud, class: "form-control" %>
-      </div>
+      <% if !Rails.env.production? %>
+        <%= field.label :latitud, class: "col-md-1 control-label", for: "person_visit_latitud" %>
+        <div class="col-md-4">
+          <%= field.text_field :latitud, class: "form-control" %>
+        </div>
+        <%= field.label :longitud, class: "col-md-1 control-label", for: "person_visit_longitud" %>
+        <div class="col-md-4">
+          <%= field.text_field :longitud, class: "form-control" %>
+        </div>
+      <% else %>
+        <%= field.hidden_field :latitud, class: "form-control" %>
+        <%= field.hidden_field :longitud, class: "form-control" %>
+      <% end %>
     </div>
+
     <div class="form-group">
       <%= field.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapPersona" %>
       <div class="col-md-10">

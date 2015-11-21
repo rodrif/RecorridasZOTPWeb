@@ -10,8 +10,10 @@
         <th>Area</th>
         <th>Zona</th>
         <th>Descripcion</th>
-        <th>Latitud</th>
-        <th>Longitud</th>
+        <% if !Rails.env.production? %>
+          <th>Latitud</th>
+          <th>Longitud</th>
+        <% end %>
         <th>Ver / Editar</th>
         <th>Borrar</th>
       </tr>
@@ -24,8 +26,10 @@
           <td><%= ranchada.area.nombre %></td>
           <td><%= ranchada.zone.nombre %></td>
           <td><%= ranchada.descripcion %></td>
-          <td><%= ranchada.latitud %></td>
-          <td><%= ranchada.longitud %></td>
+          <% if !Rails.env.production? %>
+            <td><%= ranchada.latitud %></td>
+            <td><%= ranchada.longitud %></td>      
+          <% end %>
           <td><%= link_to 'Ver / Editar', edit_ranchada_path(ranchada) %></td>
           <td><%= link_to 'Borrar', ranchada, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
         </tr>

@@ -11,8 +11,10 @@
         <th>Persona</th>
         <th>Fecha</th>
         <th>Comentario</th>
-        <th>Latitud</th>
-        <th>Longitud</th>
+        <% if !Rails.env.production? %>
+          <th>Latitud</th>
+          <th>Longitud</th>
+        <% end %>
         <th>Ver / Editar</th>
         <th>Borrar</th>
       </tr>
@@ -28,8 +30,10 @@
           <% end %>
           <td><%= visit.fecha %></td>
           <td><%= visit.descripcion %></td>
-          <td><%= visit.latitud %></td>
-          <td><%= visit.longitud %></td>
+          <% if !Rails.env.production? %>
+            <td><%= visit.latitud %></td>
+            <td><%= visit.longitud %></td>      
+          <% end %>
           <td><%= link_to 'Ver / Editar', edit_visit_path(visit) %></td>
           <td><%= link_to 'Borrar', visit, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
         </tr>
