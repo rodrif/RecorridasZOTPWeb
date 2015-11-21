@@ -28,7 +28,7 @@ class RanchadasController < ApplicationController
 
     respond_to do |format|
       if @ranchada.save
-        format.html { redirect_to @ranchada, notice: 'Ranchada was successfully created.' }
+        format.html { redirect_to ranchadas_url, notice: 'Ranchada creada correctamente.' }
         format.json { render :show, status: :created, location: @ranchada }
         format.js { render :show, status: :created, location: @ranchada }
       else
@@ -44,7 +44,7 @@ class RanchadasController < ApplicationController
   def update
     respond_to do |format|
       if @ranchada.update(ranchada_params)
-        format.html { redirect_to @ranchada, notice: 'Ranchada was successfully updated.' }
+        format.html { redirect_to ranchadas_url, notice: 'Ranchada actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @ranchada }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class RanchadasController < ApplicationController
   def destroy
     @ranchada.destroy
     respond_to do |format|
-      format.html { redirect_to ranchadas_url, notice: 'Ranchada was successfully destroyed.' }
+      format.html { redirect_to ranchadas_url, notice: 'Ranchada borrada correctamente.' }
       format.json { head :no_content }
     end
   end

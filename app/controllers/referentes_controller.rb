@@ -28,7 +28,7 @@ class ReferentesController < ApplicationController
 
     respond_to do |format|
       if @referente.save
-        format.html { redirect_to @referente, notice: 'Referente was successfully created.' }
+        format.html { redirect_to referentes_url, notice: 'Referente creado correctamente.' }
         format.json { render :show, status: :created, location: @referente }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ReferentesController < ApplicationController
   def update
     respond_to do |format|
       if @referente.update(referente_params)
-        format.html { redirect_to @referente, notice: 'Referente was successfully updated.' }
+        format.html { redirect_to referentes_url, notice: 'Referente actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @referente }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ReferentesController < ApplicationController
   def destroy
     @referente.destroy
     respond_to do |format|
-      format.html { redirect_to referentes_url, notice: 'Referente was successfully destroyed.' }
+      format.html { redirect_to referentes_url, notice: 'Referente borrado correctamente.' }
       format.json { head :no_content }
     end
   end

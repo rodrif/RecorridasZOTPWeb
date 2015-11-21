@@ -28,7 +28,7 @@ class FamiliasController < ApplicationController
 
     respond_to do |format|
       if @familia.save
-        format.html { redirect_to @familia, notice: 'Familia was successfully created.' }
+        format.html { redirect_to familias_url, notice: 'Familia creada correctamente.' }
         format.json { render :show, status: :created, location: @familia }
         format.js { render :show, status: :created, location: @familia }
       else
@@ -44,7 +44,7 @@ class FamiliasController < ApplicationController
   def update
     respond_to do |format|
       if @familia.update(familia_params)
-        format.html { redirect_to @familia, notice: 'Familia was successfully updated.' }
+        format.html { redirect_to familias_url, notice: 'Familia actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @familia }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class FamiliasController < ApplicationController
   def destroy
     @familia.destroy
     respond_to do |format|
-      format.html { redirect_to familias_url, notice: 'Familia was successfully destroyed.' }
+      format.html { redirect_to familias_url, notice: 'Familia borrada correctamente.' }
       format.json { head :no_content }
     end
   end
