@@ -1,0 +1,14 @@
+<% remote ||= false %>
+<% label_name ||= "Sin Label" %>
+<% label_name_for ||= "Sin Label" %>
+<% name ||= "Sin Nombre" %>
+<% label_col = remote ? "col-md-2" : "col-md-1" %>
+<% input_col = remote ? "col-md-9" : "col-md-10" %>
+
+
+<div class="form-group">
+  	<%= f.label label_name, class: "#{label_col} control-label", for: "#{label_name_for}" %>
+	<div class="<%= input_col %>">
+  		<%= f.text_field name, class: "form-control" %>
+	</div>
+</div>

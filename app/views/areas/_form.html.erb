@@ -16,16 +16,9 @@
     </div>
   <% end %>
 
-
-  <div class="form-group">
-    <%= f.label :nombre, class: "col-md-1 col-xs-5 control-label", for: "area_nombre" %>
-    <div class="col-md-10 col-xs-5">
-      <%= f.text_field :nombre, class: "form-control" %>
-    </div>
-  </div>
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "area_nombre", f: f, remote: remote %>
 
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render 'layouts/buttons_submit', path: areas_path, f: f, remote: remote %>
+
 <% end %>

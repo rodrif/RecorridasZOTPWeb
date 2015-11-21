@@ -1,6 +1,8 @@
 <%# Conditionally set remote: true. Also, passing model name as data attribute %>
 <% modal ||= false %>
 <% remote = modal ? true : false %>
+<% label_col = remote ? "col-md-2" : "col-md-1" %>
+<% input_col = remote ? "col-md-9" : "col-md-10 " %>
 
 <% enProd = Rails.env.production? %> 
 <%# TODO hide lat lng %>
@@ -18,44 +20,38 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :nombre, class: "col-md-1 col-xs-5 control-label", for: "zone_nombre" %>
-    <div class="col-md-10 col-xs-5">
-      <%= f.text_field :nombre, class: "form-control" %>
-    </div>
-  </div>
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "zone_nombre", f: f, remote: remote %>
+
 
   <div class="form-group">
-    <%= f.label "Area", class: "col-md-1 control-label", for: "zone_area_id" %>
-    <div class="col-md-10">
+    <%= f.label "Area", class: "#{label_col} control-label", for: "zone_area_id" %>
+    <div class="<%= input_col %>">
       <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
          
   <div class="form-group">
-    <%= f.label :latitud, class: "col-md-1 control-label", for: "zone_latitud" %>
-    <div class="col-md-10">
+    <%= f.label :latitud, class: "#{label_col} control-label", for: "zone_latitud" %>
+    <div class="<%= input_col %>">
       <%= f.text_field :latitud, class: "form-control" %>
     </div>
   </div>
 
    <div class="form-group">
-    <%= f.label :longitud, class: "col-md-1 control-label", for: "zone_longitud" %>
-    <div class="col-md-10">
+    <%= f.label :longitud, class: "#{label_col} control-label", for: "zone_longitud" %>
+    <div class="<%= input_col %>">
       <%= f.text_field :longitud, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapZona" %>
-    <div class="col-md-10">
+    <%= f.label 'Ubicación', class: "#{label_col} control-label", for: "googleMapZona" %>
+    <div class="<%= input_col %>">
       <div id="googleMapZona" class="mapaUbicacionZona form-control"></div>
     </div>
   </div>  
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render 'layouts/buttons_submit', path: zones_path, f: f, remote: remote %>
 
 <% end %>
 

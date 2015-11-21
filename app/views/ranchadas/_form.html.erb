@@ -1,8 +1,7 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
-
-<% labelCol = modal ? "col-md-2" : "col-md-1" %>
-<% inputCol = modal ? "col-md-9" : "col-md-10" %>
+<% label_col = remote ? "col-md-2" : "col-md-1" %>
+<% input_col = remote ? "col-md-9" : "col-md-10" %>
 
 
 <%= form_for(@ranchada, remote: remote, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
@@ -18,55 +17,49 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-      <%= f.label :nombre, class: "#{labelCol} control-label", for: "ranchada_nombre" %>
-    <div class="<%= inputCol %>">
-      <%= f.text_field :nombre, class: "form-control" %>
-    </div>
-  </div>
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "ranchada_nombre", f: f, remote: remote %>
 
   <div class="form-group">
-    <%= f.label "Area", class: "#{labelCol} control-label", for: "ranchada_area_id" %>
-    <div class="<%= inputCol %>">
+    <%= f.label "Area", class: "#{label_col} control-label", for: "ranchada_area_id" %>
+    <div class="<%= input_col %>">
       <%= f.collection_select :area_id, Area.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Zona", class: "#{labelCol} control-label", for: "ranchada_zone_id" %>
-    <div class="<%= inputCol %>">
+    <%= f.label "Zona", class: "#{label_col} control-label", for: "ranchada_zone_id" %>
+    <div class="<%= input_col %>">
       <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :descripcion, class: "#{labelCol} control-label", for: "familia_descripcion" %>
-    <div class="<%= inputCol %>">
+    <%= f.label :descripcion, class: "#{label_col} control-label", for: "familia_descripcion" %>
+    <div class="<%= input_col %>">
       <%= f.text_area :descripcion, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-      <%= f.label :latitud, class: "#{labelCol} control-label", for: "ranchada_latitud" %>
+      <%= f.label :latitud, class: "#{label_col} control-label", for: "ranchada_latitud" %>
       <div class="col-md-5">
         <%= f.text_field :latitud, class: "form-control" %>
       </div>
-      <%= f.label :longitud, class: "#{labelCol} control-label", for: "ranchada_longitud" %>
+      <%= f.label :longitud, class: "#{label_col} control-label", for: "ranchada_longitud" %>
       <div class="col-md-5">
         <%= f.text_field :longitud, class: "form-control" %>
       </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Ubicación', class: "#{labelCol} control-label", for: "googleMapRanchada" %>
-    <div class="<%= inputCol %>">
+    <%= f.label 'Ubicación', class: "#{label_col} control-label", for: "googleMapRanchada" %>
+    <div class="<%= input_col %>">
       <div id="googleMapRanchada" class="mapaUbicacionZona form-control"></div>
     </div>
   </div> 
 
-   <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render 'layouts/buttons_submit', path: ranchadas_path, f: f, remote: remote %>
+
 <% end %>
     
 
