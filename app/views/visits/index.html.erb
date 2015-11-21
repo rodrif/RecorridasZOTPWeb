@@ -32,11 +32,8 @@
   <%# add an automated spinner to your form when the list is refreshed %>
   <%= render_filterrific_spinner %>
 
-  <%= render(
-    partial: 'visits/list',
-    locals: { visits: @visits }
-  ) %>
+  <%= render 'visits/list', visits: @visits %>
 
 <br>
 
-<%= link_to 'Agregar visita', new_visit_path(:person_id => params[:person_id] ), :class => 'button btn btn-sm btn-primary pull-right'%>
+<%= render 'layouts/new_button', :label => 'Nueva visita', :path => new_visit_path(:person_id => params[:person_id]) %>

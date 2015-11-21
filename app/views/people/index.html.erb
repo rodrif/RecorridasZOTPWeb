@@ -48,11 +48,8 @@
 <%# add an automated spinner to your form when the list is refreshed %>
 <%= render_filterrific_spinner %>
 
-<%= render(
-  partial: 'people/list',
-  locals: { people: @people }
-) %>
+<%= render 'people/list', people: @people %>
   
 <br>
 
-<%= button_to 'Nueva persona', new_person_path, :class => 'button btn btn-sm btn-primary pull-right', :method => :get %>
+<%= render 'layouts/new_button', :label => 'Nueva persona', :path => new_person_path %>

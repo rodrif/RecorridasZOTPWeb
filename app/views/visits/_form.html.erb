@@ -55,9 +55,7 @@
     </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= render 'layouts/buttons_submit', path: visits_path, f: f, remote: false %>
 
 <% end %>
 

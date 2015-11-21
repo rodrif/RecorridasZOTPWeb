@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
   has_many :visits
   accepts_nested_attributes_for :visits
 
-  self.per_page = 5
+  self.per_page = 20
 
   filterrific(
     available_filters: [
