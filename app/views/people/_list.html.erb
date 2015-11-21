@@ -24,7 +24,11 @@
           <td><%= person.id %></td>
           <td><%= person.nombre %></td>
           <td><%= person.apellido %></td>
-          <td><%= person.zone.area.nombre %></td>
+          <% if person.zone.nil? %>
+            <td>Sin area</td>
+          <% else %>
+            <td><%= person.zone.area.nombre %></td>
+          <% end %>
           <% if person.zone.nil? %>
             <td>Sin zona</td>
           <% else %>
