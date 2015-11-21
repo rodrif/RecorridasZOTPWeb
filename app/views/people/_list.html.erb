@@ -10,6 +10,7 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Apellido</th>
+        <th>Area</th>
         <th>Zona</th>
         <th>Visitas</th>
         <th>Editar</th>
@@ -23,6 +24,7 @@
           <td><%= person.id %></td>
           <td><%= person.nombre %></td>
           <td><%= person.apellido %></td>
+          <td><%= person.zone.area.nombre %></td>
           <% if person.zone.nil? %>
             <td>Sin zona</td>
           <% else %>

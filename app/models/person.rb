@@ -11,7 +11,8 @@ class Person < ActiveRecord::Base
   filterrific(
     available_filters: [
       :search_query,    
-      :with_zone_id
+      :with_zone_id,
+      :with_area_id
     ]
   )
 
@@ -40,5 +41,9 @@ class Person < ActiveRecord::Base
 
   scope :with_zone_id, lambda { |zone_ids|
 	where(zone_id: [*zone_ids])
+  }
+
+  scope :with_area_id, lambda { |area_id|
+	joins(zone: :area).where("areas.id = ?", area_id)
   }
 end
