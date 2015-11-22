@@ -51,6 +51,7 @@ class VisitsController < ApplicationController
     @visit = Visit.new
 
     if (params[:person_id])
+      @visit.person_id = params[:person_id]
       ubicacion = PersonDataAccess.getUbicacionUltVisita(params[:person_id])
       @visit.latitud = ubicacion.latitud
       @visit.longitud = ubicacion.longitud
