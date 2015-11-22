@@ -16,7 +16,7 @@
 //= require_tree
 //= require filterrific/filterrific-jquery
 
-function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa) {
+function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapDisabled) {
 
 	var latitud;
 	var longitud;
@@ -42,13 +42,15 @@ function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa) {
 	this.map = new google.maps.Map(document.getElementById(idMapa), this.mapProp);
 	this.refreshMarker();
 	var self = this;
-	this.map.addListener('click', function(event) {
-		$(self.selectorLat).val(event.latLng.lat());
-		$(self.selectorLng).val(event.latLng.lng());
-		self.latitud = event.latLng.lat();
-		self.longitud = event.latLng.lng();
-		self.refreshMarker();
-	});
+	if (!mapDisabled || typeof mapDisabled === 'undefined') {
+		this.map.addListener('click', function(event) {
+			$(self.selectorLat).val(event.latLng.lat());
+			$(self.selectorLng).val(event.latLng.lng());
+			self.latitud = event.latLng.lat();
+			self.longitud = event.latLng.lng();
+			self.refreshMarker();
+		});
+	}
 }
 
 MapaUbicacion.prototype.refreshMarker = function() {
