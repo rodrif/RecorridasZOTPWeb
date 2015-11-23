@@ -71,6 +71,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     @person.state = State.find_by_nombre('Actualizado');
     @person.visits.first.fecha = Time.now;
+    @person.visits.first.descripcion = 'Persona vista por primera vez';
 
     respond_to do |format|
       if @person.save
