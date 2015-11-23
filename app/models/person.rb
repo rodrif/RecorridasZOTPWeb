@@ -3,7 +3,7 @@ class Person < ActiveRecord::Base
 
   belongs_to :zone
   belongs_to :state
-  has_many :visits, -> {order(fecha: :desc)}
+  has_many :visits, -> {order(fecha: :desc)}, :dependent => :delete_all
   accepts_nested_attributes_for :visits
 
   self.per_page = 20
