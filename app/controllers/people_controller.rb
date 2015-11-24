@@ -50,6 +50,22 @@ class PeopleController < ApplicationController
     # end
   end
 
+  def update_zonas
+    @zonas = Zone.where("area_id = ?", params[:area_id])
+    @selectorZona = params[:selector_zona]
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update_ranchadas
+    @ranchadas = Ranchada.where("zone_id = ?", params[:zone_id])
+    @selectorRanchada = params[:selector_ranchada]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /people/1
   # GET /people/1.json
   def show
@@ -59,10 +75,14 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     @person.visits.build
+    @zonas = Zone.where(:area_id => Area.first.id)
+    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
   # GET /people/1/edit
   def edit
+    @zonas = Zone.where(:area_id => @person.zone.area.id)
+    @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
   end
 
   # POST /people

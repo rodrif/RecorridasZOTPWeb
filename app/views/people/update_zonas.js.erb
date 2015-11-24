@@ -1,0 +1,2 @@
+$("#" + "<%= @selectorZona %>").html("<%= escape_javascript select 'zz', 'zone_id', @zonas.collect {|z| [z.nombre, z.id]} %>");
+$("#" + "<%= @selectorZona %>").change();

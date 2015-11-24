@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :areas
   root 'mapa#index'
 
+  get 'people/update_zonas', as: 'update_zonas'
+  get 'people/update_ranchadas', as: 'update_ranchadas'
+
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
 
   post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
