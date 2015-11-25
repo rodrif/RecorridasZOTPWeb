@@ -48,7 +48,7 @@
       <%= f.label "Zona", class: "col-md-1 control-label", for: "familia_zona_id" %>
       <div class="col-md-10">
     <% end %>
-      <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+      <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 
@@ -60,7 +60,7 @@
       <%= f.label "Ranchada", class: "col-md-1 control-label", for: "familia_ranchada_id" %>
       <div class="col-md-10">
     <% end %>
-      <%= f.collection_select :ranchada_id, Ranchada.all, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
+      <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
     </div>
   </div>
 

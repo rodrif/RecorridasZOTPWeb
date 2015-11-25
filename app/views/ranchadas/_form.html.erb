@@ -29,7 +29,7 @@
   <div class="form-group">
     <%= f.label "Zona", class: "#{label_col} control-label", for: "ranchada_zone_id" %>
     <div class="<%= input_col %>">
-      <%= f.collection_select :zone_id, Zone.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+      <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 
