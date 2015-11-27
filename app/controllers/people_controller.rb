@@ -78,8 +78,6 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     @person.visits.build
-    @zonas = Zone.where(:area_id => Area.first.id)
-    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
   # GET /people/1/edit

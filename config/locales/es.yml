@@ -1,6 +1,10 @@
 es:
   common:
+    errores:
+      errores: "Errores"
+      solo_letras: "solo se permiten letras"
     ver_editar: "Ver / Editar"
+    telefono: "Teléfono"
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"

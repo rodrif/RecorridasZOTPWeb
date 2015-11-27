@@ -1,3 +1,5 @@
 <h2 class="sub-header">Nuevo ranchada</h2>
 
+<% @zonas = Zone.where(:area_id => Area.first.id) %>
+
 <%= render 'form' %>

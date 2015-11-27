@@ -15,7 +15,6 @@ class RanchadasController < ApplicationController
   # GET /ranchadas/new
   def new
     @ranchada = Ranchada.new
-    @zonas = Zone.where(:area_id => Area.first.id)
   end
 
   # GET /ranchadas/1/edit

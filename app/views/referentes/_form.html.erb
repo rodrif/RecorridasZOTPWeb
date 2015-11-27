@@ -1,8 +1,7 @@
 <%= form_for(@referente, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @referente.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@referente.errors.count, "error") %> prohibited this referente from being saved:</h2>
-
+      <h2><%= t('common.errores.errores') %></h2>
       <ul>
       <% @referente.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -26,7 +25,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :telefono, class: "col-md-1 control-label", for: "referente_telefono" %>
+    <%= f.label t("common.telefono"), class: "col-md-1 control-label", for: "referente_telefono" %>
     <div class="col-md-10">
       <%= f.text_field :telefono, class: "form-control" %>
     </div>
@@ -46,10 +45,6 @@
     </div>
   </div>
 
+  <%= render 'layouts/buttons_submit', path: referentes_path, f: f, remote: false %>
 
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

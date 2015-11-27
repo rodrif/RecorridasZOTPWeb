@@ -15,8 +15,6 @@ class FamiliasController < ApplicationController
   # GET /familias/new
   def new
     @familia = Familia.new
-    @zonas = Zone.where(:area_id => Area.first.id)
-    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
   # GET /familias/1/edit
