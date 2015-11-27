@@ -1,4 +1,6 @@
 es:
+  common:
+    ver_editar: "Ver / Editar"
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
