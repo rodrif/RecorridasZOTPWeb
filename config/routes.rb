@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :areas
   root 'mapa#index'
 
+  get 'common/update_zonas_filter', as: 'update_zonas_filter'
+
   get 'people/update_zonas', as: 'update_zonas'
   get 'people/update_ranchadas', as: 'update_ranchadas'
 
