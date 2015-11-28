@@ -7,8 +7,8 @@
 <%= form_for(@ranchada, remote: remote, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @ranchada.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@ranchada.errors.count, "error") %> prohibited this ranchada from being saved:</h2>
-
+      <h2><%= t('common.errores.errores') %></h2>
+      
       <ul>
       <% @ranchada.errors.full_messages.each do |message| %>
         <li><%= message %></li>

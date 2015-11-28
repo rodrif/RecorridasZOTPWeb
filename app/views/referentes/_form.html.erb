@@ -2,6 +2,7 @@
   <% if @referente.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>
+      
       <ul>
       <% @referente.errors.full_messages.each do |message| %>
         <li><%= message %></li>

@@ -126,6 +126,7 @@ class PeopleController < ApplicationController
     #@person.destroy
     @person.state_id = 3
     @person.save
+
     respond_to do |format|
       format.html { redirect_to people_url, notice: 'Persona borrada correctamente.' }
       format.json { head :no_content }
