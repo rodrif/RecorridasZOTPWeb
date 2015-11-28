@@ -2,4 +2,9 @@
 
 <h2 class="sub-header">Persona</h2>
 
+<% if !@zonas %>
+  <% @zonas = Zone.where(:area_id => Area.first.id) %>
+  <% @ranchadas = Ranchada.where(:zone_id => @zonas.first.id) %>
+<% end %>
+
 <%= render 'form', :path => people_path %>
