@@ -22,3 +22,12 @@
  .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
  	background-color: #F0AB00;
  }
+
+.field_with_errors {
+  padding: 1px;
+  display: block;
+}
+
+#error_explanation {
+  width: 100%
+}

@@ -2,6 +2,8 @@ class Visit < ActiveRecord::Base
   belongs_to :person
   belongs_to :state
 
+  validates :fecha, presence: true
+
   self.per_page = 20
 
   filterrific(
