@@ -1,6 +1,7 @@
 es:
   common:
     errores:
+      foreign_key: "No se pudo borrar porque el registro esta siendo utilizado."
       errores: "Errores"
       solo_letras: "solo se permiten letras"
     ver_editar: "Ver / Editar"

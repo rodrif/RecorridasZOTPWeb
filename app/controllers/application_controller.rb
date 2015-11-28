@@ -6,4 +6,10 @@ class ApplicationController < ActionController::Base
 
   #TODO ver como hacer para poner esto solo en peticiones de mobile
   protect_from_forgery with: :null_session
+
+
+  rescue_from 'ActiveRecord::InvalidForeignKey' do
+    flash[:error] = I18n.t('common.errores.foreign_key')
+    redirect_to :back
+  end
 end
