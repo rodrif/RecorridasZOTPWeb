@@ -1,8 +1,8 @@
 class Person < ActiveRecord::Base
   validates :nombre, presence: true,
-    format: { with: /\A[a-zA-Z]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-Z\s]+\z/, message: I18n.t('common.errores.solo_letras') }
   validates :apellido, allow_blank: true,
-    format: { with: /\A[a-zA-Z]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-Z\s]+\z/, message: I18n.t('common.errores.solo_letras') }
   validates :dni, allow_blank: true, numericality: { only_integer: true }
   validates :telefono, allow_blank: true, numericality: { only_integer: true }
 
