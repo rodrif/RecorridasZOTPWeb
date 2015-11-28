@@ -35,7 +35,7 @@ personas = Array.new
 personas << Person.create!(nombre: "Facundo", apellido: "Rodriguez", zone: zonas[0], state_id: 1)
 
 10.times do |i|
-  personas << Person.create!(nombre: "Persona#{i}", apellido: "Apellido#{i}", zone: zonas[i%4], state_id: 1)  
+  personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name, zone: zonas[i%4], state_id: 1)  
 end
 
 

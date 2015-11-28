@@ -1,6 +1,6 @@
 class Area < ActiveRecord::Base
   validates :nombre, presence: true,
-    format: { with: /\A[a-zA-Z\s]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
     
 	def self.options_for_select
   		order('LOWER(nombre)').map { |e| [e.nombre, e.id] }
