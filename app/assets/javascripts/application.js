@@ -70,6 +70,44 @@ function loadMapaScript(calllback) {
   document.body.appendChild(script);
 }
 
+(function($) {
+
+  $.fn.modal_success = function(){
+    // close modal
+    this.modal('hide');
+
+    // clear form input elements
+    // todo/note: handle textarea, select, etc
+    this.find('form input[type="text"]').val('');
+
+    // clear error state
+    this.clear_previous_errors();
+  };
+
+  $.fn.render_form_errors = function(errors){
+
+    $form = this;
+    this.clear_previous_errors();
+    model = this.data('model');
+
+    // show error messages in input form-group help-block
+    $.each(errors, function(field, messages){
+      $input = $('input[name="' + model + '[' + field + ']"]');
+      var mensaje = messages.join(' y ');
+      mensaje = mensaje.charAt(0).toUpperCase() + mensaje.slice(1);
+      $input.closest('.form-group').addClass('has-error').find('.help-block').html(mensaje);
+    });
+
+  };
+
+  $.fn.clear_previous_errors = function(){
+    $('.form-group.has-error', this).each(function(){
+      $('.help-block', $(this)).html('');
+      $(this).removeClass('has-error');
+    });
+  }
+
+}(jQuery));
 
 // $(function() {
 //   $('.datepicker').datepicker({

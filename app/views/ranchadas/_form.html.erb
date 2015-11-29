@@ -4,7 +4,7 @@
 <% input_col = remote ? "col-md-9" : "col-md-10" %>
 
 
-<%= form_for(@ranchada, remote: remote, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+<%= form_for(@ranchada, remote: remote, :html => {'data-model' => 'ranchada', :class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @ranchada.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>

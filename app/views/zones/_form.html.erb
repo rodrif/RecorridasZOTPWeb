@@ -4,7 +4,7 @@
 <% label_col = remote ? "col-md-2" : "col-md-1" %>
 <% input_col = remote ? "col-md-9" : "col-md-10 " %>
 
-<%= form_for(@zone, remote: remote, :html => {:class => 'form-horizontal container-fluid'} ) do |f| %>
+<%= form_for(@zone, remote: remote, :html => {'data-model' => 'zone', :class => 'form-horizontal container-fluid'} ) do |f| %>
   <% if @zone.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>

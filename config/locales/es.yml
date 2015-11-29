@@ -3,7 +3,7 @@ es:
     errores:
       foreign_key: "No se pudo borrar porque el registro esta siendo utilizado."
       errores: "Errores"
-      solo_letras: "solo se permiten letras"
+      solo_letras: "solo admite letras"
     ver_editar: "Ver / Editar"
     telefono: "Teléfono"
   will_paginate:

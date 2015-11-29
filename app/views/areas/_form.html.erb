@@ -2,7 +2,7 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
 
-<%= form_for(@area, remote: remote, :html => {:class => 'form-horizontal container-fluid'} ) do |f| %>
+<%= form_for(@area, remote: remote, :html => {'data-model' => 'area', :class => 'form-horizontal container-fluid'} ) do |f| %>
 
   <% if @area.errors.any? %>
     <div id="error_explanation">
