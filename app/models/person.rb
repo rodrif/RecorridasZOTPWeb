@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
     format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
   validates :dni, allow_blank: true, numericality: { only_integer: true }
   validates :telefono, allow_blank: true, numericality: { only_integer: true }
+  validates :zone, presence: true
 
   belongs_to :zone
   belongs_to :state
