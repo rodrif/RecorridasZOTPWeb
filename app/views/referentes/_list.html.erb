@@ -1,0 +1,39 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info referentes %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Telefono</th>
+          <th>Area</th>
+          <th>Dia</th>
+          <th>Ver / Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @referentes.each do |referente| %>
+          <tr>
+            <td><%= referente.nombre %></td>
+            <td><%= referente.apellido %></td>
+            <td><%= referente.telefono %></td>
+            <td><%= referente.area.nombre %></td>
+            <td><%= referente.dia %></td>
+            <td><%= link_to 'Ver / Editar', edit_referente_path(referente) %></td>
+            <td><%= link_to 'Borrar', referente, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate referentes, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>

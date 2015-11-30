@@ -2,35 +2,11 @@
 
 <h2 class="sub-header">Referentes</h2>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Telefono</th>
-        <th>Area</th>
-        <th>Dia</th>
-        <th>Ver / Editar</th>
-        <th>Borrar</th>
-      </tr>
-    </thead>
+<%= render 'shared/filtrosArea' %>
 
-    <tbody>
-      <% @referentes.each do |referente| %>
-        <tr>
-          <td><%= referente.nombre %></td>
-          <td><%= referente.apellido %></td>
-          <td><%= referente.telefono %></td>
-          <td><%= referente.area.nombre %></td>
-          <td><%= referente.dia %></td>
-          <td><%= link_to 'Ver / Editar', edit_referente_path(referente) %></td>
-          <td><%= link_to 'Borrar', referente, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render_filterrific_spinner %>
+
+<%= render 'list', referentes: @referentes %>
 
 <br>
 
