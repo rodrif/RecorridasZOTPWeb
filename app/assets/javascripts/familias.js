@@ -3,12 +3,12 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(function(){
-
+  
   $(document).bind('ajaxError', 'form#new_familia', function(event, jqxhr, settings, exception){
-
-    // note: jqxhr.responseJSON undefined, parsing responseText instead
-    $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
-
+    if (settings.url.indexOf("familias") > -1) {
+      // note: jqxhr.responseJSON undefined, parsing responseText instead
+      $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+    }
   });
 
 });
