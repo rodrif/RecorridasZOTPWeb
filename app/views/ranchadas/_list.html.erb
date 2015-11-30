@@ -1,0 +1,45 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info ranchadas %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Area</th>
+          <th>Zona</th>
+          <th>Descripcion</th>
+          <% if !Rails.env.production? %>
+            <th>Latitud</th>
+            <th>Longitud</th>
+          <% end %>
+          <th>Ver / Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @ranchadas.each do |ranchada| %>
+          <tr>
+            <td><%= ranchada.nombre %></td>
+            <td><%= ranchada.area.nombre %></td>
+            <td><%= ranchada.zone.nombre %></td>
+            <td><%= ranchada.descripcion %></td>
+            <% if !Rails.env.production? %>
+              <td><%= ranchada.latitud %></td>
+              <td><%= ranchada.longitud %></td>      
+            <% end %>
+            <td><%= link_to 'Ver / Editar', edit_ranchada_path(ranchada) %></td>
+            <td><%= link_to 'Borrar', ranchada, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate ranchadas, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>

@@ -1,3 +1,5 @@
+<% label_searcher ||= false %>
+
 <div class="table-responsive well">
 
   <%= form_for_filterrific @filterrific do |f| %>
@@ -22,7 +24,11 @@
       </div>
 
       <div class="col-md-6">
-        Nombre / Apodo
+        <% if label_searcher %>
+         <%= label_searcher %>
+        <% else %>
+          Nombre / Apodo
+        <% end %>
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(
           :search_query,
