@@ -2,35 +2,11 @@
 
 <h2 class="sub-header">Familias</h2>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Area</th>
-        <th><%= t("activerecord.models.zone.one") %></th>
-        <th>Ranchada</th>
-        <th>Descripcion</th>
-        <th>Ver / Editar</th>
-        <th>Borrar</th>
-      </tr>
-    </thead>
+<%= render 'layouts/filtros', label_searcher: "Nombre" %>
 
-    <tbody>
-      <% @familias.each do |familia| %>
-        <tr>
-          <td><%= familia.nombre %></td>
-          <td><%= familia.area.nombre %></td>
-          <td><%= familia.zone.nombre %></td>
-          <td><%= familia.ranchada ? familia.ranchada.nombre : "" %></td>
-          <td><%= familia.descripcion %></td>
-          <td><%= link_to 'Ver / Editar', edit_familia_path(familia) %></td>
-          <td><%= link_to 'Borrar', familia, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<%= render_filterrific_spinner %>
+
+<%= render 'list', familias: @familias %>
 
 <br>
 

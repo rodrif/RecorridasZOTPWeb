@@ -4,7 +4,27 @@ class FamiliasController < ApplicationController
   # GET /familias
   # GET /familias.json
   def index
-    @familias = Familia.all
+      @filterrific = initialize_filterrific(
+      Familia,
+      params[:filterrific],
+      select_options: {
+        with_area_id: Area.options_for_select,
+        with_zone_id: Zone.options_for_select
+      },
+      default_filter_params: {}
+    ) or return
+    # Get an ActiveRecord::Relation for all students that match the filter settings.
+    # You can paginate with will_paginate or kaminari.
+    # NOTE: filterrific_find returns an ActiveRecord Relation that can be
+    # chained with other scopes to further narrow down the scope of the list,
+    # e.g., to apply permissions or to hard coded exclude certain types of records.
+    @familias = @filterrific.find.order(:nombre).page(params[:page])
+
+    # Respond to html for initial page load and to js for AJAX filter updates.
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /familias/1
