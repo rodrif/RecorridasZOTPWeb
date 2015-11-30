@@ -21,6 +21,9 @@ es:
       multi_page: "Mostrando %{from} - %{to} %{model} de %{count} en total"
       multi_page_html: "Mostrando <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} de <b>%{count}</b> en total"
   activerecord:
+    attributes:
+      person:
+        zone: Zona
     models:
       person:
         zero:  Persona
