@@ -2,27 +2,24 @@
 
 <h2 class="sub-header">Areas</h2>
 
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Ver / Editar</th>
-        <th>Borrar</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @areas.each do |area| %>
-        <tr>
-          <td><%= area.nombre %></td>
-          <td><%= link_to 'Ver / Editar', edit_area_path(area) %></td>
-          <td><%= link_to 'Borrar', area, method: :delete, data: { confirm: '¿Estás seguro?' } %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="table-responsive well">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row-fluid">
+      <div class="col-md-12">
+        Nombre
+        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed'
+        ) %>
+      </div>
+    </div>    
+  <% end %>
 </div>
+
+<%= render_filterrific_spinner %>
+
+<%= render 'list', areas: @areas %>
 
 <br>
 
