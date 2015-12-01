@@ -1,11 +1,13 @@
 es:
   common:
+    descripcion: Descripción
+    dia: Día
+    telefono: Teléfono
+    ver_editar: Ver / Editar
     errores:
-      foreign_key: "No se pudo borrar porque el registro esta siendo utilizado."
-      errores: "Errores"
-      solo_letras: "solo admite letras"
-    ver_editar: "Ver / Editar"
-    telefono: "Teléfono"
+      foreign_key: No se pudo borrar porque el registro esta siendo utilizado.
+      errores: Errores
+      solo_letras: solo admite letras
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
