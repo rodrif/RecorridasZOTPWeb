@@ -78,6 +78,8 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     @person.visits.build
+    @zonas = Zone.where(:area_id => Area.first.id)
+    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
   # GET /people/1/edit
@@ -99,7 +101,13 @@ class PeopleController < ApplicationController
         format.html { redirect_to people_url, notice: 'Persona creada correctamente.' }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new }
+        @zonas = Zone.where(:area_id => Area.first.id)
+        @person.area_id = @zonas.first.id
+        format.html {
+          render :new,
+          zonas: @zonas,
+          ranchadas: Ranchada.where(:zone_id => @zonas.first.id)
+        }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -114,7 +122,18 @@ class PeopleController < ApplicationController
         format.html { redirect_to people_url, notice: 'Persona actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @person }
       else
-        format.html { render :edit }
+        if @person.zone
+          debugger
+          @zonas = Zone.where(:area_id => @person.zone.area.id)
+          @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
+        else
+          @zonas = Zone.where(:area_id => Area.first.id)
+          @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
+          @person.area_id = @zonas.first.area.id
+          @person.zone_id = @zonas.first.id
+        end
+
+        format.html { render :edit, zonas: @zonas, ranchadas: @ranchadas }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
