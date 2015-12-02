@@ -52,7 +52,9 @@
 		</div>
 
 		<div class="col-sm-9 col-md-10 main">
-      <p id="flash-error"><%= flash[:error] %></p>
+      <% if flash[:error] %>
+        <p id="flash-error" class="alert alert-danger"><%= flash[:error] %></p>
+      <% end %>
 			<%= yield %>
 		</div>
 
