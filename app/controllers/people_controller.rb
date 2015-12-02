@@ -101,9 +101,16 @@ class PeopleController < ApplicationController
         format.html { redirect_to people_url, notice: 'Persona creada correctamente.' }
         format.json { render :show, status: :created, location: @person }
       else
-        @zonas = Zone.where(:area_id => Area.first.id)
-        @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
-        @person.area_id = @zonas.first.id
+        if @person.zone
+          @zonas = Zone.where(:area_id => @person.zone.area.id)
+          @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
+        else
+          @zonas = Zone.where(:area_id => Area.first.id)
+          @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
+          @person.area_id = @zonas.first.area.id
+          @person.zone_id = @zonas.first.id
+        end
+
         format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
@@ -167,6 +174,7 @@ class PeopleController < ApplicationController
         :ranchada_id,
         :familia_id,
         :page,
+        :descripcion,
         visits_attributes: [:id, :descripcion, :latitud, :longitud])
     end
 end
