@@ -35,6 +35,7 @@ class RanchadasController < ApplicationController
   # GET /ranchadas/new
   def new
     @ranchada = Ranchada.new
+    @zonas = Zone.where(:area_id => Area.first.id)
   end
 
   # GET /ranchadas/1/edit
@@ -53,6 +54,13 @@ class RanchadasController < ApplicationController
         format.json { render :show, status: :created, location: @ranchada }
         format.js { render :show, status: :created, location: @ranchada }
       else
+        if @ranchada.zone
+          @zonas = Zone.where(:area_id => @ranchada.zone.area.id)
+        else
+          @zonas = Zone.where(:area_id => Area.first.id)
+          @ranchada.area_id = @zonas.first.area.id
+          @ranchada.zone_id = @zonas.first.id
+        end
         format.html { render :new }
         format.json { render json: @ranchada.errors, status: :unprocessable_entity }
         format.js   { render json: @ranchada.errors, status: :unprocessable_entity }
@@ -68,6 +76,14 @@ class RanchadasController < ApplicationController
         format.html { redirect_to ranchadas_url, notice: 'Ranchada actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @ranchada }
       else
+        if @ranchada.zone
+          @zonas = Zone.where(:area_id => @ranchada.zone.area.id)
+        else
+          @zonas = Zone.where(:area_id => Area.first.id)
+          @ranchada.area_id = @zonas.first.area.id
+          @ranchada.zone_id = @zonas.first.id
+        end
+
         format.html { render :edit }
         format.json { render json: @ranchada.errors, status: :unprocessable_entity }
       end

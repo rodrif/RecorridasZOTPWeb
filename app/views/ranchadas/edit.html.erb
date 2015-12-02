@@ -1,7 +1,3 @@
 <h1>Ranchada</h1>
 
-<% if !@zonas %>
-  <% @zonas = Zone.where(:area_id => Area.first.id) %>
-<% end  %>
-
 <%= render 'form' %>
