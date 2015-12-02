@@ -35,6 +35,8 @@ class FamiliasController < ApplicationController
   # GET /familias/new
   def new
     @familia = Familia.new
+    @zonas = Zone.where(:area_id => Area.first.id)
+    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
   # GET /familias/1/edit
@@ -54,6 +56,16 @@ class FamiliasController < ApplicationController
         format.json { render :show, status: :created, location: @familia }
         format.js { render :show, status: :created, location: @familia }
       else
+        if @familia.zone
+          @zonas = Zone.where(:area_id => @familia.zone.area.id)
+          @ranchadas = Ranchada.where(:zone_id => @familia.zone_id)
+        else
+          @zonas = Zone.where(:area_id => Area.first.id)
+          @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
+          @familia.area_id = @zonas.first.area.id
+          @familia.zone_id = @zonas.first.id
+        end
+
         format.html { render :new }
         format.json { render json: @familia.errors, status: :unprocessable_entity }
         format.js   { render json: @familia.errors, status: :unprocessable_entity }
@@ -69,6 +81,16 @@ class FamiliasController < ApplicationController
         format.html { redirect_to familias_url, notice: 'Familia actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @familia }
       else
+        if @familia.zone
+          @zonas = Zone.where(:area_id => @familia.zone.area.id)
+          @ranchadas = Ranchada.where(:zone_id => @familia.zone_id)
+        else
+          @zonas = Zone.where(:area_id => Area.first.id)
+          @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
+          @familia.area_id = @zonas.first.area.id
+          @familia.zone_id = @zonas.first.id
+        end
+
         format.html { render :edit }
         format.json { render json: @familia.errors, status: :unprocessable_entity }
       end
