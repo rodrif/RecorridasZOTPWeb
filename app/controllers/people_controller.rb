@@ -102,12 +102,9 @@ class PeopleController < ApplicationController
         format.json { render :show, status: :created, location: @person }
       else
         @zonas = Zone.where(:area_id => Area.first.id)
+        @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
         @person.area_id = @zonas.first.id
-        format.html {
-          render :new,
-          zonas: @zonas,
-          ranchadas: Ranchada.where(:zone_id => @zonas.first.id)
-        }
+        format.html { render :new }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -123,7 +120,6 @@ class PeopleController < ApplicationController
         format.json { render :show, status: :ok, location: @person }
       else
         if @person.zone
-          debugger
           @zonas = Zone.where(:area_id => @person.zone.area.id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
         else
