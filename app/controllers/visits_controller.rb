@@ -67,10 +67,11 @@ class VisitsController < ApplicationController
   # POST /visits.json
   def create
     @visit = Visit.new(visit_params)
+    params[:person_id] = @visit.person_id
 
     respond_to do |format|
       if @visit.save
-        format.html { redirect_to visits_url, notice: 'Visita creada correctamente.' }
+        format.html { redirect_to visits_url(nil, person_id: params[:person_id]), notice: 'Visita creada correctamente.' }
         format.json { render :show, status: :created, location: @visit }
       else
         format.html { render :new }
@@ -84,9 +85,10 @@ class VisitsController < ApplicationController
   def update
     respond_to do |format|
       if @visit.update(visit_params)
-        format.html { redirect_to visits_url, notice: 'Visita actualizada correctamente.' }
+        format.html { redirect_to visits_url(nil, person_id: @visit.person_id), notice: 'Visita actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @visit }
       else
+        params[:person_id] = @visit.person_id
         format.html { render :edit }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
       end
