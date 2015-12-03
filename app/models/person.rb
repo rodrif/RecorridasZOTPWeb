@@ -22,6 +22,10 @@ class Person < ActiveRecord::Base
     ]
   )
 
+  def full_name
+    "#{nombre} #{apellido}"
+  end
+
   scope :search_query, lambda { |query|
 	return nil  if query.blank?
 
