@@ -41,7 +41,8 @@ class FamiliasController < ApplicationController
 
   # GET /familias/1/edit
   def edit
-    @zonas = Zone.where(:area_id => @familia.zone.area.id)
+    @familia.area_id = @familia.zone.area_id
+    @zonas = Zone.where(:area_id => @familia.zone.area_id)
     @ranchadas = Ranchada.where(:zone_id => @familia.zone_id)
   end
 
@@ -57,7 +58,7 @@ class FamiliasController < ApplicationController
         format.js { render :show, status: :created, location: @familia }
       else
         if @familia.zone
-          @zonas = Zone.where(:area_id => @familia.zone.area.id)
+          @zonas = Zone.where(:area_id => @familia.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @familia.zone_id)
         else
           @zonas = Zone.where(:area_id => Area.first.id)

@@ -22,7 +22,7 @@
         <% @familias.each do |familia| %>
           <tr>
             <td><%= familia.nombre %></td>
-            <td><%= familia.area.nombre %></td>
+            <td><%= familia.zone.area.nombre %></td>
             <td><%= familia.zone.nombre %></td>
             <td><%= familia.ranchada ? familia.ranchada.nombre : "" %></td>
             <td><%= familia.descripcion %></td>

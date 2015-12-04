@@ -1,4 +1,6 @@
 class Familia < ActiveRecord::Base
+  attr_accessor :area_id
+  
   belongs_to :area
   belongs_to :zone
   belongs_to :ranchada
