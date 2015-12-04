@@ -84,7 +84,8 @@ class PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
-    @zonas = Zone.where(:area_id => @person.zone.area.id)
+    @person.area_id = @person.zone.area_id
+    @zonas = Zone.where(:area_id => @person.area_id)
     @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
   end
 
@@ -102,7 +103,7 @@ class PeopleController < ApplicationController
         format.json { render :show, status: :created, location: @person }
       else
         if @person.zone
-          @zonas = Zone.where(:area_id => @person.zone.area.id)
+          @zonas = Zone.where(:area_id => @person.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
         else
           @zonas = Zone.where(:area_id => Area.first.id)
@@ -127,7 +128,7 @@ class PeopleController < ApplicationController
         format.json { render :show, status: :ok, location: @person }
       else
         if @person.zone
-          @zonas = Zone.where(:area_id => @person.zone.area.id)
+          @zonas = Zone.where(:area_id => @person.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
         else
           @zonas = Zone.where(:area_id => Area.first.id)

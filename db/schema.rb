@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116013655) do
+ActiveRecord::Schema.define(version: 20151204011354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,12 +65,10 @@ ActiveRecord::Schema.define(version: 20151116013655) do
     t.date     "fecha_nacimiento"
     t.integer  "telefono"
     t.integer  "familia_id"
-    t.integer  "area_id"
     t.text     "descripcion"
     t.integer  "ranchada_id"
   end
 
-  add_index "people", ["area_id"], name: "index_people_on_area_id", using: :btree
   add_index "people", ["familia_id"], name: "index_people_on_familia_id", using: :btree
   add_index "people", ["ranchada_id"], name: "index_people_on_ranchada_id", using: :btree
   add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
@@ -149,7 +147,6 @@ ActiveRecord::Schema.define(version: 20151116013655) do
   add_foreign_key "familias", "areas"
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "zones"
-  add_foreign_key "people", "areas"
   add_foreign_key "people", "familias"
   add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"
