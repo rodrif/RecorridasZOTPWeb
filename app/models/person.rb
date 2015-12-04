@@ -58,4 +58,7 @@ class Person < ActiveRecord::Base
   scope :with_area_id, lambda { |area_id|
 	joins(zone: :area).where("areas.id = ?", area_id)
   }
+
+  scope :activas, -> { where.not(state_id: 3).order(:nombre, :apellido) }
+  
 end
