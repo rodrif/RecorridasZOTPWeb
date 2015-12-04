@@ -40,6 +40,7 @@ class RanchadasController < ApplicationController
 
   # GET /ranchadas/1/edit
   def edit
+    @ranchada.area_id = @ranchada.zone.area_id
     @zonas = Zone.where(:area_id => @ranchada.zone.area.id)
   end
 

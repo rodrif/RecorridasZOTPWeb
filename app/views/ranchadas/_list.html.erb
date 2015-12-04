@@ -25,7 +25,7 @@
         <% @ranchadas.each do |ranchada| %>
           <tr>
             <td><%= ranchada.nombre %></td>
-            <td><%= ranchada.area.nombre %></td>
+            <td><%= ranchada.zone.area.nombre %></td>
             <td><%= ranchada.zone.nombre %></td>
             <td><%= ranchada.descripcion %></td>
             <% if !Rails.env.production? %>

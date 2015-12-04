@@ -1,4 +1,6 @@
 class Ranchada < ActiveRecord::Base
+  attr_accessor :area_id
+  
   belongs_to :area
   belongs_to :zone
 
