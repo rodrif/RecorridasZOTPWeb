@@ -18,12 +18,12 @@ zonas = Zone.create([
 ])
 
 ranchadas = Ranchada.create([
-	{ nombre: 'Estacion liners', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0], zone: zonas[1] },
-	{ nombre: 'Famila Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', area: areas[0], zone: zonas[0] },
+	{ nombre: 'Estacion liners', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1] },
+	{ nombre: 'Famila Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0] },
 ])
 
 familias = Familia.create([
-	{ nombre: 'Rodriguez', area: areas[0], zone: zonas[0] }
+	{ nombre: 'Rodriguez', zone: zonas[0] }
 ])
 
 referentes = Referente.create([
@@ -35,7 +35,8 @@ personas = Array.new
 personas << Person.create!(nombre: "Facundo", apellido: "Rodriguez", zone: zonas[0], state_id: 1)
 
 10.times do |i|
-  personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name, zone: zonas[i%4], state_id: 1)  
+  personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name.gsub(/[^a-zA-Z]/,''), zone: zonas[i%4], state_id: 1)  
+  Rails.logger.debug "#{personas[i].to_yaml}"
 end
 
 
