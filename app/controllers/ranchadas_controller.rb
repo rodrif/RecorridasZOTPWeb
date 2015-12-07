@@ -106,6 +106,7 @@ class RanchadasController < ApplicationController
 
     def actualizar_dependencias
       PersonDataAccess.actualizar_dependencias_ranchada @ranchada
+      FamiliaDataAccess.actualizar_dependencias_ranchada @ranchada
     end
 
     # Use callbacks to share common setup or constraints between actions.

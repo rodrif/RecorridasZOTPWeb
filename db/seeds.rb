@@ -23,7 +23,8 @@ ranchadas = Ranchada.create([
 ])
 
 familias = Familia.create([
-	{ nombre: 'Rodriguez', zone: zonas[0] }
+	{ nombre: 'Rodriguez', zone: zonas[0] },
+	{ nombre: 'Aquino', zone: zonas[0], ranchada: ranchadas[1] }
 ])
 
 referentes = Referente.create([
