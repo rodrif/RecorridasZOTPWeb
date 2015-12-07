@@ -74,6 +74,7 @@ class RanchadasController < ApplicationController
   def update
     respond_to do |format|
       if @ranchada.update(ranchada_params)
+        actualizar_dependencias
         format.html { redirect_to ranchadas_url, notice: 'Ranchada actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @ranchada }
       else
@@ -102,6 +103,11 @@ class RanchadasController < ApplicationController
   end
 
   private
+
+    def actualizar_dependencias
+      PersonDataAccess.actualizar_dependencias_ranchada @ranchada
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_ranchada
       @ranchada = Ranchada.find(params[:id])

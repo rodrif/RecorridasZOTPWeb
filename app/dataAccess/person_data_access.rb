@@ -58,4 +58,14 @@ class PersonDataAccess
 		Visit.select(:latitud, :longitud).order(fecha: :desc).where(person_id: idPersona).first
 	end
 
+	def self.actualizar_dependencias_ranchada ranchada
+      personas = Person.where(:ranchada_id => ranchada.id)
+      Person.transaction do
+        personas.each do |p|
+          p.zone_id = ranchada.id
+          p.save
+        end
+      end
+  end
+
 end
