@@ -50,4 +50,8 @@ class Visit < ActiveRecord::Base
   scope :with_person_id, lambda { |person_id|
 	joins(:person).where("people.id = ?", person_id)
   }
+
+  scope :activas, -> { where.not(state_id: 3).order(fecha: :desc) }
+
+
 end

@@ -10,7 +10,6 @@ class VisitsController < ApplicationController
   # GET /visits
   # GET /visits.json
   def index
-    #@visits = Visit.order(fecha: :desc).all
     if (params[:person_id])
       if !params[:filterrific]
         params[:filterrific] = Hash.new
@@ -32,7 +31,7 @@ class VisitsController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @visits = @filterrific.find.order(fecha: :desc).page(params[:page])
+    @visits = @filterrific.find.activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

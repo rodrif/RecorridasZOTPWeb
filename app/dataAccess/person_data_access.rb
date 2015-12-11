@@ -55,7 +55,7 @@ class PersonDataAccess
 	end
 
 	def self.getUbicacionUltVisita(idPersona)
-		Visit.select(:latitud, :longitud).order(fecha: :desc).where(person_id: idPersona).first
+		Visit.select(:latitud, :longitud).activas.where(person_id: idPersona).first
 	end
 
 	def self.actualizar_dependencias_ranchada ranchada
@@ -78,5 +78,13 @@ class PersonDataAccess
       end
     end
   end  
+
+  def self.borrar_logico person
+    person.state_id = 3
+    person.visits.each do |v|
+      v.state_id = 3
+    end
+    person.save
+  end
 
 end
