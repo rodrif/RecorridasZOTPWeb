@@ -79,6 +79,7 @@ class FamiliasController < ApplicationController
   def update
     respond_to do |format|
       if @familia.update(familia_params)
+        PersonDataAccess.actualizar_dependencias_familia @familia
         format.html { redirect_to familias_url, notice: 'Familia actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @familia }
       else

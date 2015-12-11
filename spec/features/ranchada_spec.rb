@@ -7,10 +7,10 @@ describe 'Ranchadas' do
 
   subject { page }
 
-  describe "ranchada cambia de zona", :js => true do
+  describe "ranchada cambia de zona" do
     let(:persona) { Person.first }
     let(:familia) { Familia.second }
-    let(:ranchada) { Ranchada.find_by_nombre("Famila Rodriguez") }
+    let(:ranchada) { Ranchada.find_by_nombre("Familia Rodriguez") }
     before { visit edit_ranchada_path(ranchada) }
 
     it "should change ranchada coherentemente" do
@@ -44,7 +44,7 @@ describe 'Ranchadas' do
   #     should have_field('person[apellido]', with: 'Rodriguez')
   #     should have_select('person[area_id]', selected: "Zona Oeste")
   #     should have_select('person[zone_id]', selected: "Haedo")
-  #     should have_select('person[ranchada_id]', selected: "Famila Rodriguez")
+  #     should have_select('person[ranchada_id]', selected: "Familia Rodriguez")
   #     should have_select('person[familia_id]', selected: "Rodriguez")
   #   end
   # end 

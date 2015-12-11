@@ -4,7 +4,7 @@ class FamiliaDataAccess
       familias = Familia.where(:ranchada_id => ranchada.id)
       Person.transaction do
         familias.each do |f|
-          f.zone_id = ranchada.id
+          f.zone_id = ranchada.zone_id
           f.save
         end
       end

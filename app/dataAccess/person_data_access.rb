@@ -62,10 +62,21 @@ class PersonDataAccess
       personas = Person.where(:ranchada_id => ranchada.id)
       Person.transaction do
         personas.each do |p|
-          p.zone_id = ranchada.id
-          p.save
+          p.zone_id = ranchada.zone_id
+          p.save!
         end
       end
   end
+
+  def self.actualizar_dependencias_familia familia
+    personas = Person.where(:familia_id => familia.id)
+    Person.transaction do
+      personas.each do |p|
+        p.zone_id = familia.zone_id
+        p.ranchada_id = familia.ranchada_id
+        p.save
+      end
+    end
+  end  
 
 end

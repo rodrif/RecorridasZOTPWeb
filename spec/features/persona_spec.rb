@@ -22,7 +22,7 @@ describe 'Personas' do
       should have_field('person[apellido]', with: 'Rodriguez')
       should have_select('person[area_id]', selected: "Zona Oeste")
       should have_select('person[zone_id]', selected: "Haedo")
-      should have_select('person[ranchada_id]', selected: "Famila Rodriguez")
+      should have_select('person[ranchada_id]', selected: "Familia Rodriguez")
       should have_select('person[familia_id]', selected: "Rodriguez")
     end
   end
