@@ -75,7 +75,7 @@ class RanchadasController < ApplicationController
     respond_to do |format|
       if @ranchada.update(ranchada_params)
         actualizar_dependencias
-        format.html { redirect_to ranchadas_url, notice: 'Ranchada actualizada correctamente.' }
+        format.html { redirect_to ranchadas_url, notice: I18n.t('common.exito.actualizacion_ranchada') }
         format.json { render :show, status: :ok, location: @ranchada }
       else
         if @ranchada.zone
@@ -97,7 +97,7 @@ class RanchadasController < ApplicationController
   def destroy
     @ranchada.destroy
     respond_to do |format|
-      format.html { redirect_to ranchadas_url, notice: 'Ranchada borrada correctamente.' }
+      format.html { redirect_to ranchadas_url, notice: I18n.t('common.exito.borrado_ranchada') }
       format.json { head :no_content }
     end
   end

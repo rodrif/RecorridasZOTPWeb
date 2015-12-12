@@ -4,6 +4,9 @@ es:
     dia: Día
     telefono: Teléfono
     ver_editar: Ver / Editar
+    exito:
+      actualizacion_ranchada: Ranchada actualizada correctamente.
+      borrado_ranchada: Ranchada borrada correctamente.
     errores:
       foreign_key: No se pudo borrar porque el registro esta siendo utilizado.
       errores: Errores
