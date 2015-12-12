@@ -24,7 +24,7 @@ describe 'Visitas' do
     end
   end
 
-  describe "new page", js: true do
+  describe "new page" do
     let!(:persona) { Person.find_by_nombre("Gonzalo") }    
     before { visit new_visit_path }
 
@@ -47,7 +47,6 @@ describe 'Visitas' do
       expect(nuevaVisita.descripcion).to eq("comentario de prueba new page visita")
       expect(nuevaVisita.latitud).to eq(-34.6425678)
       expect(nuevaVisita.longitud).to eq(-58.5659123)
-
     end
   end
 
