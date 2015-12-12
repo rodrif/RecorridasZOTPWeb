@@ -66,11 +66,11 @@ class VisitsController < ApplicationController
   # POST /visits.json
   def create
     @visit = Visit.new(visit_params)
-    params[:person_id] = @visit.person_id
+    @visit.state = State.find_by_nombre('Actualizado');
 
     respond_to do |format|
       if @visit.save
-        format.html { redirect_to visits_url(nil, person_id: params[:person_id]), notice: 'Visita creada correctamente.' }
+        format.html { redirect_to visits_url(nil, person_id: @visit.person_id), notice: 'Visita creada correctamente.' }
         format.json { render :show, status: :created, location: @visit }
       else
         format.html { render :new }
