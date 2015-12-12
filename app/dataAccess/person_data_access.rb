@@ -81,10 +81,13 @@ class PersonDataAccess
 
   def self.borrar_logico person
     person.state_id = 3
+    person.zone_id = nil
+    person.ranchada_id = nil
+    person.familia_id = nil
     person.visits.each do |v|
       v.state_id = 3
     end
-    person.save
+    person.save(validate: false)
   end
 
 end

@@ -7,6 +7,28 @@ describe 'Personas' do
 
   subject { page }
 
+  describe "borrar persona", js: true do
+    let!(:persona) { Person.find_by_nombre("Facundo") }    
+    before { visit people_path }
+
+    it "validando persona borrada y sus visitas" do
+      accept_alert do
+        find(:xpath, "//tr[contains(., 'Facundo')]/td/a", :text => 'Borrar').click
+      end
+      visit people_path      
+      should_not have_content('Facundo')
+      visit visits_path      
+      should_not have_content('Facundo')
+
+      expect(persona.zone_id).to_not be_nil
+      expect(persona.ranchada_id).to_not be_nil
+      expect(persona.familia_id).to_not be_nil
+      expect(persona.reload.zone_id).to be_nil
+      expect(persona.reload.ranchada_id).to be_nil
+      expect(persona.reload.familia_id).to be_nil
+    end
+  end
+
   describe "index page" do    
     before { visit people_path }
 
