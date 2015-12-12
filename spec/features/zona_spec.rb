@@ -32,8 +32,7 @@ describe 'Zonas' do
     let(:zona) { Zone.first }
     before { visit edit_zone_path(zona) }
 
-    it { should have_content('Zonas') }
+    it { should have_selector('h2', text: 'Zonas') }
   end
   
-
 end

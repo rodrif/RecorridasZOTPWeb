@@ -10,7 +10,7 @@ describe 'Areas' do
   describe "index page" do    
     before { visit areas_path }
 
-    it { should have_content('Areas') }
+    it { should have_selector('h2', text: 'Areas') }
   end
   
   describe "edit page" do   

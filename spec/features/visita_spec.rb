@@ -12,7 +12,7 @@ describe 'Visitas' do
     before { visit visits_path }
 
     it "borrar visita" do
-      should have_content('Visitas')
+      should have_selector('h2', text: 'Visitas')
 
       accept_alert do
         should have_xpath("//tr[contains(., 'Facundo')]", count: 1)

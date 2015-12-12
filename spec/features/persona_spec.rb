@@ -32,7 +32,7 @@ describe 'Personas' do
   describe "index page" do    
     before { visit people_path }
 
-    it { should have_content('Personas') }
+    it { should have_selector('h2', text: 'Personas') }
   end
   
   describe "edit page" do   
