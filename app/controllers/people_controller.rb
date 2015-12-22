@@ -78,10 +78,7 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     @person.visits.build
-    @zonas = Zone.where(:area_id => Area.first.id)
-    if @zonas.length == 0
-      @zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
-    end
+    @zonas = Zone.zonas_primer_area
     @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
@@ -109,9 +106,9 @@ class PeopleController < ApplicationController
           @zonas = Zone.where(:area_id => @person.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
         else
-          @zonas = Zone.where(:area_id => Area.first.id)
+          @zonas = Zone.zonas_primer_area
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
-          @person.area_id = @zonas.first.area.id
+          @person.area_id = @zonas.first.area_id
           @person.zone_id = @zonas.first.id
         end
 
@@ -134,9 +131,9 @@ class PeopleController < ApplicationController
           @zonas = Zone.where(:area_id => @person.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
         else
-          @zonas = Zone.where(:area_id => Area.first.id)
+          @zonas = Zone.zonas_primer_area
           @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
-          @person.area_id = @zonas.first.area.id
+          @person.area_id = @zonas.first.area_id
           @person.zone_id = @zonas.first.id
         end
 

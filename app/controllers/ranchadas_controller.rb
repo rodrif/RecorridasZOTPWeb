@@ -35,7 +35,7 @@ class RanchadasController < ApplicationController
   # GET /ranchadas/new
   def new
     @ranchada = Ranchada.new
-    @zonas = Zone.where(:area_id => Area.first.id)
+    @zonas = Zone.zonas_primer_area
   end
 
   # GET /ranchadas/1/edit
@@ -58,8 +58,8 @@ class RanchadasController < ApplicationController
         if @ranchada.zone
           @zonas = Zone.where(:area_id => @ranchada.zone.area.id)
         else
-          @zonas = Zone.where(:area_id => Area.first.id)
-          @ranchada.area_id = @zonas.first.area.id
+          @zonas = Zone.zonas_primer_area
+          @ranchada.area_id = @zonas.first.area_id
           @ranchada.zone_id = @zonas.first.id
         end
         format.html { render :new }
@@ -81,8 +81,8 @@ class RanchadasController < ApplicationController
         if @ranchada.zone
           @zonas = Zone.where(:area_id => @ranchada.zone.area.id)
         else
-          @zonas = Zone.where(:area_id => Area.first.id)
-          @ranchada.area_id = @zonas.first.area.id
+          @zonas = Zone.zonas_primer_area
+          @ranchada.area_id = @zonas.first.area_id
           @ranchada.zone_id = @zonas.first.id
         end
 

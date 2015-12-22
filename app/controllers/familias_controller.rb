@@ -35,7 +35,7 @@ class FamiliasController < ApplicationController
   # GET /familias/new
   def new
     @familia = Familia.new
-    @zonas = Zone.where(:area_id => Area.first.id)
+    @zonas = Zone.zonas_primer_area
     @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
@@ -61,9 +61,9 @@ class FamiliasController < ApplicationController
           @zonas = Zone.where(:area_id => @familia.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @familia.zone_id)
         else
-          @zonas = Zone.where(:area_id => Area.first.id)
+          @zonas = Zone.zonas_primer_area
           @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
-          @familia.area_id = @zonas.first.area.id
+          @familia.area_id = @zonas.first.area_id
           @familia.zone_id = @zonas.first.id
         end
 
@@ -87,7 +87,7 @@ class FamiliasController < ApplicationController
           @zonas = Zone.where(:area_id => @familia.zone.area.id)
           @ranchadas = Ranchada.where(:zone_id => @familia.zone_id)
         else
-          @zonas = Zone.where(:area_id => Area.first.id)
+          @zonas = Zone.zonas_primer_area
           @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
           @familia.area_id = @zonas.first.area.id
           @familia.zone_id = @zonas.first.id
