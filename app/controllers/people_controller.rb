@@ -79,6 +79,9 @@ class PeopleController < ApplicationController
     @person = Person.new
     @person.visits.build
     @zonas = Zone.where(:area_id => Area.first.id)
+    if @zonas.length == 0
+      @zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
+    end
     @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
   end
 
