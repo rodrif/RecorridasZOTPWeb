@@ -16,8 +16,6 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    #@people = Person.all
-
     @filterrific = initialize_filterrific(
       Person,
       params[:filterrific],

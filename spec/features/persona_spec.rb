@@ -92,6 +92,7 @@ describe 'Personas' do
       click_link 'zona_modal'
       should have_selector('h4', text: 'Nueva Zona')
       within('#new_zone_modal') do
+        select "Area personaSpec test", from: "zone_area_id"
         fill_in 'zone[nombre]', with: "Zona personaSpec test"
         find('input[name="commit"]').click
       end 
@@ -106,6 +107,8 @@ describe 'Personas' do
       click_link 'ranchada_modal'
       should have_selector('h4', text: 'Nueva Ranchada')
       within('#new_ranchada_modal') do
+        select "Area personaSpec test", from: "ranchada_area_id"
+        select "Zona personaSpec test", from: "ranchada_zone_id"
         fill_in 'ranchada[nombre]', with: "Ranchada personaSpec test"
         find('input[name="commit"]').click
       end 
@@ -120,6 +123,9 @@ describe 'Personas' do
       click_link 'familia_modal'
       should have_selector('h4', text: 'Nueva Familia')
       within('#new_familia_modal') do
+        select "Area personaSpec test", from: "familia_area_id"
+        select "Zona personaSpec test", from: "familia_zone_id"
+        select "Ranchada personaSpec test", from: "familia_ranchada_id"
         fill_in 'familia[nombre]', with: "Familia personaSpec test"
         find('input[name="commit"]').click
       end 
