@@ -1,4 +1,5 @@
 class FamiliasController < ApplicationController
+  include ApplicationHelper
   before_action :set_familia, only: [:show, :edit, :update, :destroy]
 
   # GET /familias
@@ -35,8 +36,7 @@ class FamiliasController < ApplicationController
   # GET /familias/new
   def new
     @familia = Familia.new
-    @zonas = Zone.zonas_primer_area
-    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
+    loadDefaultDropdowns(@familia)
   end
 
   # GET /familias/1/edit

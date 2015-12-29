@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  include ApplicationHelper
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def mobGuardarPersonasPost
@@ -76,8 +77,7 @@ class PeopleController < ApplicationController
   def new
     @person = Person.new
     @person.visits.build
-    @zonas = Zone.zonas_primer_area
-    @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
+    loadDefaultDropdowns(@person)
   end
 
   # GET /people/1/edit

@@ -1,4 +1,5 @@
 class RanchadasController < ApplicationController
+  include ApplicationHelper
   before_action :set_ranchada, only: [:show, :edit, :update, :destroy]
 
   # GET /ranchadas
@@ -35,7 +36,7 @@ class RanchadasController < ApplicationController
   # GET /ranchadas/new
   def new
     @ranchada = Ranchada.new
-    @zonas = Zone.zonas_primer_area
+    loadDefaultDropdowns(@ranchada)
   end
 
   # GET /ranchadas/1/edit
