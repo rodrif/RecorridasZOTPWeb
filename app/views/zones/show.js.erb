@@ -4,4 +4,4 @@ $('#person_zone_id').html("<%= escape_javascript select 'person', 'zone_id', Zon
 $('#person_zone_id').val(<%= @zone.id %>);
 $('#person_zone_id').change();
 
-
+<%= render 'common/defaultDropdowns'%>

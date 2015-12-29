@@ -4,9 +4,4 @@ $('#person_area_id').val(<%= @area.id %>);
 $('#person_zone_id').html("<%= escape_javascript select 'person', 'zone_id', Hash.new.collect {|z| [z.nombre, z.id]}, :include_blank => 'Ninguna' %>");
 $('#person_ranchada_id').html("<%= escape_javascript select 'person', 'zone_id', Hash.new.collect {|z| [z.nombre, z.id]}, :include_blank => 'Ninguna' %>");
 
-<% loadDefaultDropdowns %>
-<% js = escape_javascript(render(partial: 'people/modals')) %>
-$("#modalsDiv").html("<%= js %>");
-$('body').removeClass('modal-open');
-$('.modal-backdrop'). remove();
-loadMapaScript('cargarUbicacionPersona');
+<%= render 'common/defaultDropdowns'%>
