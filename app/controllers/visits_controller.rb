@@ -15,6 +15,8 @@ class VisitsController < ApplicationController
         params[:filterrific] = Hash.new
       end
       params[:filterrific][:with_person_id] = params[:person_id]
+    else
+      session["visits#index"] = nil
     end
 
     @filterrific = initialize_filterrific(
