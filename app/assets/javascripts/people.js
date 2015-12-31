@@ -98,6 +98,25 @@ $(function() {
 });
 
 $(function() {
+  return $(document).on('change', '#person_zone_id', function(evt) {
+    return $.ajax('/people/update_familias', {
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        zone_id: $("#person_zone_id option:selected").val(),
+        selector_familia: 'person_familia_id'
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        return console.log("AJAX Error: " + textStatus + " " + errorThrown);
+      },
+      success: function(data, textStatus, jqXHR) {
+        return console.log("Dynamic zone (update_familias) select OK!");
+      }
+    });
+  });
+});
+
+$(function() {
   return $(document).on('change', '#familia_zone_id', function(evt) {
     return $.ajax('/people/update_ranchadas', {
       type: 'GET',
@@ -115,6 +134,3 @@ $(function() {
     });
   });
 });
-
-
-

@@ -68,6 +68,14 @@ class PeopleController < ApplicationController
     end
   end
 
+  def update_familias
+    @familias = Familia.where("zone_id = ?", params[:zone_id])
+    @selectorFamilia = params[:selector_familia]
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /people/1
   # GET /people/1.json
   def show

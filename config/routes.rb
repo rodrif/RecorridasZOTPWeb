@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'people/update_zonas', as: 'update_zonas'
   get 'people/update_ranchadas', as: 'update_ranchadas'
+  get 'people/update_familias', as: 'update_familias'
 
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
 
