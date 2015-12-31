@@ -28,7 +28,7 @@
           <% else %>
             <td><%= visit.person.nombre  %></td>
           <% end %>
-          <td><%= visit.fecha %></td>
+          <td><%= visit.fecha.to_date() %></td>
           <td><%= visit.descripcion %></td>
           <% if !Rails.env.production? %>
             <td><%= visit.latitud %></td>
