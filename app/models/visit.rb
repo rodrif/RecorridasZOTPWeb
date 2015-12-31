@@ -3,6 +3,13 @@ class Visit < ActiveRecord::Base
   belongs_to :state
 
   validates :fecha, presence: true
+  validate :fecha_must_in_the_past
+
+  def fecha_must_in_the_past
+    if fecha.present? && fecha > Date.today
+      errors.add(:fecha, "no pueda ser futura")
+    end
+  end
 
   self.per_page = 20
 
