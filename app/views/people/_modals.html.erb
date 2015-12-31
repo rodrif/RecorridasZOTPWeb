@@ -39,8 +39,9 @@
         <h4 class="modal-title" id="myModalLabelRanchada">Nueva Ranchada</h4>
       </div>
       <div class="modal-body">
-        <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'ranchadas/form', :@ranchada => Ranchada.new, modal: true %>
+        <% @ranchada = Ranchada.new %>
+        <% loadDefaultDropdowns(@ranchada) %>
+        <%= render 'ranchadas/form', :@ranchada => @ranchada, modal: true %>
       </div>
     </div>
   </div>
@@ -55,8 +56,9 @@
         <h4 class="modal-title" id="myModalLabelFamilia">Nueva Familia</h4>
       </div>
       <div class="modal-body">
-        <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'familias/form', :@familia => Familia.new, modal: true %>
+        <% @familia = Familia.new %>
+        <% loadDefaultDropdowns(@familia) %>
+        <%= render 'familias/form', :@familia => @familia, modal: true %>
       </div>
     </div>
   </div>
