@@ -54,10 +54,14 @@ class VisitsController < ApplicationController
     if (params[:person_id])
       @visit.person_id = params[:person_id]
       ubicacion = PersonDataAccess.getUbicacionUltVisita(params[:person_id])
-      @visit.latitud = ubicacion.latitud
-      @visit.longitud = ubicacion.longitud
+      if ubicacion
+        @visit.latitud = ubicacion.latitud
+        @visit.longitud = ubicacion.longitud
+      else
+        @visit.latitud = -34.6425867
+        @visit.longitud = -58.5659176
+      end
     end
-
   end
 
   # GET /visits/1/edit
