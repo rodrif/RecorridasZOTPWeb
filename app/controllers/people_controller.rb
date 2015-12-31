@@ -93,6 +93,7 @@ class PeopleController < ApplicationController
     @person.area_id = @person.zone.area_id
     @zonas = Zone.where(:area_id => @person.area_id)
     @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
+    @familias = Familia.where(:zone_id => @person.zone_id)
   end
 
   # POST /people
@@ -111,11 +112,9 @@ class PeopleController < ApplicationController
         if @person.zone
           @zonas = Zone.where(:area_id => @person.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
+          @familias = Familia.where(:zone_id => @person.zone_id)
         else
-          @zonas = Zone.zonas_primer_area
-          @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
-          @person.area_id = @zonas.first.area_id
-          @person.zone_id = @zonas.first.id
+          loadDefaultDropdowns(@person)
         end
 
         format.html { render :new }
@@ -123,7 +122,6 @@ class PeopleController < ApplicationController
       end
     end
   end
-
 
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json

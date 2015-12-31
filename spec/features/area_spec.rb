@@ -7,23 +7,23 @@ describe 'Areas' do
 
   subject { page }
 
-  describe "index page" do
-    before { visit areas_path }
+  # describe "index page" do
+  #   before { visit areas_path }
 
-    it { should have_selector('h2', text: 'Areas') }
-  end
+  #   it { should have_selector('h2', text: 'Areas') }
+  # end
   
-  describe "edit page" do
-    let(:area) { Area.first }
-    before { visit edit_area_path(area) }
+  # describe "edit page" do
+  #   let(:area) { Area.first }
+  #   before { visit edit_area_path(area) }
 
-    it "should load area fields" do
-      should have_field('area[nombre]', with: 'Zona Oeste')
-      find_button('Aceptar')
-    end
-  end
+  #   it "should load area fields" do
+  #     should have_field('area[nombre]', with: 'Zona Oeste')
+  #     find_button('Aceptar')
+  #   end
+  # end
 
-  describe "nueva area" do
+  describe "nueva area", js: true do
     before { visit new_area_path }
 
     it "nueva area aaaaa y creacion persona" do
