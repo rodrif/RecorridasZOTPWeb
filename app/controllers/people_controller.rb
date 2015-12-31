@@ -101,7 +101,7 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
     @person.state = State.find_by_nombre('Actualizado');
-    @person.visits.first.fecha = Time.now;
+    @person.visits.first.fecha = Time.now.to_date();
     @person.visits.first.descripcion = 'Persona vista por primera vez';
 
     respond_to do |format|
