@@ -50,6 +50,7 @@ class VisitsController < ApplicationController
   # GET /visits/new
   def new
     @visit = Visit.new
+    @visit.fecha = Time.now.ago(1.days)
 
     if (params[:person_id])
       @visit.person_id = params[:person_id]
