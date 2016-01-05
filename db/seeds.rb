@@ -51,15 +51,21 @@ personas << Person.create!(
   Rails.logger.debug "#{personas[i].to_yaml}"
 end
 
-visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now,
+ubicaciones = [
+	{ latitud: -34.6414209, longitud: -58.6119373}, { latitud: -34.6774225, longitud: -58.550007},
+	{ latitud: -34.7100242, longitud: -58.4922147}, { latitud: -34.6487055, longitud: -58.6145449},
+	{ latitud: -34.6302634, longitud: -58.6216342}, { latitud: -34.6855008, longitud: -58.5514068},
+]
+
+visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now.to_date(),
  latitud: '-34.6425867', longitud: '-58.5659176', state_id: 1 } ])
 
 2.upto(12) do |i|
   visits << Visit.create!(descripcion: 'Descripcion1', person: personas[i], fecha: Time.now.ago(2.days),
-  	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude, state_id: 1)
+		latitud: ubicaciones[i%6][:latitud], longitud: ubicaciones[i%6][:longitud], state_id: 1)
 
-  visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now,
-  	latitud: Faker::Address.latitude, longitud: Faker::Address.longitude, state_id: 1)
+  visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now.to_date(),
+		latitud: ubicaciones[i%5][:latitud], longitud: ubicaciones[i%5][:longitud], state_id: 1)
 end
 
 
