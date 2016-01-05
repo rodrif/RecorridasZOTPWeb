@@ -35,7 +35,7 @@
             <td><%= visit.longitud %></td>      
           <% end %>
           <td><%= link_to 'Ver / Editar', edit_visit_path(visit, :person_id => params[:person_id]) %></td>
-          <td><%= link_to 'Borrar', visit, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          <td><%= link_to 'Borrar', visit_path(visit, :person_id => params[:person_id]), method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
         </tr>
       <% end %>
     </tbody>
