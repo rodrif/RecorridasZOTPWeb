@@ -15,7 +15,7 @@ class AreasController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @areas = @filterrific.find.order(:nombre).page(params[:page])
+    @areas = @filterrific.find.activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -73,7 +73,7 @@ class AreasController < ApplicationController
   # DELETE /areas/1
   # DELETE /areas/1.json
   def destroy
-    @area.destroy
+    @area.state_id = 3
     respond_to do |format|
       format.html { redirect_to areas_url, notice: 'Area borrada correctamente.' }
       format.json { head :no_content }
