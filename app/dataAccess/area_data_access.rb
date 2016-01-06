@@ -5,16 +5,9 @@ class AreaDataAccess
     respuesta['datos'] = Hash.new
 
     if fecha.nil?
-      respuesta['datos'] = Area.select("id AS web_id, fecha, nombre, state_id AS estado, updated_at")
+      respuesta['datos'] = Area.select("id AS web_id, nombre, state_id AS estado, updated_at")
     else
-      respuesta['datos'] = Visit.where('updated_at > ?', fecha).select("id AS web_id, fecha, nombre, state_id AS estado, updated_at")
-    end
-
-    respuesta['datos'].each_with_index do |a, index|
-      fecha = a.fecha.to_datetime.strftime('%Q')
-      a = a.attributes
-      a['fecha'] = fecha
-      respuesta['datos'][index] = a
+      respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
     end
 
     respuesta

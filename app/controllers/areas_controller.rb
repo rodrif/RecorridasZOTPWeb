@@ -42,6 +42,7 @@ class AreasController < ApplicationController
   # POST /areas.json
   def create
     @area = Area.new(area_params)
+    @area.state = State.find_by_nombre('Actualizado');
 
     respond_to do |format|
       if @area.save
