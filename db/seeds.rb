@@ -8,7 +8,7 @@
 
 estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
-areas = Area.create([ { id: Faker::Number.number(4), nombre: 'Zona Oeste' } ])
+areas = Area.create([ { id: Faker::Number.number(4), nombre: 'Zona Oeste', state_id: 1 } ])
 
 zonas = Zone.create([
 	{ id: Faker::Number.number(4), nombre: 'Haedo', latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0] },
