@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+     get 'areas/download' => 'areas#download'
+  end
+
   resources :referentes
   resources :familias
   resources :ranchadas
