@@ -3,6 +3,7 @@ class AreaDataAccess
   def self.download datosJson = nil, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
     if fecha.nil?
       respuesta['datos'] = Area.select("id AS web_id, nombre, state_id AS estado, updated_at")
