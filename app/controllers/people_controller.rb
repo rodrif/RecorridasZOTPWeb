@@ -151,7 +151,6 @@ class PeopleController < ApplicationController
   # DELETE /people/1
   # DELETE /people/1.json
   def destroy
-    #@person.destroy
     PersonDataAccess.borrar_logico(@person)
 
     respond_to do |format|

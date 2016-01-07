@@ -75,6 +75,7 @@ class AreasController < ApplicationController
   # DELETE /areas/1.json
   def destroy
     @area.state_id = 3
+    @area.save
     respond_to do |format|
       format.html { redirect_to areas_url, notice: 'Area borrada correctamente.' }
       format.json { head :no_content }
