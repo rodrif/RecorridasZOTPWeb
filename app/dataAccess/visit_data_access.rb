@@ -25,6 +25,7 @@ class VisitDataAccess
 	def self.upload json, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 		visitas = ActiveSupport::JSON.decode(json)
 
     visitas.each do |v|

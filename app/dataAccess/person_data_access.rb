@@ -21,36 +21,43 @@ class PersonDataAccess
 		respuesta
 	end
 
-  def self.guardarPersonasFromJson personasJson, fecha = nil
+  def self.upload json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
-    personas = ActiveSupport::JSON.decode(personasJson)
+    personas = ActiveSupport::JSON.decode(json)
 
-      personas.each do |p|
-        if (p['web_id'].nil? || p['web_id'] <= 0)
-          person = Person.new
-        else
-          person = Person.find(p['web_id']);
-        end
-
-        if !p['estado'].nil? && p['estado'] == 3
-          person.state_id = 3
-        else
-          person.state_id = 1
-        end
-
-          person.nombre = p['nombre']
-          person.apellido = p['apellido']
-
-        if (person.save)
-          respuesta['datos'][p['android_id'].to_s] = person.id
-        else
-          respuesta['datos'][p['android_id'].to_s] = -1
-        end
+    personas.each do |p|
+      if (p['web_id'].nil? || p['web_id'] <= 0)
+        person = Person.new
+      else
+        person = Person.find(p['web_id']);
       end
 
-      respuesta
+      if !p['estado'].nil? && p['estado'] == 3
+        PersonDataAccess.borrar_logico person
+      else
+        person.state_id = 1
+      end
+
+      person.zone_id = p['zone_id']
+      person.ranchada_id = p['ranchada_id'] ? p['ranchada_id'] : nil
+      person.familia_id = p['familia_id'] ? p['familia_id'] : nil
+      person.nombre = p['nombre']
+      person.apellido = p['apellido'] ? p['apellido'] : nil
+      person.dni = p['dni'] ? p['dni'] : nil
+      person.fecha_nacimiento = p['fecha_nacimiento'] ? p['fecha_nacimiento'] : nil
+      person.telefono = p['telefono'] ? p['telefono'] : nil
+      person.descripcion = p['descripcion'] ? p['descripcion'] : nil
+
+      if (person.save)
+        respuesta['datos'][p['android_id'].to_s] = person.id
+      else
+        respuesta['datos'][p['android_id'].to_s] = -1
+      end
+    end
+
+    respuesta
   end
 
 	def self.getUbicacionUltVisita(idPersona)
