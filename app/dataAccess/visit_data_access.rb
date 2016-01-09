@@ -22,39 +22,39 @@ class VisitDataAccess
 		respuesta
 	end
 
-	# def self.upload json, fecha = nil
-	# 	respuesta = Hash.new
-	# 	respuesta['datos'] = Hash.new
-	# 	visitas = ActiveSupport::JSON.decode(json)
+	def self.upload json, fecha = nil
+		respuesta = Hash.new
+		respuesta['datos'] = Hash.new
+		visitas = ActiveSupport::JSON.decode(json)
 
- #    visitas.each do |v|
- #      if (v['web_id'].nil? || v['web_id'] <= 0)
- #        visit = Visit.new
- #      else
- #        visit = Visit.find(v['web_id']);
- #      end
+    visitas.each do |v|
+      if (v['web_id'].nil? || v['web_id'] <= 0)
+        visit = Visit.new
+      else
+        visit = Visit.find(v['web_id']);
+      end
 
- #      if !v['estado'].nil? && v['estado'] == 3
- #        VisitDataAccess.borrar_logico visit
- #      else
- #        visit.state_id = 1
- #      end
+      if !v['estado'].nil? && v['estado'] == 3
+        VisitDataAccess.borrar_logico visit
+      else
+        visit.state_id = 1
+      end
 
- #    	visit.person_id = v['person_id']
- #      visit.fecha = v['fecha'] # TODO ver tema milisegundos unix
- #      visit.descripcion = v['descripcion']
- #      visit.latitud = v['latitud']
- #      visit.longitud = v['longitud']
+      visit.person_id = v['person_id']
+      visit.fecha = Time.at(v['fecha'])
+      visit.descripcion = v['descripcion']
+      visit.latitud = v['latitud']
+      visit.longitud = v['longitud']
 
- #      if (visit.save)
- #        respuesta['datos'][v['android_id'].to_s] = visit.id
- #      else
- #        respuesta['datos'][v['android_id'].to_s] = -1
- #      end
- #    end
+      if (visit.save)
+        respuesta['datos'][v['android_id'].to_s] = visit.id
+      else
+        respuesta['datos'][v['android_id'].to_s] = -1
+      end
+    end
 
- #    respuesta
-	# end
+    respuesta
+	end
 
 	def self.borrar_logico visita
     visita.state_id = 3
