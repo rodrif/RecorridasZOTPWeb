@@ -43,9 +43,9 @@ class VisitDataAccess
 
       visit.person_id = v['person_id']
       visit.fecha = Time.at(v['fecha'])
-      visit.descripcion = v['descripcion']
-      visit.latitud = v['latitud']
-      visit.longitud = v['longitud']
+      visit.descripcion = v['descripcion'] ? v['descripcion'] : nil
+      visit.latitud = v['latitud'] ? v['latitud'] : nil
+      visit.longitud = v['longitud'] ? v['longitud'] : nil
 
       if (visit.save)
         respuesta['datos'][v['android_id'].to_s] = visit.id
