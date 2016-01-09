@@ -102,7 +102,7 @@ class FamiliasController < ApplicationController
   # DELETE /familias/1
   # DELETE /familias/1.json
   def destroy
-    @familia.destroy
+    FamiliaDataAccess.borrar_logico(@familia)
     respond_to do |format|
       format.html { redirect_to familias_url, notice: 'Familia borrada correctamente.' }
       format.json { head :no_content }

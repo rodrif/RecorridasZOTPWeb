@@ -96,7 +96,7 @@ class RanchadasController < ApplicationController
   # DELETE /ranchadas/1
   # DELETE /ranchadas/1.json
   def destroy
-    @ranchada.destroy
+    RanchadaDataAccess.borrar_logico(@ranchada)
     respond_to do |format|
       format.html { redirect_to ranchadas_url, notice: I18n.t('common.exito.borrado_ranchada') }
       format.json { head :no_content }
