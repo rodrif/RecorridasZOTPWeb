@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106012933) do
+ActiveRecord::Schema.define(version: 20160109115350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20160106012933) do
     t.text     "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "state_id"
   end
 
   add_index "familias", ["ranchada_id"], name: "index_familias_on_ranchada_id", using: :btree
+  add_index "familias", ["state_id"], name: "index_familias_on_state_id", using: :btree
   add_index "familias", ["zone_id"], name: "index_familias_on_zone_id", using: :btree
 
   create_table "people", force: :cascade do |t|
@@ -83,8 +85,10 @@ ActiveRecord::Schema.define(version: 20160106012933) do
     t.decimal  "longitud"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "state_id"
   end
 
+  add_index "ranchadas", ["state_id"], name: "index_ranchadas_on_state_id", using: :btree
   add_index "ranchadas", ["zone_id"], name: "index_ranchadas_on_zone_id", using: :btree
 
   create_table "referentes", force: :cascade do |t|
@@ -95,9 +99,11 @@ ActiveRecord::Schema.define(version: 20160106012933) do
     t.string   "dia"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "state_id"
   end
 
   add_index "referentes", ["area_id"], name: "index_referentes_on_area_id", using: :btree
+  add_index "referentes", ["state_id"], name: "index_referentes_on_state_id", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.string   "nombre"
@@ -137,23 +143,29 @@ ActiveRecord::Schema.define(version: 20160106012933) do
     t.integer  "area_id"
     t.float    "latitud"
     t.float    "longitud"
+    t.integer  "state_id"
   end
 
   add_index "zones", ["area_id"], name: "index_zones_on_area_id", using: :btree
+  add_index "zones", ["state_id"], name: "index_zones_on_state_id", using: :btree
 
   add_foreign_key "alerts", "alert_types"
   add_foreign_key "alerts", "zones"
   add_foreign_key "areas", "states"
   add_foreign_key "familias", "ranchadas"
+  add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"
   add_foreign_key "people", "familias"
   add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
+  add_foreign_key "ranchadas", "states"
   add_foreign_key "ranchadas", "zones"
   add_foreign_key "referentes", "areas"
+  add_foreign_key "referentes", "states"
   add_foreign_key "visits", "people"
   add_foreign_key "visits", "states"
   add_foreign_key "welcome_messages", "people"
   add_foreign_key "zones", "areas"
+  add_foreign_key "zones", "states"
 end
