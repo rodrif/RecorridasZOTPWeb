@@ -33,7 +33,7 @@ class AreaDataAccess
         area.state_id = 1
       end
 
-        area.nombre = a['nombre']
+      area.nombre = a['nombre']
 
       if (area.save)
         respuesta['datos'][a['android_id'].to_s] = area.id
@@ -43,6 +43,11 @@ class AreaDataAccess
     end
 
     respuesta
+  end
+
+  def self.borrar_logico area
+    area.state_id = 3
+    area.save(validate: false)
   end
 
 

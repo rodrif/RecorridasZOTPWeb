@@ -10,4 +10,11 @@ class FamiliaDataAccess
       end
   end
 
+  def self.borrar_logico familia
+    familia.state_id = 3
+    familia.zone_id = nil
+    familia.ranchada_id = nil
+    familia.save(validate: false)
+  end
+
 end

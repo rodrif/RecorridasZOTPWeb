@@ -55,4 +55,10 @@ class VisitDataAccess
 		respuesta
 	end
 
+	def self.borrar_logico visita
+    visita.state_id = 3
+    visita.person_id = nil
+    visita.save(validate: false)
+  end
+
 end
