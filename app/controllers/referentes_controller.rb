@@ -44,6 +44,7 @@ class ReferentesController < ApplicationController
   # POST /referentes.json
   def create
     @referente = Referente.new(referente_params)
+    @referente.state = State.find_by_nombre('Actualizado');
 
     respond_to do |format|
       if @referente.save

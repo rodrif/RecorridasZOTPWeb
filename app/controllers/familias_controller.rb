@@ -50,6 +50,7 @@ class FamiliasController < ApplicationController
   # POST /familias.json
   def create
     @familia = Familia.new(familia_params)
+    @familia.state = State.find_by_nombre('Actualizado');
 
     respond_to do |format|
       if @familia.save

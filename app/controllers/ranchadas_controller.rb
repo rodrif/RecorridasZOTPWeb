@@ -49,6 +49,7 @@ class RanchadasController < ApplicationController
   # POST /ranchadas.json
   def create
     @ranchada = Ranchada.new(ranchada_params)
+    @ranchada.state = State.find_by_nombre('Actualizado');
 
     respond_to do |format|
       if @ranchada.save

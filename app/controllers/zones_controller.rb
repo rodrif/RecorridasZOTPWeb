@@ -44,6 +44,7 @@ class ZonesController < ApplicationController
   # POST /zones.json
   def create
     @zone = Zone.new(zone_params)
+    @zone.state = State.find_by_nombre('Actualizado');
 
     respond_to do |format|
       if @zone.save
