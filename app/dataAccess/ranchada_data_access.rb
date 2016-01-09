@@ -1,19 +1,19 @@
 class RanchadaDataAccess
 
-  # def self.download datosJson = nil, fecha = nil
-  #   respuesta = Hash.new
-  #   respuesta['datos'] = Hash.new
-  #   respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
+  def self.download datosJson = nil, fecha = nil
+    respuesta = Hash.new
+    respuesta['datos'] = Hash.new
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
-  #   query = 'id AS web_id, area_id AS web_area_id, nombre, latitud, longitud, state_id AS estado, updated_at'
-  #   if fecha.nil?
-  #     respuesta['datos'] = Zone.select(query)
-  #   else
-  #     respuesta['datos'] = Zone.where('updated_at > ?', fecha).select(query)
-  #   end
+    query = 'id AS web_id, zone_id AS web_zone_id, nombre, descripcion, latitud, longitud, state_id AS estado, updated_at'
+    if fecha.nil?
+      respuesta['datos'] = Ranchada.select(query)
+    else
+      respuesta['datos'] = Ranchada.where('updated_at > ?', fecha).select(query)
+    end
 
-  #   respuesta
-  # end
+    respuesta
+  end
 
   # def self.upload json, fecha = nil
   #   respuesta = Hash.new

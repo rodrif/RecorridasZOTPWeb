@@ -1,49 +1,16 @@
 class VisitDataAccess
 
-	def self.guardarVisitasFromJson visitasJson, fecha = nil
+	def self.download datosJson = nil, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
-		visitas = ActiveSupport::JSON.decode(visitasJson)
-		#TODO
+		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
-	    personas.each do |p|
-	      if (p['web_id'].nil? || p['web_id'] <= 0)
-	        person = Person.new
-	      else
-	      	person = Person.find(p['web_id']);
-	      end 
-
-	      if !p['estado'].nil? && p['estado'] == 3
-	      	person.state_id = 3
-	      end
-
-      	  person.nombre = p['nombre']
-          person.apellido = p['apellido']	      
-
-	      if (person.save)
-	      	respuesta['datos'][p['android_id'].to_s] = person.id
-	      else
-	      	respuesta['datos'][p['android_id'].to_s] = -1
-	      end
-	    end
-
-	    respuesta
-	end
-
-	def self.getVisitasDesde datosJson = nil, fecha = nil
-		respuesta = Hash.new
-		respuesta['datos'] = Hash.new
-
-		if fecha.nil?
-			respuesta['datos'] = Visit.select("id AS web_id, fecha, descripcion, state_id AS estado,
-				person_id AS web_persona_id, latitud, longitud, updated_at")
-		else
-			# respuesta['datos'] = Visit.readonly.find_by_sql ["SELECT v.id AS web_id, v.fecha, v.descripcion, v.state_id AS estado,
-			# 	v.person_id AS web_persona_id, v.latitud, v.longitud, v.updated_at
-			# 	FROM visits v WHERE v.updated_at >= ?", fecha]
-			respuesta['datos'] = Visit.where('updated_at > ?', fecha).select("id AS web_id, fecha, descripcion, state_id AS estado,
-				person_id AS web_persona_id, latitud, longitud, updated_at")
-		end
+		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, latitud, longitud, state_id AS estado, updated_at'
+    if fecha.nil?
+      respuesta['datos'] = Visit.select(query)
+    else
+      respuesta['datos'] = Visit.where('updated_at > ?', fecha).select(query)
+    end
 
 		respuesta['datos'].each_with_index do |v, index|
 			fecha = v.fecha.to_datetime.strftime('%Q')
@@ -54,6 +21,40 @@ class VisitDataAccess
 
 		respuesta
 	end
+
+	# def self.upload json, fecha = nil
+	# 	respuesta = Hash.new
+	# 	respuesta['datos'] = Hash.new
+	# 	visitas = ActiveSupport::JSON.decode(json)
+
+ #    visitas.each do |v|
+ #      if (v['web_id'].nil? || v['web_id'] <= 0)
+ #        visit = Visit.new
+ #      else
+ #        visit = Visit.find(v['web_id']);
+ #      end
+
+ #      if !v['estado'].nil? && v['estado'] == 3
+ #        VisitDataAccess.borrar_logico visit
+ #      else
+ #        visit.state_id = 1
+ #      end
+
+ #    	visit.person_id = v['person_id']
+ #      visit.fecha = v['fecha'] # TODO ver tema milisegundos unix
+ #      visit.descripcion = v['descripcion']
+ #      visit.latitud = v['latitud']
+ #      visit.longitud = v['longitud']
+
+ #      if (visit.save)
+ #        respuesta['datos'][v['android_id'].to_s] = visit.id
+ #      else
+ #        respuesta['datos'][v['android_id'].to_s] = -1
+ #      end
+ #    end
+
+ #    respuesta
+	# end
 
 	def self.borrar_logico visita
     visita.state_id = 3
