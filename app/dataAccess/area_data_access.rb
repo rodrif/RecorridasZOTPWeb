@@ -14,35 +14,36 @@ class AreaDataAccess
     respuesta
   end
 
-  # def self.guardarVisitasFromJson visitasJson, fecha = nil
-  #   respuesta = Hash.new
-  #   respuesta['datos'] = Hash.new
-  #   visitas = ActiveSupport::JSON.decode(visitasJson)
-  #   #TODO
+  def self.upload json, fecha = nil
+    respuesta = Hash.new
+    respuesta['datos'] = Hash.new
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
+    areas = ActiveSupport::JSON.decode(json)
 
-  #     personas.each do |p|
-  #       if (p['web_id'].nil? || p['web_id'] <= 0)
-  #         person = Person.new
-  #       else
-  #         person = Person.find(p['web_id']);
-  #       end 
+    areas.each do |a|
+      if (a['web_id'].nil? || a['web_id'] <= 0)
+        area = Area.new
+      else
+        area = Area.find(a['web_id']);
+      end
 
-  #       if !p['estado'].nil? && p['estado'] == 3
-  #         person.state_id = 3
-  #       end
+      if !a['estado'].nil? && a['estado'] == 3
+        area.state_id = 3
+      else          
+        area.state_id = 1
+      end
 
-  #         person.nombre = p['nombre']
-  #         person.apellido = p['apellido']       
+        area.nombre = a['nombre']
 
-  #       if (person.save)
-  #         respuesta['datos'][p['android_id'].to_s] = person.id
-  #       else
-  #         respuesta['datos'][p['android_id'].to_s] = -1
-  #       end
-  #     end
+      if (area.save)
+        respuesta['datos'][a['android_id'].to_s] = area.id
+      else
+        respuesta['datos'][a['android_id'].to_s] = -1
+      end
+    end
 
-  #     respuesta
-  # end
+    respuesta
+  end
 
 
 end

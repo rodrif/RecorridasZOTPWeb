@@ -2,6 +2,19 @@ Rails.application.routes.draw do
 
   namespace :api do
     post 'areas/download' => 'areas#download'
+    post 'areas/upload' => 'areas#upload'
+    post 'zones/download' => 'zones#download'
+    post 'zones/upload' => 'zones#upload'
+    post 'ranchadas/download' => 'ranchadas#download'
+    post 'ranchadas/upload' => 'ranchadas#upload'
+    post 'familias/download' => 'familias#download'
+    post 'familias/upload' => 'familias#upload'
+    post 'visits/download' => 'visits#download'
+    post 'visits/upload' => 'visits#upload'
+    post 'people/download' => 'people#download'
+    post 'people/upload' => 'people#upload'
+    post 'referentes/download' => 'referentes#download'
+    post 'referentes/upload' => 'referentes#upload'
   end
 
   resources :referentes
