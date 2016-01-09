@@ -60,5 +60,4 @@ class Visit < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(fecha: :desc) }
 
-
 end

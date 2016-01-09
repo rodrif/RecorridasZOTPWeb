@@ -54,4 +54,6 @@ class Zone < ActiveRecord::Base
     zonas
   end
 
+  scope :activas, -> { where.not(state_id: 3).order(:nombre) }
+
 end

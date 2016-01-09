@@ -50,4 +50,6 @@ class Ranchada < ActiveRecord::Base
   joins(zone: :area).where("areas.id = ?", area_id)
   }
 
+  scope :activas, -> { where.not(state_id: 3).order(:nombre) }
+
 end

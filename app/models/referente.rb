@@ -44,4 +44,7 @@ class Referente < ActiveRecord::Base
   scope :with_area_id, lambda { |area_id|
     where("area_id = ?", area_id)
   }
+
+  scope :activas, -> { where.not(state_id: 3).order(:nombre) }
+
 end
