@@ -50,6 +50,10 @@ class RanchadaDataAccess
   # end
 
   def self.borrar_logico ranchada
+    if Person.activas.where(ranchada_id: ranchada.id).first ||
+      Familia.activas.where(ranchada_id: ranchada.id).first
+        raise ActiveRecord::InvalidForeignKey, 'error'
+    end
     ranchada.state_id = 3
     ranchada.zone_id = nil
     ranchada.save(validate: false)

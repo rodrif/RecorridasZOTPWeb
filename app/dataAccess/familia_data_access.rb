@@ -60,6 +60,9 @@ class FamiliaDataAccess
   # end
 
   def self.borrar_logico familia
+    if Person.activas.where(familia_id: familia.id).first
+      raise ActiveRecord::InvalidForeignKey, 'error'
+    end
     familia.state_id = 3
     familia.zone_id = nil
     familia.ranchada_id = nil
