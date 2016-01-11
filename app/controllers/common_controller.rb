@@ -2,7 +2,7 @@ class CommonController < ApplicationController
 
     def update_zonas_filter
         if params[:area_id].blank?
-            @zonas = Zone.all
+            @zonas = Zone.activas
         else
             @zonas = Zone.where("area_id = ?", params[:area_id])
         end

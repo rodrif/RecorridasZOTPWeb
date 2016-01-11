@@ -47,7 +47,7 @@ class Zone < ActiveRecord::Base
 	end
 
   def self.zonas_primer_area
-    zonas = Zone.where(:area_id => Area.first.id)
+    zonas = Zone.activas.where(:area_id => Area.first.id)
     if zonas.length == 0
       zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
     end
