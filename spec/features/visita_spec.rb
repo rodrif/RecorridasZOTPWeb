@@ -31,7 +31,7 @@ describe 'Visitas' do
       should have_field('visit[latitud]', with: '-34.6425867')
       should have_field('visit[longitud]', with: "-58.5659176")
 
-      fecha = 1.day.from_now
+      fecha = 1.day.ago
       fill_in 'visit[fecha]', with: fecha
       fill_in 'visit[descripcion]', with: "comentario de prueba edit page visita"
       fill_in 'visit[latitud]', with: "-34.642567854"
