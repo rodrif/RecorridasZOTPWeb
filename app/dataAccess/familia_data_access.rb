@@ -64,6 +64,7 @@ class FamiliaDataAccess
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
     familia.state_id = 3
+    familias.nombre += '@'
     familia.zone_id = nil
     familia.ranchada_id = nil
     familia.save(validate: false)

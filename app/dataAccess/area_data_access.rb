@@ -49,6 +49,7 @@ class AreaDataAccess
     if Zone.activas.where(area_id: area.id).first
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
+    area.nombre += '@'
     area.state_id = 3
     area.save(validate: false)
   end

@@ -55,6 +55,7 @@ class RanchadaDataAccess
         raise ActiveRecord::InvalidForeignKey, 'error'
     end
     ranchada.state_id = 3
+    ranchada.nombre += '@'
     ranchada.zone_id = nil
     ranchada.save(validate: false)
   end

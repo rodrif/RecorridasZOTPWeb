@@ -56,6 +56,7 @@ class ZoneDataAccess
         raise ActiveRecord::InvalidForeignKey, 'error'
     end
     zone.state_id = 3
+    zone.nombre += '@'
     zone.area_id = nil
     zone.save(validate: false)
   end
