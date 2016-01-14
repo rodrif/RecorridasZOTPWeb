@@ -40,9 +40,9 @@ class PersonDataAccess
         person.state_id = 1
       end
 
-      person.zone_id = p['zone_id']
-      person.ranchada_id = p['ranchada_id'] ? p['ranchada_id'] : nil
-      person.familia_id = p['familia_id'] ? p['familia_id'] : nil
+      person.zone_id = p['web_zone_id']
+      person.ranchada_id = p['web_ranchada_id'] ? p['web_ranchada_id'] : nil
+      person.familia_id = p['web_familia_id'] ? p['web_familia_id'] : nil
       person.nombre = p['nombre']
       person.apellido = p['apellido'] ? p['apellido'] : nil
       person.dni = p['dni'] ? p['dni'] : nil
