@@ -11,7 +11,7 @@ estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', 
 areas = Area.create([ { id: Faker::Number.number(4), nombre: 'Zona Oeste', state_id: 1 } ])
 
 zonas = Zone.create([
-	{ id: Faker::Number.number(4), nombre: 'Haedo', latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0], state_id: 1 },
+	{ id: 4, nombre: 'Haedo', latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0], state_id: 1 },
 	{ id: Faker::Number.number(4), nombre: 'Liniers', latitud: '-34.639050702761295', longitud: '-58.52465748801478', area: areas[0], state_id: 1 },
 	{ id: Faker::Number.number(4), nombre: 'Ramos', latitud: '-34.641027959809676', longitud: '-58.565813303139294', area: areas[0], state_id: 1 },
 	{ id: Faker::Number.number(4), nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0], state_id: 1 }
