@@ -47,7 +47,7 @@ class VisitDataAccess
       visit.latitud = v['latitud'] ? v['latitud'] : nil
       visit.longitud = v['longitud'] ? v['longitud'] : nil
 
-      if (visit.save)
+      if (visit.save(validate: false))
         respuesta['datos'][v['android_id'].to_s] = visit.id
       else
         respuesta['datos'][v['android_id'].to_s] = -1
