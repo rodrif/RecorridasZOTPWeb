@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   namespace :api do
     post 'areas/download' => 'areas#download'
     post 'areas/upload' => 'areas#upload'
