@@ -19,7 +19,7 @@ zonas = Zone.create([
 
 ranchadas = Ranchada.create([
 	{ id: Faker::Number.number(4), nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
-	{ id: Faker::Number.number(4), nombre: 'Familia Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0], state_id: 1 },
+	{ id: Faker::Number.number(4), nombre: 'Ranchada Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0], state_id: 1 },
 	{ id: Faker::Number.number(4), nombre: 'Ranchada Aquino', latitud: '-34.639050652761282', longitud: '-58.52463748801278', zone: zonas[0], state_id: 1 }
 ])
 
