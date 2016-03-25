@@ -25,8 +25,7 @@ class VisitDataAccess
 	def self.upload json, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
-    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
-		visitas = ActiveSupport::JSON.decode(json)
+    visitas = ActiveSupport::JSON.decode(json)
 
     visitas.each do |v|
       if (v['web_id'].nil? || v['web_id'] <= 0)
@@ -54,10 +53,11 @@ class VisitDataAccess
       end
     end
 
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
     respuesta
-	end
+  end
 
-	def self.borrar_logico visita
+  def self.borrar_logico visita
     visita.state_id = 3
     visita.person_id = nil
     visita.save(validate: false)
