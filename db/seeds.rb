@@ -6,6 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create!([{
+	password: '123456789',
+	encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+	email: 'rodrif89@gmail.com',
+	uid: 'rodrif89@gmail.com',
+	provider: 'email',
+	confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+	confirmed_at: '2016-02-27 01:19:05.754497',
+	confirmation_sent_at: '2016-02-27 01:17:58.521644',
+	sign_in_count: 0
+}])
+
 estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
 areas = Area.create([ { nombre: 'Zona Oeste', state_id: 1 } ])
@@ -57,14 +69,14 @@ ubicaciones = [
 	{ latitud: -34.6302634, longitud: -58.6216342}, { latitud: -34.6855008, longitud: -58.5514068},
 ]
 
-visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now.to_date(),
+visits = Visit.create!([ { descripcion: 'Descripcion1', person: personas[0], fecha: Time.now.ago(4.days),
  latitud: '-34.6425867', longitud: '-58.5659176', state_id: 1 } ])
 
 2.upto(12) do |i|
-  visits << Visit.create!(descripcion: 'Descripcion1', person: personas[i], fecha: Time.now.ago(2.days),
+  visits << Visit.create!(descripcion: 'Descripcion1', person: personas[i], fecha: Time.now.ago(3.days),
 		latitud: ubicaciones[i%6][:latitud], longitud: ubicaciones[i%6][:longitud], state_id: 1)
 
-  visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now.to_date(),
+  visits << Visit.create!(descripcion: 'Descripcion2', person: personas[i], fecha: Time.now.ago(2.days),
 		latitud: ubicaciones[i%5][:latitud], longitud: ubicaciones[i%5][:longitud], state_id: 1)
 end
 
