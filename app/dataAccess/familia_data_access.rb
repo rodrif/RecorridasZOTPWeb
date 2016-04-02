@@ -28,7 +28,6 @@ class FamiliaDataAccess
   # def self.upload json, fecha = nil
   #   respuesta = Hash.new
   #   respuesta['datos'] = Hash.new
-  #   respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
   #   zones = ActiveSupport::JSON.decode(json)
 
   #   zones.each do |z|
@@ -56,6 +55,7 @@ class FamiliaDataAccess
   #     end
   #   end
 
+  #   respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
   #   respuesta
   # end
 

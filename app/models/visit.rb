@@ -6,7 +6,7 @@ class Visit < ActiveRecord::Base
   validate :fecha_must_in_the_past
 
   def fecha_must_in_the_past
-    if fecha.present? && fecha > Date.today
+    if fecha.present? && fecha.to_datetime > DateTime.now + 1.day
       errors.add(:fecha, "no pueda ser futura")
     end
   end

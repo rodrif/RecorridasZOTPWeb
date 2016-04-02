@@ -24,7 +24,6 @@ class PersonDataAccess
   def self.upload json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
-    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
     personas = ActiveSupport::JSON.decode(json)
 
     personas.each do |p|
@@ -57,6 +56,7 @@ class PersonDataAccess
       end
     end
 
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
     respuesta
   end
 

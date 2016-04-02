@@ -17,7 +17,6 @@ class AreaDataAccess
   def self.upload json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
-    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
     areas = ActiveSupport::JSON.decode(json)
 
     areas.each do |a|
@@ -42,6 +41,7 @@ class AreaDataAccess
       end
     end
 
+    respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
     respuesta
   end
 

@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160225230654) do
     t.integer  "state_id"
     t.integer  "dni"
     t.date     "fecha_nacimiento"
-    t.integer  "telefono"
+    t.string   "telefono"
     t.integer  "familia_id"
     t.text     "descripcion"
     t.integer  "ranchada_id"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20160225230654) do
   create_table "referentes", force: :cascade do |t|
     t.string   "nombre"
     t.string   "apellido"
-    t.integer  "telefono"
+    t.string   "telefono"
     t.integer  "area_id"
     t.string   "dia"
     t.datetime "created_at", null: false
