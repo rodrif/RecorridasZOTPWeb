@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     post 'referentes/upload' => 'referentes#upload'
   end
 
-  resources :users, only: [:index]
+  resources :users
   resources :referentes
   resources :familias
   resources :ranchadas

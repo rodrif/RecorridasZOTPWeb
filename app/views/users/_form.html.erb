@@ -1,0 +1,44 @@
+<%= form_for(@user, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+      
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :nombre, class: "col-md-1 control-label", for: "user_name" %>
+    <div class="col-md-10">
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :apellido, class: "col-md-1 control-label", for: "user_apellido" %>
+    <div class="col-md-10">
+      <%= f.text_field :apellido, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Area", class: "col-md-1 control-label", for: "user_area_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Roles", class: "col-md-1 control-label", for: "user_rolzona_id" %>
+    <div class="col-md-10">
+    <%= f.collection_select :rol_id, Rol.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: users_path, f: f, remote: false %>
+
+<% end %>

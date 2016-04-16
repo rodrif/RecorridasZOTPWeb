@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :rol
+  belongs_to :area
+
   def ensure_uid
     if self.uid.blank?
       self.uid = self.email
