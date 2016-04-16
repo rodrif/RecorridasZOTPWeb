@@ -1,5 +1,9 @@
 <div id="filterrific_results">
 
+  <div>
+    <%= page_entries_info users %>
+  </div>
+
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -37,5 +41,7 @@
       </tbody>
     </table>
   </div>
+
+  <%= will_paginate users, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
 
 </div>
