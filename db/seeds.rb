@@ -6,18 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!([{
-	password: '123456789',
-	encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
-	email: 'rodrif89@gmail.com',
-	uid: 'rodrif89@gmail.com',
-	provider: 'email',
-	confirmation_token: 'aTkfHp14is8DkKXYcfM1',
-	confirmed_at: '2016-02-27 01:19:05.754497',
-	confirmation_sent_at: '2016-02-27 01:17:58.521644',
-	sign_in_count: 0
-}])
-
 roles = Rol.create([
 	{ id: 1, nombre: "admin",
 		puede_crear_persona: 1,
@@ -58,7 +46,20 @@ roles = Rol.create([
     puede_crear_visita: 0,
     puede_editar_visita: 1,
     puede_borrar_visita: 1
-	}])
+}])
+
+User.create!([{
+	password: '123456789',
+	encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+	email: 'rodrif89@gmail.com',
+	uid: 'rodrif89@gmail.com',
+	provider: 'email',
+	confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+	confirmed_at: '2016-02-27 01:19:05.754497',
+	confirmation_sent_at: '2016-02-27 01:17:58.521644',
+	sign_in_count: 0,
+	rol_id: 1
+}])
 
 estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
