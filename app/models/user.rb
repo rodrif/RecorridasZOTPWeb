@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include DeviseTokenAuth::Concerns::User
+  #include DeviseTokenAuth::Concerns::User
   after_validation :ensure_uid
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
