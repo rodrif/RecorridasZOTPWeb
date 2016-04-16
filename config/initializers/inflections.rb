@@ -23,4 +23,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'ranchada', 'ranchadas'
   inflect.irregular 'familia', 'familias'
   inflect.irregular 'referente', 'referentes'
+  inflect.irregular 'rol', 'roles'
 end

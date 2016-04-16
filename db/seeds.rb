@@ -18,6 +18,48 @@ User.create!([{
 	sign_in_count: 0
 }])
 
+roles = Rol.create([
+	{ id: 1, nombre: "admin",
+		puede_crear_persona: 1,
+		puede_editar_persona: 1,
+    puede_borrar_persona: 1,
+    puede_ver_telefono_persona: 1,
+    puede_ver_web: 1,
+    puede_crear_visita: 1,
+    puede_editar_visita: 1,
+    puede_borrar_visita: 1
+	},
+	{ id: 2, nombre: "referente",
+		puede_crear_persona: 1,
+		puede_editar_persona: 1,
+    puede_borrar_persona: 1,
+    puede_ver_telefono_persona: 1,
+    puede_ver_web: 1,
+    puede_crear_visita: 1,
+    puede_editar_visita: 1,
+    puede_borrar_visita: 1
+	},
+	{ id: 3, nombre: "coordinador",
+		puede_crear_persona: 1,
+		puede_editar_persona: 1,
+    puede_borrar_persona: 1,
+    puede_ver_telefono_persona: 1,
+    puede_ver_web: 0,
+    puede_crear_visita: 1,
+    puede_editar_visita: 1,
+    puede_borrar_visita: 1
+	},
+	{ id: 4, nombre: "voluntario",
+		puede_crear_persona: 1,
+		puede_editar_persona: 0,
+    puede_borrar_persona: 0,
+    puede_ver_telefono_persona: 0,
+    puede_ver_web: 0,
+    puede_crear_visita: 0,
+    puede_editar_visita: 1,
+    puede_borrar_visita: 1
+	}])
+
 estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
 areas = Area.create([ { nombre: 'Zona Oeste', state_id: 1 } ])

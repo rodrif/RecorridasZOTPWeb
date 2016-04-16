@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328012133) do
+ActiveRecord::Schema.define(version: 20160416143053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,20 @@ ActiveRecord::Schema.define(version: 20160328012133) do
 
   add_index "referentes", ["area_id"], name: "index_referentes_on_area_id", using: :btree
   add_index "referentes", ["state_id"], name: "index_referentes_on_state_id", using: :btree
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "nombre"
+    t.boolean  "puede_crear_persona"
+    t.boolean  "puede_editar_persona"
+    t.boolean  "puede_borrar_persona"
+    t.boolean  "puede_ver_telefono_persona"
+    t.boolean  "puede_ver_web"
+    t.boolean  "puede_crear_visita"
+    t.boolean  "puede_editar_visita"
+    t.boolean  "puede_borrar_visita"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "states", force: :cascade do |t|
     t.string   "nombre"
