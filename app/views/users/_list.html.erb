@@ -1,0 +1,29 @@
+<div id="filterrific_results">
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <% if user.rol.nil? %>
+              <td>Sin rol</td>
+            <% else %>
+              <td><%= user.rol.nombre %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
