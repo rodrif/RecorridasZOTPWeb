@@ -1,14 +1,19 @@
-<h2>Log in</h2>
+<h2 class="sub-header">Ingresar</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+
+ <div class="form-group">
+    <%= f.label :email, class: "col-md-1 control-label", for: "resource_email" %>
+    <div class="col-md-11">
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :password, class: "col-md-1 control-label", for: "resource_password" %>
+    <div class="col-md-11">
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -18,8 +23,8 @@
     </div>
   <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="actions btn-group col-md-offset-5">
+    <%= f.submit 'Ingresar', class: "btn btn-primary text-center" %>
   </div>
 <% end %>
 

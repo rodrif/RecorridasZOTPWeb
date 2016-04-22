@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   belongs_to :area
   belongs_to :state
 
-  self.per_page = 1
+  self.per_page = 20
 
   filterrific(
     available_filters: [
