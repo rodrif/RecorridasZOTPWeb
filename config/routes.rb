@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {
+    #sessions: 'users/sessions'
+    registrations: 'users/registrations'
+  }
+
   namespace :api do
     mount_devise_token_auth_for 'User', at: 'auth'
     post 'areas/download' => 'areas#download'
