@@ -4,6 +4,15 @@ module ApplicationHelper
     if notice
       "<p id=\"notice\" class=\"alert alert-success\">#{ notice }</p>".html_safe
     end
+    if alert
+      "<p id=\"alert\" class=\"alert alert-danger\">#{ alert }</p>".html_safe
+    end
+    # if info
+    #   "<p id=\"alert\" class=\"alert alert-info\">#{ info }</p>".html_safe
+    # end
+    # if defined?(error)
+    #   "<p id=\"alert\" class=\"alert alert-danger\">#{ error }</p>".html_safe
+    # end
   end
 
   def loadDefaultDropdowns entity = nil
@@ -18,4 +27,5 @@ module ApplicationHelper
       entity.familia_id = @familias.first.area_id
     end
   end
+
 end
