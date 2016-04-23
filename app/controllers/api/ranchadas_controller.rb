@@ -1,4 +1,6 @@
 class Api::RanchadasController < Api::ApiController
+  before_action :authenticate_user!
+  before_action :invitado
 
   def download
     respuesta = RanchadaDataAccess.download params['datos'], params['fecha']

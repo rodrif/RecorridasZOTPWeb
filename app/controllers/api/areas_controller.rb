@@ -1,5 +1,6 @@
 class Api::AreasController < Api::ApiController
-  before_action :authenticate_user!, only: [:download] # TODO: es para testing
+  before_action :authenticate_user!
+  before_action :invitado
 
   def download
     respuesta = AreaDataAccess.download params['datos'], params['fecha']
