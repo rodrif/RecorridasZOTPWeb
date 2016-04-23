@@ -1,5 +1,7 @@
 class ReferentesController < ApplicationController
   before_action :set_referente, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :puede_ver_web
 
   # GET /referentes
   # GET /referentes.json

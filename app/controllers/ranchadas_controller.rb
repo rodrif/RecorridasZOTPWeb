@@ -1,6 +1,8 @@
 class RanchadasController < ApplicationController
   include ApplicationHelper
   before_action :set_ranchada, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :puede_ver_web
 
   # GET /ranchadas
   # GET /ranchadas.json

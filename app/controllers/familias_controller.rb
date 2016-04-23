@@ -1,6 +1,8 @@
 class FamiliasController < ApplicationController
   include ApplicationHelper
   before_action :set_familia, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :puede_ver_web
 
   # GET /familias
   # GET /familias.json

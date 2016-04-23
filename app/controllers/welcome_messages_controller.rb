@@ -1,5 +1,7 @@
 class WelcomeMessagesController < ApplicationController
   before_action :set_welcome_message, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :puede_ver_web
 
   def mobGetMensajeBienvenida
     welcomeMessage = WelcomeMessageDataAccess.getCurrentMessage
