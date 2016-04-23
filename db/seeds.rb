@@ -69,22 +69,88 @@ roles = Rol.create([
     puede_borrar_visita: 0
 }])
 
-User.create!([{
-  name: 'Facundo',
-  apellido: 'Rodriguez',
-  password: '123456789',
-  encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
-  email: 'rodrif89@gmail.com',
-  uid: 'rodrif89@gmail.com',
-  provider: 'email',
-  confirmation_token: 'aTkfHp14is8DkKXYcfM1',
-  confirmed_at: '2016-02-27 01:19:05.754497',
-  confirmation_sent_at: '2016-02-27 01:17:58.521644',
-  sign_in_count: 0,
-  rol_id: 1,
-  area: areas[0],
-  state_id: 1
-}])
+User.create!([
+  {
+    name: 'admin',
+    apellido: 'admin apellido',
+    password: '123456789',
+    encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+    email: 'admin@gmail.com',
+    uid: 'admin@gmail.com',
+    provider: 'email',
+    confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+    confirmed_at: '2016-02-27 01:19:05.754497',
+    confirmation_sent_at: '2016-02-27 01:17:58.521644',
+    sign_in_count: 0,
+    rol_id: 1,
+    area: areas[0],
+    state_id: 1
+  },
+  {
+    name: 'referente',
+    apellido: 'referente apellido',
+    password: '123456789',
+    encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+    email: 'referente@gmail.com',
+    uid: 'referente@gmail.com',
+    provider: 'email',
+    confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+    confirmed_at: '2016-02-27 01:19:05.754497',
+    confirmation_sent_at: '2016-02-27 01:17:58.521644',
+    sign_in_count: 0,
+    rol_id: 2,
+    area: areas[0],
+    state_id: 1
+  },
+  {
+    name: 'coordinador',
+    apellido: 'coordinador apellido',
+    password: '123456789',
+    encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+    email: 'coordinador@gmail.com',
+    uid: 'coordinador@gmail.com',
+    provider: 'email',
+    confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+    confirmed_at: '2016-02-27 01:19:05.754497',
+    confirmation_sent_at: '2016-02-27 01:17:58.521644',
+    sign_in_count: 0,
+    rol_id: 3,
+    area: areas[0],
+    state_id: 1
+  },
+  {
+    name: 'voluntario',
+    apellido: 'voluntario apellido',
+    password: '123456789',
+    encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+    email: 'voluntario@gmail.com',
+    uid: 'voluntario@gmail.com',
+    provider: 'email',
+    confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+    confirmed_at: '2016-02-27 01:19:05.754497',
+    confirmation_sent_at: '2016-02-27 01:17:58.521644',
+    sign_in_count: 0,
+    rol_id: 4,
+    area: areas[0],
+    state_id: 1
+  },
+  {
+    name: 'invitado',
+    apellido: 'invitado apellido',
+    password: '123456789',
+    encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+    email: 'invitado@gmail.com',
+    uid: 'invitado@gmail.com',
+    provider: 'email',
+    confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+    confirmed_at: '2016-02-27 01:19:05.754497',
+    confirmation_sent_at: '2016-02-27 01:17:58.521644',
+    sign_in_count: 0,
+    rol_id: 5,
+    area: areas[0],
+    state_id: 1
+  }
+])
 
 ranchadas = Ranchada.create([
 	{ nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
