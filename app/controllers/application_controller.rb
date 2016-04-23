@@ -11,4 +11,53 @@ class ApplicationController < ActionController::Base
     flash[:error] = I18n.t('common.errores.foreign_key')
     redirect_to :back
   end
+
+  def puede_crear_persona
+    if !current_user.rol || !current_user.rol.puede_crear_persona
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_editar_persona
+    if !current_user.rol || !current_user.rol.puede_editar_persona
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_borrar_persona
+    if !current_user.rol || !current_user.rol.puede_borrar_persona
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_ver_telefono_persona
+    if !current_user.rol || !current_user.rol.puede_ver_telefono_persona
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_crear_visita
+    if !current_user.rol || !current_user.rol.puede_crear_visita
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_editar_visita
+    if !current_user.rol || !current_user.rol.puede_editar_visita
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_borrar_visita
+    if !current_user.rol || !current_user.rol.puede_borrar_visita
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
+  def puede_ver_web
+    if !current_user.rol || !current_user.rol.puede_ver_web
+      redirect_to root_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
 end
