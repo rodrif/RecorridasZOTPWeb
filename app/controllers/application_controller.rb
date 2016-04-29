@@ -60,4 +60,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_admin
+    if !current_user.rol_id || current_user.rol_id != 1
+      redirect_to acceso_denegado_path, alert: 'Acceso denegado, faltan permisos'
+    end
+  end
+
 end
