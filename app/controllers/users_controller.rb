@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :puede_ver_web
+  before_action :is_admin
 
   def index
     @filterrific = initialize_filterrific(
@@ -59,4 +59,5 @@ class UsersController < ApplicationController
     def user_params_update
       params.require(:user).permit(:name, :apellido, :area_id, :rol_id)
     end
+
 end
