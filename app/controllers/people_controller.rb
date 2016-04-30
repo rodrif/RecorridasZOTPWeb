@@ -140,11 +140,13 @@ class PeopleController < ApplicationController
         if @person.zone
           @zonas = Zone.where(:area_id => @person.zone.area_id)
           @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
+          @familias = Familia.where(:zone_id => @person.zone_id)
         else
           @zonas = Zone.zonas_primer_area
           @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
           @person.area_id = @zonas.first.area_id
           @person.zone_id = @zonas.first.id
+          @familias = Familia.where(:zone_id => @person.zone_id)
         end
 
         format.html { render :edit, zonas: @zonas, ranchadas: @ranchadas }
