@@ -26,10 +26,33 @@ es:
       multi_page: "Mostrando %{from} - %{to} %{model} de %{count} en total"
       multi_page_html: "Mostrando <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} de <b>%{count}</b> en total"
   activerecord:
+    errors:
+      models:
+        person:
+          attributes:
+            nombre:
+              blank: no puede estar en blanco
+        user:
+          attributes:
+            password:
+              blank: no puede estar en blanco
+              too_short: tiene que tener al menos 8 caracteres
+            password_confirmation:
+              confirmation: no coincide con la contraseña
+            email:
+              blank: no puede estar en blanco
     attributes:
       person:
         zone: Zona
+        nombre: Nombre
+      user:
+        password: Contraseña
+        password_confirmation: Confirmar contraseña
     models:
+      user:
+        zero:  Usuario
+        one:   Usuario
+        other: Usuarios
       person:
         zero:  Persona
         one:   Persona
