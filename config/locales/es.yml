@@ -41,6 +41,9 @@ es:
               confirmation: no coincide con la contraseña
             email:
               blank: no puede estar en blanco
+            current_password:
+              blank: no puede estar en blanco
+              invalid: es incorrecta
     attributes:
       person:
         zone: Zona
@@ -48,6 +51,7 @@ es:
       user:
         password: Contraseña
         password_confirmation: Confirmar contraseña
+        current_password: Contraseña actual
     models:
       user:
         zero:  Usuario
