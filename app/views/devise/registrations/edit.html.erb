@@ -1,39 +1,64 @@
-<h2>Editar <%= resource_name.to_s.humanize %></h2>
+<h2 class="sub-header">Mis datos</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => 'form-horizontal container-fluid' }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group">
+    <%= f.label :email, class: "col-md-1 control-label", for: "resource_email" %>
+    <div class="col-md-11">
+      <%= f.email_field :email, autofocus: true, class: "form-control", :readonly => true %>
+    </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label "Contraseña" %> <i>(dejala en blanco si no la queres cambiar)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :nombre, class: "col-md-1 control-label", for: "resource_name" %>
+    <div class="col-md-11">
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label "Confirmar contraseña" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label :apellido, class: "col-md-1 control-label", for: "resource_apellido" %>
+    <div class="col-md-11">
+      <%= f.text_field :apellido, autofocus: true, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label "Contraseña actual" %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.label "Area", class: "col-md-1 control-label", for: "resource_area_id" %>
+    <div class="col-md-11">
+      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Guardar" %>
+  <div class="form-group">
+    <%= f.label "Contraseña", class: "col-md-1 control-label", for: "resource_password" %>
+    <div class="col-md-11">
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label "Confirmar contraseña", class: "col-md-1 control-label", for: "resource_password_confirmation" %>
+    <div class="col-md-11">
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Contraseña actual", class: "col-md-1 control-label", for: "resource_current_password" %>
+    <div class="col-md-11">
+      <%= f.password_field :current_password, autocomplete: "off", class: "form-control"  %>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: root_path, f: f, remote: false %>
 <% end %>
 
+<% if false %>
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Está seguro?" }, method: :delete %></p>
 
 <%= link_to "Atrás", :back %>
+<% end %>
