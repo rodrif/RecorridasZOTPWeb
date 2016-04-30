@@ -12,6 +12,13 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :email, class: "col-md-1 control-label", for: "user_email" %>
+    <div class="col-md-10">
+      <%= f.text_field :email, class: "form-control", :readonly => true %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :nombre, class: "col-md-1 control-label", for: "user_name" %>
     <div class="col-md-10">
       <%= f.text_field :name, class: "form-control" %>
@@ -36,13 +43,6 @@
     <%= f.label "Roles", class: "col-md-1 control-label", for: "user_rolzona_id" %>
     <div class="col-md-10">
     <%= f.collection_select :rol_id, Rol.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :email, class: "col-md-1 control-label", for: "user_email" %>
-    <div class="col-md-10">
-      <%= f.text_field :email, class: "form-control", :readonly => true %>
     </div>
   </div>
 
