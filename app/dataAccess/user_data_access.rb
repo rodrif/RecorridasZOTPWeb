@@ -46,7 +46,7 @@ class UserDataAccess
   # end
 
   def self.borrar_logico user
-    user.email += '@'
+    user.email += '@' + SecureRandom.uuid
     user.state_id = 3
     user.save(validate: false)
   end
