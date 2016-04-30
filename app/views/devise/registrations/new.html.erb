@@ -5,42 +5,42 @@
 
   <div class="form-group">
     <%= f.label :email, class: "col-md-1 control-label", for: "resource_email" %>
-    <div class="col-md-11">
+    <div class="col-md-10">
       <%= f.email_field :email, autofocus: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Contraseña", class: "col-md-1 control-label", for: "resource_password" %>
-    <div class="col-md-11">
+    <%= f.label :password, "Contraseña", class: "col-md-1 control-label", for: "resource_password" %>
+    <div class="col-md-10">
       <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Confirmar contraseña", class: "col-md-1 control-label", for: "resource_password_confirmation" %>
-    <div class="col-md-11">
+    <%= f.label :password_confirmation, "Confirmar contraseña", class: "col-md-1 control-label", for: "resource_password_confirmation" %>
+    <div class="col-md-10">
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :nombre, class: "col-md-1 control-label", for: "resource_name" %>
-    <div class="col-md-11">
+    <div class="col-md-10">
       <%= f.text_field :name, autofocus: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :apellido, class: "col-md-1 control-label", for: "resource_apellido" %>
-    <div class="col-md-11">
+    <div class="col-md-10">
       <%= f.text_field :apellido, autofocus: true, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label "Area", class: "col-md-1 control-label", for: "resource_area_id" %>
-    <div class="col-md-11">
+    <div class="col-md-10">
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
