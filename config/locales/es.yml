@@ -26,24 +26,6 @@ es:
       multi_page: "Mostrando %{from} - %{to} %{model} de %{count} en total"
       multi_page_html: "Mostrando <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} de <b>%{count}</b> en total"
   activerecord:
-    errors:
-      models:
-        person:
-          attributes:
-            nombre:
-              blank: no puede estar en blanco
-        user:
-          attributes:
-            password:
-              blank: no puede estar en blanco
-              too_short: tiene que tener al menos 8 caracteres
-            password_confirmation:
-              confirmation: no coincide con la contraseña
-            email:
-              blank: no puede estar en blanco
-            current_password:
-              blank: no puede estar en blanco
-              invalid: es incorrecta
     attributes:
       person:
         zone: Zona
@@ -184,6 +166,14 @@ es:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      already_confirmed: "ya has sido confirmado, por favor intenta iniciar sesión."
+      confirmation_period_expired: "necesitas ser confirmado en %{period}, por favor vuelve a solicitarla."
+      expired: "ha expirado, por favor vuelve a solicitarla."
+      not_found: "no se ha encontrado."
+      not_locked: "no estaba bloqueado."
+      not_saved:
+        one: "1 error impidió que este %{resource} fuera guardado:"
+        other: "%{count} errores impidieron que este %{resource} fuera guardado:"
       accepted: debe ser aceptado
       blank: no puede estar en blanco
       present: debe estar en blanco
@@ -334,13 +324,3 @@ es:
       send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
       send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
       unlocked: "Tu cuenta ha sido desbloqueada. Por favor inicia sesión para continuar."
-  errors:
-    messages:
-      already_confirmed: "ya has sido confirmado, por favor intenta iniciar sesión."
-      confirmation_period_expired: "necesitas ser confirmado en %{period}, por favor vuelve a solicitarla."
-      expired: "ha expirado, por favor vuelve a solicitarla."
-      not_found: "no se ha encontrado."
-      not_locked: "no estaba bloqueado."
-      not_saved:
-        one: "1 error impidió que este %{resource} fuera guardado:"
-        other: "%{count} errores impidieron que este %{resource} fuera guardado:"
