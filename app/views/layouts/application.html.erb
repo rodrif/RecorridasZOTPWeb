@@ -52,10 +52,6 @@
 		</div>
 
 		<div class="col-sm-9 col-md-10 main">
-      <% if flash[:error] %>
-        <p id="flash-error" class="alert alert-danger"><%= flash[:error] %></p>
-      <% end %>
-
       <% if user_signed_in? %>
         <li>
         <%= link_to('Salir', destroy_user_session_path, :method => :delete) %>
@@ -64,6 +60,13 @@
         <li>
         <%= link_to('Ingresar', new_user_session_path)  %>
         </li>
+      <% end %>
+
+      <% if flash[:error] %>
+        <p id="flash-error" class="alert alert-danger"><%= flash[:error] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p id="flash-error" class="alert alert-danger"><%= flash[:alert] %></p>
       <% end %>
 
 			<%= yield %>
