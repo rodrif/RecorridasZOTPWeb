@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
     if !current_user.rol.puede_ver_web
       sign_out current_user
     end
-    redirect_to acceso_denegado_path, alert: 'Acceso denegado, faltan permisos'
+    redirect_to acceso_denegado_path
   end
 
 end
