@@ -24,4 +24,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'familia', 'familias'
   inflect.irregular 'referente', 'referentes'
   inflect.irregular 'rol', 'roles'
+  inflect.irregular 'auditoria', 'auditorias'
 end

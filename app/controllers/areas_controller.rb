@@ -64,6 +64,7 @@ class AreasController < ApplicationController
   def update
     respond_to do |format|
       if @area.update(area_params)
+        AuditoriaDataAccess.log 'Modificación', 'Area', @area.id
         format.html { redirect_to areas_url, notice: 'Area actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @area }
       else
