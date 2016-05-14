@@ -55,4 +55,6 @@ class Auditoria < ActiveRecord::Base
     )
   }
 
+  scope :ordenadas, -> { order(id: :desc) }
+
 end
