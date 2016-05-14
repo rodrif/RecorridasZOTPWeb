@@ -3,6 +3,7 @@
 <h2 class="sub-header">Configuraciones</h2>
 
 <% if current_user.rol_id == 1 %>
+  <%= link_to "Auditoria", auditoria_index_path %><br />
   <%= link_to "Usuarios", users_path %><br />
 <% end %>
 

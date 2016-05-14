@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     post 'referentes/upload' => 'referentes#upload'
   end
 
+  resources :auditoria
   resources :users
   resources :referentes
   resources :familias
