@@ -53,4 +53,8 @@ class Familia < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
+  def getDescripcion
+    return "Nombre: #{nombre} Área: #{zone.area.nombre} Zona: #{zone.nombre} Ranchada: #{ranchada.nombre if !ranchada.nil?} Descripción: #{descripcion}"
+  end
+
 end

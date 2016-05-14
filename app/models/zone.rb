@@ -56,4 +56,8 @@ class Zone < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
+  def getDescripcion
+    return "Nombre: #{nombre} Área: #{zone.area.nombre if !zone.nil?}"
+  end
+
 end

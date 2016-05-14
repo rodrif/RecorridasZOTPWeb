@@ -52,4 +52,8 @@ class Ranchada < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
+  def getDescripcion
+    return "Nombre: #{nombre} Área: #{zone.area.nombre} Zona: #{zone.nombre} Descripción: #{descripcion}"
+  end
+
 end

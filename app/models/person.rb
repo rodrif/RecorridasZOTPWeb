@@ -63,4 +63,8 @@ class Person < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre, :apellido) }
   
+  def getDescripcion
+    return "Nombre: #{nombre} Apellido: #{apellido} Área: #{zone.area.nombre if !zone.nil?} Zona: #{zone.nombre if !zone.nil?}"
+  end
+
 end
