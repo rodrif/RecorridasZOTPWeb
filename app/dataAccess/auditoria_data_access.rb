@@ -1,14 +1,14 @@
 class AuditoriaDataAccess
 
-	def self.log accion, entidad, id
+	def self.log user, accion, entidad, entityId
 		auditoria = Auditoria.new
-		if current_user
-			auditoria.email = current_user.email
+		if user
+			auditoria.email = user.email
     end
 		auditoria.fecha = Time.now
 		auditoria.accion = accion
 		auditoria.entidad = entidad
-		auditoria.id = id
+		auditoria.entity_id = entityId
 		auditoria.save
 	end
 
