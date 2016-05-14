@@ -7,7 +7,7 @@ class AuditoriaDataAccess
 		auditoria.accion = accion
 		auditoria.entidad = nombreEntidad
 		auditoria.entity_id = entidad.id
-    auditoria.descripcion = entidad.getDescripcion
+    auditoria.descripcion = entidad.getDescripcionAuditoria
 		auditoria.save
 	end
 

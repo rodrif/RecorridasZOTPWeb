@@ -47,7 +47,7 @@ class Referente < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
-  def getDescripcion
+  def getDescripcionAuditoria
     return "Nombre: #{nombre} Apellido: #{apellido} Teléfono: #{telefono} Área: #{area.nombre} Día: #{dia}"
   end
 

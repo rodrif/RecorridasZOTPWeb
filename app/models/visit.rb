@@ -60,7 +60,7 @@ class Visit < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(fecha: :desc) }
 
-  def getDescripcion
+  def getDescripcionAuditoria
     return "Persona: #{person.nombre if !person.nil} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
   end
 

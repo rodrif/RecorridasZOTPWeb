@@ -42,7 +42,7 @@ class Area < ActiveRecord::Base
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 	
-  def getDescripcion
+  def getDescripcionAuditoria
     return "Nombre: #{nombre}"
   end
 
