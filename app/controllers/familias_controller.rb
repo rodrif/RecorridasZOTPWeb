@@ -56,6 +56,7 @@ class FamiliasController < ApplicationController
 
     respond_to do |format|
       if @familia.save
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::FAMILIA, @familia
         format.html { redirect_to familias_url, notice: 'Familia creada correctamente.' }
         format.json { render :show, status: :created, location: @familia }
         format.js { render :show, status: :created, location: @familia }
@@ -83,6 +84,7 @@ class FamiliasController < ApplicationController
     respond_to do |format|
       if @familia.update(familia_params)
         PersonDataAccess.actualizar_dependencias_familia @familia
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::FAMILIA, @familia
         format.html { redirect_to familias_url, notice: 'Familia actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @familia }
       else
@@ -106,6 +108,7 @@ class FamiliasController < ApplicationController
   # DELETE /familias/1.json
   def destroy
     FamiliaDataAccess.borrar_logico(@familia)
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::FAMILIA, @familia
     respond_to do |format|
       format.html { redirect_to familias_url, notice: 'Familia borrada correctamente.' }
       format.json { head :no_content }

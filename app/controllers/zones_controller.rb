@@ -50,6 +50,7 @@ class ZonesController < ApplicationController
 
     respond_to do |format|
       if @zone.save
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::ZONA, @zona
         format.html { redirect_to zones_url, notice: 'Zona creada correctamente.' }
         format.json { render :show, status: :created, location: @zone }
         format.js { render :show, status: :created, location: @zone }
@@ -66,6 +67,7 @@ class ZonesController < ApplicationController
   def update
     respond_to do |format|
       if @zone.update(zone_params)
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::ZONA, @zona
         format.html { redirect_to zones_url, notice: 'Zona actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @zone }
       else
@@ -79,6 +81,7 @@ class ZonesController < ApplicationController
   # DELETE /zones/1.json
   def destroy
     ZoneDataAccess.borrar_logico(@zone)
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::ZONA, @zona
     respond_to do |format|
       format.html { redirect_to zones_url, notice: 'Zona borrada correctamente.' }
       format.json { head :no_content }

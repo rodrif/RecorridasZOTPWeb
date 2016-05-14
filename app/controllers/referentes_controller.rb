@@ -50,6 +50,7 @@ class ReferentesController < ApplicationController
 
     respond_to do |format|
       if @referente.save
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::REFERENTE, @referente
         format.html { redirect_to referentes_url, notice: 'Referente creado correctamente.' }
         format.json { render :show, status: :created, location: @referente }
       else
@@ -64,6 +65,7 @@ class ReferentesController < ApplicationController
   def update
     respond_to do |format|
       if @referente.update(referente_params)
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::REFERENTE, @referente
         format.html { redirect_to referentes_url, notice: 'Referente actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @referente }
       else
@@ -77,6 +79,7 @@ class ReferentesController < ApplicationController
   # DELETE /referentes/1.json
   def destroy
     ReferenteDataAccess.borrar_logico(@referente)
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::REFERENTE, @referente
     respond_to do |format|
       format.html { redirect_to referentes_url, notice: 'Referente borrado correctamente.' }
       format.json { head :no_content }

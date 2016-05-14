@@ -112,6 +112,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::PERSONA, @person
         format.html { redirect_to people_url, notice: 'Persona creada correctamente.' }
         format.json { render :show, status: :created, location: @person }
       else
@@ -134,6 +135,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::PERSONA, @person
         format.html { redirect_to people_url, notice: 'Persona actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @person }
       else
@@ -159,7 +161,7 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     PersonDataAccess.borrar_logico(@person)
-
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::PERSONA, @person
     respond_to do |format|
       format.html { redirect_to people_url, notice: 'Persona borrada correctamente.' }
       format.json { head :no_content }

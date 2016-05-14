@@ -55,6 +55,7 @@ class RanchadasController < ApplicationController
 
     respond_to do |format|
       if @ranchada.save
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::RANCHADA, @ranchada
         format.html { redirect_to ranchadas_url, notice: 'Ranchada creada correctamente.' }
         format.json { render :show, status: :created, location: @ranchada }
         format.js { render :show, status: :created, location: @ranchada }
@@ -79,6 +80,7 @@ class RanchadasController < ApplicationController
     respond_to do |format|
       if @ranchada.update(ranchada_params)
         actualizar_dependencias
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::RANCHADA, @ranchada
         format.html { redirect_to ranchadas_url, notice: I18n.t('common.exito.actualizacion_ranchada') }
         format.json { render :show, status: :ok, location: @ranchada }
       else
@@ -100,6 +102,7 @@ class RanchadasController < ApplicationController
   # DELETE /ranchadas/1.json
   def destroy
     RanchadaDataAccess.borrar_logico(@ranchada)
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::RANCHADA, @ranchada
     respond_to do |format|
       format.html { redirect_to ranchadas_url, notice: I18n.t('common.exito.borrado_ranchada') }
       format.json { head :no_content }
