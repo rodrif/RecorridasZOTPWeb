@@ -4,13 +4,11 @@ class AreaDataAccess
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
-
     if fecha.nil?
       respuesta['datos'] = Area.select("id AS web_id, nombre, state_id AS estado, updated_at")
     else
       respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
     end
-
     respuesta
   end
 
@@ -18,16 +16,18 @@ class AreaDataAccess
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     areas = ActiveSupport::JSON.decode(json)
-
     areas.each do |a|
       if (a['web_id'].nil? || a['web_id'] <= 0)
         area = Area.new
+        accion = Auditoria::ALTA
       else
         area = Area.find(a['web_id']);
+        accion = Auditoria::MODIFICACION
       end
 
       if !a['estado'].nil? && a['estado'] == 3
-        area.state_id = 3
+        AreaDataAccess.borrar_logico area, false
+        accion = Auditoria::BAJA
       else          
         area.state_id = 1
       end
@@ -35,6 +35,7 @@ class AreaDataAccess
       area.nombre = a['nombre']
 
       if (area.save)
+        AuditoriaDataAccess.log current_user, accion, Auditoria::AREA, area
         respuesta['datos'][a['android_id'].to_s] = area.id
       else
         respuesta['datos'][a['android_id'].to_s] = -1
@@ -45,14 +46,16 @@ class AreaDataAccess
     respuesta
   end
 
-  def self.borrar_logico area
+  def self.borrar_logico area, loggear = true
     if Zone.activas.where(area_id: area.id).first
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
-    area.nombre += '@'
+    area.nombre += '@' + SecureRandom.uuid
     area.state_id = 3
     area.save(validate: false)
+    if loggear
+      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::AREA, area
+    end
   end
-
 
 end

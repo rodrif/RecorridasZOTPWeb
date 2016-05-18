@@ -64,10 +64,11 @@ class FamiliaDataAccess
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
     familia.state_id = 3
-    familias.nombre += '@'
+    familias.nombre += '@' + SecureRandom.uuid
     familia.zone_id = nil
     familia.ranchada_id = nil
     familia.save(validate: false)
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::FAMILIA, familia
   end
 
 end

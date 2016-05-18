@@ -30,16 +30,17 @@ class VisitDataAccess
     visitas.each do |v|
       if (v['web_id'].nil? || v['web_id'] <= 0)
         visit = Visit.new
+        accion = Auditoria::ALTA
       else
         visit = Visit.find(v['web_id']);
+        accion = Auditoria::MODIFICACION
       end
-
       if !v['estado'].nil? && v['estado'] == 3
-        VisitDataAccess.borrar_logico visit
+        VisitDataAccess.borrar_logico visit, false
+        accion = Auditoria::BAJA
       else
         visit.state_id = 1
       end
-
       visit.person_id = v['web_person_id']
       visit.fecha = Time.at(v['fecha'] / 1000)
       visit.descripcion = v['descripcion'] ? v['descripcion'] : nil
@@ -47,6 +48,7 @@ class VisitDataAccess
       visit.longitud = v['longitud'] ? v['longitud'] : nil
 
       if (visit.save(validate: false))
+        AuditoriaDataAccess.log current_user, accion, Auditoria::VISITA, visit
         respuesta['datos'][v['android_id'].to_s] = visit.id
       else
         respuesta['datos'][v['android_id'].to_s] = -1
@@ -57,10 +59,13 @@ class VisitDataAccess
     respuesta
   end
 
-  def self.borrar_logico visita
+  def self.borrar_logico visita, loggear = true
     visita.state_id = 3
     visita.person_id = nil
     visita.save(validate: false)
+    if loggear
+      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::VISITA, visit
+    end
   end
 
 end

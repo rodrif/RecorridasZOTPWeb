@@ -29,16 +29,17 @@ class PersonDataAccess
     personas.each do |p|
       if (p['web_id'].nil? || p['web_id'] <= 0)
         person = Person.new
+        accion = Auditoria::ALTA
       else
         person = Person.find(p['web_id']);
+        accion = Auditoria::MODIFICACION
       end
-
       if !p['estado'].nil? && p['estado'] == 3
         PersonDataAccess.borrar_logico person
+        accion = Auditoria::BAJA
       else
         person.state_id = 1
       end
-
       person.zone_id = p['web_zone_id']
       person.ranchada_id = p['web_ranchada_id'] ? p['web_ranchada_id'] : nil
       person.familia_id = p['web_familia_id'] ? p['web_familia_id'] : nil
@@ -50,6 +51,7 @@ class PersonDataAccess
       person.descripcion = p['descripcion'] ? p['descripcion'] : nil
 
       if (person.save)
+        AuditoriaDataAccess.log current_user, accion, Auditoria::PERSONA, person
         respuesta['datos'][p['android_id'].to_s] = person.id
       else
         respuesta['datos'][p['android_id'].to_s] = -1
@@ -85,7 +87,7 @@ class PersonDataAccess
     end
   end
 
-  def self.borrar_logico person
+  def self.borrar_logico person, loggear = true
     person.state_id = 3
     person.zone_id = nil
     person.ranchada_id = nil
@@ -94,6 +96,9 @@ class PersonDataAccess
       VisitDataAccess.borrar_logico v
     end
     person.save(validate: false)
+    if loggear
+      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::PERSONA, person
+    end
   end
 
 end

@@ -49,6 +49,7 @@ class UserDataAccess
     user.email += '@' + SecureRandom.uuid
     user.state_id = 3
     user.save(validate: false)
+    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::USUARIO, user
   end
 
 end

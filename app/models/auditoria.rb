@@ -11,7 +11,7 @@ class Auditoria < ActiveRecord::Base
   REFERENTE = 'Referente'
   VISITA = 'Visita'
   ZONA = 'Zona'
-  # TODO USUARIO = 'Usuario'
+  USUARIO = 'Usuario'
 
   self.per_page = 20
 
