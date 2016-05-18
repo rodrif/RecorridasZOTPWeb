@@ -79,7 +79,6 @@ class AreasController < ApplicationController
   # DELETE /areas/1.json
   def destroy
     AreaDataAccess.borrar_logico(@area)
-    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::AREA, @area
     respond_to do |format|
       format.html { redirect_to areas_url, notice: 'Area borrada correctamente.' }
       format.json { head :no_content }

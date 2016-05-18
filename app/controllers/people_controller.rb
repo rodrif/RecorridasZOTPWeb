@@ -161,7 +161,6 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     PersonDataAccess.borrar_logico(@person)
-    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::PERSONA, @person
     respond_to do |format|
       format.html { redirect_to people_url, notice: 'Persona borrada correctamente.' }
       format.json { head :no_content }

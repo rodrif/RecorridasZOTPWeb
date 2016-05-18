@@ -112,7 +112,6 @@ class VisitsController < ApplicationController
   # DELETE /visits/1.json
   def destroy
     VisitDataAccess.borrar_logico(@visit)
-    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::VISITA, @visita
     respond_to do |format|
       format.html { redirect_to visits_url(:person_id => params[:person_id]), notice: 'Visita borrada correctamente.' }
       format.json { head :no_content }
