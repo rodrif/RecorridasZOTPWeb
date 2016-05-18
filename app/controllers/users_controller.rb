@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params_update)
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::USUARIO, @user
         format.html { redirect_to users_url, notice: 'Usuario actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @user }
       else

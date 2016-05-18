@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.state_id = 1
     @user.rol_id = 5
     @user.save
+    AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::USUARIO, @user
   end
 
   # GET /resource/edit
