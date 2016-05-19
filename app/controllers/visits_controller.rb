@@ -82,7 +82,7 @@ class VisitsController < ApplicationController
 
     respond_to do |format|
       if @visit.save
-        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::VISITA, @visita
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::VISITA, @visit
         format.html { redirect_to visits_url(nil, person_id: @visit.person_id), notice: 'Visita creada correctamente.' }
         format.json { render :show, status: :created, location: @visit }
       else
@@ -97,7 +97,7 @@ class VisitsController < ApplicationController
   def update
     respond_to do |format|
       if @visit.update(visit_params)
-        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::VISITA, @visita
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::VISITA, @visit
         format.html { redirect_to visits_url(nil, person_id: @visit.person_id), notice: 'Visita actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @visit }
       else

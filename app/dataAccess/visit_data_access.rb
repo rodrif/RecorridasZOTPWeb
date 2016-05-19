@@ -64,7 +64,7 @@ class VisitDataAccess
     visita.person_id = nil
     visita.save(validate: false)
     if user
-      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::VISITA, visit
+      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::VISITA, visita
     end
   end
 
