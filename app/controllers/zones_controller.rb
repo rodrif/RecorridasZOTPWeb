@@ -80,8 +80,7 @@ class ZonesController < ApplicationController
   # DELETE /zones/1
   # DELETE /zones/1.json
   def destroy
-    ZoneDataAccess.borrar_logico(@zone)
-    AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::ZONA, @zona
+    ZoneDataAccess.borrar_logico(@zone, current_user)
     respond_to do |format|
       format.html { redirect_to zones_url, notice: 'Zona borrada correctamente.' }
       format.json { head :no_content }

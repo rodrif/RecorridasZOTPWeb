@@ -78,7 +78,7 @@ class ReferentesController < ApplicationController
   # DELETE /referentes/1
   # DELETE /referentes/1.json
   def destroy
-    ReferenteDataAccess.borrar_logico(@referente)
+    ReferenteDataAccess.borrar_logico(@referente, current_user)
     respond_to do |format|
       format.html { redirect_to referentes_url, notice: 'Referente borrado correctamente.' }
       format.json { head :no_content }

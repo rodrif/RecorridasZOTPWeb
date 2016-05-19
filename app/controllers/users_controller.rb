@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    UserDataAccess.borrar_logico(@user)
+    UserDataAccess.borrar_logico(@user, current_user)
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'Usuario borrado correctamente.' }
       format.json { head :no_content }

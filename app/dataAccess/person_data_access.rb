@@ -87,7 +87,7 @@ class PersonDataAccess
     end
   end
 
-  def self.borrar_logico person, loggear = true
+  def self.borrar_logico person, user = nil
     person.state_id = 3
     person.zone_id = nil
     person.ranchada_id = nil
@@ -96,8 +96,8 @@ class PersonDataAccess
       VisitDataAccess.borrar_logico v
     end
     person.save(validate: false)
-    if loggear
-      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::PERSONA, person
+    if user
+      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::PERSONA, person
     end
   end
 

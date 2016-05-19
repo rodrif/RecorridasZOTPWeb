@@ -49,11 +49,12 @@ def self.download datosJson = nil, fecha = nil
   #   respuesta
   # end
 
-  def self.borrar_logico referente
+  def self.borrar_logico referente, user = nil
     referente.state_id = 3
     referente.save(validate: false)
-    AuditoriaDataAccess.log current_user,  Auditoria::BAJA, Auditoria::REFERENTE, referente
+    if user
+      AuditoriaDataAccess.log user,  Auditoria::BAJA, Auditoria::REFERENTE, referente
+    end
   end
-
 
 end

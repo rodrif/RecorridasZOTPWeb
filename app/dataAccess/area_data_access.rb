@@ -26,7 +26,7 @@ class AreaDataAccess
       end
 
       if !a['estado'].nil? && a['estado'] == 3
-        AreaDataAccess.borrar_logico area, false
+        AreaDataAccess.borrar_logico area
         accion = Auditoria::BAJA
       else          
         area.state_id = 1
@@ -46,15 +46,15 @@ class AreaDataAccess
     respuesta
   end
 
-  def self.borrar_logico area, loggear = true
+  def self.borrar_logico area, user = nil
     if Zone.activas.where(area_id: area.id).first
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
     area.nombre += '@' + SecureRandom.uuid
     area.state_id = 3
     area.save(validate: false)
-    if loggear
-      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::AREA, area
+    if user
+      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::AREA, area
     end
   end
 

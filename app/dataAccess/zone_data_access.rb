@@ -29,7 +29,7 @@ class ZoneDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !z['estado'].nil? && z['estado'] == 3
-        ZoneDataAccess.borrar_logico zone, false
+        ZoneDataAccess.borrar_logico zone
         accion = Auditoria::BAJA
       else
         zone.state_id = 1
@@ -49,7 +49,7 @@ class ZoneDataAccess
     respuesta
   end
 
-  def self.borrar_logico zone, loggear = true
+  def self.borrar_logico zone, user = nil
     if Person.activas.where(zone_id: zone.id).first ||
       Ranchada.activas.where(zone_id: zone.id).first ||
       Familia.activas.where(zone_id: zone.id).first
@@ -59,8 +59,8 @@ class ZoneDataAccess
     zone.nombre += '@' + SecureRandom.uuid
     zone.area_id = nil
     zone.save(validate: false)
-    if loggear
-      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::ZONA, zone
+    if user
+      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::ZONA, zone
     end
   end
 

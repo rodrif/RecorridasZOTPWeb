@@ -36,7 +36,7 @@ class VisitDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !v['estado'].nil? && v['estado'] == 3
-        VisitDataAccess.borrar_logico visit, false
+        VisitDataAccess.borrar_logico visit
         accion = Auditoria::BAJA
       else
         visit.state_id = 1
@@ -59,12 +59,12 @@ class VisitDataAccess
     respuesta
   end
 
-  def self.borrar_logico visita, loggear = true
+  def self.borrar_logico visita, user = nil
     visita.state_id = 3
     visita.person_id = nil
     visita.save(validate: false)
-    if loggear
-      AuditoriaDataAccess.log current_user, Auditoria::BAJA, Auditoria::VISITA, visit
+    if user
+      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::VISITA, visit
     end
   end
 

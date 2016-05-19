@@ -49,7 +49,7 @@ class RanchadaDataAccess
   #   respuesta
   # end
 
-  def self.borrar_logico ranchada
+  def self.borrar_logico ranchada, user = nil
     if Person.activas.where(ranchada_id: ranchada.id).first ||
       Familia.activas.where(ranchada_id: ranchada.id).first
         raise ActiveRecord::InvalidForeignKey, 'error'
@@ -58,7 +58,9 @@ class RanchadaDataAccess
     ranchada.nombre += '@' + SecureRandom.uuid
     ranchada.zone_id = nil
     ranchada.save(validate: false)
-    AuditoriaDataAccess.log current_user,  Auditoria::BAJA, Auditoria::RANCHADA, ranchada
+    if user
+      AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::RANCHADA, ranchada
+    end
   end
 
 end
