@@ -50,7 +50,7 @@ class ZonesController < ApplicationController
 
     respond_to do |format|
       if @zone.save
-        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::ZONA, @zona
+        AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::ZONA, @zone
         format.html { redirect_to zones_url, notice: 'Zona creada correctamente.' }
         format.json { render :show, status: :created, location: @zone }
         format.js { render :show, status: :created, location: @zone }
@@ -67,7 +67,7 @@ class ZonesController < ApplicationController
   def update
     respond_to do |format|
       if @zone.update(zone_params)
-        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::ZONA, @zona
+        AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::ZONA, @zone
         format.html { redirect_to zones_url, notice: 'Zona actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @zone }
       else
