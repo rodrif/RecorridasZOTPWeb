@@ -93,7 +93,7 @@ class PersonDataAccess
     person.ranchada_id = nil
     person.familia_id = nil
     person.visits.each do |v|
-      VisitDataAccess.borrar_logico v
+      VisitDataAccess.borrar_logico v, user
     end
     person.save(validate: false)
     if user
