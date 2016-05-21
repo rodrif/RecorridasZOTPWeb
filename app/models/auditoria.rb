@@ -19,9 +19,21 @@ class Auditoria < ActiveRecord::Base
     available_filters: [
       :with_email,
       :with_accion,
-      :with_entidad
+      :with_entidad,
+      :fecha_gte,
+      :fecha_lte
     ]
   )
+
+  scope :fecha_gte, lambda { |reference_time|
+    return nil  if reference_time.blank?
+    where('fecha >= ?', reference_time)
+  }
+
+  scope :fecha_lte, lambda { |reference_time|
+    return nil  if reference_time.blank?
+    where('fecha <= ?', reference_time)
+  }
 
   scope :with_accion, lambda { |accion|
     where(accion: accion)

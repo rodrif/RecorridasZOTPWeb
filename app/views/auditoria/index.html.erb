@@ -12,27 +12,39 @@
           class: 'filterrific-periodically-observed'
         ) %>
       </div>
+
+      <div class="col-md-4 form-group">
+        Acción
+        <%= f.select(
+          :with_accion,
+          @filterrific.select_options[:with_accion],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+
+      <div class="col-md-4 form-group">
+        Entidad
+        <%= f.select(
+          :with_entidad,
+          @filterrific.select_options[:with_entidad],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
     </div>
 
-    <div class="col-md-4">
-      Acción
-      <%= f.select(
-        :with_accion,
-        @filterrific.select_options[:with_accion],
-        { include_blank: 'Todas' }
-      ) %>
+    <div class="row-fluid">
+      <div class="col-md-4">
+        Desde
+        <%= f.date_field :fecha_gte %>
+      </div>
+
+      <div class="col-md-4">
+        Hasta
+        <%= f.date_field :fecha_lte %>
+      </div>
     </div>
-
-    <div class="col-md-4">
-      Entidad
-      <%= f.select(
-        :with_entidad,
-        @filterrific.select_options[:with_entidad],
-        { include_blank: 'Todas' }
-      ) %>
-    </div> 
-
   <% end %>
+
 </div>
 
 <%= render 'list', auditorias: @auditorias %>
