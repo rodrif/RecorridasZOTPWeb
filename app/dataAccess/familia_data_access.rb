@@ -67,7 +67,7 @@ class FamiliaDataAccess
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::FAMILIA, familia
     end
-    familias.nombre += '@' + SecureRandom.uuid
+    familia.nombre += '@' + SecureRandom.uuid
     familia.zone_id = nil
     familia.ranchada_id = nil
     familia.save(validate: false)
