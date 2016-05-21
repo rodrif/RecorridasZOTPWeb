@@ -26,7 +26,7 @@ class AreaDataAccess
       end
 
       if !a['estado'].nil? && a['estado'] == 3
-        AreaDataAccess.borrar_logico area
+        AreaDataAccess.borrar_logico area, current_user
         accion = Auditoria::BAJA
       else          
         area.state_id = 1
@@ -35,7 +35,9 @@ class AreaDataAccess
       area.nombre = a['nombre']
 
       if (area.save)
-        AuditoriaDataAccess.log current_user, accion, Auditoria::AREA, area
+        if accion != Auditoria::BAJA
+          AuditoriaDataAccess.log current_user, accion, Auditoria::AREA, area
+        end
         respuesta['datos'][a['android_id'].to_s] = area.id
       else
         respuesta['datos'][a['android_id'].to_s] = -1
@@ -46,7 +48,7 @@ class AreaDataAccess
     respuesta
   end
 
-  def self.borrar_logico area, user = nil
+  def self.borrar_logico area, user
     if Zone.activas.where(area_id: area.id).first
       raise ActiveRecord::InvalidForeignKey, 'error'
     end

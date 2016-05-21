@@ -45,7 +45,7 @@ class UserDataAccess
   #   respuesta
   # end
 
-  def self.borrar_logico user, usuario = nil
+  def self.borrar_logico user, usuario
     user.state_id = 3
     if usuario
       AuditoriaDataAccess.log usuario, Auditoria::BAJA, Auditoria::USUARIO, user

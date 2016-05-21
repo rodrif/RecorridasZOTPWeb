@@ -36,7 +36,7 @@ class VisitDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !v['estado'].nil? && v['estado'] == 3
-        VisitDataAccess.borrar_logico visit
+        VisitDataAccess.borrar_logico visit, current_user
         accion = Auditoria::BAJA
       else
         visit.state_id = 1
@@ -48,7 +48,9 @@ class VisitDataAccess
       visit.longitud = v['longitud'] ? v['longitud'] : nil
 
       if (visit.save(validate: false))
-        AuditoriaDataAccess.log current_user, accion, Auditoria::VISITA, visit
+        if accion != Auditoria::BAJA
+          AuditoriaDataAccess.log current_user, accion, Auditoria::VISITA, visit
+        end
         respuesta['datos'][v['android_id'].to_s] = visit.id
       else
         respuesta['datos'][v['android_id'].to_s] = -1
@@ -59,7 +61,7 @@ class VisitDataAccess
     respuesta
   end
 
-  def self.borrar_logico visita, user = nil
+  def self.borrar_logico visita, user
     visita.state_id = 3
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::VISITA, visita

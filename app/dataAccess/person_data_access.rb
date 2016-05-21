@@ -35,7 +35,7 @@ class PersonDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !p['estado'].nil? && p['estado'] == 3
-        PersonDataAccess.borrar_logico person
+        PersonDataAccess.borrar_logico person, current_user
         accion = Auditoria::BAJA
       else
         person.state_id = 1
@@ -51,7 +51,9 @@ class PersonDataAccess
       person.descripcion = p['descripcion'] ? p['descripcion'] : nil
 
       if (person.save)
-        AuditoriaDataAccess.log current_user, accion, Auditoria::PERSONA, person
+        if accion != Auditoria::BAJA
+          AuditoriaDataAccess.log current_user, accion, Auditoria::PERSONA, person
+        end
         respuesta['datos'][p['android_id'].to_s] = person.id
       else
         respuesta['datos'][p['android_id'].to_s] = -1
@@ -87,7 +89,7 @@ class PersonDataAccess
     end
   end
 
-  def self.borrar_logico person, user = nil
+  def self.borrar_logico person, user
     person.state_id = 3
     person.visits.each do |v|
       VisitDataAccess.borrar_logico v, user

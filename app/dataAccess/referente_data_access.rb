@@ -49,7 +49,7 @@ def self.download datosJson = nil, fecha = nil
   #   respuesta
   # end
 
-  def self.borrar_logico referente, user = nil
+  def self.borrar_logico referente, user
     referente.state_id = 3
     referente.save(validate: false)
     if user

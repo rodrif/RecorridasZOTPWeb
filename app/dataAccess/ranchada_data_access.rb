@@ -49,7 +49,7 @@ class RanchadaDataAccess
   #   respuesta
   # end
 
-  def self.borrar_logico ranchada, user = nil
+  def self.borrar_logico ranchada, user
     if Person.activas.where(ranchada_id: ranchada.id).first ||
       Familia.activas.where(ranchada_id: ranchada.id).first
         raise ActiveRecord::InvalidForeignKey, 'error'
