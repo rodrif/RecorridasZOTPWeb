@@ -37,7 +37,9 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
+
+  <% if current_user && current_user.rol_id != 5 %>
+    <div class="col-sm-3 col-md-2 sidebar">
 			<ul class="nav nav-sidebar">
 				<li class="active"><%= link_to 'Inicio', root_path %></li>
 				<li><%= link_to 'Personas', people_path %></li>
@@ -49,7 +51,11 @@
         <li><%= link_to 'Grupos Familiares', familias_path %></li>
 				<li><%= link_to 'Configuracion', configuraciones_path %></li>
 			</ul>
-		</div>
+    </div>
+  <% else %>
+    <div class="col-sm-2 col-md-1 sidebar">
+    </div>
+  <% end %>
 
 		<div class="col-sm-9 col-md-10 main">
       <% if user_signed_in? %>
