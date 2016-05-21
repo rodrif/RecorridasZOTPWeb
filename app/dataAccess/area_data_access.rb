@@ -34,7 +34,7 @@ class AreaDataAccess
 
       area.nombre = a['nombre']
 
-      if (area.save)
+      if (accion == Auditoria::BAJA || area.save)
         if accion != Auditoria::BAJA
           AuditoriaDataAccess.log user, accion, Auditoria::AREA, area
         end

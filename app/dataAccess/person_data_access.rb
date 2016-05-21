@@ -50,7 +50,7 @@ class PersonDataAccess
       person.telefono = p['telefono'] ? p['telefono'] : nil
       person.descripcion = p['descripcion'] ? p['descripcion'] : nil
 
-      if (person.save)
+      if (accion == Auditoria::BAJA || person.save)
         if accion != Auditoria::BAJA
           AuditoriaDataAccess.log user, accion, Auditoria::PERSONA, person
         end

@@ -38,7 +38,7 @@ class ZoneDataAccess
         zone.latitud = z['latitud']
         zone.longitud = z['longitud']
         zone.area_id = z['area_id']
-      if (zone.save)
+      if (accion == Auditoria::BAJA || zone.save)
         if accion != Auditoria::BAJA
           AuditoriaDataAccess.log user, accion, Auditoria::ZONA, zone
         end
