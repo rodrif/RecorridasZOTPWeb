@@ -54,5 +54,10 @@ class User < ActiveRecord::Base
       self.uid = self.email
     end
   end
+
+  def getDescripcionAuditoria
+    return "Nombre: #{name} Apellido: #{apellido} Área: #{area.nombre} Rol: #{rol.nombre} Email: #{email}"
+  end
+
 end
 
