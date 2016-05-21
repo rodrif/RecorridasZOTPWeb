@@ -15,6 +15,7 @@ group :production do
 	gem 'rails_12factor'
 end
 
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'will_paginate-bootstrap'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'will_paginate', '~> 3.0.6'
