@@ -63,7 +63,7 @@ class VisitDataAccess
 
   def self.borrar_logico visita, user
     visita.state_id = 3
-    if user && !visita.person_id.nil?
+    if user && !visita.person_id.nil? && !visita.person.state_id != 3
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::VISITA, visita
     end
     visita.person_id = nil
