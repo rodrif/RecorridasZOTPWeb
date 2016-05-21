@@ -50,12 +50,12 @@ class AreaDataAccess
     if Zone.activas.where(area_id: area.id).first
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
-    area.nombre += '@' + SecureRandom.uuid
     area.state_id = 3
-    area.save(validate: false)
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::AREA, area
     end
+    area.nombre += '@' + SecureRandom.uuid
+    area.save(validate: false)
   end
 
 end

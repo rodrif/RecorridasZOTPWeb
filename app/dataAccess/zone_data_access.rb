@@ -56,12 +56,12 @@ class ZoneDataAccess
         raise ActiveRecord::InvalidForeignKey, 'error'
     end
     zone.state_id = 3
-    zone.nombre += '@' + SecureRandom.uuid
-    zone.area_id = nil
-    zone.save(validate: false)
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::ZONA, zone
     end
+    zone.nombre += '@' + SecureRandom.uuid
+    zone.area_id = nil
+    zone.save(validate: false)
   end
 
 end

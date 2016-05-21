@@ -89,16 +89,16 @@ class PersonDataAccess
 
   def self.borrar_logico person, user = nil
     person.state_id = 3
-    person.zone_id = nil
-    person.ranchada_id = nil
-    person.familia_id = nil
     person.visits.each do |v|
       VisitDataAccess.borrar_logico v, user
     end
-    person.save(validate: false)
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::PERSONA, person
     end
+    person.zone_id = nil
+    person.ranchada_id = nil
+    person.familia_id = nil
+    person.save(validate: false)
   end
 
 end

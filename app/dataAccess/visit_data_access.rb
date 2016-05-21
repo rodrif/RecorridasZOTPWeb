@@ -61,11 +61,11 @@ class VisitDataAccess
 
   def self.borrar_logico visita, user = nil
     visita.state_id = 3
-    visita.person_id = nil
-    visita.save(validate: false)
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::VISITA, visita
     end
+    visita.person_id = nil
+    visita.save(validate: false)
   end
 
 end

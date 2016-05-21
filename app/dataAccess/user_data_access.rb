@@ -46,12 +46,12 @@ class UserDataAccess
   # end
 
   def self.borrar_logico user, usuario = nil
-    user.email += '@' + SecureRandom.uuid
     user.state_id = 3
-    user.save(validate: false)
     if usuario
       AuditoriaDataAccess.log usuario, Auditoria::BAJA, Auditoria::USUARIO, user
     end
+    user.email += '@' + SecureRandom.uuid
+    user.save(validate: false)
   end
 
 end

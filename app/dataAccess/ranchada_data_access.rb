@@ -55,12 +55,12 @@ class RanchadaDataAccess
         raise ActiveRecord::InvalidForeignKey, 'error'
     end
     ranchada.state_id = 3
-    ranchada.nombre += '@' + SecureRandom.uuid
-    ranchada.zone_id = nil
-    ranchada.save(validate: false)
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::RANCHADA, ranchada
     end
+    ranchada.nombre += '@' + SecureRandom.uuid
+    ranchada.zone_id = nil
+    ranchada.save(validate: false)
   end
 
 end
