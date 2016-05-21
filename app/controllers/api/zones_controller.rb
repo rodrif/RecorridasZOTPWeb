@@ -8,7 +8,7 @@ class Api::ZonesController < Api::ApiController
   end
 
   def upload
-    respuesta = ZoneDataAccess.upload params['datos'], params['fecha']
+    respuesta = ZoneDataAccess.upload current_user, params['datos'], params['fecha']
     render :json => respuesta
   end
 

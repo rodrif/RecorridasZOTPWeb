@@ -8,7 +8,7 @@ class Api::PeopleController < Api::ApiController
   end
 
   def upload
-    respuesta = PersonDataAccess.upload params['datos'], params['fecha']
+    respuesta = PersonDataAccess.upload current_user, params['datos'], params['fecha']
     render :json => respuesta
   end
 

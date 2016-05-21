@@ -21,7 +21,7 @@ class PersonDataAccess
 		respuesta
 	end
 
-  def self.upload json, fecha = nil
+  def self.upload user, json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     personas = ActiveSupport::JSON.decode(json)
@@ -35,7 +35,7 @@ class PersonDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !p['estado'].nil? && p['estado'] == 3
-        PersonDataAccess.borrar_logico person, current_user
+        PersonDataAccess.borrar_logico person, user
         accion = Auditoria::BAJA
       else
         person.state_id = 1
@@ -52,7 +52,7 @@ class PersonDataAccess
 
       if (person.save)
         if accion != Auditoria::BAJA
-          AuditoriaDataAccess.log current_user, accion, Auditoria::PERSONA, person
+          AuditoriaDataAccess.log user, accion, Auditoria::PERSONA, person
         end
         respuesta['datos'][p['android_id'].to_s] = person.id
       else

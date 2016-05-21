@@ -15,7 +15,7 @@ class ZoneDataAccess
     respuesta
   end
 
-  def self.upload json, fecha = nil
+  def self.upload user, json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     zones = ActiveSupport::JSON.decode(json)
@@ -29,7 +29,7 @@ class ZoneDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !z['estado'].nil? && z['estado'] == 3
-        ZoneDataAccess.borrar_logico zone, current_user
+        ZoneDataAccess.borrar_logico zone, user
         accion = Auditoria::BAJA
       else
         zone.state_id = 1
@@ -40,7 +40,7 @@ class ZoneDataAccess
         zone.area_id = z['area_id']
       if (zone.save)
         if accion != Auditoria::BAJA
-          AuditoriaDataAccess.log current_user, accion, Auditoria::ZONA, zone
+          AuditoriaDataAccess.log user, accion, Auditoria::ZONA, zone
         end
         respuesta['datos'][z['android_id'].to_s] = zone.id
       else

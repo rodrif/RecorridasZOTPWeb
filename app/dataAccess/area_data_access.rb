@@ -12,7 +12,7 @@ class AreaDataAccess
     respuesta
   end
 
-  def self.upload json, fecha = nil
+  def self.upload user, json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     areas = ActiveSupport::JSON.decode(json)
@@ -26,7 +26,7 @@ class AreaDataAccess
       end
 
       if !a['estado'].nil? && a['estado'] == 3
-        AreaDataAccess.borrar_logico area, current_user
+        AreaDataAccess.borrar_logico area, user
         accion = Auditoria::BAJA
       else          
         area.state_id = 1
@@ -36,7 +36,7 @@ class AreaDataAccess
 
       if (area.save)
         if accion != Auditoria::BAJA
-          AuditoriaDataAccess.log current_user, accion, Auditoria::AREA, area
+          AuditoriaDataAccess.log user, accion, Auditoria::AREA, area
         end
         respuesta['datos'][a['android_id'].to_s] = area.id
       else

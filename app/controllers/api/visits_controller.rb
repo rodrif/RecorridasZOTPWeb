@@ -8,7 +8,7 @@ class Api::VisitsController < Api::ApiController
   end
 
   def upload
-    respuesta = VisitDataAccess.upload params['datos'], params['fecha']
+    respuesta = VisitDataAccess.upload current_user, params['datos'], params['fecha']
     render :json => respuesta
   end
 

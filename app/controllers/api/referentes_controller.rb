@@ -7,9 +7,9 @@ class Api::ReferentesController < Api::ApiController
     render :json => respuesta
   end
 
-  def upload
-    respuesta = ReferenteDataAccess.upload params['datos'], params['fecha']
-    render :json => respuesta
-  end
+  # def upload
+  #   respuesta = ReferenteDataAccess.upload params['datos'], params['fecha']
+  #   render :json => respuesta
+  # end
 
 end

@@ -8,7 +8,7 @@ class Api::AreasController < Api::ApiController
   end
 
   def upload
-    respuesta = AreaDataAccess.upload params['datos'], params['fecha']
+    respuesta = AreaDataAccess.upload current_user, params['datos'], params['fecha']
     render :json => respuesta
   end
 

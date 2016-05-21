@@ -7,9 +7,9 @@ class Api::RanchadasController < Api::ApiController
     render :json => respuesta
   end
 
-  def upload
-    respuesta = RanchadaDataAccess.upload params['datos'], params['fecha']
-    render :json => respuesta
-  end
+  # def upload
+  #   respuesta = RanchadaDataAccess.upload current_user, params['datos'], params['fecha']
+  #   render :json => respuesta
+  # end
 
 end

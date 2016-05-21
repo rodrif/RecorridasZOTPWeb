@@ -7,9 +7,9 @@ class Api::FamiliasController < Api::ApiController
     render :json => respuesta
   end
 
-  def upload
-    respuesta = FamiliaDataAccess.upload params['datos'], params['fecha']
-    render :json => respuesta
-  end
+  # def upload
+  #   respuesta = FamiliaDataAccess.upload current_user, params['datos'], params['fecha']
+  #   render :json => respuesta
+  # end
 
 end

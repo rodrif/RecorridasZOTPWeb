@@ -22,7 +22,7 @@ class VisitDataAccess
 		respuesta
 	end
 
-	def self.upload json, fecha = nil
+	def self.upload user, json, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
     visitas = ActiveSupport::JSON.decode(json)
@@ -36,7 +36,7 @@ class VisitDataAccess
         accion = Auditoria::MODIFICACION
       end
       if !v['estado'].nil? && v['estado'] == 3
-        VisitDataAccess.borrar_logico visit, current_user
+        VisitDataAccess.borrar_logico visit, user
         accion = Auditoria::BAJA
       else
         visit.state_id = 1
@@ -49,7 +49,7 @@ class VisitDataAccess
 
       if (visit.save(validate: false))
         if accion != Auditoria::BAJA
-          AuditoriaDataAccess.log current_user, accion, Auditoria::VISITA, visit
+          AuditoriaDataAccess.log user, accion, Auditoria::VISITA, visit
         end
         respuesta['datos'][v['android_id'].to_s] = visit.id
       else
