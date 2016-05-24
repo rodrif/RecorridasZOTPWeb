@@ -26,13 +26,13 @@ class Auditoria < ActiveRecord::Base
   )
 
   scope :fecha_gte, lambda { |reference_time|
-    return nil  if reference_time.blank?
-    where('fecha >= ?', reference_time)
+    return nil if reference_time.blank?
+    where('fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
   }
 
   scope :fecha_lte, lambda { |reference_time|
-    return nil  if reference_time.blank?
-    where('fecha <= ?', reference_time)
+    return nil if reference_time.blank?
+    where('fecha <= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
   }
 
   scope :with_accion, lambda { |accion|
@@ -44,7 +44,7 @@ class Auditoria < ActiveRecord::Base
   }
 
   scope :with_email, lambda { |query|
-    return nil  if query.blank?
+    return nil if query.blank?
 
     # condition query, parse into individual keywords
     terms = query.downcase.split(/\s+/)
