@@ -14,7 +14,9 @@
         <th>Zona</th>
         <th>Visitas</th>
         <th><%= t("common.ver_editar") %></th>
-        <th>Borrar</th>
+        <% if current_user && current_user.rol.puede_borrar_persona %>
+          <th>Borrar</th>
+        <% end %>
       </tr>
     </thead>
 
@@ -38,7 +40,10 @@
 
 
           <td><%= link_to t("common.ver_editar"), edit_person_path(person) %></td>
-          <td><%= link_to 'Borrar', person, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+
+          <% if current_user && current_user.rol.puede_borrar_persona %>
+            <td><%= link_to 'Borrar', person, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
