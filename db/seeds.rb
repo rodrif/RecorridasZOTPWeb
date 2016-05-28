@@ -18,7 +18,7 @@ zonas = Zone.create([
 ])
 
 roles = Rol.create([
-  { id: 1, nombre: "admin",
+  { id: 1, nombre: "administrador",
     puede_crear_persona: 1,
     puede_editar_persona: 1,
     puede_borrar_persona: 1,
