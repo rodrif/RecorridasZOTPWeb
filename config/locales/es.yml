@@ -30,16 +30,10 @@ es:
       person:
         zone: Zona
         nombre: Nombre
-        telefono: Teléfono
-        descripcion: Descripción
       user:
         password: Contraseña
         password_confirmation: Confirmar contraseña
         current_password: Contraseña actual
-      ranchada:
-        descripcion: Descripción
-      familia:
-        descripcion: Descripción
     models:
       user:
         zero:  Usuario
