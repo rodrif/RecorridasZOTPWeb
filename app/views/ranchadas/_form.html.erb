@@ -20,7 +20,7 @@
   <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "ranchada_nombre", f: f, remote: remote %>
 
   <div class="form-group">
-    <%= f.label "Area", class: "#{label_col} control-label", for: "ranchada_area_id" %>
+    <%= f.label "Área", class: "#{label_col} control-label", for: "ranchada_area_id" %>
     <div class="<%= input_col %>">
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>

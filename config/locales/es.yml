@@ -30,10 +30,16 @@ es:
       person:
         zone: Zona
         nombre: Nombre
+        telefono: Teléfono
+        descripcion: Descripción
       user:
         password: Contraseña
         password_confirmation: Confirmar contraseña
         current_password: Contraseña actual
+      ranchada:
+        descripcion: Descripción
+      familia:
+        descripcion: Descripción
     models:
       user:
         zero:  Usuario
@@ -48,9 +54,9 @@ es:
         one:   Visita
         other: Visitas
       area:
-        zero:  Area
-        one:   Area
-        other: Areas
+        zero:  Área
+        one:   Área
+        other: Áreas
       zone:
         zero:  Zona
         one:   Zona

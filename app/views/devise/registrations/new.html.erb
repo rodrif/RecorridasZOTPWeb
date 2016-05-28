@@ -39,7 +39,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Area", class: "col-md-1 control-label", for: "resource_area_id" %>
+    <%= f.label "Área", class: "col-md-1 control-label", for: "resource_area_id" %>
     <div class="col-md-10">
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>

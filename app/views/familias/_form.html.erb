@@ -19,10 +19,10 @@
 
   <div class="form-group">
     <% if remote %>
-      <%= f.label "Area", class: "col-md-2 control-label", for: "familia_area_id" %>
+      <%= f.label "Área", class: "col-md-2 control-label", for: "familia_area_id" %>
       <div class="col-md-9">
     <% else %>
-      <%= f.label "Area", class: "col-md-1 control-label", for: "familia_area_id" %>
+      <%= f.label "Área", class: "col-md-1 control-label", for: "familia_area_id" %>
       <div class="col-md-10">
     <% end %>
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>

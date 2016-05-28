@@ -74,14 +74,14 @@ describe 'Personas' do
     
     it "modals" do
       # Area modal
-      should_not have_selector('h4', text: 'Nueva Area')
+      should_not have_selector('h4', text: 'Nueva Área')
       click_link 'area_modal'
-      should have_selector('h4', text: 'Nueva Area')
+      should have_selector('h4', text: 'Nueva Área')
       within('#new_area_modal') do
         fill_in 'area[nombre]', with: "Area personaSpec test"
         find('input[name="commit"]').click
       end 
-      should_not have_selector('h4', text: 'Nueva Area')
+      should_not have_selector('h4', text: 'Nueva Área')
       should have_select('person[area_id]', selected: "Area personaSpec test")
 
       area = Area.find_by_nombre "Area personaSpec test"
