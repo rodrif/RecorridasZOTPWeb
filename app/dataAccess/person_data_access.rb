@@ -47,8 +47,8 @@ class PersonDataAccess
       person.apellido = p['apellido'] ? p['apellido'] : nil
       person.dni = p['dni'] ? p['dni'] : nil
       person.fecha_nacimiento = p['fecha_nacimiento'] ? p['fecha_nacimiento'] : nil
-      person.telefono = p['telefono'] ? p['telefono'] : nil
-      person.descripcion = p['descripcion'] ? p['descripcion'] : nil
+      #person.telefono = p['telefono'] ? p['telefono'] : nil
+      #person.descripcion = p['descripcion'] ? p['descripcion'] : nil
 
       if (accion == Auditoria::BAJA || person.save)
         if accion != Auditoria::BAJA
