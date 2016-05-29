@@ -2,9 +2,9 @@ class Person < ActiveRecord::Base
   attr_accessor :area_id
 
   validates :nombre, presence: true,
-    format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-ZñÑ\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
   validates :apellido, allow_blank: true,
-    format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-ZñÑ\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
   validates :dni, allow_blank: true, numericality: { only_integer: true }
   validates :telefono, allow_blank: true, numericality: { only_integer: true }
   validates :zone, presence: true

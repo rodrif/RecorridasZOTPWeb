@@ -3,7 +3,7 @@ class Zone < ActiveRecord::Base
   belongs_to :state
 
   validates :nombre, presence: true, uniqueness: { case_sensitive: false },
-    format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-ZñÑ\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
 
   self.per_page = 20
 

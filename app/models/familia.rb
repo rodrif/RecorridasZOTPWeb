@@ -7,7 +7,7 @@ class Familia < ActiveRecord::Base
   belongs_to :state
 
   validates :nombre, presence: true,
-    format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: /\A[a-zA-ZñÑ\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
   validates :zone, presence: true
 
   self.per_page = 20
