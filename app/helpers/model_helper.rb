@@ -1,5 +1,5 @@
 module ModelHelper
     def getRexExpSoloLetras
-    	return getRexExpSoloLetras
+      return /\A[a-zA-ZñÑÜü\sáéíóúÁÉÍÓÚ]+\z/
     end
 end
