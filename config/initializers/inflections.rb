@@ -25,4 +25,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'referente', 'referentes'
   inflect.irregular 'rol', 'roles'
   inflect.irregular 'auditoria', 'auditorias'
+  inflect.irregular 'notificacion', 'notificaciones'
 end
