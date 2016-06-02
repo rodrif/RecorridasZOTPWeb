@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'notificaciones/new'
+
+  get 'notificaciones/edit'
+
+  get 'notificaciones/create'
+
+  get 'notificaciones/delete'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
