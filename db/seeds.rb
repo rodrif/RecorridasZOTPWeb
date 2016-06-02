@@ -17,6 +17,10 @@ zonas = Zone.create([
 	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0], state_id: 1 }
 ])
 
+notificaciones_tipo = NotificacionTipo.create([{ nombre: 'Programada' }, { nombre: 'Urgente' }])
+
+frecuencias_tipo = NotificacionTipo.create([{ nombre: 'Semanas' }, { nombre: 'Meses' }])
+
 roles = Rol.create([
   { id: 1, nombre: "administrador",
     puede_crear_persona: 1,
