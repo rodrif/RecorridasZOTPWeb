@@ -55,6 +55,7 @@ gem 'faker'
 
 group :development, :test do
 
+  gem 'bullet', '~> 5.0'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'selenium-webdriver'
