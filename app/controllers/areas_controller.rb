@@ -49,7 +49,7 @@ class AreasController < ApplicationController
     respond_to do |format|
       if @area.save
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::AREA, @area
-        format.html { redirect_to areas_url, notice: 'Area creada correctamente.' }
+        format.html { redirect_to areas_url, notice: 'Área creada correctamente.' }
         format.json { render :show, status: :created, location: @area }
         format.js { render :show, status: :created, location: @area }
       else
@@ -66,7 +66,7 @@ class AreasController < ApplicationController
     respond_to do |format|
       if @area.update(area_params)
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::AREA, @area
-        format.html { redirect_to areas_url, notice: 'Area actualizada correctamente.' }
+        format.html { redirect_to areas_url, notice: 'Área actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @area }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class AreasController < ApplicationController
   def destroy
     AreaDataAccess.borrar_logico(@area, current_user)
     respond_to do |format|
-      format.html { redirect_to areas_url, notice: 'Area borrada correctamente.' }
+      format.html { redirect_to areas_url, notice: 'Área borrada correctamente.' }
       format.json { head :no_content }
     end
   end

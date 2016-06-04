@@ -1,0 +1,30 @@
+<%= form_for(@notificacion, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+  <% if @notificacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+      
+      <ul>
+      <% @notificacion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :titulo, class: "col-md-1 control-label", for: "notificacion_titulo" %>
+    <div class="col-md-10">
+      <%= f.text_field :titulo, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :subtitulo, class: "col-md-1 control-label", for: "notificacion_subtitulo" %>
+    <div class="col-md-10">
+      <%= f.text_field :subtitulo, class: "form-control" %>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: notificaciones_path, f: f, remote: false %>
+
+<% end %>

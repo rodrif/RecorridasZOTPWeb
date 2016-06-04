@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'notificaciones/new'
-
-  get 'notificaciones/edit'
-
-  get 'notificaciones/create'
-
-  get 'notificaciones/delete'
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -31,6 +23,7 @@ Rails.application.routes.draw do
     post 'referentes/upload' => 'referentes#upload'
   end
 
+  resources :notificaciones
   resources :auditoria
   resources :users
   resources :referentes
@@ -63,15 +56,11 @@ Rails.application.routes.draw do
   get 'welcome_messages/mobGetMensajeBienvenida' => 'welcome_messages#mobGetMensajeBienvenida'
 
   resources :welcome_messages
-  resources :alert_types
   resources :visits
   resources :locations
   resources :people
-  resources :alerts
   resources :zones
   resources :mapa
-  resources :states
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
