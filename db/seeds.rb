@@ -21,6 +21,8 @@ notificaciones_tipo = NotificacionTipo.create([{ nombre: 'Programada' }, { nombr
 
 frecuencias_tipo = NotificacionTipo.create([{ nombre: 'Semanas' }, { nombre: 'Meses' }])
 
+notificaciones = Notificacion.create([{ titulo: 'Carga de camión', subtitulo: 'En carranza' }])
+
 roles = Rol.create([
   { id: 1, nombre: "administrador",
     puede_crear_persona: 1,
