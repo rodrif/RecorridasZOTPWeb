@@ -66,7 +66,13 @@
   <div class="form-group">
     <%= f.label 'Roles', class: "col-md-1 control-label", for: "notificacion_roles" %>
     <div class="col-md-10">
-      <%= f.collection_select :roles, Rol.activos, :id, :nombre, {:include_blank => false}, {:multiple => true, :class => "form-control"} %>
+      <%= f.fields_for :notificacion_roles do |ff| %>
+        <div>
+          <%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
+          <%= ff.label :_destroy, ff.object.rol.nombre %>
+          <%= ff.hidden_field :rol_id %>
+        </div>
+      <% end %>
     </div>
   </div>
 

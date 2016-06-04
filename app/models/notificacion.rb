@@ -4,7 +4,7 @@ class Notificacion < ActiveRecord::Base
   belongs_to :state
   has_many :notificacion_roles
   has_many :roles, :through => :notificacion_roles
-  accepts_nested_attributes_for :roles
+  accepts_nested_attributes_for :notificacion_roles, allow_destroy: true
 
   filterrific(
     available_filters: [
@@ -43,5 +43,15 @@ class Notificacion < ActiveRecord::Base
 
   def getDescripcionAuditoria
     return "Título: #{titulo} Subtítulo: #{titulo} Tipo: #{notificacion_tipo.nombre if !notificacion_tipo.nil?} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Descripción: #{descripcion} Frecuencia #{frecuencia}"
+  end
+
+  def tiene_rol?(rol_id)
+    roles.any? { |r| r.id == rol_id }
+  end
+
+  def setup_roles!
+    Rol.activos.each { |rol|
+      notificacion_roles.build(rol: rol) unless tiene_rol?(rol.id)
+    }
   end
 end

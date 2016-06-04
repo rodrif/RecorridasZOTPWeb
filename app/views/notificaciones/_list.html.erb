@@ -31,7 +31,7 @@
             <td><%= notificacion.frecuencia_tipo.nombre if !notificacion.frecuencia_tipo.nil?%></td>
             <td>
               <% notificacion.roles.each do |rol| %>
-                rol.nombre
+                <%= rol.nombre %>
               <% end %>
             </td>
             <td><%= link_to 'Ver / Editar', edit_notificacion_path(notificacion) %></td>

@@ -28,11 +28,12 @@ class NotificacionesController < ApplicationController
   # GET /notificacion/new
   def new
     @notificacion = Notificacion.new
-    @notificacion.roles.build
+    @notificacion.setup_roles!
   end
 
   # GET /notificacion/1/edit
   def edit
+    @notificacion.setup_roles!
   end
 
   # POST /notificacion
@@ -95,7 +96,7 @@ class NotificacionesController < ApplicationController
         :descripcion,
         :frecuencia_cant,
         :frecuencia_tipo_id,
-        roles_attributes: [:id]
+        notificacion_roles_attributes: [:_destroy, :id, :rol_id, :notificacion_id]
       )
     end
 end
