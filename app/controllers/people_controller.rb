@@ -9,13 +9,11 @@ class PeopleController < ApplicationController
 
   def mobGuardarPersonasPost
     respuesta = PersonDataAccess.guardarPersonasFromJson params['datos'], params['fecha']
-
     render :json => respuesta
   end
 
   def mobRecibirPersonasDesde    
     respuesta = PersonDataAccess.getPersonasDesde params['datos'], params['fecha']
-
     render :json => respuesta
   end
 

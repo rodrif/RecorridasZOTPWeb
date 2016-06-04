@@ -16,7 +16,7 @@ class NotificacionesController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @notificaciones = @filterrific.find.includes(:notificacion_tipo, :frecuencia_tipo).activas.page(params[:page])
+    @notificaciones = @filterrific.find.includes(:notificacion_tipo, :frecuencia_tipo, :roles).activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -28,6 +28,7 @@ class NotificacionesController < ApplicationController
   # GET /notificacion/new
   def new
     @notificacion = Notificacion.new
+    @notificacion.roles.build
   end
 
   # GET /notificacion/1/edit
@@ -90,9 +91,10 @@ class NotificacionesController < ApplicationController
         :subtitulo,
         :fecha_desde,
         :fecha_hasta,
-        :notificacion_tipo,
+        :notificacion_tipo_id,
         :descripcion,
-        :frecuencia_tipo,
+        :frecuencia_cant,
+        :frecuencia_tipo_id,
         roles_attributes: [:id]
       )
     end

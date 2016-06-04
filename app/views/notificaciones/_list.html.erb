@@ -13,7 +13,8 @@
           <th>Desde</th>
           <th>Hasta</th>
           <th>Tipo</th>
-          <th>Frecuencia</th>         
+          <th>Frecuencia</th>
+          <th>Roles</th>
           <th>Ver / Editar</th>
           <th>Borrar</th>
         </tr>
@@ -28,6 +29,11 @@
             <td><%= notificacion.fecha_hasta %></td>
             <td><%= notificacion.notificacion_tipo.nombre if !notificacion.notificacion_tipo.nil? %></td>
             <td><%= notificacion.frecuencia_tipo.nombre if !notificacion.frecuencia_tipo.nil?%></td>
+            <td>
+              <% notificacion.roles.each do |rol| %>
+                rol.nombre
+              <% end %>
+            </td>
             <td><%= link_to 'Ver / Editar', edit_notificacion_path(notificacion) %></td>
             <td><%= link_to 'Borrar', notificacion, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
           </tr>

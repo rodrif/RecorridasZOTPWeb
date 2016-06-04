@@ -2,7 +2,9 @@ class Notificacion < ActiveRecord::Base
   belongs_to :frecuencia_tipo
   belongs_to :notificacion_tipo
   belongs_to :state
-  has_many :roles, :through => :notificacion_role
+  has_many :notificacion_roles
+  has_many :roles, :through => :notificacion_roles
+  accepts_nested_attributes_for :roles
 
   filterrific(
     available_filters: [

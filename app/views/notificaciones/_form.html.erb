@@ -25,6 +25,51 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label :fecha_desde, class: "col-md-1 control-label", for: "notificacion_fecha_desde" %>
+    <div class="col-md-10">
+      <%= f.datetime_select :fecha_desde, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fecha_hasta, class: "col-md-1 control-label", for: "notificacion_fecha_hasta" %>
+    <div class="col-md-10">
+      <%= f.datetime_select :fecha_hasta, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Tipo', class: "col-md-1 control-label", for: "notificacion_tipo_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :notificacion_tipo_id, NotificacionTipo.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :descripcion, class: "col-md-1 control-label", for: "notificacion_descripcion" %>
+    <div class="col-md-10">
+      <%= f.text_area :descripcion, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Frecuencia', class: "col-md-1 control-label" %>
+    <div class="col-md-5">
+      <%= f.number_field :frecuencia_cant, class: "form-control" %>
+    </div>
+    <div class="col-md-5">
+      <%= f.collection_select :frecuencia_tipo_id, FrecuenciaTipo.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Roles', class: "col-md-1 control-label", for: "notificacion_roles" %>
+    <div class="col-md-10">
+      <%= f.collection_select :roles, Rol.activos, :id, :nombre, {:include_blank => false}, {:multiple => true, :class => "form-control"} %>
+    </div>
+  </div>
+
   <%= render 'layouts/buttons_submit', path: notificaciones_path, f: f, remote: false %>
 
 <% end %>

@@ -19,9 +19,7 @@ zonas = Zone.create([
 
 notificaciones_tipo = NotificacionTipo.create([{ nombre: 'Programada' }, { nombre: 'Urgente' }])
 
-frecuencias_tipo = NotificacionTipo.create([{ nombre: 'Semanas' }, { nombre: 'Meses' }])
-
-notificaciones = Notificacion.create([{ titulo: 'Carga de camión', subtitulo: 'En carranza' }])
+frecuencias_tipo = FrecuenciaTipo.create([{ nombre: 'Única' }, { nombre: 'Día/s' }, { nombre: 'Semana/s' }, { nombre: 'Mes/es' }])
 
 roles = Rol.create([
   { id: 1, nombre: "administrador",
@@ -174,19 +172,21 @@ User.create!([
   }
 ])
 
+notificaciones = Notificacion.create([{ titulo: 'Carga de camión', subtitulo: 'En carranza' }])
+
 ranchadas = Ranchada.create([
-	{ nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
-	{ nombre: 'Ranchada Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0], state_id: 1 },
-	{ nombre: 'Ranchada Aquino', latitud: '-34.639050652761282', longitud: '-58.52463748801278', zone: zonas[0], state_id: 1 }
+    { nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
+    { nombre: 'Ranchada Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0], state_id: 1 },
+    { nombre: 'Ranchada Aquino', latitud: '-34.639050652761282', longitud: '-58.52463748801278', zone: zonas[0], state_id: 1 }
 ])
 
 familias = Familia.create([
-	{ nombre: 'Rodriguez', descripcion: 'descripcion familia rodriguez', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 },
-	{ nombre: 'Aquino', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 }
+    { nombre: 'Rodriguez', descripcion: 'descripcion familia rodriguez', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 },
+    { nombre: 'Aquino', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 }
 ])
 
 referentes = Referente.create([
-	{ nombre: 'Nadia', apellido: 'Guzman', telefono: '46546569', area: areas[0], dia: 'Lunes', state_id: 1 }
+    { nombre: 'Nadia', apellido: 'Guzman', telefono: '46546569', area: areas[0], dia: 'Lunes', state_id: 1 }
 ])
 
 personas = Array.new
