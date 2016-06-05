@@ -1,6 +1,44 @@
 
 <h2 class="sub-header">Notificaciones</h2>
 
+<div class="table-responsive well">
+  <%= form_for_filterrific @filterrific do |f| %>
+
+    <div class="row-fluid">
+      <div class="col-md-offset-1 col-md-4">
+        Título
+        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(
+          :with_titulo,
+          class: 'filterrific-periodically-observed'
+        ) %>
+      </div>
+
+      <div class="col-md-offset-1 col-md-4 form-group">
+        Tipo
+        <%= f.select(
+          :with_tipo,
+          @filterrific.select_options[:with_notificacion_tipo],
+          { include_blank: 'Todos' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-md-offset-1 col-md-4">
+        Desde
+        <%= f.date_field :fecha_gte %>
+      </div>
+
+      <div class="col-md-offset-1 col-md-4">
+        Hasta
+        <%= f.date_field :fecha_lte %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
 <%= render 'list', notificaciones: @notificaciones %>
 
 <br>

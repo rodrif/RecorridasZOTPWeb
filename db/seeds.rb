@@ -173,9 +173,9 @@ User.create!([
 ])
 
 notificaciones = Notificacion.create([{ titulo: 'Carga de camión', subtitulo: 'En carranza',
-    state_id: 1 }])
+    notificaciones_tipo: notificaciones_tipo[0], state_id: 1 }])
 
-notificacionRoles = NotificacionRol.create([{ notificacion: notificaciones[0], rol: roles[0] }])
+notificacion_roles = NotificacionRol.create([{ notificacion: notificaciones[0], rol: roles[0] }])
 
 ranchadas = Ranchada.create([
     { nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },

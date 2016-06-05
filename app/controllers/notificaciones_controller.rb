@@ -8,7 +8,7 @@ class NotificacionesController < ApplicationController
     @filterrific = initialize_filterrific(
       Notificacion,
       params[:filterrific],
-      select_options: {},
+      select_options: { with_notificacion_tipo: NotificacionTipo.options_for_select },
       default_filter_params: {}
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.

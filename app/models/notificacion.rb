@@ -8,11 +8,28 @@ class Notificacion < ActiveRecord::Base
 
   filterrific(
     available_filters: [
-        :search_query
+      :with_titulo,
+      :fecha_gte,
+      :fecha_lte,
+      :with_tipo
     ]
   )
 
-  scope :search_query, lambda { |query|
+  scope :with_tipo, lambda { |tipo|
+    where(notificacion_tipo: tipo)
+  }
+
+  scope :fecha_gte, lambda { |reference_time|
+    return nil if reference_time.blank?
+    where('fecha_desde >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
+  }
+
+  scope :fecha_lte, lambda { |reference_time|
+    return nil if reference_time.blank?
+    where('fecha_desde <= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
+  }
+
+  scope :with_titulo, lambda { |query|
     return nil  if query.blank?
 
     # condition query, parse into individual keywords
