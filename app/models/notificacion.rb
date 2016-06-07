@@ -5,6 +5,10 @@ class Notificacion < ActiveRecord::Base
   has_many :notificacion_roles
   has_many :roles, :through => :notificacion_roles
   accepts_nested_attributes_for :notificacion_roles, allow_destroy: true
+  validates :titulo, :subtitulo, :fecha_desde, :frecuencia_tipo_id, :presence => true
+  validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
+  validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
+  validates :frecuencia_cant, allow_blank: true, numericality: { only_integer: true }
 
   filterrific(
     available_filters: [
@@ -55,7 +59,7 @@ class Notificacion < ActiveRecord::Base
   scope :activas, -> { where.not(state_id: 3).order(fecha_desde: :desc) }
 
   def frecuencia
-    "#{frecuencia_cant} #{frecuencia_tipo.nombre if !frecuencia_tipo.nil?}"
+    "#{frecuencia_cant if frecuencia_tipo_id != 1} #{frecuencia_tipo.nombre}"
   end
 
   def getDescripcionAuditoria

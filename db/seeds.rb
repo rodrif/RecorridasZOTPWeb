@@ -6,20 +6,20 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-estados = State.create([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
+estados = State.create!([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
-areas = Area.create([ { nombre: 'Zona Oeste', state_id: 1 } ])
+areas = Area.create!([ { nombre: 'Zona Oeste', state_id: 1 } ])
 
-zonas = Zone.create([
+zonas = Zone.create!([
 	{ nombre: 'Haedo', latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0], state_id: 1 },
 	{ nombre: 'Liniers', latitud: '-34.639050702761295', longitud: '-58.52465748801478', area: areas[0], state_id: 1 },
 	{ nombre: 'Ramos', latitud: '-34.641027959809676', longitud: '-58.565813303139294', area: areas[0], state_id: 1 },
 	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0], state_id: 1 }
 ])
 
-notificaciones_tipo = NotificacionTipo.create([{ nombre: 'Programada' }, { nombre: 'Urgente' }])
+notificaciones_tipo = NotificacionTipo.create!([{ nombre: 'Programada' }, { nombre: 'Urgente' }])
 
-frecuencias_tipo = FrecuenciaTipo.create([{ nombre: 'Única' }, { nombre: 'Día/s' }, { nombre: 'Semana/s' }, { nombre: 'Mes/es' }])
+frecuencias_tipo = FrecuenciaTipo.create!([{ nombre: 'Única' }, { nombre: 'Día/s' }, { nombre: 'Semana/s' }, { nombre: 'Mes/es' }])
 
 roles = Rol.create([
   { id: 1, nombre: "administrador",
@@ -172,23 +172,24 @@ User.create!([
   }
 ])
 
-notificaciones = Notificacion.create([{ titulo: 'Carga de camión', subtitulo: 'En carranza',
-    notificaciones_tipo: notificaciones_tipo[0], state_id: 1 }])
+notificaciones = Notificacion.create!([{ titulo: 'Carga de camión', subtitulo: 'En carranza',
+    fecha_desde: Time.now.ago(30.days), fecha_hasta: Time.now.ago(3.days), frecuencia_cant: 4,
+    notificacion_tipo: notificaciones_tipo[0], frecuencia_tipo: frecuencias_tipo[1], state_id: 1 }])
 
-notificacion_roles = NotificacionRol.create([{ notificacion: notificaciones[0], rol: roles[0] }])
+notificacion_roles = NotificacionRol.create!([{ notificacion: notificaciones[0], rol: roles[0] }])
 
-ranchadas = Ranchada.create([
+ranchadas = Ranchada.create!([
     { nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
     { nombre: 'Ranchada Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0], state_id: 1 },
     { nombre: 'Ranchada Aquino', latitud: '-34.639050652761282', longitud: '-58.52463748801278', zone: zonas[0], state_id: 1 }
 ])
 
-familias = Familia.create([
+familias = Familia.create!([
     { nombre: 'Rodriguez', descripcion: 'descripcion familia rodriguez', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 },
     { nombre: 'Aquino', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 }
 ])
 
-referentes = Referente.create([
+referentes = Referente.create!([
     { nombre: 'Nadia', apellido: 'Guzman', telefono: '46546569', area: areas[0], dia: 'Lunes', state_id: 1 }
 ])
 
