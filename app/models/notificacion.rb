@@ -9,6 +9,27 @@ class Notificacion < ActiveRecord::Base
   validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, allow_blank: true, numericality: { only_integer: true }
+  validate :fecha_desde_mayor_fecha_hasta
+  validate :fecha_desde_en_el_pasado
+  validate :sin_roles
+
+  def sin_roles
+    if !notificacion_roles.any?
+      errors.add(:roles, "no puede estar en blanco")
+    end
+  end
+
+  def fecha_desde_en_el_pasado
+    if (fecha_desde + 1.hour).past?
+      errors.add(:fecha_desde, "no puede estar en el pasado")
+    end
+  end
+
+  def fecha_desde_mayor_fecha_hasta
+    if frecuencia_tipo_id != 1 && fecha_hasta.comparable_time < fecha_desde.comparable_time
+      errors.add(:fecha_hasta, "no puede ser anterior a fecha desde")
+    end
+  end
 
   filterrific(
     available_filters: [

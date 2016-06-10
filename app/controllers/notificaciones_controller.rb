@@ -48,6 +48,7 @@ class NotificacionesController < ApplicationController
         format.html { redirect_to notificaciones_url, notice: 'Notificación creada correctamente.' }
         format.json { render :show, status: :created, location: @notificacion }
       else
+        @notificacion.setup_roles!
         format.html { render :new }
         format.json { render json: @notificacion.errors, status: :unprocessable_entity }
       end
@@ -63,6 +64,7 @@ class NotificacionesController < ApplicationController
         format.html { redirect_to notificaciones_url, notice: 'Notificación actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @notificacion }
       else
+        @notificacion.setup_roles!
         format.html { render :edit }
         format.json { render json: @notificacion.errors, status: :unprocessable_entity }
       end
