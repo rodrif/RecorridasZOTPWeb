@@ -1,4 +1,5 @@
 class NotificacionDataAccess
+  require 'net/http'
 
   # def self.download datosJson = nil, fecha = nil
   #   respuesta = Hash.new
