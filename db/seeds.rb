@@ -17,9 +17,9 @@ zonas = Zone.create!([
 	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0], state_id: 1 }
 ])
 
-notificaciones_tipo = NotificacionTipo.create!([{ nombre: 'Programada' }, { nombre: 'Urgente' }])
+notificaciones_tipo = NotificacionTipo.create!([{ nombre: 'Programada', code: 1 }, { nombre: 'Urgente', code: 2 }])
 
-frecuencias_tipo = FrecuenciaTipo.create!([{ nombre: 'Única' }, { nombre: 'Día/s' }, { nombre: 'Semana/s' }, { nombre: 'Mes/es' }])
+frecuencias_tipo = FrecuenciaTipo.create!([{ nombre: 'Única', code: 1 }, { nombre: 'Día/s', code: 2 }, { nombre: 'Semana/s', code: 3 }, { nombre: 'Mes/es', code: 4 }])
 
 roles = Rol.create([
   { id: 1, nombre: "administrador",
@@ -30,7 +30,8 @@ roles = Rol.create([
     puede_ver_web: 1,
     puede_crear_visita: 1,
     puede_editar_visita: 1,
-    puede_borrar_visita: 1
+    puede_borrar_visita: 1,
+    code: 1
   },
   { id: 2, nombre: "referente",
     puede_crear_persona: 1,
@@ -40,7 +41,8 @@ roles = Rol.create([
     puede_ver_web: 1,
     puede_crear_visita: 1,
     puede_editar_visita: 1,
-    puede_borrar_visita: 1
+    puede_borrar_visita: 1,
+    code: 2
   },
   { id: 3, nombre: "coordinador",
     puede_crear_persona: 1,
@@ -50,7 +52,8 @@ roles = Rol.create([
     puede_ver_web: 0,
     puede_crear_visita: 1,
     puede_editar_visita: 1,
-    puede_borrar_visita: 1
+    puede_borrar_visita: 1,
+    code: 3
   },
   { id: 4, nombre: "voluntario",
     puede_crear_persona: 1,
@@ -60,7 +63,8 @@ roles = Rol.create([
     puede_ver_web: 0,
     puede_crear_visita: 1,
     puede_editar_visita: 1,
-    puede_borrar_visita: 0
+    puede_borrar_visita: 0,
+    code: 4
   },
   { id: 5, nombre: "invitado",
     puede_crear_persona: 0,
@@ -70,7 +74,8 @@ roles = Rol.create([
     puede_ver_web: 0,
     puede_crear_visita: 0,
     puede_editar_visita: 0,
-    puede_borrar_visita: 0
+    puede_borrar_visita: 0,
+    code: 5
 }])
 
 User.create!([
@@ -173,10 +178,10 @@ User.create!([
 ])
 
 notificaciones = Notificacion.create!([{ titulo: 'Carga de camión', subtitulo: 'En carranza',
-    fecha_desde: Time.now.ago(30.days), fecha_hasta: Time.now.ago(3.days), frecuencia_cant: 4,
-    notificacion_tipo: notificaciones_tipo[0], frecuencia_tipo: frecuencias_tipo[1], state_id: 1 }])
-
-notificacion_roles = NotificacionRol.create!([{ notificacion: notificaciones[0], rol: roles[0] }])
+    fecha_desde: 3.days.from_now, fecha_hasta: 30.days.from_now, frecuencia_cant: 4,
+    roles: [Rol.first], notificacion_tipo: notificaciones_tipo[0],
+    frecuencia_tipo: frecuencias_tipo[1], state_id: 1 }
+])
 
 ranchadas = Ranchada.create!([
     { nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
