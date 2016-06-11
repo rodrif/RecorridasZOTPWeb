@@ -16,7 +16,8 @@ class NotificacionDataAccess
   # end
 
   def self.programar
-    self.delay(:run_at => Proc.new { 10.seconds.from_now }).enviar
+    delay(:run_at => Proc.new { 1.seconds.from_now }).enviar
+    #delay.enviar
   end
 
   def self.borrar_logico notificacion, user

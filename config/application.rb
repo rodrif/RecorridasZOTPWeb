@@ -25,5 +25,7 @@ module TpRecorridasZO
     config.active_record.raise_in_transactional_callbacks = true
 
     config.assets.initialize_on_precompile = false
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end
