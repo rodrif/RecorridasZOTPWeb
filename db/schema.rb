@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604121608) do
+ActiveRecord::Schema.define(version: 20160611124209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160604121608) do
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "code"
   end
 
   create_table "notificacion_roles", force: :cascade do |t|
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160604121608) do
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "code"
   end
 
   create_table "notificaciones", force: :cascade do |t|
@@ -102,6 +104,8 @@ ActiveRecord::Schema.define(version: 20160604121608) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "state_id"
+    t.datetime "proxEnvio"
+    t.boolean  "finalizada"
   end
 
   add_index "notificaciones", ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id", using: :btree
@@ -168,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160604121608) do
     t.boolean  "puede_borrar_visita"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "code"
   end
 
   create_table "states", force: :cascade do |t|
