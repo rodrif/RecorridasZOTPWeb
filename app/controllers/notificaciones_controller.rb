@@ -41,7 +41,6 @@ class NotificacionesController < ApplicationController
   def create
     @notificacion = Notificacion.new(notificacion_params)
     @notificacion.state = State.find_by_nombre('Actualizado');
-
     respond_to do |format|
       if @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::NOTIFICACION, @notificacion
@@ -60,6 +59,7 @@ class NotificacionesController < ApplicationController
   def update
     respond_to do |format|
       if @notificacion.update(notificacion_params)
+        NotificacionDataAccess.programar
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::NOTIFICACION, @notificacion
         format.html { redirect_to notificaciones_url, notice: 'Notificación actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @notificacion }

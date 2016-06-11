@@ -15,12 +15,34 @@ class NotificacionDataAccess
   #   respuesta
   # end
 
+  def self.programar
+    self.delay(:run_at => Proc.new { 10.seconds.from_now }).enviar
+  end
+
   def self.borrar_logico notificacion, user
     notificacion.state_id = 3
     notificacion.save(validate: false)
     if user
       AuditoriaDataAccess.log user,  Auditoria::BAJA, Auditoria::NOTIFICACION, notificacion
     end
+  end
+
+  private
+
+  def self.enviar
+    url = URI.parse('https://gcm-http.googleapis.com/gcm/send')
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
+    request.body = '{
+      "to": "/topics/global",
+      "data": {
+        "message": "Juan cumple años",
+        "title": "Cumpleaños!!!",  
+       }
+    }'
+
+    response = http.request(request)
   end
 
 end
