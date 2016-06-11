@@ -1,0 +1,569 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Aud",
+				"auditorias"
+			],
+			[
+				"Fami",
+				"familias"
+			],
+			[
+				"state",
+				"state_id"
+			],
+			[
+				"la",
+				"latitud"
+			],
+			[
+				"l",
+				"latitud"
+			],
+			[
+				"visits",
+				"visits_path"
+			],
+			[
+				"Person",
+				"PersonDataAccess"
+			],
+			[
+				"rancha",
+				"ranchadas"
+			],
+			[
+				"click",
+				"click_link"
+			],
+			[
+				"per",
+				"person_id"
+			],
+			[
+				"par",
+				"params"
+			],
+			[
+				"zone",
+				"zone_id"
+			],
+			[
+				"are",
+				"area_id"
+			],
+			[
+				"p",
+				"person"
+			],
+			[
+				"fami",
+				"familias"
+			],
+			[
+				"fa",
+				"familias"
+			],
+			[
+				"ra",
+				"ranchadas"
+			],
+			[
+				"ran",
+				"ranchada"
+			],
+			[
+				"ref",
+				"referente"
+			],
+			[
+				"refere",
+				"Referentes"
+			],
+			[
+				"Z",
+				"zone_id"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"or",
+				"order"
+			],
+			[
+				"co",
+				"correctamente"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"asser",
+				"assert_equal"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 180.0,
+		"last_filter": "ruby",
+		"selected_items":
+		[
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"j",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/facundo/RecorridasZOTPWeb/app/views/auditoria/index.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/auditoria/_list.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/areas/_list.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/config/routes.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/areas/index.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/auditoria_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/areas_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/dataAccess/auditoria_data_access.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/application_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/dataAccess/area_data_access.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20160513012251_create_auditorias.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/areas_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/dataAccess/auditoria_data_access.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/db/seeds.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/layouts/application.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/api/people_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/familias_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/people_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/dataAccess/person_data_access.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/users/registrations_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/dataAccess/area_data_access.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/config/routes.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/users/sessions_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/config/initializers/inflections.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/devise/sessions/new.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/helpers/application_helper.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/controllers/mapa_controller.rb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/alerts/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/alerts/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/areas/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/areas/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/configuraciones/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/devise/registrations/vacia.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/familias/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/familias/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/mapa/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/mapa/mostrar.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/people/edit.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/people/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/people/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/ranchadas/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/ranchadas/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/referentes/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/referentes/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/states/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/states/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/users/edit.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/users/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/visits/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/visits/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/welcome_messages/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/welcome_messages/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/zones/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/zones/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/alert_types/show.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/alert_types/index.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/app/views/configuraciones/vacia.html.erb",
+		"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb/config/locales/es.yml",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/registrations/new.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/passwords/edit.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/sessions/new.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/registrations/edit.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/passwords/new.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/confirmations/new.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/config/locales/es.yml",
+		"/home/facundo/RecorridasZOTPWeb/app/views/people/_form.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/assets/stylesheets/scaffolds.scss",
+		"/home/facundo/RecorridasZOTPWeb/app/assets/stylesheets/custom.scss",
+		"/home/facundo/RecorridasZOTPWeb/app/assets/javascripts/application.js",
+		"/home/facundo/RecorridasZOTPWeb/app/views/people/_list.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/people_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/configuraciones_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/models/user.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/users/_form.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/users/registrations_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/dataAccess/user_data_access.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/configuraciones/index.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/layouts/_buttons_submit.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/application_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/users_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/mapa_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/seeds.rb",
+		"/home/facundo/RecorridasZOTPWeb/public/falta_confirmacion.html",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/people_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/api_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/public/404.html",
+		"/home/facundo/RecorridasZOTPWeb/public/401.html",
+		"/home/facundo/RecorridasZOTPWeb/app/views/layouts/application.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/helpers/application_helper.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/shared/_links.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/mailer/reset_password_instructions.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/mailer/confirmation_instructions.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/unlocks/new.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/devise/mailer/unlock_instructions.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/areas_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/zones_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/visits_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/familias_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/referentes_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/api/ranchadas_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/zones_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/referentes_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/ranchadas_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/public/422.html",
+		"/home/facundo/RecorridasZOTPWeb/app/views/mapa/index.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/config/locales/devise.en.yml",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/familias_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/visits_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/welcome_messages_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/views/zones/_form.html.erb",
+		"/home/facundo/RecorridasZOTPWeb/config/environments/development.rb",
+		"/home/facundo/RecorridasZOTPWeb/config/environments/production.rb",
+		"/home/facundo/RecorridasZOTPWeb/app/controllers/users/unlocks_controller.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/schema.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150417234629_create_zones.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150418012311_create_alerts.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150418014315_create_locations.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150418014854_create_visits.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150418132200_borrar_ref_location.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150426145003_drop_locations_table.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150706233120_create_welcome_messages.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150928232145_create_states.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20150928232945_add_estado_ref_to_people.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20151003152702_add_estado_ref_to_visits.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20151101144254_add_dni_and_fecha_nacimiento_to_people.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20151107113207_add_area_ref_to_zones.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20151107120550_add_ubicacion_to_zone.rb",
+		"/home/facundo/RecorridasZOTPWeb/db/migrate/20151114122728_create_ranchadas.rb"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb",
+			"/home/facundo/recorridasZOTPWebTest/RecorridasZOTPWeb,",
+			"/home/facundo/recorridasZOTPTest/RecorridasZOTPWeb,",
+			"/home/facundo/RecorridasZOTPWeb,",
+			"/home/facundo/RecorridasZOTPWeb, *.rb",
+			"/home/facundo/RecorridasZOTPWeb",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"puede_ver_web",
+			"helper",
+			":set_current_user",
+			"current_user",
+			"auditoria",
+			"accion",
+			".new",
+			"current_user",
+			"acceso",
+			"accesso",
+			"ApplicationHelper",
+			"showNotice",
+			"<%= showNotice %>",
+			"shownotice",
+			"show notice",
+			"contr",
+			"email",
+			"email o contras",
+			"email o contraseña inválidos",
+			"email o contraseña inválidos.",
+			"email o contr",
+			"email o contraseña inválidos",
+			"email o contraseña inválidos.",
+			"notice",
+			"shownotice",
+			"redirect_to acceso_denegado_path, alert: 'Acceso denegado, faltan permisos'",
+			"logout",
+			"loguot",
+			"acceso_denegado",
+			"401",
+			"actions btn-group col-md-offset-4",
+			"col-md-11",
+			"lass=\"col-md-11\"",
+			"class=\"col-md-11\"",
+			"col-md-11",
+			"has-error",
+			".has-error",
+			"\"field\"",
+			"field",
+			"\"1 mes",
+			"\"1 mes\"",
+			"\"1 mes\",",
+			"confirmation",
+			"{count} meses",
+			"field_with_errors",
+			"invitado",
+			"puede_ver_web",
+			"accesso_denegado_path",
+			"root_path",
+			"password_confirmation",
+			"alert",
+			"password",
+			"edit_password_url",
+			"password",
+			"admin",
+			"redirect_to new_user_session_path",
+			"     ",
+			"alert-success",
+			"showNotice",
+			"shownotice",
+			"notice",
+			"showNotice",
+			"alert",
+			"persona",
+			"puede_editar_persona",
+			"persona",
+			"puede_ver_web",
+			"loadDefaultDropdowns",
+			"3000",
+			"-md-7",
+			"col-md-10",
+			"class=\"field\"",
+			"field",
+			"email",
+			"e",
+			"email",
+			"user_params",
+			"with_area_id",
+			"area",
+			"Area",
+			"area",
+			"referente",
+			"familia",
+			"area",
+			"      ",
+			"mount_devise_token_auth_for",
+			"DeviseTokenAuth",
+			"telefono",
+			"def self.upload",
+			"respuesta['fecha'] =",
+			"self.upload",
+			"Faker::Number.",
+			"activas",
+			"user_signed_in",
+			"user_sign_in",
+			"validate",
+			"guardado",
+			"SessionsController",
+			"DeviseTokenAuth::SessionsController#create",
+			"DeviseTokenAuth",
+			"DeviseTokenAuth::SessionsController",
+			"foreach",
+			"Time.at",
+			"debug",
+			"degub",
+			"to_datetime",
+			"render_filterrific_spinner",
+			"options_for_select",
+			"zone",
+			"Area.all",
+			".all",
+			"familias",
+			"rescue",
+			"ago",
+			"Zone",
+			"Visit",
+			"zone",
+			"Zone",
+			"zone",
+			"Zone",
+			"zone",
+			"Zone",
+			"zone",
+			"z",
+			"zones",
+			"visitasJson",
+			"Zone",
+			"zone"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"Area.activas",
+			"Familia Rodriguez",
+			"<%= showNotice %>",
+			"/\\A[a-zA-Z\\sáéíóúÁÉÍÓÚ]+\\z/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "development.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"applicationhelper",
+				"app/helpers/application_helper.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 336.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

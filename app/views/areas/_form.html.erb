@@ -1,0 +1,24 @@
+<%# Conditionally set remote: true. Also, passing model name as data attribute %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+
+<%= form_for(@area, remote: remote, :html => {'data-model' => 'area', :class => 'form-horizontal container-fluid'} ) do |f| %>
+
+  <% if @area.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+
+      <ul>
+      <% @area.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "area_nombre", f: f, remote: remote %>
+
+
+  <%= render 'layouts/buttons_submit', path: areas_path, f: f, remote: remote %>
+
+<% end %>

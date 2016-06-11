@@ -1,0 +1,47 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info users %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Area</th>
+          <th>Rol</th>
+          <th>Email</th>
+          <th><%= t("common.ver_editar") %></th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.apellido %></td>
+            <% if user.area.nil? %>
+              <td>Sin Area</td>
+            <% else %>
+              <td><%= user.area.nombre %></td>
+            <% end %>
+            <% if user.rol.nil? %>
+              <td>Sin rol</td>
+            <% else %>
+              <td><%= user.rol.nombre %></td>
+            <% end %>
+            <td><%= user.email %></td>
+            <td><%= link_to t("common.ver_editar"), edit_user_path(user) %></td>
+            <td><%= link_to 'Borrar', user, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate users, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>

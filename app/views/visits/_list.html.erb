@@ -1,0 +1,52 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info visits %>
+  </div>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Persona</th>
+        <th>Fecha</th>
+        <th>Comentario</th>
+        <% if !Rails.env.production? %>
+          <th>Latitud</th>
+          <th>Longitud</th>
+        <% end %>
+        <th>Ver / Editar</th>
+        <% if current_user && current_user.rol.puede_borrar_visita %>
+          <th>Borrar</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @visits.each do |visit| %>
+        <tr>
+          <% if visit.person.nil? %>
+            <td>Sin persona</td>
+          <% else %>
+            <td><%= visit.person.nombre  %></td>
+          <% end %>
+          <td><%= visit.fecha.to_date() %></td>
+          <td><%= visit.descripcion %></td>
+          <% if !Rails.env.production? %>
+            <td><%= visit.latitud %></td>
+            <td><%= visit.longitud %></td>      
+          <% end %>
+          <td><%= link_to 'Ver / Editar', edit_visit_path(visit, :person_id => params[:person_id]) %></td>
+
+          <% if current_user && current_user.rol.puede_borrar_visita %>
+            <td><%= link_to 'Borrar', visit_path(visit, :person_id => params[:person_id]), method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate visits, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>

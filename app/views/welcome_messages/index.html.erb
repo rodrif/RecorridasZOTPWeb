@@ -1,0 +1,33 @@
+
+
+<h1>Listing Welcome Messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mensaje</th>
+      <th>Fechadesde</th>
+      <th>Fechahasta</th>
+      <th>Person</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @welcome_messages.each do |welcome_message| %>
+      <tr>
+        <td><%= welcome_message.mensaje %></td>
+        <td><%= welcome_message.fecha_desde %></td>
+        <td><%= welcome_message.fecha_hasta %></td>
+        <td><%= welcome_message.person %></td>
+        <td><%= link_to 'Show', welcome_message %></td>
+        <td><%= link_to 'Edit', edit_welcome_message_path(welcome_message) %></td>
+        <td><%= link_to 'Destroy', welcome_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Welcome message', new_welcome_message_path %>

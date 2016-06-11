@@ -1,0 +1,341 @@
+es:
+  common:
+    descripcion: Descripción
+    dia: Día
+    telefono: Teléfono
+    ver_editar: Ver / Editar
+    exito:
+      actualizacion_ranchada: Ranchada actualizada correctamente.
+      borrado_ranchada: Ranchada borrada correctamente.
+    errores:
+      foreign_key: No se pudo borrar porque el registro esta siendo utilizado.
+      errores: Errores
+      solo_letras: solo admite letras
+  will_paginate:
+    previous_label: "Anterior"
+    next_label: "Siguiente"
+    page_entries_info:
+      single_page:
+        zero:  "Sin resultados"
+        one:   "Mostrando 1 %{model}"
+        other: "Mostrando %{count} %{model}"
+      single_page_html:
+        zero:  "Sin resultados"
+        one:   "Mostrando <b>1</b> %{model}"
+        other: "Mostrando <b>%{count}</b> %{model}"
+      multi_page: "Mostrando %{from} - %{to} %{model} de %{count} en total"
+      multi_page_html: "Mostrando <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} de <b>%{count}</b> en total"
+  activerecord:
+    attributes:
+      person:
+        zone: Zona
+        nombre: Nombre
+        telefono: Teléfono
+        descripcion: Descripción
+      user:
+        password: Contraseña
+        password_confirmation: Confirmar contraseña
+        current_password: Contraseña actual
+      ranchada:
+        descripcion: Descripción
+      familia:
+        descripcion: Descripción
+      notificacion:
+        titulo: Título
+        subtitulo: Subtítulo
+        descripcion: Descripción
+        frecuencia_cant: Frecuencia
+    models:
+      user:
+        zero:  Usuario
+        one:   Usuario
+        other: Usuarios
+      person:
+        zero:  Persona
+        one:   Persona
+        other: Personas
+      visit:
+        zero:  Visita
+        one:   Visita
+        other: Visitas
+      area:
+        zero:  Área
+        one:   Área
+        other: Áreas
+      zone:
+        zero:  Zona
+        one:   Zona
+        other: Zonas
+      ranchada:
+        zero:  Ranchada
+        one:   Ranchada
+        other: Ranchadas
+      familia:
+        zero:  Familia
+        one:   Familia
+        other: Familias
+      referente:
+        zero:  Referente
+        one:   Referente
+        other: Referentes
+      notificacion:
+        zero:  Notificación
+        one:   Notificación
+        other: Notificaciones
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    - 
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%A, %d de %B de %Y"
+      short: "%d de %b"
+    month_names:
+    - 
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: cerca de 1 hora
+        other: cerca de %{count} horas
+      about_x_months:
+        one: cerca de 1 mes
+        other: cerca de %{count} meses
+      about_x_years:
+        one: cerca de 1 año
+        other: cerca de %{count} años
+      almost_x_years:
+        one: casi 1 año
+        other: casi %{count} años
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de 1 año
+        other: más de %{count} años
+      x_days:
+        one: 1 día
+        other: "%{count} días"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mes
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Día
+      hour: Hora
+      minute: Minuto
+      month: Mes
+      second: Segundos
+      year: Año
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      already_confirmed: "ya has sido confirmado, por favor intenta iniciar sesión."
+      confirmation_period_expired: "necesitas ser confirmado en %{period}, por favor vuelve a solicitarla."
+      expired: "ha expirado, por favor vuelve a solicitarla."
+      not_found: "no se ha encontrado."
+      not_locked: "no estaba bloqueado."
+      not_saved:
+        one: "1 error impidió que este %{resource} fuera guardado:"
+        other: "%{count} errores impidieron que este %{resource} fuera guardado:"
+      accepted: debe ser aceptado
+      blank: no puede estar en blanco
+      present: debe estar en blanco
+      confirmation: no coincide
+      empty: no puede estar vacío
+      equal_to: debe ser igual a %{count}
+      even: debe ser un número par
+      exclusion: está reservado
+      greater_than: debe ser mayor que %{count}
+      greater_than_or_equal_to: debe ser mayor o igual que %{count}
+      inclusion: no está incluido en la lista
+      invalid: es inválido
+      less_than: debe ser menor que %{count}
+      less_than_or_equal_to: debe ser menor o igual que %{count}
+      not_a_number: no es un número
+      not_an_integer: debe ser un entero
+      odd: debe ser un número non
+      record_invalid: 'La validación falló: %{errors}'
+      restrict_dependent_destroy:
+        one: No se puede eliminar el registro porque existe un %{record} dependiente
+        many: No se puede eliminar el registro porque existen %{record} dependientes
+      taken: ya ha sido tomado
+      too_long:
+        one: es demasiado largo (máximo 1 caracter)
+        other: es demasiado largo (máximo %{count} caracteres)
+      too_short:
+        one: es demasiado corta (mínimo 1 caracter)
+        other: es demasiado corta (mínimo %{count} caracteres)
+      wrong_length:
+        one: longitud errónea (debe ser de 1 caracter)
+        other: longitud errónea (debe ser de %{count} caracteres)
+      other_than: debe ser distinto de %{count}
+    template:
+      body: 'Revise que los siguientes campos sean válidos:'
+      header:
+        one: "%{model} no pudo guardarse debido a 1 error"
+        other: "%{model} no pudo guardarse debido a %{count} errores"
+  helpers:
+    select:
+      prompt: Por favor selecciona
+    submit:
+      create: Crear %{model}
+      submit: Guardar %{model}
+      update: Actualizar %{model}
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u%n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "$"
+    format:
+      delimiter: "."
+      precision: 2
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: mil millones
+          million: millón
+          quadrillion: mil billones
+          thousand: mil
+          trillion: billón
+          unit: ''
+      format:
+        delimiter: ","
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ","
+    precision:
+      format:
+        delimiter: ","
+  support:
+    array:
+      last_word_connector: " y "
+      two_words_connector: " y "
+      words_connector: ", "
+  time:
+    am: am
+    formats:
+      default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
+      long: "%A, %d de %B de %Y a las %I:%M %p"
+      short: "%d de %b a las %H:%M hrs"
+    pm: pm
+  devise:
+    confirmations:
+      confirmed: "Tu cuenta ha sido confirmada."
+      send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo restablecer tu contraseña."
+      send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos recibirás un correo electrónico en unos minutos con instrucciones sobre cómo restablecer tu contraseña."
+    failure:
+      already_authenticated: "Ya has iniciado sesión."
+      inactive: "Tu cuenta aún no ha sido activada."
+      invalid: "%{authentication_keys} o contraseña inválidos."
+      locked: "Tu cuenta ha sido bloqueada."
+      last_attempt: "Tienes un último intento antes de que tu cuenta sea bloqueada."
+      not_found_in_database: "%{authentication_keys} o contraseña inválidos."
+      timeout: "Tu sesión ha expirado, por favor inicia sesión nuevamente para continuar."
+      unauthenticated: "Necesitas iniciar sesión o registrarte para continuar."
+      unconfirmed: "Debes confirmar tu cuenta para continuar."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrucciones de confirmación"
+      reset_password_instructions:
+        subject: "Instrucciones para restablecer tu contraseña"
+      unlock_instructions:
+        subject: "Instrucciones de desbloqueo"
+    omniauth_callbacks:
+      failure: "No se te ha podido autorizar de %{kind} debido a \"%{reason}\"."
+      success: "Identificado correctamente de %{kind}."
+    passwords:
+      no_token: "No puedes acceder a esta página si no es a través de un enlace para restablecer la contraseña. Si has accedido desde el enlace para restablecer la contraseña, asegúrate de que la URL esté completa."
+      send_instructions: "Recibirás un correo electrónico con instrucciones sobre cómo restablecer tu contraseña en unos minutos."
+      send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos, recibirás un enlace para restablecer la contraseña en unos minutos."
+      updated: "Tu contraseña ha cambiado correctamente. Has sido identificado correctamente."
+      updated_not_active: "Tu contraseña se ha cambiado correctamente."
+    registrations:
+      destroyed: "¡Adiós! Tu cuenta ha sido cancelada. Esperamos volver a verte pronto."
+      signed_up: "¡Bienvenido! Has sido identificado."
+      signed_up_but_inactive: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta no ha sido activada."
+      signed_up_but_locked: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta está bloqueada."
+      signed_up_but_unconfirmed: "Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta."
+      update_needs_confirmation: "Has actualizado tu cuenta correctamente, sin embargo necesitamos verificar tu nueva cuenta de correo. Por favor revisa tu correo electrónico y visita el enlace para finalizar la confirmación de tu nueva dirección de correo electrónico."
+      updated: "Has actualizado tu cuenta correctamente."
+    sessions:
+      signed_in: "Has iniciado sesión correctamente."
+      signed_out: "Has cerrado la sesión correctamente."
+      already_signed_out: "Has cerrado la sesión correctamente."
+    unlocks:
+      send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
+      send_paranoid_instructions: "Si tu cuenta existe, recibirás un correo electrónico en unos minutos con instrucciones sobre cómo desbloquear tu cuenta."
+      unlocked: "Tu cuenta ha sido desbloqueada. Por favor inicia sesión para continuar."
