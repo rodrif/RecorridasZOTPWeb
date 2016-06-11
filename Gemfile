@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
