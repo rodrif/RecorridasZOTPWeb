@@ -40,6 +40,11 @@ es:
         descripcion: Descripción
       familia:
         descripcion: Descripción
+      notificacion:
+        titulo: Título
+        subtitulo: Subtítulo
+        descripcion: Descripción
+        frecuencia_cant: Frecuencia
     models:
       user:
         zero:  Usuario
@@ -73,6 +78,10 @@ es:
         zero:  Referente
         one:   Referente
         other: Referentes
+      notificacion:
+        zero:  Notificación
+        one:   Notificación
+        other: Notificaciones
   date:
     abbr_day_names:
     - dom

@@ -12,6 +12,7 @@ class Auditoria < ActiveRecord::Base
   VISITA = 'Visita'
   ZONA = 'Zona'
   USUARIO = 'Usuario'
+  NOTIFICACION = 'Notificación'
 
   self.per_page = 20
 

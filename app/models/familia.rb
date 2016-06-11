@@ -1,13 +1,13 @@
 class Familia < ActiveRecord::Base
   attr_accessor :area_id
-  
+  extend ModelHelper
   belongs_to :area # TODO borrar
   belongs_to :zone
   belongs_to :ranchada
   belongs_to :state
 
   validates :nombre, presence: true,
-    format: { with: /\A[a-zA-Z\sáéíóúÁÉÍÓÚ]+\z/, message: I18n.t('common.errores.solo_letras') }
+    format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
   validates :zone, presence: true
 
   self.per_page = 20

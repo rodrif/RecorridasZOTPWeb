@@ -9,13 +9,11 @@ class PeopleController < ApplicationController
 
   def mobGuardarPersonasPost
     respuesta = PersonDataAccess.guardarPersonasFromJson params['datos'], params['fecha']
-
     render :json => respuesta
   end
 
   def mobRecibirPersonasDesde    
     respuesta = PersonDataAccess.getPersonasDesde params['datos'], params['fecha']
-
     render :json => respuesta
   end
 
@@ -36,7 +34,7 @@ class PeopleController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @people = @filterrific.find.activas.page(params[:page])
+    @people = @filterrific.find.includes(zone: [:area]).activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

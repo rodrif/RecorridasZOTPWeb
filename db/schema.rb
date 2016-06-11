@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514142853) do
+ActiveRecord::Schema.define(version: 20160611124209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,50 @@ ActiveRecord::Schema.define(version: 20160514142853) do
   add_index "familias", ["ranchada_id"], name: "index_familias_on_ranchada_id", using: :btree
   add_index "familias", ["state_id"], name: "index_familias_on_state_id", using: :btree
   add_index "familias", ["zone_id"], name: "index_familias_on_zone_id", using: :btree
+
+  create_table "frecuencia_tipos", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "code"
+  end
+
+  create_table "notificacion_roles", force: :cascade do |t|
+    t.integer  "notificacion_id"
+    t.integer  "rol_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "notificacion_roles", ["notificacion_id"], name: "index_notificacion_roles_on_notificacion_id", using: :btree
+  add_index "notificacion_roles", ["rol_id"], name: "index_notificacion_roles_on_rol_id", using: :btree
+
+  create_table "notificacion_tipos", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "code"
+  end
+
+  create_table "notificaciones", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "subtitulo"
+    t.datetime "fecha_desde"
+    t.datetime "fecha_hasta"
+    t.integer  "notificacion_tipo_id"
+    t.text     "descripcion"
+    t.integer  "frecuencia_cant"
+    t.integer  "frecuencia_tipo_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "state_id"
+    t.datetime "proxEnvio"
+    t.boolean  "finalizada"
+  end
+
+  add_index "notificaciones", ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id", using: :btree
+  add_index "notificaciones", ["notificacion_tipo_id"], name: "index_notificaciones_on_notificacion_tipo_id", using: :btree
+  add_index "notificaciones", ["state_id"], name: "index_notificaciones_on_state_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "nombre"
@@ -128,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160514142853) do
     t.boolean  "puede_borrar_visita"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "code"
   end
 
   create_table "states", force: :cascade do |t|
@@ -216,6 +261,11 @@ ActiveRecord::Schema.define(version: 20160514142853) do
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"
+  add_foreign_key "notificacion_roles", "notificaciones"
+  add_foreign_key "notificacion_roles", "roles"
+  add_foreign_key "notificaciones", "frecuencia_tipos"
+  add_foreign_key "notificaciones", "notificacion_tipos"
+  add_foreign_key "notificaciones", "states"
   add_foreign_key "people", "familias"
   add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"

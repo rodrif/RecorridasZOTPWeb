@@ -1,0 +1,47 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info notificaciones %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>SubTítulo</th>
+          <th>Desde</th>
+          <th>Hasta</th>
+          <th>Tipo</th>
+          <th>Frecuencia</th>
+          <th>Roles</th>
+          <th>Ver / Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @notificaciones.each do |notificacion| %>
+          <tr>
+            <td><%= notificacion.titulo %></td>
+            <td><%= notificacion.subtitulo %></td>
+            <td><%= notificacion.fecha_desde %></td>
+            <td><%= notificacion.fecha_hasta %></td>
+            <td><%= notificacion.notificacion_tipo.nombre if !notificacion.notificacion_tipo.nil? %></td>
+            <td><%= notificacion.frecuencia %></td>
+            <td>
+              <% notificacion.roles.each do |rol| %>
+                <%= rol.nombre %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Ver / Editar', edit_notificacion_path(notificacion) %></td>
+            <td><%= link_to 'Borrar', notificacion, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate notificaciones, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>
