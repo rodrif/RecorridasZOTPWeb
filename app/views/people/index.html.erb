@@ -1,0 +1,11 @@
+
+
+<h2 class="sub-header">Personas</h2>
+
+<%= render 'layouts/filtros' %>
+
+<%= render 'people/list', people: @people %>
+  
+<br>
+
+<%= render 'layouts/new_button', :label => 'Nueva persona', :path => new_person_path %>

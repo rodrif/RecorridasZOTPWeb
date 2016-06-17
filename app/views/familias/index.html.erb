@@ -1,0 +1,11 @@
+
+
+<h2 class="sub-header">Familias</h2>
+
+<%= render 'layouts/filtros', label_searcher: "Nombre" %>
+
+<%= render 'list', familias: @familias %>
+
+<br>
+
+<%= render 'layouts/new_button', :label => 'Nueva familia', :path => new_familia_path %>

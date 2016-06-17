@@ -1,0 +1,31 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info areas %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Ver / Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @areas.each do |area| %>
+          <tr>
+            <td><%= area.nombre %></td>
+            <td><%= link_to 'Ver / Editar', edit_area_path(area) %></td>
+            <td><%= link_to 'Borrar', area, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate areas, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>

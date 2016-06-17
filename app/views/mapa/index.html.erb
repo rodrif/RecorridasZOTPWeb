@@ -1,0 +1,10 @@
+
+
+<div id="googleMap" class="mapaPersonas row-fluid"></div>
+
+<%= content_tag "div", id: "personas", data: {personas: @personas } do %>
+<% end %>
+
+<script defer>
+    loadIndexAction();
+</script>

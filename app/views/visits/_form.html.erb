@@ -1,0 +1,64 @@
+<%= form_for(@visit, :html => {:class => 'form-horizontal container-fluid'})  do |f| %>
+  <% if @visit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+
+      <ul>
+      <% @visit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Persona", class: "col-md-1 control-label", for: "visit_person_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>  
+
+  <div class="form-group">
+    <%= f.label :fecha, class: "col-md-1 control-label", for: "visit_fecha" %>
+    <div class="col-md-10">
+      <%= f.date_field :fecha, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Comentario', class: "col-md-1 control-label", for: "visit_descripcion" %>
+    <div class="col-md-10">
+      <%= f.text_area :descripcion, class: "form-control", type: "text" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <% if !Rails.env.production? %>
+      <%= f.label :latitud, class: "col-md-1 control-label", for: "visit_latitud" %>
+      <div class="col-md-4">
+        <%= f.text_field :latitud, class: "form-control" %>
+      </div>
+      <%= f.label :longitud, class: "col-md-1 control-label", for: "visit_longitud" %>
+      <div class="col-md-4">
+        <%= f.text_field :longitud, class: "form-control" %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :latitud, class: "form-control" %>
+      <%= f.hidden_field :longitud, class: "form-control" %>
+    <% end %>
+  </div>
+
+   <div class="form-group">
+    <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapVisita" %>
+    <div class="col-md-10">
+      <div id="googleMapVisita" class="mapaUbicacionZona form-control"></div>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: visits_path(nil, :person_id => params[:person_id]), f: f, remote: false %>
+
+<% end %>
+
+ <script defer>
+  loadMapaScript('cargarUbicacionVisita');
+ </script>

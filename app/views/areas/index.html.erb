@@ -1,0 +1,24 @@
+
+
+<h2 class="sub-header">Áreas</h2>
+
+<div class="table-responsive well">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row-fluid">
+      <div class="col-md-12">
+        Nombre
+        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed'
+        ) %>
+      </div>
+    </div>    
+  <% end %>
+</div>
+
+<%= render 'list', areas: @areas %>
+
+<br>
+
+<%= render 'layouts/new_button', :label => 'Nueva área', :path => new_area_path %>

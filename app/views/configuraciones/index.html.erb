@@ -1,0 +1,11 @@
+
+
+<h2 class="sub-header">Configuraciones</h2>
+
+<% if current_user.rol_id == 1 %>
+  <%= link_to "Auditoría", auditoria_index_path %><br />
+  <%= link_to "Notificaciones", notificaciones_path %><br />
+  <%= link_to "Usuarios", users_path %><br />
+<% end %>
+
+<%= link_to "Mis datos", edit_user_registration_path(current_user) %><br />

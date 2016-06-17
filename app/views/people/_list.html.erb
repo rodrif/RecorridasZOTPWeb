@@ -1,0 +1,55 @@
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info people %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Área</th>
+        <th>Zona</th>
+        <th>Visitas</th>
+        <th><%= t("common.ver_editar") %></th>
+        <% if current_user && current_user.rol.puede_borrar_persona %>
+          <th>Borrar</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @people.each do |person| %>
+        <tr>
+          <td><%= person.id %></td>
+          <td><%= person.nombre %></td>
+          <td><%= person.apellido %></td>
+          <% if person.zone.nil? %>
+            <td>Sin area</td>
+          <% else %>
+            <td><%= person.zone.area.nombre %></td>
+          <% end %>
+          <% if person.zone.nil? %>
+            <td>Sin zona</td>
+          <% else %>
+            <td><%= person.zone.nombre %></td>
+          <% end %>
+          <td><%= link_to "Visitas", :controller => 'visits', :action => :index, :person_id => person.id %></td>
+
+
+          <td><%= link_to t("common.ver_editar"), edit_person_path(person) %></td>
+
+          <% if current_user && current_user.rol.puede_borrar_persona %>
+            <td><%= link_to 'Borrar', person, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+
+</div>
+

@@ -1,0 +1,61 @@
+<%# Conditionally set remote: true. Also, passing model name as data attribute %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<% label_col = remote ? "col-md-2" : "col-md-1" %>
+<% input_col = remote ? "col-md-9" : "col-md-10 " %>
+
+<%= form_for(@zone, remote: remote, :html => {'data-model' => 'zone', :class => 'form-horizontal container-fluid'} ) do |f| %>
+  <% if @zone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+      
+      <ul>
+      <% @zone.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "zone_nombre", f: f, remote: remote %>
+
+
+  <div class="form-group">
+    <%= f.label "Área", class: "#{label_col} control-label", for: "zone_area_id" %>
+    <div class="<%= input_col %>">
+      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+         
+  <div class="form-group">
+    <% if !Rails.env.production? %>
+      <%= f.label :latitud, class: "#{label_col} control-label", for: "zone_latitud" %>
+      <div class="col-md-4">
+        <%= f.text_field :latitud, class: "form-control" %>
+      </div>
+      <%= f.label :longitud, class: "#{label_col} control-label", for: "zone_longitud" %>
+      <div class="col-md-4">
+        <%= f.text_field :longitud, class: "form-control" %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :latitud, class: "form-control" %>
+      <%= f.hidden_field :longitud, class: "form-control" %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Ubicación', class: "#{label_col} control-label", for: "googleMapZona" %>
+    <div class="<%= input_col %>">
+      <div id="googleMapZona" class="mapaUbicacionZona form-control"></div>
+    </div>
+  </div>  
+
+  <%= render 'layouts/buttons_submit', path: zones_path, f: f, remote: remote %>
+
+<% end %>
+
+<% if !remote %>
+  <script defer>
+    loadMapaScript('cargarUbicacionZona');
+  </script>
+<% end %>

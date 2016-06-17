@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mensaje: MyString
+  fecha_desde: 2015-07-06 20:31:20
+  fecha_hasta: 2015-07-06 20:31:20
+  person: facundo
+
+two:
+  mensaje: MyString
+  fecha_desde: 2015-07-06 20:31:20
+  fecha_hasta: 2015-07-06 20:31:20
+  person: facundo
+
+mensajeActivo:
+  mensaje: mensaje1
+  fecha_desde: 2014-07-06 20:31:20
+  fecha_hasta: 2016-07-06 20:31:20
+  person: facundo
+
+mensajeMasActivo:
+  mensaje: mensaje2
+  fecha_desde: 2014-09-16 20:31:20
+  fecha_hasta: 2018-10-06 20:31:20
+  person: facundo
+
+mensajeVencido:
+  mensaje: "mensaje vencido"
+  fecha_desde: 2015-01-06 20:31:20
+  fecha_hasta: 2015-05-06 20:31:20
+  person: facundo 

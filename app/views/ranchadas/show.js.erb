@@ -1,0 +1,9 @@
+$('#new_ranchada_modal').modal_success();
+$('#person_area_id').val(<%= @ranchada.zone.area.id %>);
+$('#person_zone_id').html("<%= escape_javascript select 'person', 'zone_id', Zone.where(area_id: @ranchada.zone.area.id).order(:nombre).collect {|z| [z.nombre, z.id]}, :include_blank => false %>");
+$('#person_zone_id').val(<%= @ranchada.zone.id %>);
+$('#person_ranchada_id').html("<%= escape_javascript select 'person', 'ranchada_id', Ranchada.where(zone_id: @ranchada.zone.id).order(:nombre).collect {|r| [r.nombre, r.id]}, :include_blank => 'Ninguna' %>");
+$('#person_ranchada_id').val(<%= @ranchada.id %>);
+$('#person_ranchada_id').change();
+
+<%= render 'common/defaultDropdowns'%>

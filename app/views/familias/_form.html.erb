@@ -1,0 +1,70 @@
+<%# Conditionally set remote: true. Also, passing model name as data attribute %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+
+<%= form_for(@familia, remote: remote, :html => {'data-model' => 'familia', :class => 'form-horizontal container-fluid'}) do |f| %>
+  <% if @familia.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+
+      <ul>
+      <% @familia.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "familia_nombre", f: f, remote: remote %>
+
+  <div class="form-group">
+    <% if remote %>
+      <%= f.label "Área", class: "col-md-2 control-label", for: "familia_area_id" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label "Área", class: "col-md-1 control-label", for: "familia_area_id" %>
+      <div class="col-md-10">
+    <% end %>
+      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <% if remote %>
+      <%= f.label "Zona", class: "col-md-2 control-label", for: "familia_zona_id" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label "Zona", class: "col-md-1 control-label", for: "familia_zona_id" %>
+      <div class="col-md-10">
+    <% end %>
+      <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <% if remote %>
+      <%= f.label "Ranchada", class: "col-md-2 control-label", for: "familia_ranchada_id" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label "Ranchada", class: "col-md-1 control-label", for: "familia_ranchada_id" %>
+      <div class="col-md-10">
+    <% end %>
+      <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+  <% if remote %>
+      <%= f.label :descripcion, class: "col-md-2 control-label", for: "familia_descripcion" %>
+      <div class="col-md-9">
+    <% else %>
+      <%= f.label :descripcion, class: "col-md-1 control-label", for: "familia_descripcion" %>
+      <div class="col-md-10">
+    <% end %>
+      <%= f.text_area :descripcion, class: "form-control" %>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: familias_path, f: f, remote: remote %>
+
+<% end %>
