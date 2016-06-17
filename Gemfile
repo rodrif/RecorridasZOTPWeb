@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+#source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -15,6 +16,7 @@ group :production do
 	gem 'rails_12factor'
 end
 
+gem "daemons"
 gem 'delayed_job_active_record'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'will_paginate-bootstrap'
@@ -41,7 +43,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+#gem 'sdoc', '~> 0.4.0', group: :doc #problemas con openshift
 
 gem 'faker'
 
