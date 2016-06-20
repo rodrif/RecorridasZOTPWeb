@@ -1,10 +1,13 @@
 class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
+  extend ModelHelper
   after_validation :ensure_uid
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable #, :validatable por doble validacion
+
+  validates :telefono, allow_blank: true, numericality: { only_integer: true }
 
   belongs_to :rol
   belongs_to :area
