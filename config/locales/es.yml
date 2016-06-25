@@ -36,6 +36,7 @@ es:
         password: Contraseña
         password_confirmation: Confirmar contraseña
         current_password: Contraseña actual
+        telefono: Teléfono
       ranchada:
         descripcion: Descripción
       familia:
