@@ -15,9 +15,11 @@ class NotificacionDataAccess
   #   respuesta
   # end
 
-  def self.programar
-    delay(:run_at => Proc.new { 1.seconds.from_now }).enviar
-    #delay.enviar
+  def self.enviarNotificaciones
+    notificaciones = Notificacion.where("prox_envio < ? AND NOT state_id = ? AND finalizada = ?", Time.now.utc, 3, false)
+    delay.enviar notificaciones
+    #delay(:run_at => Proc.new { 1.seconds.from_now }).enviarPrueba
+    #delay.enviarPrueba
   end
 
   def self.borrar_logico notificacion, user
@@ -30,13 +32,35 @@ class NotificacionDataAccess
 
   private
 
-  def self.enviar
+  def self.enviar notificaciones
+    Notificacion.transaction do
+      notificaciones.each do |notificacion|
+        url = URI.parse('https://gcm-http.googleapis.com/gcm/send')
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
+        request.body = "{
+          \"to\": \"/topics/facundo\",
+          \"data\": {
+            \"titulo\": \"#{notificacion.titulo}\",
+            \"subtitulo\": \"#{notificacion.subtitulo}\",
+            \"descripcion\": \"#{notificacion.descripcion}\",
+           }
+        }"
+        notificacion.calcularProxEnvio
+        notificacion.save
+        response = http.request(request)
+      end
+    end
+  end
+
+  def self.enviarPrueba
     url = URI.parse('https://gcm-http.googleapis.com/gcm/send')
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
     request.body = '{
-      "to": "/topics/global",
+      "to": "/topics/facundo",
       "data": {
         "message": "Juan cumple años",
         "title": "Cumpleaños!!!",  

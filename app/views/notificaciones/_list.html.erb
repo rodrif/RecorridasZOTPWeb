@@ -12,6 +12,7 @@
           <th>SubTítulo</th>
           <th>Desde</th>
           <th>Hasta</th>
+          <th>Prox Notificación</th>
           <th>Tipo</th>
           <th>Frecuencia</th>
           <th>Roles</th>
@@ -27,6 +28,7 @@
             <td><%= notificacion.subtitulo %></td>
             <td><%= notificacion.fecha_desde %></td>
             <td><%= notificacion.fecha_hasta %></td>
+            <td><%= notificacion.prox_envio %></td>
             <td><%= notificacion.notificacion_tipo.nombre if !notificacion.notificacion_tipo.nil? %></td>
             <td><%= notificacion.frecuencia %></td>
             <td>

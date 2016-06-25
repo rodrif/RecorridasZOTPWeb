@@ -40,7 +40,10 @@ class NotificacionesController < ApplicationController
   # POST /notificacion.json
   def create
     @notificacion = Notificacion.new(notificacion_params)
-    @notificacion.state = State.find_by_nombre('Actualizado');
+    @notificacion.state = State.find_by_nombre('Actualizado')
+    @notificacion.prox_envio = @notificacion.fecha_desde
+    @notificacion.finalizada = false
+    # TODO si es unica y fecha_desde es en el pasado, enviarla y finalizarla
     respond_to do |format|
       if @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::NOTIFICACION, @notificacion
@@ -59,7 +62,10 @@ class NotificacionesController < ApplicationController
   def update
     respond_to do |format|
       if @notificacion.update(notificacion_params)
-        NotificacionDataAccess.programar
+        @notificacion.prox_envio = @notificacion.fecha_desde
+        # TODO revisar no esta bien
+        @notificacion.finalizada = false
+        @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::NOTIFICACION, @notificacion
         format.html { redirect_to notificaciones_url, notice: 'Notificación actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @notificacion }

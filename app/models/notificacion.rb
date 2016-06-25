@@ -10,7 +10,7 @@ class Notificacion < ActiveRecord::Base
   validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, allow_blank: true, numericality: { only_integer: true }
   validate :fecha_desde_mayor_fecha_hasta
-  validate :fecha_desde_en_el_pasado
+  validate :fecha_desde_en_el_pasado, on: :create
   validate :sin_roles
 
   def sin_roles
@@ -29,6 +29,29 @@ class Notificacion < ActiveRecord::Base
     if frecuencia_tipo_id != 1 && fecha_hasta.comparable_time < fecha_desde.comparable_time
       errors.add(:fecha_hasta, "no puede ser anterior a fecha desde")
     end
+  end
+
+  def calcularProxEnvio
+    if self.frecuencia_tipo_id != FrecuenciaTipo::UNICA
+      case self.frecuencia_tipo_id
+      when FrecuenciaTipo::DIA
+        prox = self.prox_envio.advance(days: frecuencia_cant)
+      when FrecuenciaTipo::SEMANA
+        prox = self.prox_envio.advance(weeks: frecuencia_cant)
+      when FrecuenciaTipo::MES
+        prox = self.prox_envio.advance(months: frecuencia_cant)
+      else
+        prox = self.fecha_hasta # para que quede finalizada
+      end
+      if prox.comparable_time < self.fecha_hasta.comparable_time
+        self.prox_envio = prox
+      else
+        self.finalizada = true
+      end
+    else
+      self.finalizada = true
+    end
+    self.save
   end
 
   filterrific(
