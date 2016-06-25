@@ -239,6 +239,7 @@ DEPENDENCIES
   devise_token_auth (~> 0.1.31)
   faker
   filterrific
+  i18n
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails (~> 5.0, >= 5.0.5)
