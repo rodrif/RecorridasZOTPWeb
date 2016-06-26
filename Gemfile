@@ -16,7 +16,6 @@ group :production do
 	gem 'rails_12factor'
 end
 
-gem "i18n"
 gem "daemons"
 gem 'delayed_job_active_record'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
