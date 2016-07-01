@@ -51,7 +51,9 @@ class Notificacion < ActiveRecord::Base
     else
       self.finalizada = true
     end
-    self.save
+    if self.prox_envio.past? && !self.finalizada
+      self.calcularProxEnvio
+    end
   end
 
   filterrific(
