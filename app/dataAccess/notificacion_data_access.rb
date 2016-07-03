@@ -15,6 +15,18 @@ class NotificacionDataAccess
   #   respuesta
   # end
 
+  def self.proxCumpleanios
+    personas = Person.getCumpleanios(3).to_a
+    url = self.createUrl
+    http = self.createHttp(url)
+    personas.each do |p|
+      notificacion = Notificacion.new
+      notificacion.titulo = 'Cumpleaños'
+      notificacion.subtitulo = "#{p.full_name} cumple años en 3 días!!"
+      response = http.request(self.createRequest(url, notificacion))
+    end
+  end
+
   def self.enviarCumpleanios
     personas = Person.getCumpleanios.to_a
     url = self.createUrl
