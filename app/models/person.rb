@@ -27,6 +27,12 @@ class Person < ActiveRecord::Base
     ]
   )
 
+  def cumple_en dias = 0
+    return self.state_id != 3 && self.fecha_nacimiento && self.fecha_nacimiento.strftime('%e %b') == Time.now.utc.advance(days: dias).strftime('%e %b')
+  end
+
+  scope :getCumpleanios, -> (dias = 0) { where.not(state_id: 3).select {|p| p.cumple_en(dias)} }
+
   def full_name
     "#{nombre} #{apellido}"
   end

@@ -16,6 +16,30 @@ class NotificacionDataAccess
   #   respuesta
   # end
 
+  def self.proxCumpleanios
+    personas = Person.getCumpleanios(3).to_a
+    url = self.createUrl
+    http = self.createHttp(url)
+    personas.each do |p|
+      notificacion = Notificacion.new
+      notificacion.titulo = 'Cumpleaños'
+      notificacion.subtitulo = "#{p.full_name} cumple años en 3 días!!"
+      response = http.request(self.createRequest(url, notificacion))
+    end
+  end
+
+  def self.enviarCumpleanios
+    personas = Person.getCumpleanios.to_a
+    url = self.createUrl
+    http = self.createHttp(url)
+    personas.each do |p|
+      notificacion = Notificacion.new
+      notificacion.titulo = 'Cumpleaños'
+      notificacion.subtitulo = "#{p.full_name} cumple años hoy!!"
+      response = http.request(self.createRequest(url, notificacion))
+    end
+  end
+
   def self.enviarNotificaciones
     notificaciones = Notificacion.where("prox_envio < ? AND NOT state_id = ? AND finalizada = ?", Time.now.utc, 3, false)
     delay.enviar notificaciones
@@ -33,24 +57,37 @@ class NotificacionDataAccess
 
   private
 
+  def self.createUrl
+    return URI.parse('https://gcm-http.googleapis.com/gcm/send')
+  end
+
+  def self.createHttp url
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    return http
+  end
+
+  def self.createRequest url, notificacion
+    request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
+    request.body = "{
+      \"to\": \"/topics/facundo\",
+      \"data\": {
+        \"titulo\": \"#{notificacion.titulo}\",
+        \"subtitulo\": \"#{notificacion.subtitulo}\",
+        \"descripcion\": \"#{notificacion.descripcion}\",
+       }
+    }"
+    return request
+  end
+
   def self.enviar notificaciones
+    url = self.createUrl
     Notificacion.transaction do
+      http = self.createHttp(url)
       notificaciones.each do |notificacion|
-        url = URI.parse('https://gcm-http.googleapis.com/gcm/send')
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
-        request.body = "{
-          \"to\": \"/topics/facundo\",
-          \"data\": {
-            \"titulo\": \"#{notificacion.titulo}\",
-            \"subtitulo\": \"#{notificacion.subtitulo}\",
-            \"descripcion\": \"#{notificacion.descripcion}\",
-           }
-        }"
         notificacion.calcularProxEnvio
         notificacion.save
-        response = http.request(request)
+        response = http.request(self.createRequest(url, notificacion))
       end
     end
   end
@@ -67,7 +104,6 @@ class NotificacionDataAccess
         "title": "Cumpleaños!!!",  
        }
     }'
-
     response = http.request(request)
   end
 
