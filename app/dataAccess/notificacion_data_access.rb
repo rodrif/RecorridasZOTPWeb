@@ -24,6 +24,8 @@ class NotificacionDataAccess
       notificacion = Notificacion.new
       notificacion.titulo = 'Cumpleaños'
       notificacion.subtitulo = "#{p.full_name} cumple años en 3 días!!"
+      notificacion.notificacion_tipo = NotificacionTipo.new
+      notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
       Rol.activos.each do |r|
         response = http.request(self.createRequest(url, notificacion, r.nombre))
       end
@@ -38,6 +40,8 @@ class NotificacionDataAccess
       notificacion = Notificacion.new
       notificacion.titulo = 'Cumpleaños'
       notificacion.subtitulo = "#{p.full_name} cumple años hoy!!"
+      notificacion.notificacion_tipo = NotificacionTipo.new
+      notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
       Rol.activos.each do |r|
         response = http.request(self.createRequest(url, notificacion, r.nombre))
       end
@@ -79,6 +83,7 @@ class NotificacionDataAccess
         \"titulo\": \"#{notificacion.titulo}\",
         \"subtitulo\": \"#{notificacion.subtitulo}\",
         \"descripcion\": \"#{notificacion.descripcion}\",
+        \"tipo\": \"#{notificacion.notificacion_tipo.code}\"
        }
     }"
     return request
