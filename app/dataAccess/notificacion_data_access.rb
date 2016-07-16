@@ -77,7 +77,7 @@ class NotificacionDataAccess
         \"subtitulo\": \"#{notificacion.subtitulo}\",
         \"descripcion\": \"#{notificacion.descripcion}\",
         \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
-        \"persona_id\": #{personaId ? personaId : -1}
+        \"persona_id\": \"#{personaId ? personaId : ''}\"
        }
     }"
     return request
