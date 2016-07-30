@@ -8,7 +8,7 @@ class Notificacion < ActiveRecord::Base
   validates :titulo, :subtitulo, :fecha_desde, :frecuencia_tipo_id, :presence => true
   validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
-  validates :frecuencia_cant, allow_blank: true, numericality: { only_integer: true }
+  validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
   validate :fecha_desde_mayor_fecha_hasta
   validate :fecha_desde_en_el_pasado, on: :create
   validate :sin_roles
@@ -16,6 +16,27 @@ class Notificacion < ActiveRecord::Base
   def sin_roles
     if !notificacion_roles.any?
       errors.add(:roles, "no puede estar en blanco")
+    end
+  end
+
+  def necesitaCalcularProxEnvio notificacion_params
+    if (notificacion_params['fecha_desde'] != self.fecha_desde)
+      return true
+    end
+    if (self.frecuencia_tipo.code != FrecuenciaTipo::UNICA && notificacion_params['fecha_hasta'] != self.fecha_hasta)
+      return true
+    end
+    if (notificacion_params['frecuencia_tipo_id'].to_i != self.frecuencia_tipo_id)
+      return true
+    end
+    if (self.frecuencia_tipo.code != FrecuenciaTipo::UNICA)
+      if (notificacion_params['frecuencia_cant'].to_i != self.frecuencia_cant)
+        return true
+      else
+        return false
+      end
+    else
+      return false
     end
   end
 
