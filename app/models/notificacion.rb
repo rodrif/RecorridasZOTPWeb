@@ -134,7 +134,7 @@ class Notificacion < ActiveRecord::Base
   end
 
   def tiene_rol?(rol_id)
-    roles.any? { |r| r.id == rol_id }
+    roles.any? { |r| r.id == rol_id } || notificacion_roles.any? { |nr| self.id == nr.notificacion_id && nr.rol_id == rol_id }
   end
 
   def setup_roles!
