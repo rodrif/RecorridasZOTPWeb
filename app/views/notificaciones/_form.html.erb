@@ -42,7 +42,7 @@
   <div class="form-group">
     <%= f.label 'Tipo', class: "col-md-1 control-label", for: "notificacion_tipo_id" %>
     <div class="col-md-10">
-      <%= f.collection_select :notificacion_tipo_id, NotificacionTipo.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+      <%= f.collection_select :notificacion_tipo_id, NotificacionTipo.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
 

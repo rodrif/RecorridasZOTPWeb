@@ -61,20 +61,18 @@ class NotificacionesController < ApplicationController
   # PATCH/PUT /notificacion/1.json
   def update
     respond_to do |format|
-      if @notificacion.finalizada
+      if @notificacion.finalizada || @notificacion.necesitaCalcularProxEnvio(notificacion_params)
         exitoActualziar = @notificacion.update(notificacion_params)
-        if @notificacion.fecha_desde_en_el_pasado
+        if @notificacion.finalizada && @notificacion.fecha_desde_en_el_pasado
           exitoActualziar = false
         end
-        @notificacion.prox_envio = @notificacion.fecha_desde
         @notificacion.finalizada = false
-      else
-        exitoActualziar = @notificacion.update(notificacion_params)
+        @notificacion.prox_envio = @notificacion.fecha_desde
         if @notificacion.fecha_desde.past?
           @notificacion.calcularProxEnvio
-        else
-          @notificacion.prox_envio = @notificacion.fecha_desde
         end
+      else
+        exitoActualziar = @notificacion.update(notificacion_params)
       end
       if exitoActualziar
         @notificacion.save
