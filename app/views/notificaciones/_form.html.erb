@@ -28,14 +28,16 @@
   <div class="form-group">
     <%= f.label :fecha_desde, class: "col-md-1 control-label", id:"label_fecha_desde", for: "notificacion_fecha_desde" %>
     <div class="col-md-10">
-      <%= f.datetime_select :fecha_desde, class: "form-control" %>
+      <%= f.datetime_select :fecha_desde, class: "form-control", discard_minute: true %>
+      hs
     </div>
   </div>
 
   <div class="form-group" id="notificacion_fecha_hasta">
     <%= f.label :fecha_hasta, class: "col-md-1 control-label", for: "notificacion_fecha_hasta" %>
     <div class="col-md-10">
-      <%= f.datetime_select :fecha_hasta, class: "form-control" %>
+      <%= f.datetime_select :fecha_hasta, class: "form-control", discard_minute: true %>
+      hs
     </div>
   </div>
 
