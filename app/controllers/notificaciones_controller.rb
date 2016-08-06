@@ -68,7 +68,7 @@ class NotificacionesController < ApplicationController
         end
         @notificacion.finalizada = false
         @notificacion.prox_envio = @notificacion.fecha_desde
-        if @notificacion.fecha_desde.past?
+        if @notificacion.fecha_desde_en_el_pasado
           @notificacion.calcularProxEnvio
         end
       else
