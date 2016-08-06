@@ -43,13 +43,14 @@ class NotificacionDataAccess
 
   private
 
-  def self.enviarRequestCumpleanios personas, subtituloExtra
+  def self.enviarRequestCumpleanios personas, descripcion
     url = self.createUrl
     http = self.createHttp(url)
     personas.each do |p|
       notificacion = Notificacion.new
       notificacion.titulo = 'Cumpleaños'
-      notificacion.subtitulo = "#{p.full_name} #{subtituloExtra}"
+      notificacion.subtitulo = "#{p.full_name}"
+      notificacion.descripcion = "#{descripcion}"
       notificacion.notificacion_tipo = NotificacionTipo.new
       notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
       Rol.activos.each do |r|
