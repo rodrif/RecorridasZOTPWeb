@@ -28,7 +28,8 @@ class NotificacionDataAccess
 
   def self.enviarNotificaciones
     notificaciones = Notificacion.where("prox_envio < ? AND NOT state_id = ? AND finalizada = ?", Time.now.utc, 3, false)
-    delay.enviar notificaciones
+    self.enviar notificaciones
+    #delay.enviar notificaciones
     #delay(:run_at => Proc.new { 1.seconds.from_now }).enviarPrueba
     #delay.enviarPrueba
   end
