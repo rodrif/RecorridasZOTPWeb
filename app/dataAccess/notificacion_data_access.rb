@@ -17,26 +17,12 @@ class NotificacionDataAccess
 
   def self.proxCumpleanios
     personas = Person.getCumpleanios(3).to_a
-    url = self.createUrl
-    http = self.createHttp(url)
-    personas.each do |p|
-      notificacion = Notificacion.new
-      notificacion.titulo = 'Cumpleaños'
-      notificacion.subtitulo = "#{p.full_name} cumple años en 3 días!!"
-      response = http.request(self.createRequest(url, notificacion))
-    end
+    self.enviarRequestCumpleanios personas, "cumple años en 3 días!!"
   end
 
   def self.enviarCumpleanios
     personas = Person.getCumpleanios.to_a
-    url = self.createUrl
-    http = self.createHttp(url)
-    personas.each do |p|
-      notificacion = Notificacion.new
-      notificacion.titulo = 'Cumpleaños'
-      notificacion.subtitulo = "#{p.full_name} cumple años hoy!!"
-      response = http.request(self.createRequest(url, notificacion))
-    end
+    self.enviarRequestCumpleanios personas, "cumple años hoy!!"
   end
 
   def self.enviarNotificaciones
@@ -56,6 +42,22 @@ class NotificacionDataAccess
 
   private
 
+  def self.enviarRequestCumpleanios personas, descripcion
+    url = self.createUrl
+    http = self.createHttp(url)
+    personas.each do |p|
+      notificacion = Notificacion.new
+      notificacion.titulo = 'Cumpleaños'
+      notificacion.subtitulo = "#{p.full_name}"
+      notificacion.descripcion = "#{descripcion}"
+      notificacion.notificacion_tipo = NotificacionTipo.new
+      notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
+      Rol.activos.each do |r|
+        response = http.request(self.createRequest(url, notificacion, r.nombre, p.id))
+      end
+    end
+  end
+
   def self.createUrl
     return URI.parse('https://gcm-http.googleapis.com/gcm/send')
   end
@@ -66,14 +68,16 @@ class NotificacionDataAccess
     return http
   end
 
-  def self.createRequest url, notificacion
+  def self.createRequest url, notificacion, topic, personaId = nil
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
     request.body = "{
-      \"to\": \"/topics/facundo\",
+      \"to\": \"/topics/#{topic}\",
       \"data\": {
         \"titulo\": \"#{notificacion.titulo}\",
         \"subtitulo\": \"#{notificacion.subtitulo}\",
         \"descripcion\": \"#{notificacion.descripcion}\",
+        \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
+        \"persona_id\": \"#{personaId ? personaId : ''}\"
        }
     }"
     return request
@@ -86,7 +90,9 @@ class NotificacionDataAccess
       notificaciones.each do |notificacion|
         notificacion.calcularProxEnvio
         notificacion.save
-        response = http.request(self.createRequest(url, notificacion))
+        notificacion.roles.each do |r|
+          response = http.request(self.createRequest(url, notificacion, r.nombre))
+        end
       end
     end
   end
