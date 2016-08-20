@@ -17,6 +17,8 @@ group :production do
 end
 
 gem "daemons"
+gem 'jquery-turbolinks'
+gem 'whenever', :require => false
 gem 'delayed_job_active_record'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'will_paginate-bootstrap'

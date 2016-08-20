@@ -17,7 +17,7 @@ zonas = Zone.create!([
 	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0], state_id: 1 }
 ])
 
-notificaciones_tipo = NotificacionTipo.create!([{ nombre: 'Programada', code: 1 }, { nombre: 'Urgente', code: 2 }])
+notificaciones_tipo = NotificacionTipo.create!([{ nombre: 'Programada', code: 1 }, { nombre: 'Urgente', code: 2 }, { nombre: 'Cumpleaños', code: 3 }])
 
 frecuencias_tipo = FrecuenciaTipo.create!([{ nombre: 'Única', code: 1 }, { nombre: 'Día/s', code: 2 }, { nombre: 'Semana/s', code: 3 }, { nombre: 'Mes/es', code: 4 }])
 
