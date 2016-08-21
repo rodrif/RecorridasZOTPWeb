@@ -1,0 +1,30 @@
+
+<h2 class="sub-header">Voluntarios activos</h2>
+
+<div class="table-responsive well">
+
+  <%= form_for_filterrific @filterrific do |f| %>
+
+    <div class="row-fluid">
+      <div class="col-md-6">
+        Área
+        <%= f.select(
+          :with_area_id,
+          @filterrific.select_options[:with_area_id],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-md-offset-1 col-md-4">
+        Desde
+        <%= f.date_field :voluntarios_activos %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+
+<%= render 'voluntarios', voluntarios: @voluntarios %>

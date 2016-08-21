@@ -12,13 +12,15 @@ class User < ActiveRecord::Base
   belongs_to :rol
   belongs_to :area
   belongs_to :state
+  has_many :auditorias
 
   self.per_page = 20
 
   filterrific(
     available_filters: [
       :search_query,
-      :with_area_id
+      :with_area_id,
+      :voluntarios_activos
     ]
   )
 
@@ -51,6 +53,14 @@ class User < ActiveRecord::Base
   }
 
   scope :activos, -> { where.not(state_id: 3).order(:name) }
+
+  scope :voluntarios_activos, lambda { |reference_time = nil|
+    if reference_time.blank?
+      where.not(state_id: 3).includes(:auditorias).group(:user, :id).order(:name)
+    else
+      joins(:auditorias).where('fecha >= ?', reference_time).group("auditorias.id").order(:name)
+    end
+  }
 
   def ensure_uid
     if self.uid.blank?
