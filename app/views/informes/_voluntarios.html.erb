@@ -36,7 +36,7 @@
             <% if voluntario.auditorias.last.nil? %>
               <td></td>
             <% else %>
-            	<td><%= voluntario.auditorias.last.fecha %></td>
+              <td><%= voluntario.auditorias.order(:fecha).last.fecha %></td>
             <% end %>
           </tr>
         <% end %>

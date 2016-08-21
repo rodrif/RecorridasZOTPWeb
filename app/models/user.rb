@@ -54,12 +54,9 @@ class User < ActiveRecord::Base
 
   scope :activos, -> { where.not(state_id: 3).order(:name) }
 
-  scope :voluntarios_activos, lambda { |reference_time = nil|
-    if reference_time.blank?
-      where.not(state_id: 3).includes(:auditorias).group(:user, :id).order(:name)
-    else
-      joins(:auditorias).where('fecha >= ?', reference_time).group("auditorias.id").order(:name)
-    end
+  scope :voluntarios_activos, lambda { |reference_time|
+    return nil if reference_time.blank?
+    where.not(state_id: 3).joins(:auditorias).where('fecha >= ?', reference_time).group("users.id").order(:name)
   }
 
   def ensure_uid
