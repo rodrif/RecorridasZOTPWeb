@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   belongs_to :rol
   belongs_to :area
   belongs_to :state
+  has_many :auditorias
 
   self.per_page = 20
 
@@ -51,6 +52,8 @@ class User < ActiveRecord::Base
   }
 
   scope :activos, -> { where.not(state_id: 3).order(:name) }
+
+  scope :voluntarios_activos, -> { where.not(state_id: 3).includes(:auditorias).group(:user, :id).order(:name) }
 
   def ensure_uid
     if self.uid.blank?

@@ -1,4 +1,5 @@
 class Auditoria < ActiveRecord::Base
+  belongs_to :user
 
   ALTA = 'Alta'
   BAJA = 'Baja'

@@ -1,0 +1,50 @@
+
+<h2 class="sub-header">Voluntarios activos</h2>
+
+<div id="filterrific_results">
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Área</th>
+          <th>Rol</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Día</th>
+          <th>Fecha última actividad</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @voluntarios.each do |voluntario| %>
+          <tr>
+            <td><%= voluntario.name %></td>
+            <td><%= voluntario.apellido %></td>
+            <% if voluntario.area.nil? %>
+              <td>Sin Área</td>
+            <% else %>
+              <td><%= voluntario.area.nombre %></td>
+            <% end %>
+            <% if voluntario.rol.nil? %>
+              <td>Sin rol</td>
+            <% else %>
+              <td><%= voluntario.rol.nombre %></td>
+            <% end %>
+            <td><%= voluntario.email %></td>
+            <td><%= voluntario.telefono %></td>
+            <td><%= voluntario.dia %></td>
+            <% if voluntario.auditorias.last.nil? %>
+              <td></td>
+            <% else %>
+            	<td><%= voluntario.auditorias.last.fecha %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
