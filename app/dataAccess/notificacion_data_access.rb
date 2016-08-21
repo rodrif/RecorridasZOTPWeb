@@ -72,7 +72,7 @@ class NotificacionDataAccess
   def self.createRequest url, notificacion, topic, personaId = nil
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
     request.body = "{
-      \"to\": \"/topics/#{topic}\",
+      \"to\": \"/topics/#{topic + "-dev"}\",
       \"data\": {
         \"titulo\": \"#{notificacion.titulo}\",
         \"subtitulo\": \"#{notificacion.subtitulo}\",
@@ -96,21 +96,6 @@ class NotificacionDataAccess
         end
       end
     end
-  end
-
-  def self.enviarPrueba
-    url = URI.parse('https://gcm-http.googleapis.com/gcm/send')
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
-    request.body = '{
-      "to": "/topics/facundo",
-      "data": {
-        "message": "Juan cumple años",
-        "title": "Cumpleaños!!!",  
-       }
-    }'
-    response = http.request(request)
   end
 
 end
