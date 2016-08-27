@@ -23,7 +23,8 @@ class Person < ActiveRecord::Base
     available_filters: [
       :search_query,    
       :with_zone_id,
-      :with_area_id
+      :with_area_id,
+      :personas_activas
     ]
   )
 
@@ -69,6 +70,11 @@ class Person < ActiveRecord::Base
   }
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre, :apellido) }
+
+  scope :personas_activas, lambda { |reference_time|
+    return nil if reference_time.blank?
+    where.not(state_id: 3).joins(:visits).where('fecha >= ?', reference_time).group("people.id").order(:nombre)
+  }
   
   def getDescripcionAuditoria
     return "Nombre: #{nombre} Apellido: #{apellido} Área: #{zone.area.nombre if !zone.nil?} Zona: #{zone.nombre if !zone.nil?}"

@@ -1,0 +1,52 @@
+
+<h2 class="sub-header">Personas activas</h2>
+
+<div class="table-responsive well">
+
+  <%= form_for_filterrific @filterrific do |f| %>
+
+    <div class="row-fluid">
+      <div class="col-md-2">
+        Área
+        <%= f.select(
+          :with_area_id,
+          @filterrific.select_options[:with_area_id],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-md-3">
+        Zona
+        <%= f.select(
+          :with_zone_id,
+          @filterrific.select_options[:with_zone_id],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-md-4">
+        Nombre / Apodo
+        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed'
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-md-3">
+        Desde
+        <%= f.date_field :personas_activas, :value => @filterrific.to_hash()['personas_activas'] %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+
+<%= render 'personas', personas: @personas %>

@@ -1,0 +1,45 @@
+<div id="filterrific_results">
+
+  <span> Mostrando <b><%= @personas.length %></b> persona/s </span>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Área</th>
+          <th>Zona</th>
+          <th>Fecha última visita</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @personas.each do |persona| %>
+          <tr>
+            <td><%= persona.id %></td>
+            <td><%= persona.nombre %></td>
+            <td><%= persona.apellido %></td>
+            <% if persona.zone.nil? %>
+              <td>Sin area</td>
+            <% else %>
+              <td><%= persona.zone.area.nombre %></td>
+            <% end %>
+            <% if persona.zone.nil? %>
+              <td>Sin zona</td>
+            <% else %>
+              <td><%= persona.zone.nombre %></td>
+            <% end %>
+            <% if persona.visits.last.nil? %>
+              <td></td>
+            <% else %>
+              <td><%= persona.visits.order(:fecha).last.fecha %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
