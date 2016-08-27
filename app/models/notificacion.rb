@@ -77,6 +77,13 @@ class Notificacion < ActiveRecord::Base
     end
   end
 
+  def sacar_minutos
+    self.fecha_desde = self.fecha_desde.change(:min => 0)
+    if self.fecha_hasta
+      self.fecha_hasta = self.fecha_hasta.change(:min => 0)
+    end
+  end
+
   filterrific(
     available_filters: [
       :with_titulo,
