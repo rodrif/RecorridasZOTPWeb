@@ -137,7 +137,7 @@ class Notificacion < ActiveRecord::Base
   end
 
   def getDescripcionAuditoria
-    return "Título: #{titulo} Subtítulo: #{titulo} Tipo: #{notificacion_tipo.nombre if !notificacion_tipo.nil?} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Descripción: #{descripcion} Frecuencia #{frecuencia}"
+    return "Título: #{titulo} Subtítulo: #{titulo} Tipo: #{notificacion_tipo.nombre if !notificacion_tipo.nil?} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Prox envio: #{prox_envio} Descripción: #{descripcion} Frecuencia #{frecuencia}"
   end
 
   def tiene_rol?(rol_id)
