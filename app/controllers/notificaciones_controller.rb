@@ -43,7 +43,6 @@ class NotificacionesController < ApplicationController
     @notificacion.state = State.find_by_nombre('Actualizado')
     @notificacion.prox_envio = @notificacion.fecha_desde
     @notificacion.finalizada = false
-    # TODO si es unica y fecha_desde es en el pasado, enviarla y finalizarla
     respond_to do |format|
       if @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::NOTIFICACION, @notificacion
