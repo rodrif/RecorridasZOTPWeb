@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625122402) do
+ActiveRecord::Schema.define(version: 20160821155623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,10 @@ ActiveRecord::Schema.define(version: 20160625122402) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "descripcion"
+    t.integer  "user_id"
   end
+
+  add_index "auditorias", ["user_id"], name: "index_auditorias_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -277,6 +280,7 @@ ActiveRecord::Schema.define(version: 20160625122402) do
   add_foreign_key "alerts", "alert_types"
   add_foreign_key "alerts", "zones"
   add_foreign_key "areas", "states"
+  add_foreign_key "auditorias", "users"
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"

@@ -10,7 +10,7 @@
         <tr>
           <th>Nombre</th>
           <th>Apellido</th>
-          <th>Area</th>
+          <th>Área</th>
           <th>Rol</th>
           <th>Email</th>
           <th><%= t("common.ver_editar") %></th>
@@ -24,7 +24,7 @@
             <td><%= user.name %></td>
             <td><%= user.apellido %></td>
             <% if user.area.nil? %>
-              <td>Sin Area</td>
+              <td>Sin Área</td>
             <% else %>
               <td><%= user.area.nombre %></td>
             <% end %>

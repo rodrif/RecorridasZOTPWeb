@@ -62,6 +62,10 @@ Rails.application.routes.draw do
   resources :zones
   resources :mapa
 
+  get 'informes' => 'informes#index'
+  get 'informes/voluntarios' => 'informes#voluntarios'
+  get 'informes/personas' => 'informes#personas'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
