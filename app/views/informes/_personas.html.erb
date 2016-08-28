@@ -67,8 +67,8 @@
     latitud = $(ubicacionSelector).data('latitud');
     longitud = $(ubicacionSelector).data('longitud');
     if (typeof mapaUbicacion !== 'undefined') {
-      mapaUbicacion.latitud = latitud;
-      mapaUbicacion.longitud = longitud;
+      mapaUbicacion.latitud = Number(latitud);
+      mapaUbicacion.longitud = Number(longitud);
       mapaUbicacion.refreshMarker();
       mapaUbicacion.map.setZoom(15);
       mapaUbicacion.map.setCenter(new google.maps.LatLng(latitud, longitud));
