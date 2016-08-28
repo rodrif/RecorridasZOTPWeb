@@ -41,9 +41,9 @@ class NotificacionesController < ApplicationController
   def create
     @notificacion = Notificacion.new(notificacion_params)
     @notificacion.state = State.find_by_nombre('Actualizado')
+    @notificacion.sacar_minutos
     @notificacion.prox_envio = @notificacion.fecha_desde
     @notificacion.finalizada = false
-    # TODO si es unica y fecha_desde es en el pasado, enviarla y finalizarla
     respond_to do |format|
       if @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::NOTIFICACION, @notificacion
@@ -75,6 +75,7 @@ class NotificacionesController < ApplicationController
         exitoActualziar = @notificacion.update(notificacion_params)
       end
       if exitoActualziar
+        @notificacion.sacar_minutos
         @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::NOTIFICACION, @notificacion
         format.html { redirect_to notificaciones_url, notice: 'Notificación actualizada correctamente.' }

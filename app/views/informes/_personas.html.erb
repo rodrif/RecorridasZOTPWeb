@@ -1,0 +1,77 @@
+<div id="filterrific_results">
+
+  <span> Mostrando <b><%= @personas.length %></b> persona/s </span>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Área</th>
+          <th>Zona</th>
+          <th>Fecha última visita</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @personas.each do |persona| %>
+          <tr>
+            <td><%= persona.id %></td>
+            <td><%= persona.nombre %></td>
+            <td><%= persona.apellido %></td>
+            <% if persona.zone.nil? %>
+              <td>Sin area</td>
+            <% else %>
+              <td><%= persona.zone.area.nombre %></td>
+            <% end %>
+            <% if persona.zone.nil? %>
+              <td>Sin zona</td>
+            <% else %>
+              <td><%= persona.zone.nombre %></td>
+            <% end %>
+            <% if persona.visits.first.nil? %>
+              <td></td>
+            <% else %>
+              <td><%= persona.visits.first.fecha %></td>
+            <% end %>
+            <td>
+              <%= link_to image_tag('mapa.png', size: '56x30', class: 'icono-ubicacion'),
+                '#ubicacion_modal',
+                'data-toggle' => 'modal',
+                id: "ubicacion_modal_id_#{persona.id}",
+                onClick: "cargarUbicacion(#{persona.id})",
+                  data: {
+                    latitud: "#{persona.visits.first.latitud}",
+                    longitud: "#{persona.visits.first.longitud}"
+                  }
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div id="modalsDiv">
+  <%= render 'modal_ubicacion' %>
+</div>
+
+<script defer>
+  function cargarUbicacion(id) {
+    ubicacionSelector = '#ubicacion_modal_id_' + id;
+    latitud = $(ubicacionSelector).data('latitud');
+    longitud = $(ubicacionSelector).data('longitud');
+    loadMapaScript('lanzarModalInformePersonas');
+  }
+
+  function lanzarModalInformePersonas() {
+    var mapaUbicacion = new MapaUbicacion(latitud, longitud, null, null, "googleMapUbicacion", true);
+    google.maps.event.trigger(mapaUbicacion.map, 'resize');
+    mapaUbicacion.map.setCenter(new google.maps.LatLng(mapaUbicacion.latitud, mapaUbicacion.longitud));
+  }
+</script>

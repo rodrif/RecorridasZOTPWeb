@@ -77,6 +77,13 @@ class Notificacion < ActiveRecord::Base
     end
   end
 
+  def sacar_minutos
+    self.fecha_desde = self.fecha_desde.change(:min => 0)
+    if self.fecha_hasta
+      self.fecha_hasta = self.fecha_hasta.change(:min => 0)
+    end
+  end
+
   filterrific(
     available_filters: [
       :with_titulo,
@@ -130,7 +137,7 @@ class Notificacion < ActiveRecord::Base
   end
 
   def getDescripcionAuditoria
-    return "Título: #{titulo} Subtítulo: #{titulo} Tipo: #{notificacion_tipo.nombre if !notificacion_tipo.nil?} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Descripción: #{descripcion} Frecuencia #{frecuencia}"
+    return "Título: #{titulo} Subtítulo: #{titulo} Tipo: #{notificacion_tipo.nombre if !notificacion_tipo.nil?} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Prox envio: #{prox_envio} Descripción: #{descripcion} Frecuencia #{frecuencia}"
   end
 
   def tiene_rol?(rol_id)
