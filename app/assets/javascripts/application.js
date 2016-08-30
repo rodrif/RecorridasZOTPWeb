@@ -65,10 +65,14 @@ MapaUbicacion.prototype.refreshMarker = function() {
 	});
 }
 
-function loadMapaScript(calllback) {
-  var script = document.createElement("script");
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + calllback;
-  document.body.appendChild(script);
+function loadMapaScript(callback) {
+	if (typeof google === 'undefined') {
+	  var script = document.createElement("script");
+	  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDVYB3gnF3bj6nMqzma3IHMNUvYe_rdY&callback=" + callback;
+	  document.body.appendChild(script);
+	} else {
+		window[callback]();
+	}
 }
 
 (function($) {

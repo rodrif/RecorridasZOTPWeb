@@ -1,14 +1,32 @@
-<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade" id="ubicacion_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelUbicacion" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelUbicacion">Ubicación</h4>
-      </div>
-      <div class="modal-body">
-        <%= render 'shared/ubicacion' %>
-      </div>
-    </div>
+<div id="myModalUbicacion" class="modal-ubicacion">
+  <div class="modal-ubicacion-content">
+    <div id="googleMapUbicacion" class="mapaUbicacionZona"></div>
   </div>
 </div>
+
+<script defer>
+  var modal = document.getElementById('myModalUbicacion');
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  function cargarUbicacion(id) {
+    ubicacionSelector = "<%=selector%>" + id;
+    latitud = $(ubicacionSelector).data('latitud');
+    longitud = $(ubicacionSelector).data('longitud');
+    latitud = Number(latitud);
+    longitud = Number(longitud);
+    modal.style.display = "block";
+    loadMapaScript('lanzarModalInformePersonas');
+  }
+
+  function lanzarModalInformePersonas() {
+    mapaUbicacion = new MapaUbicacion(latitud, longitud, null, null, "googleMapUbicacion", true);
+    google.maps.event.trigger(mapaUbicacion.map, 'resize');
+    mapaUbicacion.map.setCenter(new google.maps.LatLng(mapaUbicacion.latitud, mapaUbicacion.longitud));
+  }
+</script>
