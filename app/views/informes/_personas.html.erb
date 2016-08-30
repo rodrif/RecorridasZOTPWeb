@@ -39,8 +39,8 @@
             <% end %>
             <td>
               <%= link_to image_tag('mapa.png', size: '56x30', class: 'icono-ubicacion'),
-                '#ubicacion_modal',
-                'data-toggle' => 'modal',
+                '#',
+                class: 'ubicacion_modal',
                 id: "ubicacion_modal_id_#{persona.id}",
                 onClick: "cargarUbicacion(#{persona.id})",
                   data: {
@@ -57,29 +57,4 @@
 
 </div>
 
-<div id="modalsDiv">
-  <%= render 'modal_ubicacion' %>
-</div>
-
-<script defer>
-  function cargarUbicacion(id) {
-    ubicacionSelector = '#ubicacion_modal_id_' + id;
-    latitud = $(ubicacionSelector).data('latitud');
-    longitud = $(ubicacionSelector).data('longitud');
-    if (typeof mapaUbicacion !== 'undefined') {
-      mapaUbicacion.latitud = Number(latitud);
-      mapaUbicacion.longitud = Number(longitud);
-      mapaUbicacion.refreshMarker();
-      mapaUbicacion.map.setZoom(15);
-      mapaUbicacion.map.setCenter(new google.maps.LatLng(latitud, longitud));
-    } else {
-      loadMapaScript('lanzarModalInformePersonas');
-    }
-  }
-
-  function lanzarModalInformePersonas() {
-    mapaUbicacion = new MapaUbicacion(latitud, longitud, null, null, "googleMapUbicacion", true);
-    google.maps.event.trigger(mapaUbicacion.map, 'resize');
-    mapaUbicacion.map.setCenter(new google.maps.LatLng(mapaUbicacion.latitud, mapaUbicacion.longitud));
-  }
-</script>
+<%= render 'modal_ubicacion', selector: '#ubicacion_modal_id_' %>
