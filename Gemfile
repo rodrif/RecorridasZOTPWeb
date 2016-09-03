@@ -26,6 +26,7 @@ gem 'filterrific'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 gem 'devise', '~> 3.5', '>= 3.5.2'
 gem 'devise_token_auth', '~> 0.1.31'
+gem 'google-analytics-rails', '1.1.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
