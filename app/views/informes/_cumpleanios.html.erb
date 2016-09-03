@@ -1,4 +1,4 @@
-<div id="filterrific_results">
+<div id="filterrific_results" class="viewport">
 
   <span> Mostrando <b><%= @personas.length %></b> persona/s </span>
 
@@ -11,7 +11,7 @@
           <th>Apellido</th>
           <th>Área</th>
           <th>Zona</th>
-          <th>Fecha última visita</th>
+          <th>Fecha de cumpleaños</th>
           <th>Ubicación</th>
         </tr>
       </thead>
@@ -32,10 +32,10 @@
             <% else %>
               <td><%= persona.zone.nombre %></td>
             <% end %>
-            <% if persona.visits.first.nil? %>
+            <% if persona.fecha_nacimiento.nil? %>
               <td></td>
             <% else %>
-              <td><%= persona.visits.first.fecha %></td>
+              <td><%= l(persona.fecha_nacimiento, format: "%d de %B") %></td>
             <% end %>
             <td>
               <%= link_to image_tag('mapa.png', size: '56x30', class: 'icono-ubicacion'),
