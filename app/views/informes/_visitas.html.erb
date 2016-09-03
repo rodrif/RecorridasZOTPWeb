@@ -1,0 +1,25 @@
+<div id="filterrific_results">
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Área</th>
+          <th>Zona</th>
+          <th>Cantidad de visitas</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @visitas.each do |visita| %>
+          <tr>
+            <td><%= visita.area_nombre %></td>
+            <td><%= visita.zona_nombre %></td>
+            <td><%= visita.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

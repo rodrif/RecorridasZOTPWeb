@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   get 'informes/voluntarios' => 'informes#voluntarios'
   get 'informes/personas' => 'informes#personas'
   get 'informes/cumpleanios' => 'informes#cumpleanios'
+  get 'informes/visitas' => 'informes#visitas'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
