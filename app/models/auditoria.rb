@@ -1,5 +1,6 @@
 class Auditoria < ActiveRecord::Base
   belongs_to :user
+  belongs_to :visit, :foreign_key => :entity_id
 
   ALTA = 'Alta'
   BAJA = 'Baja'
@@ -23,13 +24,14 @@ class Auditoria < ActiveRecord::Base
       :with_accion,
       :with_entidad,
       :fecha_gte,
-      :fecha_lte
+      :fecha_lte,
+      :visitas
     ]
   )
 
   scope :fecha_gte, lambda { |reference_time|
     return nil if reference_time.blank?
-    where('fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
+    where('auditorias.fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
   }
 
   scope :fecha_lte, lambda { |reference_time|
@@ -43,6 +45,14 @@ class Auditoria < ActiveRecord::Base
 
   scope :with_entidad, lambda { |entidad|
     where(entidad: entidad)
+  }
+
+  scope :visitas, lambda { |area_id = nil|
+    if area_id.blank?
+      with_entidad(Auditoria::VISITA).joins(visit: [person: [{zone: :area}]]).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(*) as count")
+    else
+      with_entidad(Auditoria::VISITA).joins(visit: [person: [{zone: :area}]]).where("areas.id = ?", area_id).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(*) as count")
+    end
   }
 
   scope :with_email, lambda { |query|
