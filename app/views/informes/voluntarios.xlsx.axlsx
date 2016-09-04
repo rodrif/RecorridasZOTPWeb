@@ -5,9 +5,27 @@ wb.styles do |style|
   data_cell = style.add_style(alignment: { horizontal: :center })
 
   wb.add_worksheet(name: "Voluntarios") do |sheet|
-    sheet.add_row ["Nombre", "Apellido"], :style => [title_cell, title_cell]
+    sheet.add_row [
+      "Nombre",
+      "Apellido",
+      "Área",
+      "Rol",
+      "Email",
+      "Teléfono",
+      "Día",
+      "Fecha última actividad"
+    ], :style => title_cell
     @voluntarios.each do |voluntario|
-      sheet.add_row [voluntario.name, voluntario.apellido], style: [data_cell, data_cell]
+      sheet.add_row [
+        voluntario.name,
+        voluntario.apellido,
+        voluntario.area.nil? ? '' : voluntario.area.nombre,
+        voluntario.rol.nil? ? '' : voluntario.rol.nombre,
+        voluntario.email,
+        voluntario.telefono,
+        voluntario.dia,
+        voluntario.auditorias.last.nil? ? '' : voluntario.auditorias.order(:fecha).last.fecha.to_s
+      ], style: data_cell
     end
   end
 
