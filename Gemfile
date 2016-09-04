@@ -29,6 +29,10 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 gem 'devise', '~> 3.5', '>= 3.5.2'
 gem 'devise_token_auth', '~> 0.1.31'
 gem 'google-analytics-rails', '1.1.0'
+gem 'rubyzip', '>= 1.0.0' # will load new rubyzip version
+gem 'zip-zip' # will load compatibility for old rubyzip API.
+gem 'axlsx', '~> 2.0'
+gem 'axlsx_rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

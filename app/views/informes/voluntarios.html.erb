@@ -1,5 +1,11 @@
 
-<h2 class="sub-header">Voluntarios activos</h2>
+<h2 class="sub-header">Voluntarios activos
+<%= link_to image_tag('excel-icon.png', size: '30x30'),
+  '',
+  class: 'ubicacion_modal',
+  id: 'voluntarios-xlsx'
+%>
+</h2>
 
 <div class="table-responsive well">
 
@@ -37,3 +43,7 @@
 </div>
 
 <%= render 'voluntarios', voluntarios: @voluntarios %>
+
+<script defer>
+  downloadXlsx('voluntarios-xlsx', 'filterrific_filter');
+</script>

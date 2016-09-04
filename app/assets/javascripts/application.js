@@ -75,6 +75,16 @@ function loadMapaScript(callback) {
 	}
 }
 
+function downloadXlsx(buttonId, formId) {
+	$('#' + buttonId).click(function(ev) {
+    var oldAction = $('#' + formId).attr('action');
+    $('#' + formId).attr('action', oldAction + '.xlsx');
+    $('#' + formId).submit();
+    $('#' + formId).attr('action', oldAction);
+    return false;
+  });
+}
+
 (function($) {
 
   $.fn.modal_success = function(){
@@ -113,11 +123,3 @@ function loadMapaScript(callback) {
   }
 
 }(jQuery));
-
-// $(function() {
-//   $('.datepicker').datepicker({
-//   	changeYear: true,
-//   	yearRange: "-100:+2",
-// 	format: 'dd-mm-yyyy'  	
-//   });
-// });
