@@ -1,5 +1,11 @@
 
-<h2 class="sub-header">Personas activas</h2>
+<h2 class="sub-header">Personas activas
+<%= link_to image_tag('excel-icon.png', size: '30x30'),
+  '',
+  class: 'ubicacion_modal',
+  id: 'personas-xlsx'
+%>
+</h2>
 
 <div class="table-responsive well">
 
@@ -50,3 +56,7 @@
 </div>
 
 <%= render 'personas', personas: @personas %>
+
+<script defer>
+  downloadXlsx('personas-xlsx', 'filterrific_filter');
+</script>
