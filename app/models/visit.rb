@@ -1,9 +1,14 @@
 class Visit < ActiveRecord::Base
+
   belongs_to :person
   belongs_to :state
 
   validates :fecha, presence: true
   validate :fecha_must_in_the_past
+
+  #geocoded_by :direccion, :latitude  => :latitud, :longitude => :longitud
+  reverse_geocoded_by :latitud, :longitud, :address => :direccion
+  after_validation :reverse_geocode
 
   def fecha_must_in_the_past
     if fecha.present? && fecha.to_datetime > DateTime.now + 1.day

@@ -15,6 +15,7 @@
           <th>Latitud</th>
           <th>Longitud</th>
         <% end %>
+        <th>Dirección</th>
         <th>Ver / Editar</th>
         <% if current_user && current_user.rol.puede_borrar_visita %>
           <th>Borrar</th>
@@ -36,6 +37,7 @@
             <td><%= visit.latitud %></td>
             <td><%= visit.longitud %></td>      
           <% end %>
+          <td><%= visit.direccion %></td>
           <td><%= link_to 'Ver / Editar', edit_visit_path(visit, :person_id => params[:person_id]) %></td>
 
           <% if current_user && current_user.rol.puede_borrar_visita %>

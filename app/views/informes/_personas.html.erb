@@ -12,6 +12,7 @@
           <th>Área</th>
           <th>Zona</th>
           <th>Fecha última visita</th>
+          <th>Dirección</th>
           <th>Ubicación</th>
         </tr>
       </thead>
@@ -34,8 +35,10 @@
             <% end %>
             <% if persona.visits.first.nil? %>
               <td></td>
+              <td></td>
             <% else %>
               <td><%= persona.visits.first.fecha %></td>
+              <td><%= persona.visits.first.direccion %></td>
             <% end %>
             <td>
               <%= link_to image_tag('mapa.png', size: '56x30', class: 'icono-ubicacion'),
