@@ -11,6 +11,10 @@ class VisitsController < ApplicationController
     render :plain => Geocoder.search(params['lat'] + "," + params['lng']).first.data['formatted_address']
   end
 
+  def getCoordenadas
+    render :json => Geocoder.coordinates(params['direccion'])
+  end
+
   def mobRecibirVisitasDesde    
     respuesta = VisitDataAccess.getVisitasDesde params['datos'], params['fecha']
 

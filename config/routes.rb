@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
   get 'visits/getDireccion' => 'visits#getDireccion'
+  get 'visits/getCoordenadas' => 'visits#getCoordenadas'
 
   post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
   post 'people/mobRecibirPersonasDesde' => 'people#mobRecibirPersonasDesde'

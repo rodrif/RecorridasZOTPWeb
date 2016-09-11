@@ -25,4 +25,22 @@ function cargarUbicacionVisita() {
 		});
 	});
 
+	$('#visit_direccion').change(function() {
+		var direccion = $('#visit_direccion').val();
+
+		$.ajax({
+		  url: "/visits/getCoordenadas/",
+		  contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		  data: jQuery.param({ direccion: direccion})
+		}).done(function(data) {
+			if (data) {
+			  $("#visit_latitud").val(data[0]);
+			  $("#visit_longitud").val(data[1]);
+			  var mapaUbicacion = new MapaUbicacion($('#visit_latitud').val(), $('#visit_longitud').val(), '#visit_latitud', '#visit_longitud', 'googleMapVisita');
+			} else {
+				alert('direccion inválida');
+			}
+		});
+	});
+
 }
