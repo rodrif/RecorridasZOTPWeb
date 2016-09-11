@@ -43,4 +43,8 @@ function cargarUbicacionVisita() {
 		});
 	});
 
+	if (!$('#visit_direccion').val()) {
+		$('#visit_latitud').change();
+	}
+
 }
