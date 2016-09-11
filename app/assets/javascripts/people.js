@@ -19,6 +19,45 @@ function cargarUbicacionPersona() {
 
 	cargarUbicacionZona();
 	cargarUbicacionRanchada();
+
+  if (mapDisabled) {
+    $('#person_visits_attributes_0_direccion').prop('disabled', true);
+  } else {
+    $(latSelector).change(function() {
+      var latitud = $(latSelector).val();
+      var longitud = $(lngSelector).val();
+
+      $.ajax({
+        url: "/visits/getDireccion/",
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: jQuery.param({ lat: latitud, lng : longitud})
+      }).done(function(data) {
+        $("#person_visits_attributes_0_direccion").val(data);
+      });
+    });
+
+    $('#person_visits_attributes_0_direccion').change(function() {
+      var direccion = $('#person_visits_attributes_0_direccion').val();
+
+      $.ajax({
+        url: "/visits/getCoordenadas/",
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        data: jQuery.param({ direccion: direccion})
+      }).done(function(data) {
+        if (data) {
+          $(latSelector).val(data[0]);
+          $(lngSelector).val(data[1]);
+          var mapaUbicacion = new MapaUbicacion($(latSelector).val(), $(lngSelector).val(), latSelector, lngSelector, 'googleMapPersona');
+        } else {
+          alert('direccion inválida');
+        }
+      });
+    });
+  }
+
+  if (!$('#person_visits_attributes_0_direccion').val()) {
+    $(latSelector).change();
+  }
 };
 
 $(function() {
