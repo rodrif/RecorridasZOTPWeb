@@ -11,4 +11,18 @@ function cargarUbicacionVisita() {
 	}
 
 	var mapaUbicacion = new MapaUbicacion(latitud, longitud, '#visit_latitud', '#visit_longitud', 'googleMapVisita');
-};
+
+	$('#visit_latitud').change(function() {
+		var latitud = $('#visit_latitud').val();
+		var longitud = $('#visit_longitud').val();
+
+		$.ajax({
+		  url: "/visits/getDireccion/",
+		  contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		  data: jQuery.param({ lat: latitud, lng : longitud})
+		}).done(function(data) {
+		  $("#visit_direccion").val(data);
+		});
+	});
+
+}

@@ -47,6 +47,7 @@ function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapD
 		this.map.addListener('click', function(event) {
 			$(self.selectorLat).val(event.latLng.lat());
 			$(self.selectorLng).val(event.latLng.lng());
+			$(self.selectorLat).trigger('change');
 			self.latitud = event.latLng.lat();
 			self.longitud = event.latLng.lng();
 			self.refreshMarker();
