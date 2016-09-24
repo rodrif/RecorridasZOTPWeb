@@ -3,10 +3,13 @@ class AreasController < ApplicationController
   before_action :authenticate_user!
   before_action :puede_ver_web
 
+  def lanzarException
+    raise "Exception de prueba"
+  end
+
   # GET /areas
   # GET /areas.json
   def index
-    raise "aaaaaaaaaaaab"
     @filterrific = initialize_filterrific(
       Area,
       params[:filterrific],
