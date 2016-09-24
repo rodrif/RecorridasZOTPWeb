@@ -6,6 +6,7 @@ class AreasController < ApplicationController
   # GET /areas
   # GET /areas.json
   def index
+    raise "aaaaaaaaaaaab"
     @filterrific = initialize_filterrific(
       Area,
       params[:filterrific],
