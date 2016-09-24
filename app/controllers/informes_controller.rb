@@ -22,6 +22,7 @@ class InformesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.xlsx
     end
   end
 
@@ -41,6 +42,7 @@ class InformesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.xlsx
     end
   end
 
@@ -60,6 +62,7 @@ class InformesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.xlsx
     end
   end
 
@@ -78,6 +81,7 @@ class InformesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.xlsx
     end
   end
 

@@ -1,0 +1,32 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  title_cell = style.add_style :alignment => { :horizontal=> :center }, :b => true
+  data_cell = style.add_style(alignment: { horizontal: :center })
+
+  wb.add_worksheet(name: "Voluntarios") do |sheet|
+    sheet.add_row [
+      "Nombre",
+      "Apellido",
+      "Área",
+      "Rol",
+      "Email",
+      "Teléfono",
+      "Día",
+      "Fecha última actividad"
+    ], :style => title_cell
+    @voluntarios.each do |voluntario|
+      sheet.add_row [
+        voluntario.name,
+        voluntario.apellido,
+        voluntario.area.nil? ? '' : voluntario.area.nombre,
+        voluntario.rol.nil? ? '' : voluntario.rol.nombre,
+        voluntario.email,
+        voluntario.telefono,
+        voluntario.dia,
+        voluntario.auditorias.last.nil? ? '' : voluntario.auditorias.order(:fecha).last.fecha.to_s
+      ], style: data_cell
+    end
+  end
+
+end

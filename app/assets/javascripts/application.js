@@ -47,6 +47,7 @@ function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapD
 		this.map.addListener('click', function(event) {
 			$(self.selectorLat).val(event.latLng.lat());
 			$(self.selectorLng).val(event.latLng.lng());
+			$(self.selectorLat).trigger('change');
 			self.latitud = event.latLng.lat();
 			self.longitud = event.latLng.lng();
 			self.refreshMarker();
@@ -73,6 +74,16 @@ function loadMapaScript(callback) {
 	} else {
 		window[callback]();
 	}
+}
+
+function downloadXlsx(buttonId, formId) {
+	$('#' + buttonId).click(function(ev) {
+    var oldAction = $('#' + formId).attr('action');
+    $('#' + formId).attr('action', oldAction + '.xlsx');
+    $('#' + formId).submit();
+    $('#' + formId).attr('action', oldAction);
+    return false;
+  });
 }
 
 (function($) {
@@ -113,11 +124,3 @@ function loadMapaScript(callback) {
   }
 
 }(jQuery));
-
-// $(function() {
-//   $('.datepicker').datepicker({
-//   	changeYear: true,
-//   	yearRange: "-100:+2",
-// 	format: 'dd-mm-yyyy'  	
-//   });
-// });

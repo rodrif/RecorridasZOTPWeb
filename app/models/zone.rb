@@ -4,7 +4,7 @@ class Zone < ActiveRecord::Base
   belongs_to :state
 
   validates :nombre, presence: true, uniqueness: { case_sensitive: false },
-    format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
+    format: { with: getRexExpSoloLetrasYNumeros, message: I18n.t('common.errores.solo_alfanumerico') }
 
   self.per_page = 20
 

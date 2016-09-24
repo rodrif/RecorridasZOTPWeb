@@ -6,6 +6,15 @@ class VisitsController < ApplicationController
   before_action :puede_editar_visita, only: [:update]
   before_action :puede_borrar_visita, only: [:destroy]
 
+  def getDireccion
+    #render :plain => Geocoder.coordinates()
+    render :plain => Geocoder.search(params['lat'] + "," + params['lng']).first.data['formatted_address']
+  end
+
+  def getCoordenadas
+    render :json => Geocoder.coordinates(params['direccion'])
+  end
+
   def mobRecibirVisitasDesde    
     respuesta = VisitDataAccess.getVisitasDesde params['datos'], params['fecha']
 
