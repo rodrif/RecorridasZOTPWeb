@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'areas/lanzarException' => 'areas#lanzarException'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -44,6 +46,8 @@ Rails.application.routes.draw do
   get 'people/update_familias', as: 'update_familias'
 
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
+  get 'visits/getDireccion' => 'visits#getDireccion'
+  get 'visits/getCoordenadas' => 'visits#getCoordenadas'
 
   post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
   post 'people/mobRecibirPersonasDesde' => 'people#mobRecibirPersonasDesde'

@@ -1,5 +1,11 @@
 
-<h2 class="sub-header">Visitas por zona</h2>
+<h2 class="sub-header">Visitas por zona
+<%= link_to image_tag('excel-icon.png', size: '30x30'),
+  '',
+  class: 'ubicacion_modal',
+  id: 'visitas-xlsx'
+%>
+</h2>
 
 <div class="table-responsive well">
 
@@ -28,3 +34,7 @@
 </div>
 
 <%= render 'visitas', visitas: @visitas %>
+
+<script defer>
+  downloadXlsx('visitas-xlsx', 'filterrific_filter');
+</script>
