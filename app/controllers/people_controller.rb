@@ -185,6 +185,9 @@ class PeopleController < ApplicationController
         :familia_id,
         :page,
         :descripcion,
+        :pantalon,
+        :remera,
+        :zapatillas,
         visits_attributes: [:id, :descripcion, :latitud, :longitud])
     end
 end
