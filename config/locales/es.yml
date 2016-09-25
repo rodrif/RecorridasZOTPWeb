@@ -47,6 +47,7 @@ es:
         subtitulo: Subtítulo
         descripcion: Descripción
         frecuencia_cant: Frecuencia
+        areas: Áreas
     models:
       user:
         zero:  Usuario

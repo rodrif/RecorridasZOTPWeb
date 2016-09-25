@@ -10,6 +10,7 @@ class Notificacion < ActiveRecord::Base
   validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
+  validates :areas, :presence => true
   validate :fecha_desde_mayor_fecha_hasta
   validate :fecha_desde_en_el_pasado, on: :create
   validate :sin_roles
