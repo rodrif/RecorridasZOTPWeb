@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924200545) do
+ActiveRecord::Schema.define(version: 20160924225933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(version: 20160924200545) do
   end
 
   add_index "areas", ["state_id"], name: "index_areas_on_state_id", using: :btree
+
+  create_table "areas_notificaciones", id: false, force: :cascade do |t|
+    t.integer "notificacion_id", null: false
+    t.integer "area_id",         null: false
+  end
 
   create_table "auditorias", force: :cascade do |t|
     t.datetime "fecha"
