@@ -69,7 +69,7 @@ class NotificacionDataAccess
     return http
   end
 
-  def self.createRequest url, notificacion, topic, personaId = nil
+  def self.createRequest url, notificacion, topic, personaId = nil, areaId = nil
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
     request.body = "{
       \"to\": \"/topics/#{topic + "-dev"}\",
@@ -78,7 +78,8 @@ class NotificacionDataAccess
         \"subtitulo\": \"#{notificacion.subtitulo}\",
         \"descripcion\": \"#{notificacion.descripcion}\",
         \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
-        \"persona_id\": \"#{personaId ? personaId : ''}\"
+        \"persona_id\": \"#{personaId ? personaId : ''}\",
+        \"area_id\": \"#{areaId ? areaId : ''}\"
        }
     }"
     return request
@@ -92,7 +93,9 @@ class NotificacionDataAccess
         notificacion.calcularProxEnvio
         notificacion.save
         notificacion.roles.each do |r|
-          response = http.request(self.createRequest(url, notificacion, r.nombre))
+          notificacion.areas.each do |a|
+            response = http.request(self.createRequest(url, notificacion, r.nombre, nil, a.id))
+          end
         end
       end
     end
