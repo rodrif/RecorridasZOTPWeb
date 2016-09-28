@@ -55,7 +55,7 @@ class NotificacionDataAccess
       notificacion.notificacion_tipo = NotificacionTipo.new
       notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
       Rol.activos.each do |r|
-        response = http.request(self.createRequest(url, notificacion, r.nombre, p.id))
+        response = http.request(self.createRequest(url, notificacion, r.nombre, p.zone.area_id, p.id))
       end
     end
   end
@@ -70,10 +70,10 @@ class NotificacionDataAccess
     return http
   end
 
-  def self.createRequest url, notificacion, topic, personaId = nil, areaId = nil
+  def self.createRequest url, notificacion, topic, areaId, personaId = nil
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
     request.body = "{
-      \"to\": \"/topics/#{topic + "-dev"}\",
+      \"to\": \"/topics/#{topic + "-dev/" + areaId.to_s}\",
       \"data\": {
         \"titulo\": \"#{notificacion.titulo}\",
         \"subtitulo\": \"#{notificacion.subtitulo}\",
@@ -95,7 +95,7 @@ class NotificacionDataAccess
         notificacion.save
         notificacion.roles.each do |r|
           notificacion.areas.each do |a|
-            response = http.request(self.createRequest(url, notificacion, r.nombre, nil, a.id))
+            response = http.request(self.createRequest(url, notificacion, r.nombre, a.id))
           end
         end
       end
