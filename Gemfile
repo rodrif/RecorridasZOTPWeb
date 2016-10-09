@@ -33,6 +33,7 @@ gem 'axlsx', '~> 2.0'
 gem 'axlsx_rails'
 gem 'geocoder'
 gem 'exception_notification'
+gem "simple_calendar", "~> 2.0"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
