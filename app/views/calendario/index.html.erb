@@ -1,10 +1,10 @@
 <%= month_calendar attribute: :fecha_desde, end_attribute: :fecha_hasta, events: @meetings do |date, meetings| %>
-  <%= date.day %>
-
+  <div class="calendario-dia">
+		<%= link_to date.day, new_notificacion_path({"date": date})%>
+	</div>
   <% meetings.each do |meeting| %>
-    <div>
-    	<%= meeting.fecha_desde.strftime("%I%p") %> - <%= meeting.fecha_hasta.strftime("%I%p") %>
-      <%= ": " + meeting.titulo %>
+    <div class="calendario-data">
+			<%= link_to meeting.fecha_desde.strftime("%I%p") + "-" + meeting.fecha_hasta.strftime("%I%p") + ": " + meeting.titulo, edit_notificacion_path(meeting) %>
     </div>
   <% end %>
 <% end %>
