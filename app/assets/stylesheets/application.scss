@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require simple_calendar
  */
 
  .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
@@ -58,3 +59,10 @@
 	border-radius: 10px;
 }
 
+.calendar-title {
+  font-size: 2em;
+}
+
+.calendar-heading {
+  margin-top: 1.5em;
+}

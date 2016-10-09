@@ -1,0 +1,10 @@
+<%= month_calendar attribute: :fecha_desde, end_attribute: :fecha_hasta, events: @meetings do |date, meetings| %>
+  <%= date.day %>
+
+  <% meetings.each do |meeting| %>
+    <div>
+    	<%= meeting.fecha_desde.strftime("%I%p") %> - <%= meeting.fecha_hasta.strftime("%I%p") %>
+      <%= ": " + meeting.titulo %>
+    </div>
+  <% end %>
+<% end %>

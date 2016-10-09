@@ -2,7 +2,8 @@ $(document).ready(function(){
 
 
   $('#notificacion_frecuencia_tipo_id').change(function() {
-    if ($('#notificacion_frecuencia_tipo_id').val() == 1) {      
+    $('#notificacion_frecuencia').show();
+    if ($('#notificacion_frecuencia_tipo_id').val() == 1) { // Unica
       $('#notificacion_fecha_hasta').hide();
       $('#notificacion_frecuencia_cant').hide();
       $('#label_fecha_desde').text('Fecha');
@@ -15,5 +16,19 @@ $(document).ready(function(){
     }
   });
 
-  $('#notificacion_frecuencia_tipo_id').trigger("change");
+  $('#notificacion_notificacion_tipo_id').change(function() {
+    if ($('#notificacion_notificacion_tipo_id').val() == 4) { // Calendario
+      $('#label_fecha_desde').text('Fecha desde');
+      $('#notificacion_fecha_hasta').show();
+      $('#notificacion_frecuencia').hide();
+    } else {
+      $('#notificacion_frecuencia_tipo_id').trigger("change");
+    }
+  });
+
+  if ($('#notificacion_notificacion_tipo_id').val() == 4) { // Calendario)
+    $('#notificacion_notificacion_tipo_id').trigger("change");
+  } else {
+    $('#notificacion_frecuencia_tipo_id').trigger("change");
+  }
 });
