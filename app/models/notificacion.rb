@@ -4,11 +4,13 @@ class Notificacion < ActiveRecord::Base
   belongs_to :state
   has_many :notificacion_roles
   has_many :roles, :through => :notificacion_roles
+  has_and_belongs_to_many :areas
   accepts_nested_attributes_for :notificacion_roles, allow_destroy: true
   validates :titulo, :subtitulo, :fecha_desde, :frecuencia_tipo_id, :presence => true
   validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
   validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
+  validates :areas, :presence => true
   validate :fecha_desde_mayor_fecha_hasta
   validate :fecha_desde_en_el_pasado, on: :create
   validate :sin_roles

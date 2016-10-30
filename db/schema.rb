@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904235921) do
+ActiveRecord::Schema.define(version: 20160925154735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,11 @@ ActiveRecord::Schema.define(version: 20160904235921) do
   end
 
   add_index "areas", ["state_id"], name: "index_areas_on_state_id", using: :btree
+
+  create_table "areas_notificaciones", id: false, force: :cascade do |t|
+    t.integer "notificacion_id", null: false
+    t.integer "area_id",         null: false
+  end
 
   create_table "auditorias", force: :cascade do |t|
     t.datetime "fecha"
@@ -138,12 +143,15 @@ ActiveRecord::Schema.define(version: 20160904235921) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "state_id"
-    t.integer  "dni"
+    t.string   "dni"
     t.date     "fecha_nacimiento"
     t.string   "telefono"
     t.integer  "familia_id"
     t.text     "descripcion"
     t.integer  "ranchada_id"
+    t.string   "pantalon"
+    t.string   "remera"
+    t.string   "zapatillas"
   end
 
   add_index "people", ["familia_id"], name: "index_people_on_familia_id", using: :btree

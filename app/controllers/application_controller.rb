@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_filter :prepare_exception_notifier
   #protect_from_forgery with: :null_session
   #skip_before_filter :verify_authenticity_token
   #include DeviseTokenAuth::Concerns::SetUserByToken
@@ -73,6 +74,12 @@ class ApplicationController < ActionController::Base
       sign_out current_user
     end
     redirect_to acceso_denegado_path
+  end
+
+  def prepare_exception_notifier
+    request.env["exception_notifier.exception_data"] = {
+      :current_user => current_user
+    }
   end
 
 end

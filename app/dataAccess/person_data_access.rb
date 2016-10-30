@@ -11,7 +11,7 @@ class PersonDataAccess
 		respuesta['datos'] = Hash.new
 		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
-    query = 'id AS web_id, zone_id AS web_zone_id, ranchada_id AS web_ranchada_id, familia_id AS web_familia_id, nombre, apellido, dni, fecha_nacimiento, telefono, descripcion, state_id AS estado, updated_at'
+    query = 'id AS web_id, zone_id AS web_zone_id, ranchada_id AS web_ranchada_id, familia_id AS web_familia_id, nombre, apellido, dni, fecha_nacimiento, telefono, descripcion, pantalon, remera, zapatillas, state_id AS estado, updated_at'
     if fecha.nil?
       respuesta['datos'] = Person.select(query)
     else
@@ -49,6 +49,9 @@ class PersonDataAccess
       person.fecha_nacimiento = p['fecha_nacimiento'] ? p['fecha_nacimiento'] : nil
       person.telefono = p['telefono'] ? p['telefono'] : nil
       person.descripcion = p['descripcion'] ? p['descripcion'] : nil
+      person.pantalon = p['pantalon'] ? p['pantalon'] : nil
+      person.remera = p['remera'] ? p['remera'] : nil
+      person.zapatillas = p['zapatillas'] ? p['zapatillas'] : nil
 
       if (accion == Auditoria::BAJA || person.save)
         if accion != Auditoria::BAJA

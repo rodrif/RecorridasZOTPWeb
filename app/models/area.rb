@@ -4,6 +4,7 @@ class Area < ActiveRecord::Base
     format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
  
   belongs_to :state
+  has_and_belongs_to_many :notificaciones
 
   self.per_page = 20
 

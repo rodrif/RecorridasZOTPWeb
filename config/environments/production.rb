@@ -87,9 +87,17 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'recorridaszo',
-    password:             'fyg123fyg123',
+    password:             ENV['EMAIL_PASS'],
     authentication:       'plain',
     enable_starttls_auto: true
+  }
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+    :email_prefix => "ERROR WEB ",
+    :sender_address => %{"notifier" <notifier@example.com>},
+    :exception_recipients => %w{recorridaszo@gmail.com}
   }
 
 end
