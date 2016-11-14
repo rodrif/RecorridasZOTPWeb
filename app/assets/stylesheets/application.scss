@@ -86,3 +86,13 @@
     background-color: #F0AB00;
     color: black;
 }
+
+.logoRecorridas {
+  &:visited {
+    color: #000;
+  }
+  &:hover {
+    color: #000;
+    background-color: transparent;
+  }
+}
