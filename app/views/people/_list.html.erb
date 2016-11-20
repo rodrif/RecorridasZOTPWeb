@@ -4,64 +4,66 @@
     <%= page_entries_info people %>
   </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Área</th>
-        <th>Zona</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @people.each do |person| %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= person.id %></td>
-          <td><%= person.nombre %></td>
-          <td><%= person.apellido %></td>
-          <% if person.zone.nil? %>
-            <td>Sin area</td>
-          <% else %>
-            <td><%= person.zone.area.nombre %></td>
-          <% end %>
-          <% if person.zone.nil? %>
-            <td>Sin zona</td>
-          <% else %>
-            <td><%= person.zone.nombre %></td>
-          <% end %>
-          <td>
-            <%= link_to '',
-                {
-                  :controller => 'visits',
-                  :action => :index,
-                  :person_id => person.id
-                },
-                {
-                  :class => 'glyphicon glyphicon-eye-open',
-                  :title => 'Visitas'
-                }
-            %>
-            <%= link_to '', edit_person_path(person), {
-                class: 'glyphicon glyphicon-edit',
-                title: t("common.ver_editar")
-              }
-            %>
-            <% if current_user && current_user.rol.puede_borrar_persona %>
-              <%= link_to '', person,
-                method: :delete,
-                data: { confirm: '¿Estás seguro?' },
-                class: 'glyphicon glyphicon-remove',
-                title: 'Borrar'
-              %>
-            <% end %>
-          </td>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Área</th>
+          <th>Zona</th>
+          <th>Acciones</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @people.each do |person| %>
+          <tr>
+            <td><%= person.id %></td>
+            <td><%= person.nombre %></td>
+            <td><%= person.apellido %></td>
+            <% if person.zone.nil? %>
+              <td>Sin area</td>
+            <% else %>
+              <td><%= person.zone.area.nombre %></td>
+            <% end %>
+            <% if person.zone.nil? %>
+              <td>Sin zona</td>
+            <% else %>
+              <td><%= person.zone.nombre %></td>
+            <% end %>
+            <td>
+              <%= link_to '',
+                  {
+                    :controller => 'visits',
+                    :action => :index,
+                    :person_id => person.id
+                  },
+                  {
+                    :class => 'glyphicon glyphicon-eye-open',
+                    :title => 'Visitas'
+                  }
+              %>
+              <%= link_to '', edit_person_path(person), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <% if current_user && current_user.rol.puede_borrar_persona %>
+                <%= link_to '', person,
+                  method: :delete,
+                  data: { confirm: '¿Estás seguro?' },
+                  class: 'glyphicon glyphicon-remove',
+                  title: 'Borrar'
+                %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   
   <div class="paginacion">
     <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'sin-margen' %>

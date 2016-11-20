@@ -4,56 +4,57 @@
     <%= page_entries_info visits %>
   </div>
 
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Persona</th>
-        <th>Fecha</th>
-        <th>Comentario</th>
-        <% if !Rails.env.production? %>
-          <th>Latitud</th>
-          <th>Longitud</th>
-        <% end %>
-        <th>Dirección</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @visits.each do |visit| %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <% if visit.person.nil? %>
-            <td>Sin persona</td>
-          <% else %>
-            <td><%= visit.person.nombre  %></td>
-          <% end %>
-          <td><%= visit.fecha.to_date() %></td>
-          <td><%= visit.descripcion %></td>
+          <th>Persona</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
           <% if !Rails.env.production? %>
-            <td><%= visit.latitud %></td>
-            <td><%= visit.longitud %></td>      
+            <th>Latitud</th>
+            <th>Longitud</th>
           <% end %>
-          <td><%= visit.direccion %></td>
-          <td>
-            <%= link_to '', edit_visit_path(visit, :person_id => params[:person_id]), {
-                class: 'glyphicon glyphicon-edit',
-                title: t("common.ver_editar")
-              }
-            %>
-            <% if current_user && current_user.rol.puede_borrar_visita %>
-              <%= link_to '', visit_path(visit, :person_id => params[:person_id]),
-                method: :delete,
-                data: { confirm: '¿Estás seguro?' },
-                class: 'glyphicon glyphicon-remove',
-                title: 'Borrar'
-              %>
-            <% end %>
-          </td>
+          <th>Dirección</th>
+          <th>Acciones</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @visits.each do |visit| %>
+          <tr>
+            <% if visit.person.nil? %>
+              <td>Sin persona</td>
+            <% else %>
+              <td><%= visit.person.nombre  %></td>
+            <% end %>
+            <td><%= visit.fecha.to_date() %></td>
+            <td><%= visit.descripcion %></td>
+            <% if !Rails.env.production? %>
+              <td><%= visit.latitud %></td>
+              <td><%= visit.longitud %></td>      
+            <% end %>
+            <td><%= visit.direccion %></td>
+            <td>
+              <%= link_to '', edit_visit_path(visit, :person_id => params[:person_id]), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <% if current_user && current_user.rol.puede_borrar_visita %>
+                <%= link_to '', visit_path(visit, :person_id => params[:person_id]),
+                  method: :delete,
+                  data: { confirm: '¿Estás seguro?' },
+                  class: 'glyphicon glyphicon-remove',
+                  title: 'Borrar'
+                %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="paginacion">
     <%= will_paginate visits, renderer: BootstrapPagination::Rails, :class => 'sin-margen' %>
