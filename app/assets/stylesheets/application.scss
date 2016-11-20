@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require simple_calendar
  */
 
  .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
@@ -58,3 +59,44 @@
 	border-radius: 10px;
 }
 
+.calendar-title {
+  font-size: 2em;
+}
+
+.calendar-heading {
+  margin-top: 1.5em;
+}
+
+.calendario-data a {
+  &:visited {
+    color: #000;
+  }
+  &:hover {
+    color: #000;
+    background-color: transparent;
+  }
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td > div > a, .table-striped > tbody > tr:nth-child(2n+1) > th > div > a {
+    background-color: #80379B;
+    color: white;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td > div > a, .table-striped > tbody > tr:nth-child(2n) > th > div > a {
+    background-color: #F0AB00;
+    color: black;
+}
+
+.logoRecorridas {
+  &:visited {
+    color: #000;
+  }
+  &:hover {
+    color: #000;
+    background-color: transparent;
+  }
+}
+
+.sub-header {
+  padding: 0.5em;
+}
