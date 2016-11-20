@@ -14,8 +14,7 @@
           <th>Latitud</th>
           <th>Longitud</th>
         <% end %>
-        <th>Ver / Editar</th>
-        <th>Borrar</th>
+        <th>Acciones</th>
       </tr>
     </thead>
 
@@ -32,8 +31,19 @@
             <td><%= zone.latitud %></td>
             <td><%= zone.longitud %></td>      
           <% end %>
-          <td><%= link_to 'Ver / Editar', edit_zone_path(zone) %></td>
-          <td><%= link_to 'Borrar', zone, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          <td>
+              <%= link_to '', edit_zone_path(zone), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <%= link_to '', zone,
+                method: :delete,
+                data: { confirm: '¿Estás seguro?' },
+                class: 'glyphicon glyphicon-remove',
+                title: 'Borrar'
+              %>
+          </td>
         </tr>
       <% end %>
     </tbody>

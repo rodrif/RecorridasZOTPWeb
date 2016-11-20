@@ -9,8 +9,7 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Ver / Editar</th>
-          <th>Borrar</th>
+          <th>Acciones</th>
         </tr>
       </thead>
 
@@ -18,8 +17,19 @@
         <% @areas.each do |area| %>
           <tr>
             <td><%= area.nombre %></td>
-            <td><%= link_to 'Ver / Editar', edit_area_path(area) %></td>
-            <td><%= link_to 'Borrar', area, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+            <td>
+              <%= link_to '', edit_area_path(area), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <%= link_to '', area,
+                method: :delete,
+                data: { confirm: '¿Estás seguro?' },
+                class: 'glyphicon glyphicon-remove',
+                title: 'Borrar'
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
