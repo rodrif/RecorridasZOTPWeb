@@ -29,14 +29,14 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <% if current_user && current_user.rol_id != 5 %>
-            <li><%= link_to 'Inicio', root_path %></li>
-            <li><%= link_to 'Personas', people_path %></li>
-            <li><%= link_to 'Visitas', visits_path %></li>
-            <li><%= link_to 'Áreas', areas_path %></li>
-            <li><%= link_to 'Zonas', zones_path %></li>
-            <li><%= link_to 'Ranchadas', ranchadas_path %></li>
-            <li><%= link_to 'Grupos Familiares', familias_path %></li>
-            <li><%= link_to 'Configuración', configuraciones_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'mapa' %>"><%= link_to 'Inicio', root_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'people' %>"><%= link_to 'Personas', people_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'visits' %>"><%= link_to 'Visitas', visits_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'areas' %>"><%= link_to 'Áreas', areas_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'zones' %>"><%= link_to 'Zonas', zones_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'ranchadas' %>"><%= link_to 'Ranchadas', ranchadas_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'familias' %>"><%= link_to 'Grupos Familiares', familias_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><%= link_to 'Configuración', configuraciones_path %></li>
           <% end %>
         </ul>
 
