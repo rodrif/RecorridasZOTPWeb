@@ -40,6 +40,8 @@
     </table>
   </div>
 
-  <%= will_paginate zones, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate zones, renderer: BootstrapPagination::Rails, :class => 'sin-margen' %>
+  </div>
 
 </div>
