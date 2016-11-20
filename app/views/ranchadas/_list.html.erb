@@ -16,8 +16,7 @@
             <th>Latitud</th>
             <th>Longitud</th>
           <% end %>
-          <th>Ver / Editar</th>
-          <th>Borrar</th>
+          <th>Acciones</th>
         </tr>
       </thead>
 
@@ -32,14 +31,27 @@
               <td><%= ranchada.latitud %></td>
               <td><%= ranchada.longitud %></td>      
             <% end %>
-            <td><%= link_to 'Ver / Editar', edit_ranchada_path(ranchada) %></td>
-            <td><%= link_to 'Borrar', ranchada, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+            <td>
+              <%= link_to '', edit_ranchada_path(ranchada), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <%= link_to '', ranchada,
+                method: :delete,
+                data: { confirm: '¿Estás seguro?' },
+                class: 'glyphicon glyphicon-remove',
+                title: 'Borrar'
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
-  <%= will_paginate ranchadas, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
-
+  <div class="paginacion">
+    <%= will_paginate ranchadas, renderer: BootstrapPagination::Rails, :class => 'sin-margen' %>
+  </div>
+  
 </div>

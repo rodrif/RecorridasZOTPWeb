@@ -12,11 +12,7 @@
         <th>Apellido</th>
         <th>Área</th>
         <th>Zona</th>
-        <th>Visitas</th>
-        <th><%= t("common.ver_editar") %></th>
-        <% if current_user && current_user.rol.puede_borrar_persona %>
-          <th>Borrar</th>
-        <% end %>
+        <th>Acciones</th>
       </tr>
     </thead>
 
@@ -36,20 +32,40 @@
           <% else %>
             <td><%= person.zone.nombre %></td>
           <% end %>
-          <td><%= link_to "Visitas", :controller => 'visits', :action => :index, :person_id => person.id %></td>
-
-
-          <td><%= link_to t("common.ver_editar"), edit_person_path(person) %></td>
-
-          <% if current_user && current_user.rol.puede_borrar_persona %>
-            <td><%= link_to 'Borrar', person, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-          <% end %>
+          <td>
+            <%= link_to '',
+                {
+                  :controller => 'visits',
+                  :action => :index,
+                  :person_id => person.id
+                },
+                {
+                  :class => 'glyphicon glyphicon-eye-open',
+                  :title => 'Visitas'
+                }
+            %>
+            <%= link_to '', edit_person_path(person), {
+                class: 'glyphicon glyphicon-edit',
+                title: t("common.ver_editar")
+              }
+            %>
+            <% if current_user && current_user.rol.puede_borrar_persona %>
+              <%= link_to '', person,
+                method: :delete,
+                data: { confirm: '¿Estás seguro?' },
+                class: 'glyphicon glyphicon-remove',
+                title: 'Borrar'
+              %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
   
-  <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'sin-margen' %>
+  </div>
 
 </div>
 

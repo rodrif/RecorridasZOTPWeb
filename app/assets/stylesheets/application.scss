@@ -104,3 +104,22 @@
 .botones {
   margin-bottom: 1em;
 }
+
+.paginacion {
+  width: 100%;
+  text-align: center;
+}
+
+.sin-margen {
+  margin: 0;
+}
+
+a.glyphicon {
+  &:visited {
+    color: #000;
+  }
+  &:hover {
+    color: #000;
+    background-color: transparent;
+  }
+}
