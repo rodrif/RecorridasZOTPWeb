@@ -13,8 +13,7 @@
           <th>Área</th>
           <th>Rol</th>
           <th>Email</th>
-          <th><%= t("common.ver_editar") %></th>
-          <th>Borrar</th>
+          <th>Acciones</th>
         </tr>
       </thead>
 
@@ -34,8 +33,19 @@
               <td><%= user.rol.nombre %></td>
             <% end %>
             <td><%= user.email %></td>
-            <td><%= link_to t("common.ver_editar"), edit_user_path(user) %></td>
-            <td><%= link_to 'Borrar', user, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+            <td>
+              <%= link_to '', edit_user_path(user), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <%= link_to '', user,
+                method: :delete,
+                data: { confirm: '¿Estás seguro?' },
+                class: 'glyphicon glyphicon-remove',
+                title: 'Borrar'
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
