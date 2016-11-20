@@ -1,9 +1,13 @@
 
 <h2 class="sub-header">Informes</h2>
 
-<% if current_user.rol_id == 1 %>
-  <%= link_to "Voluntarios activos", informes_voluntarios_path %><br />
-  <%= link_to "Personas activas", informes_personas_path %><br />
-  <%= link_to "Fecha de cumpleaños", informes_cumpleanios_path %><br />
-  <%= link_to "Visitas", informes_visitas_path %><br />
-<% end %>
+<div class="container-fluid">
+
+	<% if current_user.rol_id == 1 %>
+	  <%= link_to "Voluntarios activos", informes_voluntarios_path %><br />
+	  <%= link_to "Personas activas", informes_personas_path %><br />
+	  <%= link_to "Fecha de cumpleaños", informes_cumpleanios_path %><br />
+	  <%= link_to "Visitas", informes_visitas_path %><br />
+	<% end %>
+
+</div>
