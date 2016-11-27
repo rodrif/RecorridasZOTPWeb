@@ -14,7 +14,9 @@
           <th>Latitud</th>
           <th>Longitud</th>
         <% end %>
-        <th>Acciones</th>
+        <% if RolDataAccess.is_admin(current_user) %>
+          <th>Acciones</th>
+        <% end %>
       </tr>
     </thead>
 
@@ -29,20 +31,15 @@
           <% end %>
           <% if !Rails.env.production? %>
             <td><%= zone.latitud %></td>
-            <td><%= zone.longitud %></td>      
+            <td><%= zone.longitud %></td>
           <% end %>
           <td>
-              <%= link_to '', edit_zone_path(zone), {
-                  class: 'glyphicon glyphicon-edit',
-                  title: t("common.ver_editar")
-                }
-              %>
-              <%= link_to '', zone,
-                method: :delete,
-                data: { confirm: '¿Estás seguro?' },
-                class: 'glyphicon glyphicon-remove',
-                title: 'Borrar'
-              %>
+            <%=
+              render 'layouts/acciones',
+              current_user: current_user,
+              edit_path: RolDataAccess.is_admin(current_user) ? edit_zone_path(zone) : nil,
+              delete_path: RolDataAccess.is_admin(current_user) ? zone : nil
+            %>
           </td>
         </tr>
       <% end %>

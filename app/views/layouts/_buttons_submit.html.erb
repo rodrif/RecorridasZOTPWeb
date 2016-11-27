@@ -1,8 +1,13 @@
 <% remote ||= false %>
+<% mostrar_aceptar ||= false %>
 
-<div class="actions btn-group col-xs-offset-4 col-md-offset-5">
-	<%= f.submit 'Aceptar', class: "btn btn-primary text-center" %>
-	<% if !remote %>
-		<%= link_to "Cancelar", path, class: "btn btn-primary text-center" %>
-	<% end %>
+<div class="text-center botones-submit">
+	<div class="btn-group">
+		<% if mostrar_aceptar %>
+			<%= f.submit 'Aceptar', class: "btn btn-primary" %>
+		<% end %>
+		<% if !remote %>
+			<%= link_to "Cancelar", path, class: "btn btn-primary" %>
+		<% end %>
+	</div>
 </div>

@@ -32,23 +32,16 @@
             <td><%= visit.descripcion %></td>
             <% if !Rails.env.production? %>
               <td><%= visit.latitud %></td>
-              <td><%= visit.longitud %></td>      
+              <td><%= visit.longitud %></td>
             <% end %>
             <td><%= visit.direccion %></td>
             <td>
-              <%= link_to '', edit_visit_path(visit, :person_id => params[:person_id]), {
-                  class: 'glyphicon glyphicon-edit',
-                  title: t("common.ver_editar")
-                }
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: edit_visit_path(visit, :person_id => params[:person_id]),
+                delete_path: RolDataAccess.puede_borrar_visita(current_user) ? visit_path(visit, :person_id => params[:person_id]) : nil
               %>
-              <% if current_user && current_user.rol.puede_borrar_visita %>
-                <%= link_to '', visit_path(visit, :person_id => params[:person_id]),
-                  method: :delete,
-                  data: { confirm: '¿Estás seguro?' },
-                  class: 'glyphicon glyphicon-remove',
-                  title: 'Borrar'
-                %>
-              <% end %>
             </td>
           </tr>
         <% end %>
