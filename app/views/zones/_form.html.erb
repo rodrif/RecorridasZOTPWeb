@@ -8,7 +8,7 @@
   <% if @zone.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>
-      
+
       <ul>
       <% @zone.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -26,7 +26,7 @@
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
   </div>
-         
+
   <div class="form-group">
     <% if !Rails.env.production? %>
       <%= f.label :latitud, class: "#{label_col} control-label", for: "zone_latitud" %>
@@ -48,9 +48,9 @@
     <div class="<%= input_col %>">
       <div id="googleMapZona" class="mapaUbicacionZona"></div>
     </div>
-  </div>  
+  </div>
 
-  <%= render 'layouts/buttons_submit', path: zones_path, f: f, remote: remote %>
+  <%= render 'layouts/buttons_submit', path: zones_path, f: f, remote: remote, mostrar_aceptar: RolDataAccess.is_admin(current_user) %>
 
 <% end %>
 

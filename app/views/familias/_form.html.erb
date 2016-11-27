@@ -14,7 +14,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "familia_nombre", f: f, remote: remote %>
 
   <div class="form-group">
@@ -65,6 +65,6 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: familias_path, f: f, remote: remote %>
+  <%= render 'layouts/buttons_submit', path: familias_path, f: f, remote: remote, mostrar_aceptar: RolDataAccess.is_admin(current_user) %>
 
 <% end %>
