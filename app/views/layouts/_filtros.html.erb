@@ -4,8 +4,7 @@
 
   <%= form_for_filterrific @filterrific do |f| %>
     <div class="row-fluid">
-
-      <div class="col-md-3">
+      <div class="col-xs-12 col-md-3 margen-vert">
         Área
         <%= f.select(
           :with_area_id,
@@ -13,8 +12,10 @@
           { include_blank: 'Todas' }
         ) %>
       </div>
+    </div>
 
-      <div class="col-md-3">
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-3 margen-vert">
         Zona
         <%= f.select(
           :with_zone_id,
@@ -22,8 +23,10 @@
           { include_blank: 'Todas' }
         ) %>
       </div>
+    </div>
 
-      <div class="col-md-6">
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-6 margen-vert">
         <% if label_searcher %>
          <%= label_searcher %>
         <% else %>

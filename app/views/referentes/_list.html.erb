@@ -1,6 +1,6 @@
 <div id="filterrific_results">
 
-  <div>
+  <div class="container-fluid">
     <%= page_entries_info referentes %>
   </div>
 
@@ -34,6 +34,8 @@
     </table>
   </div>
 
-  <%= will_paginate referentes, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate referentes, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 
 </div>

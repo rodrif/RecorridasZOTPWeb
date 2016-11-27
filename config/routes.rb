@@ -25,10 +25,12 @@ Rails.application.routes.draw do
     post 'referentes/upload' => 'referentes#upload'
   end
 
+  get 'calendario' => 'calendario#index'
+
   resources :notificaciones
   resources :auditoria
   resources :users
-  resources :referentes
+  #resources :referentes
   resources :familias
   resources :ranchadas
   resources :areas

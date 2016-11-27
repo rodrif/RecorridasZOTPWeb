@@ -1,6 +1,6 @@
 <div id="filterrific_results">
 
-  <div>
+  <div class="container-fluid">
     <%= page_entries_info familias %>
   </div>
 
@@ -13,8 +13,9 @@
           <th><%= t("activerecord.models.zone.one") %></th>
           <th>Ranchada</th>
           <th><%= t('common.descripcion') %></th>
-          <th>Ver / Editar</th>
-          <th>Borrar</th>
+          <% if RolDataAccess.is_admin(current_user) %>
+            <th>Acciones</th>
+          <% end %>
         </tr>
       </thead>
 
@@ -26,14 +27,22 @@
             <td><%= familia.zone.nombre %></td>
             <td><%= familia.ranchada ? familia.ranchada.nombre : "" %></td>
             <td><%= familia.descripcion %></td>
-            <td><%= link_to 'Ver / Editar', edit_familia_path(familia) %></td>
-            <td><%= link_to 'Borrar', familia, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: RolDataAccess.is_admin(current_user) ? edit_familia_path(familia) : nil,
+                delete_path: RolDataAccess.is_admin(current_user) ? familia : nil
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
-  <%= will_paginate familias, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate familias, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 
 </div>

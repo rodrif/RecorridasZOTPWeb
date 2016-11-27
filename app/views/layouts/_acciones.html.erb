@@ -1,0 +1,35 @@
+<% current_user ||= false %>
+<% visits_person_id ||= false %>
+<% edit_path ||= false %>
+<% delete_path ||= false %>
+
+<% if visits_person_id %>
+	<%= link_to '',
+	    {
+	      :controller => 'visits',
+	      :action => :index,
+	      :person_id => visits_person_id
+	    },
+	    {
+	      :class => 'glyphicon glyphicon-eye-open',
+	      :title => 'Visitas'
+	    }
+	%>
+<% end %>
+
+<% if edit_path && current_user %>
+	<%= link_to '', edit_path, {
+    class: 'glyphicon glyphicon-edit',
+    title: t("common.ver_editar")
+  }
+  %>
+<% end %>
+
+<% if delete_path && current_user %>
+	<%= link_to '', delete_path,
+    method: :delete,
+    data: { confirm: '¿Estás seguro?' },
+    class: 'glyphicon glyphicon-remove',
+    title: 'Borrar'
+  %>
+<% end %>

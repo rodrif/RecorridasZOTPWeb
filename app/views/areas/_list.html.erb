@@ -1,6 +1,6 @@
 <div id="filterrific_results">
 
-  <div>
+  <div class="container-fluid">
     <%= page_entries_info areas %>
   </div>
 
@@ -9,8 +9,9 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Ver / Editar</th>
-          <th>Borrar</th>
+          <% if RolDataAccess.is_admin(current_user) %>
+            <th>Acciones</th>
+          <% end %>
         </tr>
       </thead>
 
@@ -18,14 +19,22 @@
         <% @areas.each do |area| %>
           <tr>
             <td><%= area.nombre %></td>
-            <td><%= link_to 'Ver / Editar', edit_area_path(area) %></td>
-            <td><%= link_to 'Borrar', area, method: :delete, data: { confirm: '¿Estás seguro?' } %>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: RolDataAccess.is_admin(current_user) ? edit_area_path(area) : nil,
+                delete_path: RolDataAccess.is_admin(current_user) ? area : nil
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
-  <%= will_paginate areas, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate areas, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 
 </div>
