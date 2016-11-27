@@ -40,7 +40,7 @@
                 render 'layouts/acciones',
                 current_user: current_user,
                 edit_path: edit_visit_path(visit, :person_id => params[:person_id]),
-                delete_path: visit_path(visit, :person_id => params[:person_id])
+                delete_path: RolDataAccess.puede_borrar_visita(current_user) ? visit_path(visit, :person_id => params[:person_id]) : nil
               %>
             </td>
           </tr>
