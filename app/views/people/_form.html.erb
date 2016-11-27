@@ -1,3 +1,6 @@
+<% puede_editar ||= false %>
+<% disabled = !puede_editar %>
+
 <%= form_for(@person, :html => {:class => 'form-horizontal container-fluid'} ) do |f| %>
   <% if @person.errors.any? %>
     <div id="error_explanation">
@@ -10,100 +13,121 @@
     </div>
   <% end %>
 
-
   <div class="form-group">
     <%= f.label :nombre, class: "col-md-1 control-label", for: "person_nombre" %>
     <div class="col-md-10">
-      <%= f.text_field :nombre, class: "form-control" %>
+      <%= f.text_field :nombre, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :apellido, class: "col-md-1 control-label", for: "person_apellido" %>
     <div class="col-md-10">
-      <%= f.text_field :apellido, class: "form-control" %>
+      <%= f.text_field :apellido, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :dni, class: "col-md-1 control-label", for: "person_dni" %>
     <div class="col-md-10">
-      <%= f.text_field :dni, class: "form-control" %>
+      <%= f.text_field :dni, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :telefono, class: "col-md-1 control-label", for: "person_telefono" %>
-    <div class="col-md-10">
-      <%= f.text_field :telefono, class: "form-control", type: "number" %>
+  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
+    <div class="form-group">
+      <%= f.label :telefono, class: "col-md-1 control-label", for: "person_telefono" %>
+      <div class="col-md-10">
+        <%= f.text_field :telefono, class: "form-control", type: "number", :disabled => disabled %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :fecha_nacimiento, class: "col-md-1 control-label", for: "person_fecha_nacimiento" %>
     <div class="col-md-10">
-      <%= f.date_field :fecha_nacimiento, class: "form-control" %>
+      <%= f.date_field :fecha_nacimiento, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label "Área", class: "col-xs-12 col-md-1 control-label", for: "person_area_id" %>
-    <div class="col-xs-10 col-md-9">
-      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-
-    <div class="col-xs-2 col-md-1">
-      <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_area_modal', 'data-toggle' => 'modal', id: 'area_modal' %>
-    </div>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <div class="col-xs-10 col-md-9">
+        <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+      <div class="col-xs-2 col-md-1">
+        <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_area_modal', 'data-toggle' => 'modal', id: 'area_modal' %>
+      </div>
+    <% else %>
+      <div class="col-xs-12 col-md-10">
+        <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= f.label "Zona", class: "col-xs-12 col-md-1 control-label", for: "person_zone_id" %>
-    <div class="col-xs-10 col-md-9">
-      <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-
-    <div class="col-xs-2 col-md-1">
-      <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_zone_modal', 'data-toggle' => 'modal', id: 'zona_modal' %>
-    </div>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <div class="col-xs-10 col-md-9">
+        <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+      <div class="col-xs-2 col-md-1">
+        <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_zone_modal', 'data-toggle' => 'modal', id: 'zona_modal' %>
+      </div>
+    <% else %>
+      <div class="col-xs-12 col-md-10">
+        <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= f.label "Ranchada", class: "col-xs-12 col-md-1 control-label", for: "person_ranchada_id" %>
-    <div class="col-xs-10 col-md-9">
-      <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
-    </div>
-
-    <div class="col-xs-2 col-md-1">
-      <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_ranchada_modal', 'data-toggle' => 'modal', id: 'ranchada_modal' %>
-    </div>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <div class="col-xs-10 col-md-9">
+        <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+      <div class="col-xs-2 col-md-1">
+        <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_ranchada_modal', 'data-toggle' => 'modal', id: 'ranchada_modal' %>
+      </div>
+    <% else %>
+      <div class="col-xs-12 col-md-10">
+        <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group">    
     <%= f.label "Grupo Familiar", class: "col-xs-12 col-md-1 control-label", for: "person_familia_id" %>
-    <div class="col-xs-10 col-md-9">
-      <%= f.collection_select :familia_id, @familias, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control"} %>
-    </div>
-
-    <div class="col-xs-2 col-md-1">
-      <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_familia_modal', 'data-toggle' => 'modal', id: 'familia_modal' %>
-    </div>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <div class="col-xs-10 col-md-9">
+        <%= f.collection_select :familia_id, @familias, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+      <div class="col-xs-2 col-md-1">
+        <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_familia_modal', 'data-toggle' => 'modal', id: 'familia_modal' %>
+      </div>
+    <% else %>
+      <div class="col-xs-12 col-md-10">
+        <%= f.collection_select :familia_id, @familias, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+    <% end %>
   </div>
 
   <div class="form-group">
       <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>
       <div class="col-md-2">
-        <%= f.text_field :pantalon, class: "form-control" %>
+        <%= f.text_field :pantalon, class: "form-control", :disabled => disabled %>
       </div>
 
       <%= f.label :remera, class: "col-md-1 control-label", for: "person_nombre" %>
       <div class="col-md-2">
-        <%= f.text_field :remera, class: "form-control" %>
+        <%= f.text_field :remera, class: "form-control", :disabled => disabled %>
       </div>
 
       <%= f.label :zapatillas, class: "col-md-1 control-label", for: "person_nombre" %>
       <div class="col-md-2">
-        <%= f.text_field :zapatillas, class: "form-control" %>
+        <%= f.text_field :zapatillas, class: "form-control", :disabled => disabled %>
       </div>
   </div>
 
@@ -115,7 +139,7 @@
       <div class="form-group">
         <%= field.label 'Dirección', class: "col-md-1 control-label", for: "person_visit_direccion" %>
         <div class="col-md-10">
-          <%= field.text_field :direccion, class: "form-control" %>
+          <%= field.text_field :direccion, class: "form-control", :disabled => disabled %>
         </div>
       </div>
 
@@ -123,15 +147,15 @@
         <% if !Rails.env.production? %>
           <%= field.label :latitud, class: "col-md-1 control-label", for: "person_visit_latitud" %>
           <div class="col-md-4">
-            <%= field.text_field :latitud, class: "form-control" %>
+            <%= field.text_field :latitud, class: "form-control", :disabled => disabled %>
           </div>
           <%= field.label :longitud, class: "col-md-1 control-label", for: "person_visit_longitud" %>
           <div class="col-md-4">
-            <%= field.text_field :longitud, class: "form-control" %>
+            <%= field.text_field :longitud, class: "form-control", :disabled => disabled %>
           </div>
         <% else %>
-          <%= field.hidden_field :latitud, class: "form-control" %>
-          <%= field.hidden_field :longitud, class: "form-control" %>
+          <%= field.hidden_field :latitud, class: "form-control", :disabled => disabled %>
+          <%= field.hidden_field :longitud, class: "form-control", :disabled => disabled %>
         <% end %>
       </div>
 
@@ -147,14 +171,11 @@
   <div class="form-group">
     <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
     <div class="col-md-10">
-      <%= f.text_area :descripcion, class: "form-control", type: "text" %>
+      <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
     </div>
   </div>
 
-  <div class="actions btn-group col-xs-offset-4 col-md-offset-5">
-    <%= f.submit 'Aceptar', class: "btn btn-primary text-center" %>
-    <%= link_to "Cancelar", path, class: "btn btn-primary text-center" %>
-  </div>
+  <%= render 'layouts/buttons_submit', path: path, f: f, mostrar_aceptar: puede_editar %>
 
 <% end %>
 

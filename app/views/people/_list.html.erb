@@ -34,37 +34,20 @@
               <td><%= person.zone.nombre %></td>
             <% end %>
             <td>
-              <%= link_to '',
-                  {
-                    :controller => 'visits',
-                    :action => :index,
-                    :person_id => person.id
-                  },
-                  {
-                    :class => 'glyphicon glyphicon-eye-open',
-                    :title => 'Visitas'
-                  }
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                visits_person_id: person.id,
+                edit_path: edit_person_path(person),
+                delete_path: person
               %>
-              <%= link_to '', edit_person_path(person), {
-                  class: 'glyphicon glyphicon-edit',
-                  title: t("common.ver_editar")
-                }
-              %>
-              <% if current_user && current_user.rol.puede_borrar_persona %>
-                <%= link_to '', person,
-                  method: :delete,
-                  data: { confirm: '¿Estás seguro?' },
-                  class: 'glyphicon glyphicon-remove',
-                  title: 'Borrar'
-                %>
-              <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  
+
   <div class="paginacion">
     <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
   </div>
