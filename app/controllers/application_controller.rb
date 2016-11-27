@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def puede_crear_persona
-    # admin, referente, coordinador, voluntario
-    if !current_user.rol || (current_user.rol_id != 1 && current_user.rol_id != 2 && current_user.rol_id != 3 && current_user.rol_id != 4)
+    if !RolDataAccess.puede_crear_persona(current_user)
       redireccionar
     end
   end
@@ -33,36 +32,31 @@ class ApplicationController < ActionController::Base
   end
 
   def puede_ver_telefono_persona
-    # admin, referente, coordinador
-    if !current_user.rol || (current_user.rol_id != 1 && current_user.rol_id != 2 && current_user.rol_id != 3)
+    if !RolDataAccess.puede_ver_telefono_persona(current_user)
       redireccionar
     end
   end
 
   def puede_crear_visita
-    # admin, referente, coordinador, voluntario
-    if !current_user.rol || (current_user.rol_id != 1 && current_user.rol_id != 2 && current_user.rol_id != 3 && current_user.rol_id != 4)
+    if !RolDataAccess.puede_crear_visita(current_user)
       redireccionar
     end
   end
 
   def puede_editar_visita
-    # admin, referente, coordinador, voluntario
-    if !current_user.rol || (current_user.rol_id != 1 && current_user.rol_id != 2 && current_user.rol_id != 3 && current_user.rol_id != 4)
+    if !RolDataAccess.puede_editar_visita(current_user)
       redireccionar
     end
   end
 
   def puede_borrar_visita
-    # admin, referente, coordinador
-    if !current_user.rol || (current_user.rol_id != 1 && current_user.rol_id != 2 && current_user.rol_id != 3)
+    if !RolDataAccess.puede_borrar_visita(current_user)
       redireccionar
     end
   end
 
   def puede_ver_web
-    # admin, referente, coordinador, voluntario
-    if !current_user.rol || (current_user.rol_id != 1 && current_user.rol_id != 2 && current_user.rol_id != 3 && current_user.rol_id != 4)
+    if !RolDataAccess.puede_ver_web(current_user)
       redireccionar
     end
   end

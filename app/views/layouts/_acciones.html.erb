@@ -25,7 +25,7 @@
   %>
 <% end %>
 
-<% if delete_path && current_user && RolDataAccess.puede_borrar_persona(current_user) %>
+<% if delete_path && current_user %>
 	<%= link_to '', delete_path,
     method: :delete,
     data: { confirm: '¿Estás seguro?' },

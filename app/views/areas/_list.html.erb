@@ -9,7 +9,9 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Acciones</th>
+          <% if RolDataAccess.is_admin(current_user) %>
+            <th>Acciones</th>
+          <% end %>
         </tr>
       </thead>
 
@@ -18,16 +20,11 @@
           <tr>
             <td><%= area.nombre %></td>
             <td>
-              <%= link_to '', edit_area_path(area), {
-                  class: 'glyphicon glyphicon-edit',
-                  title: t("common.ver_editar")
-                }
-              %>
-              <%= link_to '', area,
-                method: :delete,
-                data: { confirm: '¿Estás seguro?' },
-                class: 'glyphicon glyphicon-remove',
-                title: 'Borrar'
+            <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: RolDataAccess.is_admin(current_user) ? edit_area_path(area) : nil,
+                delete_path: RolDataAccess.is_admin(current_user) ? area : nil
               %>
             </td>
           </tr>
