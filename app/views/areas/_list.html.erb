@@ -20,7 +20,7 @@
           <tr>
             <td><%= area.nombre %></td>
             <td>
-            <%=
+              <%=
                 render 'layouts/acciones',
                 current_user: current_user,
                 edit_path: RolDataAccess.is_admin(current_user) ? edit_area_path(area) : nil,

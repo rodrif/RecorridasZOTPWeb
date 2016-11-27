@@ -11,7 +11,8 @@ function cargarUbicacionRanchada() {
 		longitud = -58.5659176;
 	}
 
-	var mapaUbicacion = new MapaUbicacion(latitud, longitud, latSelector, lngSelector, "googleMapRanchada");
+  var mapDisabled = !!(document.getElementById('mapDisabled'));
+	var mapaUbicacion = new MapaUbicacion(latitud, longitud, latSelector, lngSelector, "googleMapRanchada", mapDisabled);
 
 	$('#new_ranchada_modal').ready(function() {
     $('#new_ranchada_modal').on('shown.bs.modal',function() {
