@@ -47,45 +47,45 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Área", class: "col-md-1 control-label", for: "person_area_id" %>
-    <div class="col-md-9">
+    <%= f.label "Área", class: "col-xs-12 col-md-1 control-label", for: "person_area_id" %>
+    <div class="col-xs-10 col-md-9">
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-xs-2 col-md-1">
       <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_area_modal', 'data-toggle' => 'modal', id: 'area_modal' %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Zona", class: "col-md-1 control-label", for: "person_zone_id" %>
-    <div class="col-md-9">
+    <%= f.label "Zona", class: "col-xs-12 col-md-1 control-label", for: "person_zone_id" %>
+    <div class="col-xs-10 col-md-9">
       <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-xs-2 col-md-1">
       <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_zone_modal', 'data-toggle' => 'modal', id: 'zona_modal' %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Ranchada", class: "col-md-1 control-label", for: "person_ranchada_id" %>
-    <div class="col-md-9">
+    <%= f.label "Ranchada", class: "col-xs-12 col-md-1 control-label", for: "person_ranchada_id" %>
+    <div class="col-xs-10 col-md-9">
       <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control"} %>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-xs-2 col-md-1">
       <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_ranchada_modal', 'data-toggle' => 'modal', id: 'ranchada_modal' %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Grupo Familiar", class: "col-md-1 control-label", for: "person_familia_id" %>
-    <div class="col-md-9">
+    <%= f.label "Grupo Familiar", class: "col-xs-12 col-md-1 control-label", for: "person_familia_id" %>
+    <div class="col-xs-10 col-md-9">
       <%= f.collection_select :familia_id, @familias, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control"} %>
     </div>
 
-    <div class="col-md-1">
+    <div class="col-xs-2 col-md-1">
       <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_familia_modal', 'data-toggle' => 'modal', id: 'familia_modal' %>
     </div>
   </div>
