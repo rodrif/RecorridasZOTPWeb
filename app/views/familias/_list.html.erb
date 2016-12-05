@@ -13,7 +13,9 @@
           <th><%= t("activerecord.models.zone.one") %></th>
           <th>Ranchada</th>
           <th><%= t('common.descripcion') %></th>
-          <th>Acciones</th>
+          <% if RolDataAccess.is_admin(current_user) %>
+            <th>Acciones</th>
+          <% end %>
         </tr>
       </thead>
 
@@ -26,16 +28,11 @@
             <td><%= familia.ranchada ? familia.ranchada.nombre : "" %></td>
             <td><%= familia.descripcion %></td>
             <td>
-              <%= link_to '', edit_familia_path(familia), {
-                  class: 'glyphicon glyphicon-edit',
-                  title: t("common.ver_editar")
-                }
-              %>
-              <%= link_to '', familia,
-                method: :delete,
-                data: { confirm: '¿Estás seguro?' },
-                class: 'glyphicon glyphicon-remove',
-                title: 'Borrar'
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: RolDataAccess.is_admin(current_user) ? edit_familia_path(familia) : nil,
+                delete_path: RolDataAccess.is_admin(current_user) ? familia : nil
               %>
             </td>
           </tr>

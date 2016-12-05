@@ -1,5 +1,3 @@
-
-
 <h2 class="sub-header">Persona</h2>
 
-<%= render 'form', :path => people_path %>
+<%= render 'form', :path => people_path, puede_editar: RolDataAccess.puede_editar_persona(current_user) %>

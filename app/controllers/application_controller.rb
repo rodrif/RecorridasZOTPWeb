@@ -14,49 +14,49 @@ class ApplicationController < ActionController::Base
   end
 
   def puede_crear_persona
-    if !current_user.rol || !current_user.rol.puede_crear_persona
+    if !RolDataAccess.puede_crear_persona(current_user)
       redireccionar
     end
   end
 
   def puede_editar_persona
-    if !current_user.rol || !current_user.rol.puede_editar_persona
+    if !RolDataAccess.puede_editar_persona(current_user)
       redireccionar
     end
   end
 
   def puede_borrar_persona
-    if !current_user.rol || !current_user.rol.puede_borrar_persona
+    if !RolDataAccess.puede_borrar_persona(current_user)
       redireccionar
     end
   end
 
   def puede_ver_telefono_persona
-    if !current_user.rol || !current_user.rol.puede_ver_telefono_persona
+    if !RolDataAccess.puede_ver_telefono_persona(current_user)
       redireccionar
     end
   end
 
   def puede_crear_visita
-    if !current_user.rol || !current_user.rol.puede_crear_visita
+    if !RolDataAccess.puede_crear_visita(current_user)
       redireccionar
     end
   end
 
   def puede_editar_visita
-    if !current_user.rol || !current_user.rol.puede_editar_visita
+    if !RolDataAccess.puede_editar_visita(current_user)
       redireccionar
     end
   end
 
   def puede_borrar_visita
-    if !current_user.rol || !current_user.rol.puede_borrar_visita
+    if !RolDataAccess.puede_borrar_visita(current_user)
       redireccionar
     end
   end
 
   def puede_ver_web
-    if !current_user.rol || !current_user.rol.puede_ver_web
+    if !RolDataAccess.puede_ver_web(current_user)
       redireccionar
     end
   end

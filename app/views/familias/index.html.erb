@@ -6,4 +6,6 @@
 
 <%= render 'list', familias: @familias %>
 
-<%= render 'layouts/new_button', :label => 'Nueva familia', :path => new_familia_path %>
+<% if RolDataAccess.is_admin(current_user) %>
+	<%= render 'layouts/new_button', :label => 'Nueva familia', :path => new_familia_path %>
+<% end %>

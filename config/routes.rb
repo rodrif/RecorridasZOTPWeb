@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :notificaciones
   resources :auditoria
   resources :users
-  resources :referentes
+  #resources :referentes
   resources :familias
   resources :ranchadas
   resources :areas
