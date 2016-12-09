@@ -23,7 +23,7 @@ wb.styles do |style|
         voluntario.rol.nil? ? '' : voluntario.rol.nombre,
         voluntario.email,
         voluntario.telefono,
-        voluntario.dia,
+        voluntario.jornadas.map { |d| d.nombre }.join(', '),
         voluntario.auditorias.last.nil? ? '' : voluntario.auditorias.order(:fecha).last.fecha.to_s
       ], style: data_cell
     end

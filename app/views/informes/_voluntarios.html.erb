@@ -12,7 +12,7 @@
           <th>Rol</th>
           <th>Email</th>
           <th>Teléfono</th>
-          <th>Día</th>
+          <th>Días</th>
           <th>Fecha última actividad</th>
         </tr>
       </thead>
@@ -34,7 +34,7 @@
             <% end %>
             <td><%= voluntario.email %></td>
             <td><%= voluntario.telefono %></td>
-            <td><%= voluntario.dia %></td>
+            <td><%= voluntario.jornadas.map { |d| d.nombre }.join ', ' %></td>
             <% if voluntario.auditorias.last.nil? %>
               <td></td>
             <% else %>
