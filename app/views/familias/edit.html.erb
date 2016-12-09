@@ -1,3 +1,3 @@
 <h2 class="sub-header">Familia</h2>
 
-<%= render 'form', puede_editar: RolDataAccess.is_admin(current_user) %>
+<%= render 'form', puede_editar: RolDataAccess.puede_editar_familia(current_user) %>

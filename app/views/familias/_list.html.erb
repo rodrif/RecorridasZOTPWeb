@@ -13,7 +13,7 @@
           <th><%= t("activerecord.models.zone.one") %></th>
           <th>Ranchada</th>
           <th><%= t('common.descripcion') %></th>
-          <% if RolDataAccess.is_admin(current_user) %>
+          <% if RolDataAccess.puede_editar_familia(current_user) %>
             <th>Acciones</th>
           <% end %>
         </tr>
@@ -31,8 +31,8 @@
               <%=
                 render 'layouts/acciones',
                 current_user: current_user,
-                edit_path: RolDataAccess.is_admin(current_user) ? edit_familia_path(familia) : nil,
-                delete_path: RolDataAccess.is_admin(current_user) ? familia : nil
+                edit_path: RolDataAccess.puede_editar_familia(current_user) ? edit_familia_path(familia) : nil,
+                delete_path: RolDataAccess.puede_editar_familia(current_user) ? familia : nil
               %>
             </td>
           </tr>

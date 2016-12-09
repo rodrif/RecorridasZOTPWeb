@@ -6,6 +6,6 @@
 
 <%= render 'zones/list', zones: @zones %>
 
-<% if RolDataAccess.is_admin(current_user) %>
+<% if RolDataAccess.puede_editar_zona(current_user) %>
 	<%= render 'layouts/new_button', :label => 'Nueva zona', :path => new_zone_path %>
 <% end %>

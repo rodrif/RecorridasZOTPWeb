@@ -4,6 +4,6 @@
 
 <%= render 'list', ranchadas: @ranchadas %>
 
-<% if RolDataAccess.is_admin(current_user) %>
+<% if RolDataAccess.puede_editar_ranchada(current_user) %>
 	<%= render 'layouts/new_button', :label => 'Nueva ranchada', :path => new_ranchada_path %>
 <% end %>
