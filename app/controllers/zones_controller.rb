@@ -2,6 +2,7 @@ class ZonesController < ApplicationController
   before_action :set_zone, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :puede_ver_web
+  before_action :puede_editar_zona, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /zones
   # GET /zones.json
