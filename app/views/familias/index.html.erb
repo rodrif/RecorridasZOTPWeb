@@ -6,6 +6,6 @@
 
 <%= render 'list', familias: @familias %>
 
-<% if RolDataAccess.is_admin(current_user) %>
+<% if RolDataAccess.puede_editar_familia(current_user) %>
 	<%= render 'layouts/new_button', :label => 'Nueva familia', :path => new_familia_path %>
 <% end %>

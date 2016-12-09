@@ -23,8 +23,8 @@
               <%=
                 render 'layouts/acciones',
                 current_user: current_user,
-                edit_path: RolDataAccess.is_admin(current_user) ? edit_area_path(area) : nil,
-                delete_path: RolDataAccess.is_admin(current_user) ? area : nil
+                edit_path: RolDataAccess.puede_editar_area(current_user) ? edit_area_path(area) : nil,
+                delete_path: RolDataAccess.puede_editar_area(current_user) ? area : nil
               %>
             </td>
           </tr>

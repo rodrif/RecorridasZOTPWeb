@@ -37,8 +37,8 @@
             <%=
               render 'layouts/acciones',
               current_user: current_user,
-              edit_path: RolDataAccess.is_admin(current_user) ? edit_zone_path(zone) : nil,
-              delete_path: RolDataAccess.is_admin(current_user) ? zone : nil
+              edit_path: RolDataAccess.puede_editar_zona(current_user) ? edit_zone_path(zone) : nil,
+              delete_path: RolDataAccess.puede_editar_zona(current_user) ? zone : nil
             %>
           </td>
         </tr>
