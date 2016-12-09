@@ -27,4 +27,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'auditoria', 'auditorias'
   inflect.irregular 'notificacion', 'notificaciones'
   inflect.irregular 'informe', 'informes'
+  inflect.irregular 'jornada', 'jornadas'
 end

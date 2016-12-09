@@ -2,7 +2,7 @@
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>
-      
+
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -54,6 +54,17 @@
   </div>
 
   <div class="form-group">
+    <%= f.label 'Días', class: "col-md-1 control-label", for: "user_jornada_nombre" %>
+    <div class="col-md-10">
+      <%= f.collection_check_boxes(:jornada_ids, Jornada.all, :id, :nombre) do |b| %>
+        <span>
+          <%= b.label(:"data-value" => b.value) { b.check_box + ' ' + b.text } %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label "Área", class: "col-md-1 control-label", for: "user_area_id" %>
     <div class="col-md-10">
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
@@ -67,6 +78,6 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: users_path, f: f, remote: false %>
+  <%= render 'layouts/buttons_submit', path: users_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.is_admin(current_user) %>
 
 <% end %>

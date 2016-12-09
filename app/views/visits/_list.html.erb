@@ -1,54 +1,56 @@
 <div id="filterrific_results">
 
-  <div>
+  <div class="container-fluid">
     <%= page_entries_info visits %>
   </div>
 
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Persona</th>
-        <th>Fecha</th>
-        <th>Comentario</th>
-        <% if !Rails.env.production? %>
-          <th>Latitud</th>
-          <th>Longitud</th>
-        <% end %>
-        <th>Dirección</th>
-        <th>Ver / Editar</th>
-        <% if current_user && current_user.rol.puede_borrar_visita %>
-          <th>Borrar</th>
-        <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @visits.each do |visit| %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <% if visit.person.nil? %>
-            <td>Sin persona</td>
-          <% else %>
-            <td><%= visit.person.nombre  %></td>
-          <% end %>
-          <td><%= visit.fecha.to_date() %></td>
-          <td><%= visit.descripcion %></td>
+          <th>Persona</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
           <% if !Rails.env.production? %>
-            <td><%= visit.latitud %></td>
-            <td><%= visit.longitud %></td>      
+            <th>Latitud</th>
+            <th>Longitud</th>
           <% end %>
-          <td><%= visit.direccion %></td>
-          <td><%= link_to 'Ver / Editar', edit_visit_path(visit, :person_id => params[:person_id]) %></td>
-
-          <% if current_user && current_user.rol.puede_borrar_visita %>
-            <td><%= link_to 'Borrar', visit_path(visit, :person_id => params[:person_id]), method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
-          <% end %>
-
+          <th>Dirección</th>
+          <th>Acciones</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-  <%= will_paginate visits, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+      <tbody>
+        <% @visits.each do |visit| %>
+          <tr>
+            <% if visit.person.nil? %>
+              <td>Sin persona</td>
+            <% else %>
+              <td><%= visit.person.nombre  %></td>
+            <% end %>
+            <td><%= visit.fecha.to_date() %></td>
+            <td><%= visit.descripcion %></td>
+            <% if !Rails.env.production? %>
+              <td><%= visit.latitud %></td>
+              <td><%= visit.longitud %></td>
+            <% end %>
+            <td><%= visit.direccion %></td>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: edit_visit_path(visit, :person_id => params[:person_id]),
+                delete_path: RolDataAccess.puede_borrar_visita(current_user) ? visit_path(visit, :person_id => params[:person_id]) : nil
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginacion">
+    <%= will_paginate visits, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 
 </div>

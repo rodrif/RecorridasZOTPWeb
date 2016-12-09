@@ -13,12 +13,12 @@
           class: 'filterrific-periodically-observed'
         ) %>
       </div>
-    </div>    
+    </div>
   <% end %>
 </div>
 
 <%= render 'list', areas: @areas %>
 
-<br>
-
-<%= render 'layouts/new_button', :label => 'Nueva área', :path => new_area_path %>
+<% if RolDataAccess.is_admin(current_user) %>
+  <%= render 'layouts/new_button', :label => 'Nueva área', :path => new_area_path %>
+<% end %>

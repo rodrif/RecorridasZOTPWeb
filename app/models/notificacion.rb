@@ -8,7 +8,7 @@ class Notificacion < ActiveRecord::Base
   accepts_nested_attributes_for :notificacion_roles, allow_destroy: true
   validates :titulo, :subtitulo, :fecha_desde, :frecuencia_tipo_id, :presence => true
   validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
-  validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1"
+  validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1 || notificacion_tipo_id == 4"
   validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
   validates :areas, :presence => true
   validate :fecha_desde_mayor_fecha_hasta
@@ -133,6 +133,8 @@ class Notificacion < ActiveRecord::Base
   }
 
   scope :activas, -> { where.not(state_id: 3).order(fecha_desde: :desc) }
+
+  scope :calendario, -> { where.not(state_id: 3).where(notificacion_tipo_id: 4).order(fecha_desde: :desc) }
 
   def frecuencia
     "#{frecuencia_cant if frecuencia_tipo_id != 1} #{frecuencia_tipo.nombre}"

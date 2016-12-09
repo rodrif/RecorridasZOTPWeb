@@ -2,13 +2,14 @@
 <% remote = modal ? true : false %>
 <% label_col = remote ? "col-md-2" : "col-md-1" %>
 <% input_col = remote ? "col-md-9" : "col-md-10" %>
-
+<% puede_editar ||= false %>
+<% disabled = !puede_editar %>
 
 <%= form_for(@ranchada, remote: remote, :html => {'data-model' => 'ranchada', :class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @ranchada.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>
-      
+
       <ul>
       <% @ranchada.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -17,26 +18,26 @@
     </div>
   <% end %>
 
-  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "ranchada_nombre", f: f, remote: remote %>
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "ranchada_nombre", f: f, remote: remote, puede_editar: RolDataAccess.is_admin(current_user) %>
 
   <div class="form-group">
     <%= f.label "Área", class: "#{label_col} control-label", for: "ranchada_area_id" %>
     <div class="<%= input_col %>">
-      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label "Zona", class: "#{label_col} control-label", for: "ranchada_zone_id" %>
     <div class="<%= input_col %>">
-      <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
+      <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
     </div>
   </div>
 
   <div class="form-group">
     <%= f.label :descripcion, class: "#{label_col} control-label", for: "familia_descripcion" %>
     <div class="<%= input_col %>">
-      <%= f.text_area :descripcion, class: "form-control" %>
+      <%= f.text_area :descripcion, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
@@ -44,15 +45,15 @@
     <% if !Rails.env.production? %>
       <%= f.label :latitud, class: "#{label_col} control-label", for: "ranchada_latitud" %>
       <div class="col-md-4">
-        <%= f.text_field :latitud, class: "form-control" %>
+        <%= f.text_field :latitud, class: "form-control", :disabled => disabled %>
       </div>
       <%= f.label :longitud, class: "#{label_col} control-label", for: "ranchada_longitud" %>
       <div class="col-md-4">
-        <%= f.text_field :longitud, class: "form-control" %>
+        <%= f.text_field :longitud, class: "form-control, :disabled => disabled" %>
       </div>
     <% else %>
-      <%= f.hidden_field :latitud, class: "form-control" %>
-      <%= f.hidden_field :longitud, class: "form-control" %>
+      <%= f.hidden_field :latitud, class: "form-control", :disabled => disabled %>
+      <%= f.hidden_field :longitud, class: "form-control", :disabled => disabled %>
     <% end %>
   </div>
 
@@ -61,12 +62,15 @@
     <div class="<%= input_col %>">
       <div id="googleMapRanchada" class="mapaUbicacionZona"></div>
     </div>
-  </div> 
+  </div>
 
-  <%= render 'layouts/buttons_submit', path: ranchadas_path, f: f, remote: remote %>
+  <%= render 'layouts/buttons_submit', path: ranchadas_path, f: f, remote: remote, mostrar_aceptar: RolDataAccess.is_admin(current_user) %>
 
 <% end %>
-    
+
+<% if disabled %>
+  <div id="mapDisabled"></div>
+<% end %>
 
 <% if !remote %>
   <script defer>

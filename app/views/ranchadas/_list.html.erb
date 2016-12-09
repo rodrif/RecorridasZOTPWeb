@@ -1,6 +1,6 @@
 <div id="filterrific_results">
 
-  <div>
+  <div class="container-fluid">
     <%= page_entries_info ranchadas %>
   </div>
 
@@ -16,8 +16,9 @@
             <th>Latitud</th>
             <th>Longitud</th>
           <% end %>
-          <th>Ver / Editar</th>
-          <th>Borrar</th>
+          <% if RolDataAccess.is_admin(current_user) %>
+            <th>Acciones</th>
+          <% end %>
         </tr>
       </thead>
 
@@ -30,16 +31,24 @@
             <td><%= ranchada.descripcion %></td>
             <% if !Rails.env.production? %>
               <td><%= ranchada.latitud %></td>
-              <td><%= ranchada.longitud %></td>      
+              <td><%= ranchada.longitud %></td>
             <% end %>
-            <td><%= link_to 'Ver / Editar', edit_ranchada_path(ranchada) %></td>
-            <td><%= link_to 'Borrar', ranchada, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: RolDataAccess.is_admin(current_user) ? edit_ranchada_path(ranchada) : nil,
+                delete_path: RolDataAccess.is_admin(current_user) ? ranchada : nil
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
-  <%= will_paginate ranchadas, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate ranchadas, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 
 </div>

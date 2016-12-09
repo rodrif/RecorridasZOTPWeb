@@ -1,6 +1,6 @@
 <div id="filterrific_results">
 
-  <div>
+  <div class="container-fluid">
     <%= page_entries_info notificaciones %>
   </div>
 
@@ -17,8 +17,7 @@
           <th>Frecuencia</th>
           <th>Roles</th>
           <th>Finalizada</th>
-          <th>Ver / Editar</th>
-          <th>Borrar</th>
+          <th>Acciones</th>
         </tr>
       </thead>
 
@@ -38,14 +37,27 @@
               <% end %>
             </td>
             <td><%= notificacion.finalizada ? 'Si' : 'No' %></td>
-            <td><%= link_to 'Ver / Editar', edit_notificacion_path(notificacion) %></td>
-            <td><%= link_to 'Borrar', notificacion, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+            <td>
+              <%= link_to '', edit_notificacion_path(notificacion), {
+                  class: 'glyphicon glyphicon-edit',
+                  title: t("common.ver_editar")
+                }
+              %>
+              <%= link_to '', notificacion,
+                method: :delete,
+                data: { confirm: '¿Estás seguro?' },
+                class: 'glyphicon glyphicon-remove',
+                title: 'Borrar'
+              %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
-  <%= will_paginate notificaciones, renderer: BootstrapPagination::Rails, :class => 'pagination-centered' %>
+  <div class="paginacion">
+    <%= will_paginate notificaciones, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 
 </div>
