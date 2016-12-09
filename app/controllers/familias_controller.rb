@@ -3,6 +3,7 @@ class FamiliasController < ApplicationController
   before_action :set_familia, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :puede_ver_web
+  before_action :puede_editar_familia, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /familias
   # GET /familias.json

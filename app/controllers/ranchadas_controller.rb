@@ -3,6 +3,7 @@ class RanchadasController < ApplicationController
   before_action :set_ranchada, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :puede_ver_web
+  before_action :puede_editar_ranchada, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /ranchadas
   # GET /ranchadas.json

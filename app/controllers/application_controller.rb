@@ -61,6 +61,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def puede_editar_area
+    if !RolDataAccess.puede_editar_area(current_user)
+      redireccionar
+    end
+  end
+
+  def puede_editar_zona
+    if !RolDataAccess.puede_editar_zona(current_user)
+      redireccionar
+    end
+  end
+
+  def puede_editar_ranchada
+    if !RolDataAccess.puede_editar_ranchada(current_user)
+      redireccionar
+    end
+  end
+
+  def puede_editar_familia
+    if !RolDataAccess.puede_editar_familia(current_user)
+      redireccionar
+    end
+  end
+
   def is_admin
     if !current_user.rol_id || current_user.rol_id != 1
       redireccionar
