@@ -18,7 +18,7 @@
     </div>
   <% end %>
 
-  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "ranchada_nombre", f: f, remote: remote, puede_editar: RolDataAccess.is_admin(current_user) %>
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "ranchada_nombre", f: f, remote: remote, puede_editar: puede_editar %>
 
   <div class="form-group">
     <%= f.label "Área", class: "#{label_col} control-label", for: "ranchada_area_id" %>
@@ -49,7 +49,7 @@
       </div>
       <%= f.label :longitud, class: "#{label_col} control-label", for: "ranchada_longitud" %>
       <div class="col-md-4">
-        <%= f.text_field :longitud, class: "form-control, :disabled => disabled" %>
+        <%= f.text_field :longitud, class: "form-control", :disabled => disabled %>
       </div>
     <% else %>
       <%= f.hidden_field :latitud, class: "form-control", :disabled => disabled %>
@@ -64,7 +64,7 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: ranchadas_path, f: f, remote: remote, mostrar_aceptar: RolDataAccess.is_admin(current_user) %>
+  <%= render 'layouts/buttons_submit', path: ranchadas_path, f: f, remote: remote, mostrar_aceptar: puede_editar %>
 
 <% end %>
 

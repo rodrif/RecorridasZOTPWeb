@@ -16,7 +16,7 @@
             <th>Latitud</th>
             <th>Longitud</th>
           <% end %>
-          <% if RolDataAccess.is_admin(current_user) %>
+          <% if RolDataAccess.puede_editar_ranchada(current_user) %>
             <th>Acciones</th>
           <% end %>
         </tr>

@@ -9,7 +9,7 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <% if RolDataAccess.is_admin(current_user) %>
+          <% if RolDataAccess.puede_editar_area(current_user) %>
             <th>Acciones</th>
           <% end %>
         </tr>
