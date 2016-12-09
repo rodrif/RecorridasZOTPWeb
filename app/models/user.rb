@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   belongs_to :area
   belongs_to :state
   has_many :auditorias
+  has_and_belongs_to_many :jornadas
 
   self.per_page = 20
 
