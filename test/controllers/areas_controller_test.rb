@@ -2,7 +2,9 @@ require 'test_helper'
 
 class AreasControllerTest < ActionController::TestCase
   setup do
-    @area = areas(:one)
+    @area = areas(:zona_oeste)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do
@@ -18,15 +20,9 @@ class AreasControllerTest < ActionController::TestCase
 
   test "should create area" do
     assert_difference('Area.count') do
-      post :create, area: { nombre: @area.nombre }
+      post :create, area: { nombre: 'Nueva area' }
     end
-
-    assert_redirected_to area_path(assigns(:area))
-  end
-
-  test "should show area" do
-    get :show, id: @area
-    assert_response :success
+    assert_redirected_to areas_path
   end
 
   test "should get edit" do
@@ -36,11 +32,11 @@ class AreasControllerTest < ActionController::TestCase
 
   test "should update area" do
     patch :update, id: @area, area: { nombre: @area.nombre }
-    assert_redirected_to area_path(assigns(:area))
+    assert_redirected_to areas_path
   end
 
   test "should destroy area" do
-    assert_difference('Area.count', -1) do
+    assert_difference('Area.activas.count', -1) do
       delete :destroy, id: @area
     end
 

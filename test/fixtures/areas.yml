@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nombre: Liniers
+  nombre: uno
+  state: actualizado
 
 two:
-  nombre: Ramos
+  nombre: dos
+  state: actualizado
+
+zona_oeste:
+  nombre: Zona Oeste
+  state: actualizado
