@@ -1,10 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nombre: Zona1
+  nombre: Zona 1
+  area: zona_oeste
 
 two:
-  nombre: MyString
+  nombre: Zona 2
+  area: zona_oeste
 
 liniers:
   nombre: Liniers
+  area: zona_oeste

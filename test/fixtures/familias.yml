@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nombre: MyString
+  nombre: familia uno
   zone: liniers
-  descripcion: MyText
+  descripcion: descripcion familia 1
+  state: actualizado
 
 two:
-  nombre: MyString
+  nombre: familia dos
   zone: liniers
-  descripcion: MyText
+  state: actualizado
+  descripcion: descripcion familia 2
