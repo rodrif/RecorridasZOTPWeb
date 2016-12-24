@@ -36,8 +36,9 @@ class AreasControllerTest < ActionController::TestCase
   end
 
   test "should destroy area" do
+    @areaABorrar = Area.create!({ nombre: 'Area a borrar', state: states(:actualizado) })
     assert_difference('Area.activas.count', -1) do
-      delete :destroy, id: @area
+      delete :destroy, id: @areaABorrar
     end
 
     assert_redirected_to areas_path
