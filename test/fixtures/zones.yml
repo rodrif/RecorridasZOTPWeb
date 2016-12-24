@@ -3,11 +3,14 @@
 one:
   nombre: Zona 1
   area: zona_oeste
+  state: actualizado
 
 two:
   nombre: Zona 2
   area: zona_oeste
+  state: actualizado
 
 liniers:
   nombre: Liniers
   area: zona_oeste
+  state: actualizado
