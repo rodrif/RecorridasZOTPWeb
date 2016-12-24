@@ -180,7 +180,7 @@ User.create!([
 notificaciones = Notificacion.create!([{ titulo: 'Carga de camión', subtitulo: 'En carranza',
     fecha_desde: 3.days.from_now, fecha_hasta: 30.days.from_now, frecuencia_cant: 4,
     roles: [Rol.first], notificacion_tipo: notificaciones_tipo[0],
-    frecuencia_tipo: frecuencias_tipo[1], state_id: 1 }
+    frecuencia_tipo: frecuencias_tipo[1], state_id: 1, areas: [areas[0]] }
 ])
 
 ranchadas = Ranchada.create!([
@@ -192,10 +192,6 @@ ranchadas = Ranchada.create!([
 familias = Familia.create!([
     { nombre: 'Rodriguez', descripcion: 'descripcion familia rodriguez', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 },
     { nombre: 'Aquino', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 }
-])
-
-referentes = Referente.create!([
-    { nombre: 'Nadia', apellido: 'Guzman', telefono: '46546569', area: areas[0], dia: 'Lunes', state_id: 1 }
 ])
 
 personas = Array.new
@@ -213,7 +209,7 @@ personas << Person.create!(
 	zone: zonas[2], state_id: 1)
 
 10.times do |i|
-  personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name.gsub(/[^a-zA-Z]/,''), zone: zonas[i%4], state_id: 1)  
+  personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name.gsub(/[^a-zA-Z]/,''), zone: zonas[i%4], state_id: 1)
   Rails.logger.debug "#{personas[i].to_yaml}"
 end
 

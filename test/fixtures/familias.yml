@@ -2,14 +2,10 @@
 
 one:
   nombre: MyString
-  area_id: 
-  zone_id: 
-  ranchada_id: 
+  zone: liniers
   descripcion: MyText
 
 two:
   nombre: MyString
-  area_id: 
-  zone_id: 
-  ranchada_id: 
+  zone: liniers
   descripcion: MyText

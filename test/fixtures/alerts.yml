@@ -2,13 +2,13 @@
 
 one:
   mensaje: MyString
+  zone: liniers
   fecha: 2015-04-17 22:23:11
-  zone_id: 
 
 two:
   mensaje: MyString
+  zone: liniers
   fecha: 2015-04-17 22:23:11
-  zone_id: 
 
 alertaCompleta:
   mensaje: 'Alerta completa'

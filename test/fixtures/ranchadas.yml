@@ -2,16 +2,14 @@
 
 one:
   nombre: MyString
-  area_id: 
-  zone_id: 
+  zone: liniers
   descripcion: MyText
   latitud: 9.99
   longitud: 9.99
 
 two:
   nombre: MyString
-  area_id: 
-  zone_id: 
+  zone: liniers
   descripcion: MyText
   latitud: 9.99
   longitud: 9.99
