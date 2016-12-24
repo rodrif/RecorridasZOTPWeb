@@ -2,12 +2,12 @@
 
 one:
   nombre: uno
-  state: actualizado
+  state_id: 1
 
 two:
   nombre: dos
-  state: actualizado
+  state_id: 1
 
 zona_oeste:
   nombre: Zona Oeste
-  state: actualizado
+  state_id: 1

@@ -4,10 +4,10 @@ one:
   nombre: familia uno
   zone: liniers
   descripcion: descripcion familia 1
-  state: actualizado
+  state_id: 1
 
 two:
   nombre: familia dos
   zone: liniers
-  state: actualizado
+  state_id: 1
   descripcion: descripcion familia 2

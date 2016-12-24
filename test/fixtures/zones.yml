@@ -3,14 +3,14 @@
 one:
   nombre: Zona 1
   area: zona_oeste
-  state: actualizado
+  state_id: 1
 
 two:
   nombre: Zona 2
   area: zona_oeste
-  state: actualizado
+  state_id: 1
 
 liniers:
   nombre: Liniers
   area: zona_oeste
-  state: actualizado
+  state_id: 1
