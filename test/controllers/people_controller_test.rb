@@ -7,13 +7,6 @@ class PeopleControllerTest < ActionController::TestCase
     sign_in @user
   end
 
-  # FIXME mover a api people test
-  # test "guardar personas mobile post" do
-  #   assert_difference('Person.activas.count', 2) do
-  #     post :mobGuardarPersonasPost, datos: '[{"android_id":1,"nombre":"Facundo1"},{"android_id":2,"nombre":"Persona2"}]'
-  #   end
-  # end
-
   test "should get index" do
     get :index
     assert_response :success
