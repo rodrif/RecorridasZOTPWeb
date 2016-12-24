@@ -26,7 +26,7 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should create person" do
-    assert_difference('Person.count') do
+    assert_difference('Person.activas.count') do
       post :create, person: {
         apellido: @person.apellido,
         nombre: @person.nombre,

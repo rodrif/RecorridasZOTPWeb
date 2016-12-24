@@ -19,7 +19,7 @@ class RanchadasControllerTest < ActionController::TestCase
   end
 
   test "should create ranchada" do
-    assert_difference('Ranchada.count') do
+    assert_difference('Ranchada.activas.count') do
       post :create, ranchada: { area_id: @ranchada.area_id, descripcion: @ranchada.descripcion, latitud: @ranchada.latitud, longitud: @ranchada.longitud, nombre: @ranchada.nombre, zone_id: @ranchada.zone_id }
     end
 

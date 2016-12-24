@@ -19,7 +19,7 @@ class FamiliasControllerTest < ActionController::TestCase
   end
 
   test "should create familia" do
-    assert_difference('Familia.count') do
+    assert_difference('Familia.activas.count') do
       post :create, familia: {
         area_id: @familia.area_id,
         descripcion: @familia.descripcion,
