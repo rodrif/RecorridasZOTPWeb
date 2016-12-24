@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nombre: MyString
+  nombre: ranchada uno
   zone: liniers
-  descripcion: MyText
+  descripcion: descripcion uno
   latitud: 9.99
   longitud: 9.99
+  state: actualizado
 
 two:
-  nombre: MyString
+  nombre: ranchada uno
   zone: liniers
-  descripcion: MyText
+  descripcion: descripcion 2
   latitud: 9.99
   longitud: 9.99
+  state: actualizado
