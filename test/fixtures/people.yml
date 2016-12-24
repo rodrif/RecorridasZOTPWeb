@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nombre: MyString
+  nombre: persona uno
   apellido: MyString
   state: actualizado
-  zone: liniers 
+  zone: liniers
 
 two:
-  nombre: MyString
+  nombre: persona dos
   apellido: MyString
   state: actualizado
   zone: liniers
