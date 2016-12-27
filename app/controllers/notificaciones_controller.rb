@@ -30,6 +30,10 @@ class NotificacionesController < ApplicationController
     @notificacion = Notificacion.new
     if params['date']
       @notificacion.fecha_desde = params['date']
+      @notificacion.fecha_hasta = params['date']
+    end
+    if params['notificacion_tipo_id']
+      @notificacion.notificacion_tipo_id = NotificacionTipo::CALENDARIO
     end
     @notificacion.setup_roles!
   end
@@ -44,7 +48,7 @@ class NotificacionesController < ApplicationController
   def create
     @notificacion = Notificacion.new(notificacion_params)
     @notificacion.state = State.find_by_nombre('Actualizado')
-    @notificacion.frecuencia_tipo_id = 1 if @notificacion.notificacion_tipo_id == 4
+    @notificacion.frecuencia_tipo_id = 1 if @notificacion.notificacion_tipo_id == NotificacionTipo::CALENDARIO
     @notificacion.sacar_minutos
     @notificacion.prox_envio = @notificacion.fecha_desde
     @notificacion.finalizada = false
