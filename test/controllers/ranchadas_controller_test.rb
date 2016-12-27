@@ -3,6 +3,8 @@ require 'test_helper'
 class RanchadasControllerTest < ActionController::TestCase
   setup do
     @ranchada = ranchadas(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do
@@ -17,16 +19,11 @@ class RanchadasControllerTest < ActionController::TestCase
   end
 
   test "should create ranchada" do
-    assert_difference('Ranchada.count') do
+    assert_difference('Ranchada.activas.count') do
       post :create, ranchada: { area_id: @ranchada.area_id, descripcion: @ranchada.descripcion, latitud: @ranchada.latitud, longitud: @ranchada.longitud, nombre: @ranchada.nombre, zone_id: @ranchada.zone_id }
     end
 
-    assert_redirected_to ranchada_path(assigns(:ranchada))
-  end
-
-  test "should show ranchada" do
-    get :show, id: @ranchada
-    assert_response :success
+    assert_redirected_to ranchadas_path
   end
 
   test "should get edit" do
@@ -36,11 +33,11 @@ class RanchadasControllerTest < ActionController::TestCase
 
   test "should update ranchada" do
     patch :update, id: @ranchada, ranchada: { area_id: @ranchada.area_id, descripcion: @ranchada.descripcion, latitud: @ranchada.latitud, longitud: @ranchada.longitud, nombre: @ranchada.nombre, zone_id: @ranchada.zone_id }
-    assert_redirected_to ranchada_path(assigns(:ranchada))
+    assert_redirected_to ranchadas_path
   end
 
   test "should destroy ranchada" do
-    assert_difference('Ranchada.count', -1) do
+    assert_difference('Ranchada.activas.count', -1) do
       delete :destroy, id: @ranchada
     end
 

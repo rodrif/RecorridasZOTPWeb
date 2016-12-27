@@ -7,23 +7,13 @@ class PeopleController < ApplicationController
   before_action :puede_editar_persona, only: [:update]
   before_action :puede_borrar_persona, only: [:destroy]
 
-  def mobGuardarPersonasPost
-    respuesta = PersonDataAccess.guardarPersonasFromJson params['datos'], params['fecha']
-    render :json => respuesta
-  end
-
-  def mobRecibirPersonasDesde    
-    respuesta = PersonDataAccess.getPersonasDesde params['datos'], params['fecha']
-    render :json => respuesta
-  end
-
   # GET /people
   # GET /people.json
   def index
     @filterrific = initialize_filterrific(
       Person,
       params[:filterrific],
-      select_options: {   
+      select_options: {
         with_area_id: Area.options_for_select,
         with_zone_id: Zone.options_for_select
       },
@@ -56,7 +46,7 @@ class PeopleController < ApplicationController
     @zonas = Zone.where("area_id = ?", params[:area_id])
     if @zonas.length == 0
       @zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
-    end 
+    end
     @selectorZona = params[:selector_zona]
     respond_to do |format|
       format.js

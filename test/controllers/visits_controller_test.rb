@@ -3,6 +3,8 @@ require 'test_helper'
 class VisitsControllerTest < ActionController::TestCase
   setup do
     @visit = visits(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do
@@ -21,12 +23,7 @@ class VisitsControllerTest < ActionController::TestCase
       post :create, visit: { descripcion: @visit.descripcion, fecha: @visit.fecha, person_id: @visit.person_id }
     end
 
-    assert_redirected_to visit_path(assigns(:visit))
-  end
-
-  test "should show visit" do
-    get :show, id: @visit
-    assert_response :success
+    assert_redirected_to visits_path(:person_id => @visit.person_id)
   end
 
   test "should get edit" do
@@ -36,11 +33,11 @@ class VisitsControllerTest < ActionController::TestCase
 
   test "should update visit" do
     patch :update, id: @visit, visit: { descripcion: @visit.descripcion, fecha: @visit.fecha, person_id: @visit.person_id }
-    assert_redirected_to visit_path(assigns(:visit))
+    assert_redirected_to visits_path(:person_id => @visit.person_id)
   end
 
   test "should destroy visit" do
-    assert_difference('Visit.count', -1) do
+    assert_difference('Visit.activas.count', -1) do
       delete :destroy, id: @visit
     end
 
