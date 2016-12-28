@@ -17,7 +17,12 @@ zonas = Zone.create!([
 	{ nombre: 'San Justo', latitud: '-34.68575077451089', longitud: '-58.55993389966898', area: areas[0], state_id: 1 }
 ])
 
-notificaciones_tipo = NotificacionTipo.create!([{ nombre: 'Programada', code: 1 }, { nombre: 'Urgente', code: 2 }, { nombre: 'Cumpleaños', code: 3 }])
+notificaciones_tipo = NotificacionTipo.create!([
+    { id: 1, nombre: 'Programada', code: 1 },
+    { id: 2, nombre: 'Urgente', code: 2 },
+    { id: 3, nombre: 'Cumpleaños', code: 3 },
+    { id: 4, nombre: 'Calendario', code: 4 }
+])
 
 frecuencias_tipo = FrecuenciaTipo.create!([{ nombre: 'Única', code: 1 }, { nombre: 'Día/s', code: 2 }, { nombre: 'Semana/s', code: 3 }, { nombre: 'Mes/es', code: 4 }])
 
@@ -178,12 +183,6 @@ User.create!([
  #  }
 ])
 
-# notificaciones = Notificacion.create!([{ titulo: 'Carga de camión', subtitulo: 'En carranza',
-# 	fecha_desde: 3.days.from_now, fecha_hasta: 30.days.from_now, frecuencia_cant: 4,
-# 	roles: [Rol.first], notificacion_tipo: notificaciones_tipo[0],
-# 	frecuencia_tipo: frecuencias_tipo[1], state_id: 1 }
-# ])
-
 # ranchadas = Ranchada.create!([
 # 	{ nombre: 'Estacion liniers', descripcion: "cerca de la estacion", latitud: '-34.644699880461665', longitud: '-58.59469532948424', zone: zonas[1], state_id: 1 },
 # 	{ nombre: 'Ranchada Rodriguez', latitud: '-34.639050652761295', longitud: '-58.52463748801478', zone: zonas[0], state_id: 1 },
@@ -194,12 +193,6 @@ User.create!([
 # 	{ nombre: 'Rodriguez', descripcion: 'descripcion familia rodriguez', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 },
 # 	{ nombre: 'Aquino', zone: zonas[0], ranchada: ranchadas[1], state_id: 1 }
 # ])
-
-# referentes = Referente.create!([
-# 	{ nombre: 'Nadia', apellido: 'Guzman', telefono: '46546569', area: areas[0], dia: 'Lunes', state_id: 1 }
-# ])
-
-# personas = Array.new
 
 # personas << Person.create!(
 # 	nombre: "Facundo", apellido: "Rodriguez",
@@ -214,7 +207,7 @@ User.create!([
 # 	zone: zonas[2], state_id: 1)
 
 # 10.times do |i|
-#   personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name.gsub(/[^a-zA-Z]/,''), zone: zonas[i%4], state_id: 1)  
+#   personas << Person.create!(nombre: Faker::Name.first_name, apellido: Faker::Name.last_name.gsub(/[^a-zA-Z]/,''), zone: zonas[i%4], state_id: 1)
 #   Rails.logger.debug "#{personas[i].to_yaml}"
 # end
 

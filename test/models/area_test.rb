@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class AreaTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+    test "area con numeros" do
+        area = Area.new(nombre: 'area con numero 2')
+        assert area.invalid?
+    end
 end

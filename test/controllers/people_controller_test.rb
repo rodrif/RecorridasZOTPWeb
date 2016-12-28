@@ -3,12 +3,8 @@ require 'test_helper'
 class PeopleControllerTest < ActionController::TestCase
   setup do
     @person = people(:one)
-  end
-
-  test "guardar personas mobile post" do
-    assert_difference('Person.count', 2) do      
-      post :mobGuardarPersonasPost, datos: '[{"android_id":1,"nombre":"Facundo1"},{"android_id":2,"nombre":"Persona2"}]'
-    end
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do
@@ -23,16 +19,16 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should create person" do
-    assert_difference('Person.count') do
-      post :create, person: { apellido: @person.apellido, nombre: @person.nombre, zone_id: @person.zone_id }
+    assert_difference('Person.activas.count') do
+      post :create, person: {
+        apellido: @person.apellido,
+        nombre: @person.nombre,
+        zone_id: @person.zone_id,
+        visits_attributes: [{"latitud"=>"-34.6425867", "longitud"=>"-58.5659176"}]
+      }
     end
 
-    assert_redirected_to person_path(assigns(:person))
-  end
-
-  test "should show person" do
-    get :show, id: @person
-    assert_response :success
+    assert_redirected_to people_path
   end
 
   test "should get edit" do
@@ -42,11 +38,11 @@ class PeopleControllerTest < ActionController::TestCase
 
   test "should update person" do
     patch :update, id: @person, person: { apellido: @person.apellido, nombre: @person.nombre, zone_id: @person.zone_id }
-    assert_redirected_to person_path(assigns(:person))
+    assert_redirected_to people_path
   end
 
   test "should destroy person" do
-    assert_difference('Person.count', 0) do
+    assert_difference('Person.activas.count', -1) do
       delete :destroy, id: @person
     end
 

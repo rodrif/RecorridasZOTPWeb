@@ -4,6 +4,11 @@ require 'helpers/test_module'
 class MapaControllerTest < ActionController::TestCase
   include TestModule
 
+  setup do
+    @user = users(:admin)
+    sign_in @user
+  end
+
   test "should get index" do
     get :index
     assert_response :success
@@ -20,6 +25,6 @@ class MapaControllerTest < ActionController::TestCase
     assert_equal @facundo.nombre, json.find { |p| p['persona_id'] == @facundo.id}['nombre']
     assert_equal @facundo.apellido, jsonComp('persona_id', @facundo.id, 'apellido')
   end
- 
+
 
 end

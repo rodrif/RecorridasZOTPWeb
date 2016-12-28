@@ -3,6 +3,8 @@ require 'test_helper'
 class ZonesControllerTest < ActionController::TestCase
   setup do
     @zone = zones(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do
@@ -17,16 +19,11 @@ class ZonesControllerTest < ActionController::TestCase
   end
 
   test "should create zone" do
-    assert_difference('Zone.count') do
-      post :create, zone: { nombre: @zone.nombre }
+    assert_difference('Zone.activas.count') do
+      post :create, zone: { nombre: 'nueva zona' }
     end
 
-    assert_redirected_to zone_path(assigns(:zone))
-  end
-
-  test "should show zone" do
-    get :show, id: @zone
-    assert_response :success
+    assert_redirected_to zones_path
   end
 
   test "should get edit" do
@@ -36,12 +33,13 @@ class ZonesControllerTest < ActionController::TestCase
 
   test "should update zone" do
     patch :update, id: @zone, zone: { nombre: @zone.nombre }
-    assert_redirected_to zone_path(assigns(:zone))
+    assert_redirected_to zones_path
   end
 
   test "should destroy zone" do
-    assert_difference('Zone.count', -1) do
-      delete :destroy, id: @zone
+    @nuevaZona = Zone.create!({nombre: 'nueva zona', area: areas(:zona_oeste), state: states(:actualizado)})
+    assert_difference('Zone.activas.count', -1) do
+      delete :destroy, id: @nuevaZona
     end
 
     assert_redirected_to zones_path
