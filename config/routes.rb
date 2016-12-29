@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   resources :people
   resources :zones
   resources :mapa
+  resources :pedidos
 
   get 'informes' => 'informes#index'
   get 'informes/voluntarios' => 'informes#voluntarios'

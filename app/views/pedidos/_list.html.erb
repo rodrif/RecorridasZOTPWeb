@@ -1,0 +1,46 @@
+<div id="filterrific_results">
+
+  <div class="container-fluid">
+    <%= page_entries_info pedidos %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Persona</th>
+          <th>Fecha</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @pedidos.each do |pedido| %>
+          <tr>
+            <% if pedido.person.nil? %>
+              <td>Sin persona</td>
+            <% else %>
+              <td><%= pedido.person.nombre  %></td>
+            <% end %>
+            <td><%= pedido.fecha.to_date() %></td>
+            <td><%= pedido.descripcion %></td>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: edit_pedido_path(pedido, :person_id => params[:person_id]),
+                delete_path: RolDataAccess.puede_borrar_visita(current_user) ? pedido_path(pedido, :person_id => params[:person_id]) : nil
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginacion">
+    <%= will_paginate pedidos, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
+
+</div>

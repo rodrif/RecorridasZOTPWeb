@@ -1,0 +1,40 @@
+<% puede_editar ||= false %>
+<% disabled = !puede_editar %>
+
+<%= form_for(@pedido, :html => {:class => 'form-horizontal container-fluid'})  do |f| %>
+  <% if @pedido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+
+      <ul>
+      <% @pedido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Persona", class: "col-md-1 control-label", for: "pedido_person_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fecha, class: "col-md-1 control-label", for: "pedido_fecha" %>
+    <div class="col-md-10">
+      <%= f.date_field :fecha, class: "form-control", :disabled => disabled %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Descripción', class: "col-md-1 control-label", for: "pedido_descripcion" %>
+    <div class="col-md-10">
+      <%= f.text_field :descripcion, class: "form-control", :disabled => disabled %>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: pedidos_path(nil, :person_id => params[:person_id]), f: f, remote: false, mostrar_aceptar: !disabled %>
+
+<% end %>

@@ -1,0 +1,7 @@
+<h2 class="sub-header">Pedidos</h2>
+
+<%= render 'layouts/filtros' %>
+
+<%= render 'pedidos/list', pedidos: @pedidos %>
+
+<%= render 'layouts/new_button', :label => 'Nuevo pedido', :path => new_pedido_path(:person_id => params[:person_id]) %>
