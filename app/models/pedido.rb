@@ -1,5 +1,6 @@
 class Pedido < ActiveRecord::Base
     belongs_to :person
+    belongs_to :state
 
  self.per_page = 20
 
