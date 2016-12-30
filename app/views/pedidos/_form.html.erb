@@ -35,6 +35,13 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label 'Completado', class: "col-md-1 control-label", for: "pedido_completado" %>
+    <div class="col-md-10">
+      <%= f.check_box :completado, class: "form-control", :disabled => disabled %>
+    </div>
+  </div>
+
   <%= render 'layouts/buttons_submit', path: pedidos_path(nil, :person_id => params[:person_id]), f: f, remote: false, mostrar_aceptar: !disabled %>
 
 <% end %>

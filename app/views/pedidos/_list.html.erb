@@ -11,6 +11,7 @@
           <th>Persona</th>
           <th>Fecha</th>
           <th>Descripción</th>
+          <th>Completado</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@
             <% end %>
             <td><%= pedido.fecha.to_date() %></td>
             <td><%= pedido.descripcion %></td>
+            <td><%= pedido.estaCompletado %></td>
             <td>
               <%=
                 render 'layouts/acciones',

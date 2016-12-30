@@ -51,6 +51,10 @@ class Pedido < ActiveRecord::Base
 
     scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
 
+    def estaCompletado
+      return self.completado ? 'Si' : 'No'
+    end
+
     def getDescripcionAuditoria
         return "Pedido: #{person.nombre if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
     end
