@@ -1,0 +1,28 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  title_cell = style.add_style :alignment => { :horizontal=> :center }, :b => true
+  data_cell = style.add_style(alignment: { horizontal: :center })
+
+  wb.add_worksheet(name: "Pedidos") do |sheet|
+    sheet.add_row [
+      "Fecha",
+      "Persona",
+      "Descripción",
+      "Área",
+      "Zona",
+      "Completado"
+    ], :style => title_cell
+    @pedidos.each do |pedido|
+      sheet.add_row [
+        pedido.fecha.to_s,
+        pedido.person.full_name,
+        pedido.descripcion,
+        pedido.person.zone.nil? ? '' : pedido.person.zone.nombre,
+        pedido.person.zone.nil? ? '' : pedido.person.zone.area.nombre,
+        pedido.completado ? 'Si' : 'No'
+      ], style: data_cell
+    end
+  end
+
+end
