@@ -31,8 +31,8 @@
               <%=
                 render 'layouts/acciones',
                 current_user: current_user,
-                edit_path: edit_pedido_path(pedido, :person_id => params[:person_id]),
-                delete_path: RolDataAccess.puede_borrar_visita(current_user) ? pedido_path(pedido, :person_id => params[:person_id]) : nil
+                edit_path: edit_pedido_path(pedido),
+                delete_path: RolDataAccess.puede_borrar_visita(current_user) ? pedido_path(pedido) : nil
               %>
             </td>
           </tr>

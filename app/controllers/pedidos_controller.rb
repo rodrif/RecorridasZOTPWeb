@@ -7,15 +7,6 @@ class PedidosController < ApplicationController
     before_action :puede_borrar_visita, only: [:destroy]
 
     def index
-        if (params[:person_id])
-          if !params[:filterrific]
-            params[:filterrific] = Hash.new
-          end
-          params[:filterrific][:with_person_id] = params[:person_id]
-        else
-          session["pedidos#index"] = nil
-        end
-
         @filterrific = initialize_filterrific(
           Pedido,
           params[:filterrific],
@@ -43,9 +34,6 @@ class PedidosController < ApplicationController
     def new
         @pedido = Pedido.new
         @pedido.fecha = Time.now.ago(1.days)
-        if (params[:person_id])
-          @pedido.person_id = params[:person_id]
-        end
     end
 
   def edit
@@ -58,7 +46,7 @@ class PedidosController < ApplicationController
     respond_to do |format|
       if @pedido.save
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::PEDIDO, @pedido
-        format.html { redirect_to pedidos_url(nil, person_id: @pedido.person_id), notice: 'Pedido creado correctamente.' }
+        format.html { redirect_to pedidos_url, notice: 'Pedido creado correctamente.' }
         format.json { render :show, status: :created, location: @pedido }
       else
         format.html { render :new }
@@ -71,7 +59,7 @@ class PedidosController < ApplicationController
     respond_to do |format|
       if @pedido.update(pedido_params)
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::PEDIDO, @pedido
-        format.html { redirect_to pedidos_url(nil, person_id: @pedido.person_id), notice: 'Pedido actualizado correctamente.' }
+        format.html { redirect_to pedidos_url, notice: 'Pedido actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @pedido }
       else
         params[:person_id] = @pedido.person_id

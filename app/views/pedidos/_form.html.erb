@@ -42,6 +42,6 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: pedidos_path(nil, :person_id => params[:person_id]), f: f, remote: false, mostrar_aceptar: !disabled %>
+  <%= render 'layouts/buttons_submit', path: pedidos_path, f: f, remote: false, mostrar_aceptar: !disabled %>
 
 <% end %>

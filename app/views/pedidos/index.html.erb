@@ -10,7 +10,7 @@
 
 <%= render 'pedidos/list', pedidos: @pedidos %>
 
-<%= render 'layouts/new_button', :label => 'Nuevo pedido', :path => new_pedido_path(:person_id => params[:person_id]) %>
+<%= render 'layouts/new_button', :label => 'Nuevo pedido', :path => new_pedido_path %>
 
 <script defer>
   downloadXlsx('pedidos-xlsx', 'filterrific_filter');
