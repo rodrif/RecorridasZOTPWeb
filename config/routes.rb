@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   resources :notificaciones
   resources :auditoria
   resources :users
-  #resources :referentes
   resources :familias
   resources :ranchadas
   resources :areas
@@ -51,15 +50,8 @@ Rails.application.routes.draw do
   get 'visits/getDireccion' => 'visits#getDireccion'
   get 'visits/getCoordenadas' => 'visits#getCoordenadas'
 
-  post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
-  post 'people/mobRecibirPersonasDesde' => 'people#mobRecibirPersonasDesde'
-
-  get 'alerts/mobMostrarAlertas' => 'alerts#mobMostrarAlertas'
-
   get 'mapa/mostrar' => 'mapa#mostrar'
   get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
-
-  get 'welcome_messages/mobGetMensajeBienvenida' => 'welcome_messages#mobGetMensajeBienvenida'
 
   resources :welcome_messages
   resources :visits
