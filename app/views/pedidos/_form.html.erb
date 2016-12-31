@@ -1,5 +1,7 @@
 <% modal ||= false %>
 <% remote = modal ? true : false %>
+<% label_col = remote ? "col-md-2" : "col-md-1" %>
+<% input_col = remote ? "col-md-9" : "col-md-10" %>
 <% puede_editar ||= false %>
 <% disabled = !puede_editar %>
 
@@ -17,29 +19,29 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label "Persona", class: "col-md-1 control-label", for: "pedido_person_id" %>
-    <div class="col-md-10">
+    <%= f.label "Persona", class: "#{label_col} control-label", for: "pedido_person_id" %>
+    <div class="<%= input_col %>">
       <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :fecha, class: "col-md-1 control-label", for: "pedido_fecha" %>
-    <div class="col-md-10">
+    <%= f.label :fecha, class: "#{label_col} control-label", for: "pedido_fecha" %>
+    <div class="<%= input_col %>">
       <%= f.date_field :fecha, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Descripción', class: "col-md-1 control-label", for: "pedido_descripcion" %>
-    <div class="col-md-10">
+    <%= f.label 'Descripción', class: "#{label_col} control-label", for: "pedido_descripcion" %>
+    <div class="<%= input_col %>">
       <%= f.text_field :descripcion, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Completado', class: "col-md-1 control-label", for: "pedido_completado" %>
-    <div class="col-md-10">
+    <%= f.label 'Completado', class: "#{label_col} control-label", for: "pedido_completado" %>
+    <div class="<%= input_col %>">
       <%= f.check_box :completado, class: "form-control", :disabled => disabled %>
     </div>
   </div>
