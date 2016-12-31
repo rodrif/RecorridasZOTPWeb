@@ -12,4 +12,18 @@ class CommonController < ApplicationController
         end
     end
 
+    def update_personas
+        if params[:area_id].blank? && params[:zone_id].blank?
+            @personas = Person.activas
+        elsif params[:zone_id].blank?
+            @personas = Person.joins(:zone).where("zones.area_id = ?", params[:area_id]).activas
+        else
+            @personas = Person.where("zone_id = ?", params[:zone_id]).activas
+        end
+        @selectorPersona = params[:selector_persona]
+        respond_to do |format|
+          format.js
+        end
+    end
+
 end

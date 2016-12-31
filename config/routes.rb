@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get 'configuraciones' => 'configuraciones#index'
 
   get 'common/update_zonas_filter', as: 'update_zonas_filter'
+  get 'common/update_personas', as: 'update_personas'
 
   get 'people/update_zonas', as: 'update_zonas'
   get 'people/update_ranchadas', as: 'update_ranchadas'
