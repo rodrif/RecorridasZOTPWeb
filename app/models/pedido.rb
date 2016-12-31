@@ -2,6 +2,9 @@ class Pedido < ActiveRecord::Base
     belongs_to :person
     belongs_to :state
 
+    validates :fecha, presence: true
+    validates :person, presence: true
+
  self.per_page = 20
 
   filterrific(
