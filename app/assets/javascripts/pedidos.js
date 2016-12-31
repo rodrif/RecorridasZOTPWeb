@@ -36,3 +36,14 @@ $(function() {
     });
   });
 });
+
+$(document).ready(function(){
+
+  $(document).bind('ajaxError', 'form#new_pedido', function(event, jqxhr, settings, exception) {
+    if (settings.url.indexOf("pedidos") > -1) {
+      // note: jqxhr.responseJSON undefined, parsing responseText instead
+      $(event.data).render_form_errors( $.parseJSON(jqxhr.responseText) );
+    }
+  });
+
+});

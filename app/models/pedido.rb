@@ -4,6 +4,7 @@ class Pedido < ActiveRecord::Base
 
     validates :fecha, presence: true
     validates :person, presence: true
+    validates :descripcion, presence: true
 
  self.per_page = 20
 
