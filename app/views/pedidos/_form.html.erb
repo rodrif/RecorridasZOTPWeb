@@ -1,7 +1,9 @@
+<% modal ||= false %>
+<% remote = modal ? true : false %>
 <% puede_editar ||= false %>
 <% disabled = !puede_editar %>
 
-<%= form_for(@pedido, :html => {:class => 'form-horizontal container-fluid'})  do |f| %>
+<%= form_for(@pedido, remote: remote, :html => {'data-model' => 'pedido', :class => 'form-horizontal container-fluid'})  do |f| %>
   <% if @pedido.errors.any? %>
     <div id="error_explanation">
       <h2><%= t('common.errores.errores') %></h2>
@@ -42,6 +44,6 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: pedidos_path, f: f, remote: false, mostrar_aceptar: !disabled %>
+  <%= render 'layouts/buttons_submit', path: pedidos_path, f: f, remote: remote, mostrar_aceptar: !disabled %>
 
 <% end %>

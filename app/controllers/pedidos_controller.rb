@@ -48,6 +48,7 @@ class PedidosController < ApplicationController
         AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::PEDIDO, @pedido
         format.html { redirect_to pedidos_url, notice: 'Pedido creado correctamente.' }
         format.json { render :show, status: :created, location: @pedido }
+        format.js { render :show, status: :created, location: @pedido }
       else
         format.html { render :new }
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
