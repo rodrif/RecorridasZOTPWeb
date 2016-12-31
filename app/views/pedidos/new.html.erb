@@ -1,3 +1,21 @@
 <h2 class="sub-header">Nuevo pedido</h2>
 
+    <div class="table-responsive well">
+        <div class="row-fluid">
+          <div class="col-xs-12 col-md-3 margen-vert">
+            Área
+            <%= select 'aaa', 'area_id', Area.activas.collect {|a| [a.nombre, a.id]},
+          { include_blank: 'Todas' } %>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="col-xs-12 col-md-3 margen-vert">
+            Zona
+            <%= select 'zona', 'zone_id', Zone.activas.collect {|z| [z.nombre, z.id]},
+          { include_blank: 'Todas' } %>
+          </div>
+        </div>
+    </div>
+
 <%= render 'form', puede_editar: RolDataAccess.puede_editar_visita(current_user) %>
