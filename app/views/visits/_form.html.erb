@@ -58,7 +58,9 @@
     <% end %>
   </div>
 
-   <div class="form-group">
+  <%= render 'shared/pedidosPersona', selectorPersona: "visit_person_id" %>
+
+  <div class="form-group">
     <%= f.label 'Ubicación', class: "col-md-1 control-label", for: "googleMapVisita" %>
     <div class="col-md-10">
       <div id="googleMapVisita" class="mapaUbicacionZona"></div>
@@ -68,6 +70,8 @@
   <%= render 'layouts/buttons_submit', path: visits_path(nil, :person_id => params[:person_id]), f: f, remote: false, mostrar_aceptar: !disabled %>
 
 <% end %>
+
+<%= render 'pedidos/modals', selectorPersona: "visit_person_id" %>
 
 <% if disabled %>
   <div id="mapDisabled"></div>

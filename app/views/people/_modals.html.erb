@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'areas/form', :@area => Area.new, modal: true %>
+        <%= render 'areas/form', :@area => Area.new, modal: true, puede_editar: true %>
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
       </div>
       <div class="modal-body">
         <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'zones/form', :@zone => Zone.new, modal: true %>
+        <%= render 'zones/form', :@zone => Zone.new, modal: true, puede_editar: true %>
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
       <div class="modal-body">
         <% @ranchada = Ranchada.new %>
         <% loadDefaultDropdowns(@ranchada) %>
-        <%= render 'ranchadas/form', :@ranchada => @ranchada, modal: true %>
+        <%= render 'ranchadas/form', :@ranchada => @ranchada, modal: true, puede_editar: true %>
       </div>
     </div>
   </div>
@@ -58,7 +58,7 @@
       <div class="modal-body">
         <% @familia = Familia.new %>
         <% loadDefaultDropdowns(@familia) %>
-        <%= render 'familias/form', :@familia => @familia, modal: true %>
+        <%= render 'familias/form', :@familia => @familia, modal: true, puede_editar: true %>
       </div>
     </div>
   </div>

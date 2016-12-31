@@ -1,0 +1,17 @@
+<h2 class="sub-header">Pedidos
+    <%= link_to image_tag('excel-icon.png', size: '30x30'),
+      '',
+      class: 'ubicacion_modal',
+      id: 'pedidos-xlsx'
+    %>
+</h2>
+
+<%= render 'layouts/filtros' %>
+
+<%= render 'pedidos/list', pedidos: @pedidos %>
+
+<%= render 'layouts/new_button', :label => 'Nuevo pedido', :path => new_pedido_path %>
+
+<script defer>
+  downloadXlsx('pedidos-xlsx', 'filterrific_filter');
+</script>

@@ -48,6 +48,8 @@ es:
         descripcion: Descripción
         frecuencia_cant: Frecuencia
         areas: Áreas
+      pedido:
+        person: Persona
     models:
       user:
         zero:  Usuario
@@ -69,6 +71,10 @@ es:
         zero:  Zona
         one:   Zona
         other: Zonas
+      pedido:
+        zero:  Pedido
+        one:   Pedido
+        other: Pedidos
       ranchada:
         zero:  Ranchada
         one:   Ranchada
@@ -95,7 +101,7 @@ es:
     - vie
     - sáb
     abbr_month_names:
-    - 
+    -
     - ene
     - feb
     - mar
@@ -121,7 +127,7 @@ es:
       long: "%A, %d de %B de %Y"
       short: "%d de %b"
     month_names:
-    - 
+    -
     - Enero
     - Febrero
     - Marzo

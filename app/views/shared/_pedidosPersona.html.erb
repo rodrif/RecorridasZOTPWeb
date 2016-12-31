@@ -1,0 +1,34 @@
+<div class="form-group">
+  <%= label 'pp', 'pp', 'Pedidos pendientes', class: "col-md-1 control-label" %>
+
+  <div id='pedidos-pendientes' class='col-md-10'></div>
+</div>
+
+<%  selector = '#' + selectorPersona %>
+
+<script defer>
+  $(function() {
+    return $(document).on('change', "<%= selector %>", function(evt) {
+      $('#pedido_person_id').val($("<%= selector %>" + " option:selected").val());
+      $('#pedido_person_id').prop( "disabled", true);
+      return $.ajax('/common/update_pedidos_pendientes', {
+        type: 'GET',
+        remote: true,
+        data: {
+          person_id: $("<%= selector %>" + " option:selected").val(),
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          return console.log("AJAX Error update_pedidos_pendientes: " + textStatus + " " + errorThrown);
+        },
+        success: function(data, textStatus, jqXHR) {
+          $("#pedidos-pendientes").html(data);
+          return console.log("update_pedidos_pendientes OK!");
+        }
+      });
+    });
+  });
+
+  $(function() {
+    $("<%= selector %>").change();
+  });
+</script>

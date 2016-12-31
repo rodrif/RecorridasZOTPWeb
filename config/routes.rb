@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   resources :notificaciones
   resources :auditoria
   resources :users
-  #resources :referentes
   resources :familias
   resources :ranchadas
   resources :areas
@@ -42,6 +41,8 @@ Rails.application.routes.draw do
   get 'configuraciones' => 'configuraciones#index'
 
   get 'common/update_zonas_filter', as: 'update_zonas_filter'
+  get 'common/update_personas', as: 'update_personas'
+  get 'common/update_pedidos_pendientes', as: 'update_pedidos_pendientes'
 
   get 'people/update_zonas', as: 'update_zonas'
   get 'people/update_ranchadas', as: 'update_ranchadas'
@@ -51,15 +52,8 @@ Rails.application.routes.draw do
   get 'visits/getDireccion' => 'visits#getDireccion'
   get 'visits/getCoordenadas' => 'visits#getCoordenadas'
 
-  post 'people/mobGuardarPersonasPost' => 'people#mobGuardarPersonasPost'
-  post 'people/mobRecibirPersonasDesde' => 'people#mobRecibirPersonasDesde'
-
-  get 'alerts/mobMostrarAlertas' => 'alerts#mobMostrarAlertas'
-
   get 'mapa/mostrar' => 'mapa#mostrar'
   get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
-
-  get 'welcome_messages/mobGetMensajeBienvenida' => 'welcome_messages#mobGetMensajeBienvenida'
 
   resources :welcome_messages
   resources :visits
@@ -67,6 +61,7 @@ Rails.application.routes.draw do
   resources :people
   resources :zones
   resources :mapa
+  resources :pedidos
 
   get 'informes' => 'informes#index'
   get 'informes/voluntarios' => 'informes#voluntarios'
