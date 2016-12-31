@@ -22,7 +22,7 @@
             <% if pedido.person.nil? %>
               <td>Sin persona</td>
             <% else %>
-              <td><%= pedido.person.nombre  %></td>
+              <td><%= pedido.person.full_name  %></td>
             <% end %>
             <td><%= pedido.fecha.to_date() %></td>
             <td><%= pedido.descripcion %></td>

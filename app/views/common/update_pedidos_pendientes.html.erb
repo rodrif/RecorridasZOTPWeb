@@ -1,0 +1,23 @@
+<% if @pedidos && @pedidos.any? %>
+    <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @pedidos.each do |pedido| %>
+              <tr>
+                <td><%= pedido.fecha.to_date() %></td>
+                <td><%= pedido.descripcion %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+<% else %>
+    <div>Ninguno</div>
+<% end %>

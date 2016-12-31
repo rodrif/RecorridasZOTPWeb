@@ -26,4 +26,15 @@ class CommonController < ApplicationController
         end
     end
 
+    def update_pedidos_pendientes
+        if params[:person_id].blank?
+            @pedidos = nil
+        else
+            @pedidos = Pedido.where("person_id = ? AND completado = ?", params[:person_id], false).activos
+        end
+        respond_to do |format|
+          format.html {render :layout => false}
+        end
+    end
+
 end

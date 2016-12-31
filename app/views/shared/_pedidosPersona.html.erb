@@ -1,0 +1,30 @@
+<h4>Pedidos pendientes</h4>
+
+<div id='pedidos-pendientes'></div>
+
+<%  selector = '#' + selectorPersona %>
+
+<script defer>
+  $(function() {
+    return $(document).on('change', "<%= selector %>", function(evt) {
+      return $.ajax('/common/update_pedidos_pendientes', {
+        type: 'GET',
+        remote: true,
+        data: {
+          person_id: $("<%= selector %>" + " option:selected").val(),
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          return console.log("AJAX Error update_pedidos_pendientes: " + textStatus + " " + errorThrown);
+        },
+        success: function(data, textStatus, jqXHR) {
+          $("#pedidos-pendientes").html(data);
+          return console.log("update_pedidos_pendientes OK!");
+        }
+      });
+    });
+  });
+
+  $(function() {
+    $("<%= selector %>").change();
+  });
+</script>
