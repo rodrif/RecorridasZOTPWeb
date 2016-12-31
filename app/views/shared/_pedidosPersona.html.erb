@@ -10,6 +10,8 @@
 <script defer>
   $(function() {
     return $(document).on('change', "<%= selector %>", function(evt) {
+      $('#pedido_person_id').val($("<%= selector %>" + " option:selected").val());
+      $('#pedido_person_id').prop( "disabled", true);
       return $.ajax('/common/update_pedidos_pendientes', {
         type: 'GET',
         remote: true,
