@@ -2,6 +2,7 @@
 <% visits_person_id ||= false %>
 <% edit_path ||= false %>
 <% delete_path ||= false %>
+<% new_path ||= false %>
 
 <% if visits_person_id %>
 	<%= link_to '',
@@ -17,11 +18,19 @@
 	%>
 <% end %>
 
+<% if new_path %>
+    <%= link_to '', new_path, {
+        class: 'glyphicon glyphicon-plus',
+        title: 'crear',
+        data: {toggle: 'modal'}
+      }
+    %>
+<% end %>
+
 <% if edit_path && current_user %>
-	<%= link_to '', edit_path, {
+	<%= link_to '', edit_path,
     class: 'glyphicon glyphicon-edit',
     title: t("common.ver_editar")
-  }
   %>
 <% end %>
 

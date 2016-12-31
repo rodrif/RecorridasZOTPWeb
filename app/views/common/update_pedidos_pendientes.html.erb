@@ -5,6 +5,7 @@
             <tr>
               <th>Fecha</th>
               <th>Descripción</th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
@@ -13,6 +14,13 @@
               <tr>
                 <td><%= pedido.fecha.to_date() %></td>
                 <td><%= pedido.descripcion %></td>
+                <td>
+                  <%=
+                    render 'layouts/acciones',
+                    current_user: current_user,
+                    new_path: '#new_pedido_modal'
+                  %>
+                </td>
               </tr>
             <% end %>
           </tbody>
