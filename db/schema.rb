@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209183739) do
+ActiveRecord::Schema.define(version: 20161229003115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,19 @@ ActiveRecord::Schema.define(version: 20161209183739) do
   add_index "notificaciones", ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id", using: :btree
   add_index "notificaciones", ["notificacion_tipo_id"], name: "index_notificaciones_on_notificacion_tipo_id", using: :btree
   add_index "notificaciones", ["state_id"], name: "index_notificaciones_on_state_id", using: :btree
+
+  create_table "pedidos", force: :cascade do |t|
+    t.datetime "fecha"
+    t.string   "descripcion"
+    t.integer  "person_id"
+    t.boolean  "completado"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "state_id"
+  end
+
+  add_index "pedidos", ["person_id"], name: "index_pedidos_on_person_id", using: :btree
+  add_index "pedidos", ["state_id"], name: "index_pedidos_on_state_id", using: :btree
 
   create_table "people", force: :cascade do |t|
     t.string   "nombre"
@@ -317,6 +330,8 @@ ActiveRecord::Schema.define(version: 20161209183739) do
   add_foreign_key "notificaciones", "frecuencia_tipos"
   add_foreign_key "notificaciones", "notificacion_tipos"
   add_foreign_key "notificaciones", "states"
+  add_foreign_key "pedidos", "people"
+  add_foreign_key "pedidos", "states"
   add_foreign_key "people", "familias"
   add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"

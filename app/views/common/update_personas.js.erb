@@ -1,0 +1,1 @@
+$("#" + "<%= @selectorPersona %>").html("<%= escape_javascript select 'persona', 'zone_id', @personas.collect {|p| [p.full_name, p.id]} %>");

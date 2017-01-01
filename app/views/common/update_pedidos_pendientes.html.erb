@@ -1,0 +1,35 @@
+<% if @pedidos && @pedidos.any? %>
+    <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @pedidos.each do |pedido| %>
+              <tr>
+                <td><%= pedido.fecha.to_date() %></td>
+                <td><%= pedido.descripcion %></td>
+                <td>
+                  <%=
+                    render 'layouts/acciones',
+                    current_user: current_user,
+                    new_path: '#new_pedido_modal',
+                    edit_path: edit_pedido_modal_path(pedido.id),
+                    remote: true
+                  %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+<% else %>
+  <div class="col-xs-2 col-md-1">
+    <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_pedido_modal', 'data-toggle' => 'modal', id: 'pedido_modal' %>
+  </div>
+<% end %>

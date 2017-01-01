@@ -15,6 +15,7 @@ class Auditoria < ActiveRecord::Base
   ZONA = 'Zona'
   USUARIO = 'Usuario'
   NOTIFICACION = 'Notificación'
+  PEDIDO = 'Pedido'
 
   self.per_page = 20
 
