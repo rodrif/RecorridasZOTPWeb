@@ -1,0 +1,6 @@
+<% js = escape_javascript(render(partial: 'layouts/edit_pedido_modal', locals: { pedido: @pedido })) %>
+$("#edit_pedido_modal_body").html("<%= js %>");
+$('#edit_pedido_modal_body #pedido_person_id').prop('disabled', true);
+$('#edit_pedido_modal').submit(function() {
+    $('#edit_pedido_modal_body #pedido_person_id').prop('disabled', false);
+});

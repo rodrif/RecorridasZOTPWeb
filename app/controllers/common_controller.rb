@@ -37,4 +37,11 @@ class CommonController < ApplicationController
         end
     end
 
+    def edit_pedido_modal
+        @pedido = Pedido.find(params[:id])
+        respond_to do |format|
+            format.js
+        end
+    end
+
 end

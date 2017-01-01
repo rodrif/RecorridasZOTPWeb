@@ -3,6 +3,7 @@
 <% edit_path ||= false %>
 <% delete_path ||= false %>
 <% new_path ||= false %>
+<% remote ||= false %>
 
 <% if visits_person_id %>
 	<%= link_to '',
@@ -18,7 +19,7 @@
 	%>
 <% end %>
 
-<% if new_path %>
+<% if new_path && remote %>
     <%= link_to '', new_path, {
         class: 'glyphicon glyphicon-plus',
         title: 'crear',
@@ -28,10 +29,19 @@
 <% end %>
 
 <% if edit_path && current_user %>
-	<%= link_to '', edit_path,
-    class: 'glyphicon glyphicon-edit',
-    title: t("common.ver_editar")
-  %>
+  <% if remote %>
+    <%= link_to '', edit_path,
+        class: 'glyphicon glyphicon-edit',
+        title: 'editar',
+        remote: true,
+        data: {toggle: 'modal', target: '#edit_pedido_modal'}
+    %>
+  <% else %>
+    <%= link_to '', edit_path,
+      class: 'glyphicon glyphicon-edit',
+      title: t("common.ver_editar")
+    %>
+  <% end %>
 <% end %>
 
 <% if delete_path && current_user %>
