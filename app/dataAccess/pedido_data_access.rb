@@ -61,7 +61,7 @@ class PedidoDataAccess
 
   def self.borrar_logico pedido, user
     pedido.state_id = 3
-    if user && !pedido.person_id.nil? && pedido.person.state_id != 3
+    if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::PEDIDO, pedido
     end
     pedido.person_id = nil

@@ -60,6 +60,6 @@ class Pedido < ActiveRecord::Base
     end
 
     def getDescripcionAuditoria
-        return "Pedido: #{person.nombre if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
+        return "Persona: #{person.full_name if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
     end
 end
