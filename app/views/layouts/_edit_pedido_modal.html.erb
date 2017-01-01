@@ -1,14 +1,2 @@
-<div class="modal fade" id="edit_pedido_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelNuevoPedido" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelEditPedido">Editar Pedido</h4>
-      </div>
-      <div class="modal-body">
-        <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'pedidos/form', :@pedido => @pedido, modal: true, puede_editar: RolDataAccess.puede_editar_visita(current_user), mostrar_aceptar: RolDataAccess.puede_editar_visita(current_user)%>
-      </div>
-    </div>
-  </div>
-</div>
+<%# Render the new zone form (passing modal => true to enable remote => true) %>
+<%= render 'pedidos/form', :@pedido => @pedido, modal: true, puede_editar: RolDataAccess.puede_editar_visita(current_user), mostrar_aceptar: RolDataAccess.puede_editar_visita(current_user)%>

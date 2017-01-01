@@ -15,7 +15,18 @@
   </div>
 </div>
 
-<div id="edit_pedido_modal_container">gggg</div>
+<div class="modal fade" id="edit_pedido_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelNuevoPedido" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabelEditPedido">Editar Pedido</h4>
+      </div>
+      <div id="edit_pedido_modal_body" class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
 
 <script defer>
   $('#new_pedido').submit(function() {

@@ -30,12 +30,11 @@
 
 <% if edit_path && current_user %>
   <% if remote %>
-    <%= link_to '', edit_path, {
+    <%= link_to '', edit_path,
         class: 'glyphicon glyphicon-edit',
         title: 'editar',
         remote: true,
-        data: {toogle: 'modal', target: 'edit_pedido_modal'}
-      }
+        data: {toggle: 'modal', target: '#edit_pedido_modal'}
     %>
   <% else %>
     <%= link_to '', edit_path,
