@@ -2,8 +2,8 @@ class PersonDataAccess
 
 	def self.listPersonaMapa
 	  Person.readonly.find_by_sql("SELECT p.id AS persona_id, p.nombre, p.apellido, v.latitud, v.longitud, v.fecha
-	  	 FROM people p INNER JOIN visits v ON p.id = v.person_id 
-	  	 WHERE v.fecha = (SELECT MAX (v2.fecha) FROM visits v2 WHERE v2.person_id = p.id)")
+      FROM people p INNER JOIN visits v ON p.id = v.person_id
+      WHERE v.fecha = (SELECT MAX (v2.fecha) FROM visits v2 WHERE v2.person_id = p.id)")
 	end
 
 	def self.download datosJson = nil, fecha = nil
@@ -96,6 +96,9 @@ class PersonDataAccess
     person.state_id = 3
     person.visits.each do |v|
       VisitDataAccess.borrar_logico v, user
+    end
+    person.pedidos.each do |p|
+      PedidoDataAccess.borrar_logico p, user
     end
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::PERSONA, person

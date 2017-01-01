@@ -15,13 +15,14 @@ class Person < ActiveRecord::Base
   belongs_to :familia
   belongs_to :state
   has_many :visits, -> {order(fecha: :desc)}, :dependent => :delete_all
+  has_many :pedidos, -> {order(fecha: :desc)}, :dependent => :delete_all
   accepts_nested_attributes_for :visits
 
   self.per_page = 20
 
   filterrific(
     available_filters: [
-      :search_query,    
+      :search_query,
       :with_zone_id,
       :with_area_id,
       :personas_activas
@@ -75,7 +76,7 @@ class Person < ActiveRecord::Base
     return nil if reference_time.blank?
     where.not(state_id: 3).joins(:visits).where('fecha >= ?', reference_time).group("people.id").order(:nombre)
   }
-  
+
   def getDescripcionAuditoria
     return "Nombre: #{nombre} Apellido: #{apellido} Área: #{zone.area.nombre if !zone.nil?} Zona: #{zone.nombre if !zone.nil?}"
   end
