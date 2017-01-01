@@ -18,7 +18,9 @@
                   <%=
                     render 'layouts/acciones',
                     current_user: current_user,
-                    new_path: '#new_pedido_modal'
+                    new_path: '#new_pedido_modal',
+                    edit_path: edit_pedido_modal_path(pedido.id),
+                    remote: true
                   %>
                 </td>
               </tr>

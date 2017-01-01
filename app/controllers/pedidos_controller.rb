@@ -63,10 +63,12 @@ class PedidosController < ApplicationController
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::PEDIDO, @pedido
         format.html { redirect_to pedidos_url, notice: 'Pedido actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @pedido }
+        format.js { render :show, status: :created, location: @pedido }
       else
         params[:person_id] = @pedido.person_id
         format.html { render :edit }
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
+        format.js   { render json: @pedido.errors, status: :unprocessable_entity }
       end
     end
   end

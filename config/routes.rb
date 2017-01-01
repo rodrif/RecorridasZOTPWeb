@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get 'common/update_zonas_filter', as: 'update_zonas_filter'
   get 'common/update_personas', as: 'update_personas'
   get 'common/update_pedidos_pendientes', as: 'update_pedidos_pendientes'
+  get 'common/edit_pedido_modal/:id' => 'common#edit_pedido_modal', as: 'edit_pedido_modal'
+
 
   get 'people/update_zonas', as: 'update_zonas'
   get 'people/update_ranchadas', as: 'update_ranchadas'

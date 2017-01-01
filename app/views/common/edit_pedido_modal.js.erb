@@ -1,0 +1,4 @@
+<% js = escape_javascript(render(partial: 'layouts/edit_pedido_modal', locals: { pedido: @pedido })) %>
+$("#edit_pedido_modal_container").html("<%= js %>");
+//alert($('#edit_pedido_modal_container').html());
+$('#edit_pedido_modal').openModal();
