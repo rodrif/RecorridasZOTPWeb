@@ -5,7 +5,7 @@ class PedidoDataAccess
 		respuesta['datos'] = Hash.new
 		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
-		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, state_id AS estado, updated_at'
+		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, completado, state_id AS estado, updated_at'
     if fecha.nil?
       respuesta['datos'] = Pedido.select(query)
     else
@@ -44,6 +44,7 @@ class PedidoDataAccess
       pedido.person_id = p['web_person_id']
       pedido.fecha = Time.at(p['fecha'] / 1000)
       pedido.descripcion = p['descripcion'] ? p['descripcion'] : nil
+      pedido.completado = p['completado'] ? p['completado'] : nil
 
       if (pedido.save(validate: false))
         if accion != Auditoria::BAJA
