@@ -2,6 +2,9 @@ es:
   common:
     descripcion: Descripción
     dia: Día
+    estado: Estado
+    estados: Estados
+    nuevo_estado: Nuevo estado
     telefono: Teléfono
     ver_editar: Ver / Editar
     exito:
@@ -80,9 +83,9 @@ es:
         one:   Ranchada
         other: Ranchadas
       familia:
-        zero:  Familia
-        one:   Familia
-        other: Familias
+        zero:  Estado
+        one:   Estado
+        other: Estados
       referente:
         zero:  Referente
         one:   Referente
