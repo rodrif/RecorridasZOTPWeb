@@ -17,7 +17,7 @@ wb.styles do |style|
       "Fecha de nacimiento",
       "Teléfono",
       "Descripción",
-      "Familia",
+      "Estado",
       "Ranchada"
     ], :style => title_cell
     @personas.each do |persona|
