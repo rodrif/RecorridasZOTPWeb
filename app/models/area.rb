@@ -2,10 +2,11 @@ class Area < ActiveRecord::Base
   extend ModelHelper
   validates :nombre, presence: true, uniqueness: { case_sensitive: false },
     format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
- 
+
   belongs_to :state
   has_and_belongs_to_many :notificaciones
 
+  VERSION = 1
   self.per_page = 20
 
   filterrific(
@@ -43,7 +44,7 @@ class Area < ActiveRecord::Base
 	end
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
-	
+
   def getDescripcionAuditoria
     return "Nombre: #{nombre}"
   end

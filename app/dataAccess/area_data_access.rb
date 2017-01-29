@@ -9,6 +9,15 @@ class AreaDataAccess
     else
       respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
     end
+    if !datosJson.nil?
+      data = ActiveSupport::JSON.decode(datosJson)
+      if !data['version'].nil?
+        if data['version'] < Area::VERSION
+          respuesta['errores'] = Hash.new
+          respuesta['errores']['version'] = 'Por favor actualice la versión de la aplicación'
+        end
+      end
+    end
     respuesta
   end
 
@@ -28,7 +37,7 @@ class AreaDataAccess
       if !a['estado'].nil? && a['estado'] == 3
         AreaDataAccess.borrar_logico area, user
         accion = Auditoria::BAJA
-      else          
+      else
         area.state_id = 1
       end
 
