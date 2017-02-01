@@ -1,6 +1,6 @@
 class AreaDataAccess
 
-  def self.download datosJson = nil, fecha = nil
+  def self.download user, datosJson = nil, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
@@ -15,6 +15,7 @@ class AreaDataAccess
         if data['version'] < Area::VERSION
           respuesta['errores'] = Hash.new
           respuesta['errores']['version'] = 'Por favor actualice la versión de la aplicación'
+          Enviador.version_android_deprecada(user).deliver_now
         end
       end
     end
