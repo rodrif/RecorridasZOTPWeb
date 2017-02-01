@@ -8,7 +8,7 @@ class AreaDataAccessTest < ActionController::TestCase
 	test "version ok test" do
 		data = { version: 100000 }.to_json
 
-	    respuesta = AreaDataAccess.download data
+	    respuesta = AreaDataAccess.download @user, data
 
 	    assert_not_nil respuesta, 'respuesta null'
 		assert_nil respuesta['errores'], 'version correcto, no tiene que agregar errores'
@@ -17,7 +17,7 @@ class AreaDataAccessTest < ActionController::TestCase
 	test "version vieja test" do
 		data = { version: 0 }.to_json
 
-	    respuesta = AreaDataAccess.download data
+	    respuesta = AreaDataAccess.download @user, data
 
 	    assert_not_nil respuesta, 'respuesta null'
 		assert_not_nil respuesta['errores'], 'falta retornar los errores'
