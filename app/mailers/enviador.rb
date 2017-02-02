@@ -2,7 +2,7 @@ class Enviador < ApplicationMailer
 
     def version_android_deprecada(user)
         @user = user
-        mail(to: 'rodrif89@gmail.com', subject: 'Version de la app android deprecada')
+        mail(to: 'diegopintos81@gmail.com', subject: 'Un usuario necesita actualizar la app')
     end
 
 end
