@@ -11,8 +11,8 @@ class AreaDataAccess
     end
     if !datosJson.nil?
       data = ActiveSupport::JSON.decode(datosJson)
-      if !data['version'].nil?
-        if data['version'] < Area::VERSION
+      if !data.first.blank? && !data.first['version'].blank?
+        if data.first['version'] < Area::VERSION
           respuesta['errores'] = Hash.new
           respuesta['errores']['version'] = 'Por favor actualice la versión de la aplicación'
           Enviador.version_android_deprecada(user).deliver_now
