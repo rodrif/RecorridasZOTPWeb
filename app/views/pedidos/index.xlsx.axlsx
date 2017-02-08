@@ -11,15 +11,17 @@ wb.styles do |style|
       "Descripción",
       "Área",
       "Zona",
+      "Estado",
       "Completado"
     ], :style => title_cell
     @pedidos.each do |pedido|
       sheet.add_row [
-        pedido.fecha.to_s,
+        pedido.fecha.strftime('%d-%m-%Y'),
         pedido.person.full_name,
         pedido.descripcion,
         pedido.person.zone.nil? ? '' : pedido.person.zone.nombre,
         pedido.person.zone.nil? ? '' : pedido.person.zone.area.nombre,
+        pedido.person.familia.nil? ? '' : pedido.person.familia.nombre,
         pedido.estaCompletado
       ], style: data_cell
     end

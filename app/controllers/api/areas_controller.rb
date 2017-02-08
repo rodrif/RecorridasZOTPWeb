@@ -3,7 +3,7 @@ class Api::AreasController < Api::ApiController
   before_action :invitado
 
   def download
-    respuesta = AreaDataAccess.download params['datos'], params['fecha']
+    respuesta = AreaDataAccess.download current_user, params['datos'], params['fecha']
     render :json => respuesta
   end
 

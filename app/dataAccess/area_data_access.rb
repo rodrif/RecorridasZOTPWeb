@@ -1,6 +1,6 @@
 class AreaDataAccess
 
-  def self.download datosJson = nil, fecha = nil
+  def self.download user, datosJson = nil, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
@@ -8,6 +8,16 @@ class AreaDataAccess
       respuesta['datos'] = Area.select("id AS web_id, nombre, state_id AS estado, updated_at")
     else
       respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
+    end
+    if !datosJson.nil?
+      data = ActiveSupport::JSON.decode(datosJson)
+      if !data.first.blank? && !data.first['version'].blank?
+        if data.first['version'] < Area::VERSION
+          respuesta['errores'] = Hash.new
+          respuesta['errores']['version'] = 'Por favor actualice la versión de la aplicación'
+          Enviador.version_android_deprecada(user).deliver_now
+        end
+      end
     end
     respuesta
   end
@@ -28,7 +38,7 @@ class AreaDataAccess
       if !a['estado'].nil? && a['estado'] == 3
         AreaDataAccess.borrar_logico area, user
         accion = Auditoria::BAJA
-      else          
+      else
         area.state_id = 1
       end
 

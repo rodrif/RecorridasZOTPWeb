@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     post 'familias/upload' => 'familias#upload'
     post 'visits/download' => 'visits#download'
     post 'visits/upload' => 'visits#upload'
+    post 'pedidos/download' => 'pedidos#download'
+    post 'pedidos/upload' => 'pedidos#upload'
     post 'people/download' => 'people#download'
     post 'people/upload' => 'people#upload'
     post 'referentes/download' => 'referentes#download'
