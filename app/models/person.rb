@@ -14,7 +14,7 @@ class Person < ActiveRecord::Base
   belongs_to :ranchada
   belongs_to :familia
   belongs_to :state
-  has_many :visits, -> {order(fecha: :desc)}, :dependent => :delete_all
+  has_many :visits, -> {order(fecha: :desc, id: :desc)}, :dependent => :delete_all
   has_many :pedidos, -> {order(fecha: :desc)}, :dependent => :delete_all
   accepts_nested_attributes_for :visits
 

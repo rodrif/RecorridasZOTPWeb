@@ -6,21 +6,23 @@ class AreaDataAccessTest < ActionController::TestCase
 	end
 
 	test "version ok test" do
-		data = [{ version: 100000 }].to_json
+		data = [].to_json
+		version = "100000"
 
-	    respuesta = AreaDataAccess.download @user, data
+	    respuesta = AreaDataAccess.download @user, data, nil, version
 
 	    assert_not_nil respuesta, 'respuesta null'
 		assert_nil respuesta['errores'], 'version correcto, no tiene que agregar errores'
 	end
 
 	test "version vieja test" do
-		data = [{ version: 0 }].to_json
+		data = [].to_json
+		version = "0"
 
 		respuesta = nil
 
 		assert_difference('ActionMailer::Base.deliveries.count', 1) do
-			respuesta = AreaDataAccess.download @user, data
+			respuesta = AreaDataAccess.download @user, data, nil, version
 		end
 
 	    assert_not_nil respuesta, 'respuesta null'
