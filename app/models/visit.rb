@@ -21,7 +21,7 @@ class Visit < ActiveRecord::Base
   filterrific(
     available_filters: [
       :search_query,
-      :with_area_id,    
+      :with_area_id,
       :with_zone_id,
       :with_person_id,
     ]
@@ -63,7 +63,7 @@ class Visit < ActiveRecord::Base
 	joins(:person).where("people.id = ?", person_id)
   }
 
-  scope :activas, -> { where.not(state_id: 3).order(fecha: :desc) }
+  scope :activas, -> { where.not(state_id: 3).order(fecha: :desc, id: :desc) }
 
   def getDescripcionAuditoria
     return "Persona: #{person.nombre if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
