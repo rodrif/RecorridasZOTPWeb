@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229003115) do
+ActiveRecord::Schema.define(version: 20170304015645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 20161229003115) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "departamentos", force: :cascade do |t|
+    t.string  "nombre"
+    t.integer "state_id"
+  end
+
+  add_index "departamentos", ["state_id"], name: "index_departamentos_on_state_id", using: :btree
+
+  create_table "departamentos_people", id: false, force: :cascade do |t|
+    t.integer "departamento_id", null: false
+    t.integer "person_id",       null: false
+  end
 
   create_table "familias", force: :cascade do |t|
     t.string   "nombre"
@@ -322,6 +334,7 @@ ActiveRecord::Schema.define(version: 20161229003115) do
   add_foreign_key "alerts", "zones"
   add_foreign_key "areas", "states"
   add_foreign_key "auditorias", "users"
+  add_foreign_key "departamentos", "states"
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"
