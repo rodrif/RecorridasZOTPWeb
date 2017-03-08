@@ -5,9 +5,13 @@ es:
     estado: Familia
     estados: Familias
     nuevo_estado: Nueva familia
+    nuevo_departamento: Nuevo departamento
     telefono: Teléfono
     ver_editar: Ver / Editar
     exito:
+      creacion_departamento: Departamento creado correctamente.
+      actualizacion_departamento: Departamento actualizado correctamente.
+      borrado_departamento: Departamento borrado correctamente.
       actualizacion_ranchada: Ranchada actualizada correctamente.
       borrado_ranchada: Ranchada borrada correctamente.
     errores:
@@ -31,6 +35,8 @@ es:
       multi_page_html: "Mostrando <b>%{from}&nbsp;-&nbsp;%{to}</b> %{model} de <b>%{count}</b> en total"
   activerecord:
     attributes:
+      departamento:
+        nombre: Nombre
       person:
         zone: Zona
         nombre: Nombre
@@ -54,6 +60,10 @@ es:
       pedido:
         person: Persona
     models:
+      departamento:
+        zero:  Departamento
+        one:   Departamento
+        other: Departamentos
       user:
         zero:  Usuario
         one:   Usuario

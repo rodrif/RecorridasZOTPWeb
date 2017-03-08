@@ -1,0 +1,3 @@
+<h2 class="sub-header"><%= t("common.nuevo_departamento") %></h2>
+
+<%= render 'form', puede_editar: RolDataAccess.puede_editar_departamento(current_user) %>
