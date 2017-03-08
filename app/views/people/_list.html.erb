@@ -8,11 +8,11 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Nombre</th>
-          <th>Apellido</th>
+          <th>Dirección</th>
           <th>Área</th>
           <th>Zona</th>
+          <th><%= t("activerecord.models.departamento.other") %></th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -20,9 +20,12 @@
       <tbody>
         <% @people.each do |person| %>
           <tr>
-            <td><%= person.id %></td>
             <td><%= person.nombre %></td>
-            <td><%= person.apellido %></td>
+            <% if person.visits.nil? %>
+              <td></td>
+            <% else %>
+              <td><%= person.visits.first.direccion %></td>
+            <% end %>
             <% if person.zone.nil? %>
               <td>Sin area</td>
             <% else %>
@@ -33,6 +36,7 @@
             <% else %>
               <td><%= person.zone.nombre %></td>
             <% end %>
+            <td><%= person.departamentos.map { |d| d.nombre }.join(', ') %></td>
             <td>
               <%=
                 render 'layouts/acciones',
