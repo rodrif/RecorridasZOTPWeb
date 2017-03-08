@@ -131,6 +131,17 @@
       </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label t("activerecord.models.departamento.other"), class: "col-md-1 control-label", for: "person_departamento_nombre" %>
+    <div class="col-md-10">
+      <%= f.collection_check_boxes(:departamento_ids, Departamento.activos, :id, :nombre) do |b| %>
+        <span>
+          <%= b.label(:"data-value" => b.value) { b.check_box + ' ' + b.text } %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+
   <% primero = true %>
   <%= f.fields_for :visits do |field| %>
   <% if primero %>
