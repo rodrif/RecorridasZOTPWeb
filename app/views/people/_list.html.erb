@@ -12,7 +12,9 @@
           <th>Dirección</th>
           <th>Área</th>
           <th>Zona</th>
-          <th><%= t("activerecord.models.departamento.other") %></th>
+          <% if RolDataAccess.puede_ver_departamento(current_user) %>
+            <th><%= t("activerecord.models.departamento.other") %></th>
+          <% end %>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -36,7 +38,9 @@
             <% else %>
               <td><%= person.zone.nombre %></td>
             <% end %>
-            <td><%= person.departamentos.map { |d| d.nombre }.join(', ') %></td>
+            <% if RolDataAccess.puede_ver_departamento(current_user) %>
+              <td><%= person.departamentos.map { |d| d.nombre }.join(', ') %></td>
+            <% end %>
             <td>
               <%=
                 render 'layouts/acciones',
