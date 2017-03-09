@@ -5,13 +5,13 @@ es:
     estado: Familia
     estados: Familias
     nuevo_estado: Nueva familia
-    nuevo_departamento: Nuevo departamento
+    nuevo_departamento: Nuevo sector
     telefono: Teléfono
     ver_editar: Ver / Editar
     exito:
-      creacion_departamento: Departamento creado correctamente.
-      actualizacion_departamento: Departamento actualizado correctamente.
-      borrado_departamento: Departamento borrado correctamente.
+      creacion_departamento: Sector creado correctamente.
+      actualizacion_departamento: Sector actualizado correctamente.
+      borrado_departamento: Sector borrado correctamente.
       actualizacion_ranchada: Ranchada actualizada correctamente.
       borrado_ranchada: Ranchada borrada correctamente.
     errores:
@@ -61,9 +61,9 @@ es:
         person: Persona
     models:
       departamento:
-        zero:  Departamento
-        one:   Departamento
-        other: Departamentos
+        zero:  Sector
+        one:   Sector
+        other: Sectores
       user:
         zero:  Usuario
         one:   Usuario
