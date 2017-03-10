@@ -5,4 +5,9 @@ class Enviador < ApplicationMailer
         mail(to: 'diegopintos81@gmail.com', subject: 'Un usuario necesita actualizar la app')
     end
 
+    def nuevo_voluntario_registrado(user)
+        @user = user
+        mail(to: 'diegopintos81@gmail.com', subject: 'Un voluntario se registró en la web')
+    end
+
 end
