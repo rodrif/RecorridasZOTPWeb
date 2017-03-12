@@ -174,6 +174,7 @@ class PeopleController < ApplicationController
         :zone_id,
         :ranchada_id,
         :familia_id,
+        :estado_id,
         :page,
         :descripcion,
         :pantalon,

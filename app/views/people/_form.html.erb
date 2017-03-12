@@ -83,38 +83,6 @@
   </div>
 
   <div class="form-group">
-    <%= f.label "Ranchada", class: "col-xs-12 col-md-1 control-label", for: "person_ranchada_id" %>
-    <% if RolDataAccess.is_admin(current_user) %>
-      <div class="col-xs-10 col-md-9">
-        <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control", :disabled => disabled} %>
-      </div>
-      <div class="col-xs-2 col-md-1">
-        <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_ranchada_modal', 'data-toggle' => 'modal', id: 'ranchada_modal' %>
-      </div>
-    <% else %>
-      <div class="col-xs-12 col-md-10">
-        <%= f.collection_select :ranchada_id, @ranchadas, :id, :nombre, {:include_blank => 'Ninguna'}, {:class => "form-control", :disabled => disabled} %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label t('common.estado'), class: "col-xs-12 col-md-1 control-label", for: "person_familia_id" %>
-    <% if RolDataAccess.puede_editar_familia(current_user) %>
-      <div class="col-xs-10 col-md-9">
-        <%= f.collection_select :familia_id, @familias, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
-      </div>
-      <div class="col-xs-2 col-md-1">
-        <%= link_to image_tag("plus.jpg", width: '32', heigth: '32'), '#new_familia_modal', 'data-toggle' => 'modal', id: 'familia_modal' %>
-      </div>
-    <% else %>
-      <div class="col-xs-12 col-md-10">
-        <%= f.collection_select :familia_id, @familias, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="form-group">
       <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>
       <div class="col-md-2">
         <%= f.text_field :pantalon, class: "form-control", :disabled => disabled %>
@@ -130,6 +98,15 @@
         <%= f.text_field :zapatillas, class: "form-control", :disabled => disabled %>
       </div>
   </div>
+
+  <% if RolDataAccess.puede_ver_estado(current_user) %>
+    <div class="form-group">
+      <%= f.label t("activerecord.models.estado.one"), class: "col-md-1 control-label", for: "person_estado_id" %>
+      <div class="col-xs-12 col-md-10">
+        <%= f.collection_select :estado_id, Estado.activos, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+    </div>
+  <% end %>
 
   <% if RolDataAccess.puede_ver_departamento(current_user) %>
     <div class="form-group">
