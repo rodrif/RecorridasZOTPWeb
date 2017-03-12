@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304015645) do
+ActiveRecord::Schema.define(version: 20170312132850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20170304015645) do
     t.integer "departamento_id", null: false
     t.integer "person_id",       null: false
   end
+
+  create_table "estados", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "estados", ["state_id"], name: "index_estados_on_state_id", using: :btree
 
   create_table "familias", force: :cascade do |t|
     t.string   "nombre"
@@ -196,8 +205,10 @@ ActiveRecord::Schema.define(version: 20170304015645) do
     t.string   "pantalon"
     t.string   "remera"
     t.string   "zapatillas"
+    t.integer  "estado_id"
   end
 
+  add_index "people", ["estado_id"], name: "index_people_on_estado_id", using: :btree
   add_index "people", ["familia_id"], name: "index_people_on_familia_id", using: :btree
   add_index "people", ["ranchada_id"], name: "index_people_on_ranchada_id", using: :btree
   add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
@@ -335,6 +346,7 @@ ActiveRecord::Schema.define(version: 20170304015645) do
   add_foreign_key "areas", "states"
   add_foreign_key "auditorias", "users"
   add_foreign_key "departamentos", "states"
+  add_foreign_key "estados", "states"
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"
@@ -345,6 +357,7 @@ ActiveRecord::Schema.define(version: 20170304015645) do
   add_foreign_key "notificaciones", "states"
   add_foreign_key "pedidos", "people"
   add_foreign_key "pedidos", "states"
+  add_foreign_key "people", "estados"
   add_foreign_key "people", "familias"
   add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"
