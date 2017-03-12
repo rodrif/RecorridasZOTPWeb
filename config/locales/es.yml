@@ -2,13 +2,16 @@ es:
   common:
     descripcion: Descripción
     dia: Día
-    estado: Familia
-    estados: Familias
-    nuevo_estado: Nueva familia
+    estado: Estado
+    estados: Estados
+    nuevo_estado: Nueva estado
     nuevo_departamento: Nuevo sector
     telefono: Teléfono
     ver_editar: Ver / Editar
     exito:
+      creacion_estado: Estado creado correctamente.
+      actualizacion_estado: Estado actualizado correctamente.
+      borrado_estado: Estado borrado correctamente.
       creacion_departamento: Sector creado correctamente.
       actualizacion_departamento: Sector actualizado correctamente.
       borrado_departamento: Sector borrado correctamente.
@@ -37,6 +40,8 @@ es:
     attributes:
       departamento:
         nombre: Nombre
+      estado:
+        nombre: Nombre
       person:
         zone: Zona
         nombre: Nombre
@@ -64,6 +69,10 @@ es:
         zero:  Sector
         one:   Sector
         other: Sectores
+      estado:
+        zero:  Estado
+        one:   Estado
+        other: Estados
       user:
         zero:  Usuario
         one:   Usuario

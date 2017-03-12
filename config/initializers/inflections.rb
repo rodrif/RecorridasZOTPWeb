@@ -30,4 +30,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'jornada', 'jornadas'
   inflect.irregular 'pedido', 'pedidos'
   inflect.irregular 'departamento', 'departamentos'
+  inflect.irregular 'estado', 'estados'
 end

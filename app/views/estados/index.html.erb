@@ -1,0 +1,7 @@
+<h2 class="sub-header"><%= t("activerecord.models.estado.other") %></h2>
+
+<%= render 'list', departametos: @departametos %>
+
+<% if RolDataAccess.puede_editar_estado(current_user) %>
+  <%= render 'layouts/new_button', :label => t("common.nuevo_estado"), :path => new_estado_path %>
+<% end %>
