@@ -1,0 +1,56 @@
+<% label_searcher ||= false %>
+
+<div class="table-responsive well">
+
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-2 margen-vert">
+        Área
+        <%= f.select(
+          :with_area_id,
+          @filterrific.select_options[:with_area_id],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-2 margen-vert">
+        Zona
+        <%= f.select(
+          :with_zone_id,
+          @filterrific.select_options[:with_zone_id],
+          { include_blank: 'Todas' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-2 margen-vert">
+        <%= t("activerecord.models.estado.one") %>
+        <%= f.select(
+          :with_estado_id,
+          @filterrific.select_options[:with_estado_id],
+          { include_blank: 'Todos' }
+        ) %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-xs-12 col-md-4 margen-vert">
+        <% if label_searcher %>
+         <%= label_searcher %>
+        <% else %>
+          Nombre / Apodo
+        <% end %>
+        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed'
+        ) %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
