@@ -16,7 +16,8 @@ class PeopleController < ApplicationController
       select_options: {
         with_area_id: Area.options_for_select,
         with_zone_id: Zone.options_for_select,
-        with_estado_id: Estado.options_for_select
+        with_estado_id: Estado.options_for_select,
+        with_departamento_id: Departamento.options_for_select
       },
       default_filter_params: {}
     ) or return
@@ -25,7 +26,7 @@ class PeopleController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @people = @filterrific.find.includes(zone: [:area]).activas.page(params[:page])
+    @people = @filterrific.find.includes(zone: [:area]).includes(:estado).includes(:departamentos).activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
