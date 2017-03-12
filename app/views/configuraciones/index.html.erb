@@ -5,6 +5,7 @@
 <div class="container-fluid">
 
 	<% if current_user.rol_id == 1 %>
+      <%= link_to "Áreas", areas_path %><br />
 	  <%= link_to "Auditoría", auditoria_index_path %><br />
       <%= link_to "Calendario", calendario_path %><br />
       <%= link_to t("activerecord.models.departamento.other"), departamentos_path %><br />
@@ -12,6 +13,7 @@
 	  <%= link_to "Informes", informes_path %><br />
 	  <%= link_to "Notificaciones", notificaciones_path %><br />
 	  <%= link_to "Usuarios", users_path %><br />
+      <%= link_to "Zonas", zones_path %><br />
 	<% end %>
 
     <% if RolDataAccess.puede_editar_familia(current_user) %>
