@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   resources :mapa
   resources :pedidos
   resources :departamentos
-  resources :estadoss
+  resources :estados
 
   get 'informes' => 'informes#index'
   get 'informes/voluntarios' => 'informes#voluntarios'
