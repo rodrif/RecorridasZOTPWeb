@@ -14,10 +14,9 @@ class AuditoriaController < ApplicationController
         ],
         with_entidad: [
           [Auditoria::AREA, Auditoria::AREA],
-          [Auditoria::FAMILIA, Auditoria::FAMILIA],
+          [Auditoria::ESTADO, Auditoria::ESTADO],
           [Auditoria::PERSONA, Auditoria::PERSONA],
-          [Auditoria::RANCHADA, Auditoria::RANCHADA],
-          [Auditoria::REFERENTE, Auditoria::REFERENTE],
+          [Auditoria::DEPARTAMENTO, Auditoria::DEPARTAMENTO],
           [Auditoria::VISITA, Auditoria::VISITA],
           [Auditoria::ZONA, Auditoria::ZONA]
         ]
