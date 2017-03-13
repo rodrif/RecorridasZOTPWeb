@@ -28,6 +28,7 @@ class Person < ActiveRecord::Base
       :with_zone_id,
       :with_area_id,
       :with_estado_id,
+      :with_departamento_id,
       :personas_activas
     ]
   )
@@ -75,6 +76,11 @@ class Person < ActiveRecord::Base
 
   scope :with_estado_id, lambda { |estado_ids|
     where(estado_id: [*estado_ids])
+  }
+
+  scope :with_departamento_id, lambda { |departamento_ids|
+    return nil if departamento_ids.all? &:blank?
+    joins(:departamentos).where(departamentos: {id: [*departamento_ids]}).uniq
   }
 
   scope :activas, -> { where.not(state_id: 3).order(:nombre, :apellido) }
