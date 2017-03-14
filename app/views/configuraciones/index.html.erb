@@ -16,10 +16,6 @@
       <%= link_to "Zonas", zones_path %><br />
 	<% end %>
 
-    <% if RolDataAccess.puede_editar_familia(current_user) %>
-        <%= link_to t('common.estados'), familias_path %><br />
-    <% end %>
-
 	<%= link_to "Mis datos", edit_user_registration_path(current_user) %><br />
 
 </div>
