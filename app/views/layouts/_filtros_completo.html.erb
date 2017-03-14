@@ -1,6 +1,6 @@
 <% label_searcher ||= false %>
 
-<div class="table-responsive well">
+<div class="container-fluid well">
 
   <%= form_for_filterrific @filterrific do |f| %>
     <div class="row-fluid">
@@ -44,7 +44,7 @@
           <%= f.select(
             :with_departamento_id,
             @filterrific.select_options[:with_departamento_id],
-            { include_blank: t("activerecord.models.departamento.other") },
+            { },
             multiple: true
           ) %>
         </div>
@@ -53,15 +53,11 @@
 
     <div class="row-fluid">
       <div class="col-xs-12 col-md-4 margen-vert">
-        <% if label_searcher %>
-         <%= label_searcher %>
-        <% else %>
-          Nombre / Apodo
-        <% end %>
         <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(
           :search_query,
-          { class: 'filterrific-periodically-observed form-control' }
+          class: 'filterrific-periodically-observed form-control',
+          placeholder: label_searcher ? label_searcher : 'Nombre / Apodo'
         ) %>
       </div>
     </div>
@@ -72,5 +68,9 @@
 
 <!-- Initialize the plugin: -->
 <script type="text/javascript">
-    $('#filterrific_with_departamento_id').multiselect();
+    $('#filterrific_with_departamento_id').multiselect({
+      nonSelectedText: 'Sectores',
+      numberDisplayed: 1,
+      nSelectedText: ' seleccionados'
+    });
 </script>
