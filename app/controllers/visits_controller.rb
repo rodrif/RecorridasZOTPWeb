@@ -15,7 +15,7 @@ class VisitsController < ApplicationController
     render :json => Geocoder.coordinates(params['direccion'])
   end
 
-  def mobRecibirVisitasDesde    
+  def mobRecibirVisitasDesde
     respuesta = VisitDataAccess.getVisitasDesde params['datos'], params['fecha']
 
     render :json => respuesta
@@ -38,7 +38,9 @@ class VisitsController < ApplicationController
       params[:filterrific],
       select_options: {
         with_area_id: Area.options_for_select,
-        with_zone_id: Zone.options_for_select
+        with_zone_id: Zone.options_for_select,
+        with_estado_id: Estado.options_for_select,
+        with_departamento_id: Departamento.options_for_select
       },
       default_filter_params: {}
     ) or return
