@@ -16,6 +16,8 @@ class Auditoria < ActiveRecord::Base
   USUARIO = 'Usuario'
   NOTIFICACION = 'Notificación'
   PEDIDO = 'Pedido'
+  DEPARTAMENTO = 'Departamento'
+  ESTADO = 'Estado'
 
   self.per_page = 20
 

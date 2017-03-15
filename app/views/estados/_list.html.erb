@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <% if RolDataAccess.puede_editar_estado(current_user) %>
+          <th>Acciones</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @estados.each do |estado| %>
+        <tr>
+          <td><%= estado.nombre %></td>
+          <td>
+            <%=
+              render 'layouts/acciones',
+              current_user: current_user,
+              edit_path: RolDataAccess.puede_editar_estado(current_user) ? edit_estado_path(estado) : nil,
+              delete_path: RolDataAccess.puede_editar_estado(current_user) ? estado : nil
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

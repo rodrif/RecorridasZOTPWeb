@@ -1,0 +1,3 @@
+<h2 class="sub-header"><%= t("activerecord.models.estado.one") %></h2>
+
+<%= render 'form', puede_editar: RolDataAccess.puede_editar_estado(current_user) %>
