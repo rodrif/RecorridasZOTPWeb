@@ -56,6 +56,9 @@ class DepartamentoDataAccess
   # end
 
   def self.borrar_logico departamento, user
+    if !Person.activas.with_departamento_id([departamento.id]).blank?
+      raise ActiveRecord::InvalidForeignKey, 'error'
+    end
     departamento.state_id = 3
     if user
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::DEPARTAMENTO, departamento
