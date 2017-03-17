@@ -23,6 +23,8 @@ class Visit < ActiveRecord::Base
       :search_query,
       :with_area_id,
       :with_zone_id,
+      :with_estado_id,
+      :with_departamento_id,
       :with_person_id,
     ]
   )
@@ -62,6 +64,16 @@ class Visit < ActiveRecord::Base
   scope :with_person_id, lambda { |person_id|
 	joins(:person).where("people.id = ?", person_id)
   }
+
+  scope :with_estado_id, lambda { |estado_ids|
+    joins(:person).where(estado_id: [*estado_ids])
+  }
+
+  scope :with_departamento_id, lambda { |departamento_ids|
+    return nil if departamento_ids.all? &:blank?
+    joins(person: [:departamentos]).where(departamentos: {id: [*departamento_ids]}).uniq
+  }
+
 
   scope :activas, -> { where.not(state_id: 3).order(fecha: :desc, id: :desc) }
 
