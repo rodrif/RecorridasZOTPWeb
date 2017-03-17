@@ -56,7 +56,7 @@ class EstadoDataAccess
   # end
 
   def self.borrar_logico estado, user
-    if Person.activas.where(state_id: estado.id).first
+    if Person.activas.where(estado_id: estado.id).first
       raise ActiveRecord::InvalidForeignKey, 'error'
     end
     estado.state_id = 3
