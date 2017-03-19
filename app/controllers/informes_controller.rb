@@ -14,7 +14,7 @@ class InformesController < ApplicationController
       select_options: {
         with_area_id: Area.options_for_select
       },
-      :default_filter_params => {voluntarios_activos: 1.month.ago.to_date.to_s},
+      :default_filter_params => {voluntarios_activos: 1.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
     @voluntarios = @filterrific.find.page(params[:page])
@@ -34,7 +34,7 @@ class InformesController < ApplicationController
         with_area_id: Area.options_for_select,
         with_zone_id: Zone.options_for_select
       },
-      :default_filter_params => {personas_activas: 3.month.ago.to_date.to_s},
+      :default_filter_params => {personas_activas: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
     @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
@@ -54,7 +54,7 @@ class InformesController < ApplicationController
         with_area_id: Area.options_for_select,
         with_zone_id: Zone.options_for_select
       },
-      :default_filter_params => {personas_activas: 3.month.ago.to_date.to_s},
+      :default_filter_params => {personas_activas: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
     @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
@@ -73,7 +73,7 @@ class InformesController < ApplicationController
       select_options: {
         visitas: Area.options_for_select,
       },
-      :default_filter_params => {fecha_gte: 3.month.ago.to_date.to_s},
+      :default_filter_params => {fecha_gte: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
     @visitas = @filterrific.find.visitas.page(params[:page])
