@@ -7,49 +7,17 @@
 %>
 </h2>
 
-<div class="table-responsive well">
+<div class="container-fluid well">
 
   <%= form_for_filterrific @filterrific do |f| %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-2 margen-vert">
-        Área
-        <%= f.select(
-          :with_area_id,
-          @filterrific.select_options[:with_area_id],
-          { include_blank: 'Todas' }
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroArea', f: f %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-2 margen-vert">
-        Zona
-        <%= f.select(
-          :with_zone_id,
-          @filterrific.select_options[:with_zone_id],
-          { include_blank: 'Todas' }
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroZona', f: f %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Nombre / Apodo
-        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(
-          :search_query,
-          class: 'filterrific-periodically-observed'
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroTexto', f: f, labelSearcher: 'Nombre / Apodo' %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Desde
-        <%= f.date_field :personas_activas, :value => @filterrific.to_hash()['personas_activas'] %>
-      </div>
-    </div>
+    <%= render 'shared/filtroFecha', f: f, esFechaDesde: true, defaulValue: @filterrific.to_hash()['personas_activas'] %>
 
   <% end %>
 
