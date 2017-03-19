@@ -26,7 +26,7 @@
         <% @people.each do |person| %>
           <tr>
             <td><%= person.nombre %></td>
-            <% if person.visits.nil? %>
+            <% if person.visits.nil? || person.visits.first.nil? %>
               <td></td>
             <% else %>
               <td><%= person.visits.first.direccion %></td>
