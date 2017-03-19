@@ -1,0 +1,21 @@
+<% extraCss ||= "col-md-3" %>
+<% filtro ||= :fecha_gte %>
+<% defaulValue ||= false %>
+<% label ||= 'Desde' %>
+
+<div class="row-fluid">
+  <div class="col-xs-12 <%= extraCss %> margen-vert">
+    <%= f.date_field(
+      filtro,
+      placeholder: label,
+      class: "form-control",
+      value: defaulValue ? defaulValue : nil
+    ) %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#filterrific_' + "<%= filtro %>").datepicker({
+      language: 'es'
+  });
+</script>

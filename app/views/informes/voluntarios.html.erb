@@ -7,36 +7,15 @@
 %>
 </h2>
 
-<div class="table-responsive well">
+<div class="container-fluid well">
 
   <%= form_for_filterrific @filterrific do |f| %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Área
-        <%= f.select(
-          :with_area_id,
-          @filterrific.select_options[:with_area_id],
-          { include_blank: 'Todas' }
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroArea', f: f %>
 
-    <div class="col-xs-12 col-md-4 margen-vert">
-        Nombre
-        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(
-          :search_query,
-          class: 'filterrific-periodically-observed'
-        ) %>
-      </div>
+    <%= render 'shared/filtroTexto', f: f %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Desde
-        <%= f.date_field :voluntarios_activos, :value => @filterrific.to_hash()['voluntarios_activos'] %>
-      </div>
-    </div>
+    <%= render 'shared/filtroFecha', f: f, filtro: :voluntarios_activos, defaulValue: @filterrific.to_hash()['voluntarios_activos'] %>
 
   <% end %>
 

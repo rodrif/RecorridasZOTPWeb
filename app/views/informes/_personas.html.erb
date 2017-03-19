@@ -47,8 +47,8 @@
                 id: "ubicacion_modal_id_#{persona.id}",
                 onClick: "cargarUbicacion(#{persona.id})",
                   data: {
-                    latitud: "#{persona.visits.first.latitud}",
-                    longitud: "#{persona.visits.first.longitud}"
+                    latitud: "#{persona.visits.first.latitud if !persona.nil? && !persona.visits.first.nil?}",
+                    longitud: "#{persona.visits.first.longitud if !persona.nil? && !persona.visits.first.nil?}"
                   }
               %>
             </td>
