@@ -1,12 +1,13 @@
 <% extraCss ||= "col-md-3" %>
-<% esFechaDesde ||= false %>
+<% filtro ||= :fecha_gte %>
 <% defaulValue ||= false %>
+<% label ||= 'Desde' %>
 
 <div class="row-fluid">
   <div class="col-xs-12 <%= extraCss %> margen-vert">
     <%= f.date_field(
-      esFechaDesde ? :fecha_gte : :fecha_lte,
-      placeholder: esFechaDesde ? 'Desde' : 'Hasta',
+      filtro,
+      placeholder: label,
       class: "form-control",
       value: defaulValue ? defaulValue : nil
     ) %>
@@ -14,15 +15,7 @@
 </div>
 
 <script type="text/javascript">
-    <% if esFechaDesde %>
-        $('#filterrific_fecha_gte').datepicker({
-            format: 'dd/mm/yyyy',
-            language: 'es'
-        });
-    <% else %>
-        $('#filterrific_fecha_lte').datepicker({
-            format: 'dd/mm/yyyy',
-            language: 'es'
-        });
-    <% end %>
+  $('#filterrific_' + "<%= filtro %>").datepicker({
+      language: 'es'
+  });
 </script>

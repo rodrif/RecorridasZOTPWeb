@@ -17,7 +17,7 @@ class InformesController < ApplicationController
       :default_filter_params => {voluntarios_activos: 1.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
-    @voluntarios = @filterrific.find.page(params[:page])
+    @voluntarios = @filterrific.find.includes(:area).includes(:rol).includes(:jornadas).page(params[:page])
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
