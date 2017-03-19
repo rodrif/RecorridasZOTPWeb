@@ -1,52 +1,57 @@
 <h2 class="sub-header">Auditoría</h2>
 
-<div class="table-responsive well">
+<div class="container-fluid well">
   <%= form_for_filterrific @filterrific do |f| %>
 
     <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Acción
+      <div class="col-xs-12 col-md-3 margen-vert">
         <%= f.select(
           :with_accion,
           @filterrific.select_options[:with_accion],
-          { include_blank: 'Todas' }
+          { include_blank: 'Acción' },
+          { class: "form-control" }
         ) %>
       </div>
     </div>
 
     <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Entidad
+      <div class="col-xs-12 col-md-3 margen-vert">
         <%= f.select(
           :with_entidad,
           @filterrific.select_options[:with_entidad],
-          { include_blank: 'Todas' }
+          { include_blank: 'Entidad' },
+          { class: "form-control" }
         ) %>
       </div>
     </div>
 
     <div class="row-fluid">
       <div class="col-xs-12 col-md-4 margen-vert">
-        Email
-        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
         <%= f.text_field(
           :with_email,
-          class: 'filterrific-periodically-observed'
+          class: 'filterrific-periodically-observed form-control',
+          placeholder: 'Email'
         ) %>
       </div>
     </div>
 
     <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Desde
-        <%= f.date_field :fecha_gte %>
+      <div class="col-xs-12 col-md-3 margen-vert">
+        <%= f.date_field(
+          :fecha_gte,
+          placeholder: 'Desde',
+          class: "form-control"
+        ) %>
       </div>
     </div>
 
     <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Hasta
-        <%= f.date_field :fecha_lte %>
+      <div class="col-xs-12 col-md-3 margen-vert">
+        <%= f.date_field(
+          :fecha_lte,
+          placeholder: 'Hasta',
+          class: "form-control"
+        ) %>
       </div>
     </div>
   <% end %>
@@ -54,3 +59,14 @@
 </div>
 
 <%= render 'list', auditorias: @auditorias %>
+
+<script type="text/javascript">
+  $('#filterrific_fecha_gte').datepicker({
+    format: 'dd/mm/yyyy',
+    language: 'es'
+  });
+  $('#filterrific_fecha_lte').datepicker({
+    format: 'dd/mm/yyyy',
+    language: 'es'
+  });
+</script>
