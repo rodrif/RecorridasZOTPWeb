@@ -1,6 +1,8 @@
 <div id="filterrific_results">
 
-  <span> Mostrando <b><%= @voluntarios.length %></b> voluntario/s </span>
+  <div class="container-fluid">
+    <%= page_entries_info @voluntarios %>
+  </div>
 
   <div class="table-responsive">
     <table class="table table-striped">
@@ -44,6 +46,10 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div class="paginacion">
+    <%= will_paginate @voluntarios, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
   </div>
 
 </div>
