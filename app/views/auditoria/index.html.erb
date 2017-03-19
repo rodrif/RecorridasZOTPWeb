@@ -35,25 +35,10 @@
       </div>
     </div>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
-        <%= f.date_field(
-          :fecha_gte,
-          placeholder: 'Desde',
-          class: "form-control"
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroFecha', f: f %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
-        <%= f.date_field(
-          :fecha_lte,
-          placeholder: 'Hasta',
-          class: "form-control"
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroFecha', f: f, filtro: :fecha_lte, label: 'Hasta' %>
+
   <% end %>
 
 </div>
