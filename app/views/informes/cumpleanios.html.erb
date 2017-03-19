@@ -17,7 +17,7 @@
 
     <%= render 'shared/filtroTexto', f: f, labelSearcher: 'Nombre / Apodo' %>
 
-    <%= render 'shared/filtroFecha', f: f, filtro: personas_activas, defaulValue: @filterrific.to_hash()['personas_activas'] %>
+    <%= render 'shared/filtroFecha', f: f, filtro: :personas_activas, defaulValue: @filterrific.to_hash()['personas_activas'] %>
 
   <% end %>
 
