@@ -87,7 +87,7 @@ class Person < ActiveRecord::Base
 
   scope :personas_activas, lambda { |reference_time|
     return nil if reference_time.blank?
-    where.not(state_id: 3).joins(:visits).where('fecha >= ?', reference_time).group("people.id").order(:nombre)
+    where.not(state_id: 3).joins(:visits).where('fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s).group("people.id").order(:nombre)
   }
 
   def getDescripcionAuditoria
