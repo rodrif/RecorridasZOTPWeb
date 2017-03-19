@@ -17,7 +17,7 @@ class InformesController < ApplicationController
       :default_filter_params => {voluntarios_activos: 1.month.ago.to_date.to_s},
       persistence_id: false
     ) or return
-    @voluntarios = @filterrific.find
+    @voluntarios = @filterrific.find.page(params[:page])
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
@@ -37,7 +37,7 @@ class InformesController < ApplicationController
       :default_filter_params => {personas_activas: 3.month.ago.to_date.to_s},
       persistence_id: false
     ) or return
-    @personas = @filterrific.find
+    @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
@@ -57,7 +57,7 @@ class InformesController < ApplicationController
       :default_filter_params => {personas_activas: 3.month.ago.to_date.to_s},
       persistence_id: false
     ) or return
-    @personas = @filterrific.find
+    @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
@@ -76,7 +76,7 @@ class InformesController < ApplicationController
       :default_filter_params => {fecha_gte: 3.month.ago.to_date.to_s},
       persistence_id: false
     ) or return
-    @visitas = @filterrific.find.visitas
+    @visitas = @filterrific.find.visitas.page(params[:page])
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
