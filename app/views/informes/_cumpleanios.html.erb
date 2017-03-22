@@ -1,6 +1,8 @@
 <div id="filterrific_results" class="viewport">
 
-  <span> Mostrando <b><%= @personas.length %></b> persona/s </span>
+  <div class="container-fluid">
+    <%= page_entries_info @personas %>
+  </div>
 
   <div class="table-responsive">
     <table class="table table-striped">
@@ -44,8 +46,8 @@
                 id: "ubicacion_modal_id_#{persona.id}",
                 onClick: "cargarUbicacion(#{persona.id})",
                   data: {
-                    latitud: "#{persona.visits.first.latitud}",
-                    longitud: "#{persona.visits.first.longitud}"
+                    latitud: "#{persona.visits.first.latitud if !persona.nil? && !persona.visits.first.nil?}",
+                    longitud: "#{persona.visits.first.longitud if !persona.nil? && !persona.visits.first.nil?}"
                   }
               %>
             </td>
@@ -53,6 +55,10 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div class="paginacion">
+    <%= will_paginate @personas, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
   </div>
 
 </div>

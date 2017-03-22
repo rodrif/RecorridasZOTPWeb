@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
 
   scope :voluntarios_activos, lambda { |reference_time|
     return nil if reference_time.blank?
-    where.not(state_id: 3).joins(:auditorias).where('fecha >= ?', reference_time).group("users.id").order(:name)
+    where.not(state_id: 3).joins(:auditorias).where('fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s).group("users.id").order(:name)
   }
 
   def ensure_uid

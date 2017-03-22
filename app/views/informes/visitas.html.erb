@@ -11,23 +11,9 @@
 
   <%= form_for_filterrific @filterrific do |f| %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Área
-        <%= f.select(
-          :visitas,
-          @filterrific.select_options[:visitas],
-          { include_blank: 'Todas' }
-        ) %>
-      </div>
-    </div>
+    <%= render 'shared/filtroArea', f: f, filtro: :visitas %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        Desde
-        <%= f.date_field :fecha_gte, :value => @filterrific.to_hash()['fecha_gte'] %>
-      </div>
-    </div>
+    <%= render 'shared/filtroFecha', f: f, defaulValue: @filterrific.to_hash()['fecha_gte'] %>
 
   <% end %>
 

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       },
       default_filter_params: {}
     ) or return
-    @users = @filterrific.find.activos.page(params[:page])
+    @users = @filterrific.find.activos.includes(:area).includes(:rol).page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
