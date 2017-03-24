@@ -11,7 +11,7 @@ class PersonDataAccess
 		respuesta['datos'] = Hash.new
 		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
-    query = 'id AS web_id, zone_id AS web_zone_id, ranchada_id AS web_ranchada_id, familia_id AS web_familia_id, nombre, apellido, dni, fecha_nacimiento, telefono, descripcion, pantalon, remera, zapatillas, state_id AS estado, updated_at'
+    query = 'id AS web_id, zone_id AS web_zone_id, ranchada_id AS web_ranchada_id, familia_id AS web_familia_id, nombre, apellido, dni, fecha_nacimiento, telefono, descripcion, pantalon, remera, zapatillas, state_id, updated_at'
     if fecha.nil?
       respuesta['datos'] = Person.select(query)
     else
