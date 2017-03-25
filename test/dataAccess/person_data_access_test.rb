@@ -30,6 +30,13 @@ class PersonDataAccessTest < ActionController::TestCase
 	    #TODO mejorar test
 	    assert_equal 6, personas["datos"].size, "cantidad de personas no coincide"
 
+	    assert_equal personas.first[1].to_a[0].state_id, 1, "test state_id persona 0"
+	    assert_equal personas.first[1].to_a[1].state_id, 1, "test state_id persona 1"
+	    assert_equal personas.first[1].to_a[2].state_id, 1, "test state_id persona 2"
+	    assert_equal personas.first[1].to_a[3].state_id, 1, "test state_id persona 3"
+	    assert_equal personas.first[1].to_a[4].state_id, 1, "test state_id persona 4"
+	    assert_equal personas.first[1].to_a[5].state_id, 3, "test state_id persona 5"
+
 	    assert (Person.find_by nombre: "GuardarPersonasFromJsonUno"), "No se guardo la persona en la bd"
 		assert (Person.find_by nombre: "GuardarPersonasFromJsonDos"), "No se guardo la persona en la bd"
 	end
