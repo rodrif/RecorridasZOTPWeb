@@ -52,7 +52,7 @@
                 render 'layouts/acciones',
                 current_user: current_user,
                 visits_person_id: person.id,
-                edit_path: edit_person_path(person),
+                edit_path: RolDataAccess.puede_editar_persona(current_user) ? edit_person_path(person) : nil,
                 delete_path: RolDataAccess.puede_borrar_persona(current_user) ? person : nil
               %>
             </td>
