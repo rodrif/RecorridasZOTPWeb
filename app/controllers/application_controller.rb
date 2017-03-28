@@ -85,6 +85,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def puede_editar_usuarios
+    if !RolDataAccess.puede_editar_usuarios(current_user)
+      redireccionar
+    end
+  end
+
   def is_admin
     if !current_user.rol_id || current_user.rol_id != 1
       redireccionar
