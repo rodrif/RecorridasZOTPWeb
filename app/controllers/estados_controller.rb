@@ -1,7 +1,7 @@
 class EstadosController < ApplicationController
   before_action :set_estado, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :is_admin
+  before_action :puede_editar_estado
 
   def index
     @estados = Estado.activos

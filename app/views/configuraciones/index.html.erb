@@ -1,21 +1,32 @@
-
-
 <h2 class="sub-header">Configuraciones</h2>
 
 <div class="container-fluid">
 
-	<% if current_user.rol_id == 1 %>
+    <% if RolDataAccess.puede_editar_area(current_user) %>
       <%= link_to "Áreas", areas_path %><br />
-	  <%= link_to "Auditoría", auditoria_index_path %><br />
+    <% end %>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <%= link_to "Auditoría", auditoria_index_path %><br />
       <%= link_to "Calendario", calendario_path %><br />
+    <% end %>
+    <% if RolDataAccess.puede_editar_departamento(current_user) %>
       <%= link_to t("activerecord.models.departamento.other"), departamentos_path %><br />
+    <% end %>
+    <% if RolDataAccess.puede_editar_estado(current_user) %>
       <%= link_to t("activerecord.models.estado.other"), estados_path %><br />
-	  <%= link_to "Informes", informes_path %><br />
-	  <%= link_to "Notificaciones", notificaciones_path %><br />
-	  <%= link_to "Usuarios", users_path %><br />
+    <% end %>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <%= link_to "Informes", informes_path %><br />
+    <% end %>
+    <%= link_to "Mis datos", edit_user_registration_path(current_user) %><br />
+    <% if RolDataAccess.is_admin(current_user) %>
+      <%= link_to "Notificaciones", notificaciones_path %><br />
+    <% end %>
+    <% if RolDataAccess.puede_editar_usuarios(current_user) %>
+      <%= link_to "Usuarios", users_path %><br />
+    <% end %>
+    <% if RolDataAccess.puede_editar_zona(current_user) %>
       <%= link_to "Zonas", zones_path %><br />
-	<% end %>
-
-	<%= link_to "Mis datos", edit_user_registration_path(current_user) %><br />
+    <% end %>
 
 </div>
