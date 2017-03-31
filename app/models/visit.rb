@@ -66,7 +66,7 @@ class Visit < ActiveRecord::Base
   }
 
   scope :with_estado_id, lambda { |estado_ids|
-    joins(:person).where(estado_id: [*estado_ids])
+    joins(:person).where(people: {estado_id: [*estado_ids]})
   }
 
   scope :with_departamento_id, lambda { |departamento_ids|
