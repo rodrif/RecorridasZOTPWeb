@@ -21,7 +21,11 @@ class PedidosController < ApplicationController
         # NOTE: filterrific_find returns an ActiveRecord Relation that can be
         # chained with other scopes to further narrow down the scope of the list,
         # e.g., to apply permissions or to hard coded exclude certain types of records.
-        @pedidos = @filterrific.find.includes(:person).activos.page(params[:page])
+        if request.format.xlsx?
+          @pedidos = @filterrific.find.includes(:person).activos
+        else
+          @pedidos = @filterrific.find.includes(:person).activos.page(params[:page])
+        end
 
         # Respond to html for initial page load and to js for AJAX filter updates.
         respond_to do |format|

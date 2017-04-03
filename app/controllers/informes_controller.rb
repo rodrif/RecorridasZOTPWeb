@@ -17,7 +17,11 @@ class InformesController < ApplicationController
       :default_filter_params => {voluntarios_activos: 1.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
-    @voluntarios = @filterrific.find.includes(:area).includes(:rol).includes(:jornadas).page(params[:page])
+    if request.format.xlsx?
+      @voluntarios = @filterrific.find.includes(:area).includes(:rol).includes(:jornadas)
+    else
+      @voluntarios = @filterrific.find.includes(:area).includes(:rol).includes(:jornadas).page(params[:page])
+    end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
@@ -37,7 +41,11 @@ class InformesController < ApplicationController
       :default_filter_params => {personas_activas: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
-    @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
+    if request.format.xlsx?
+      @personas = @filterrific.find.includes(zone: [:area])
+    else
+      @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
+    end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
@@ -57,7 +65,11 @@ class InformesController < ApplicationController
       :default_filter_params => {personas_activas: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
-    @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
+    if request.format.xlsx?
+      @personas = @filterrific.find.includes(zone: [:area])
+    else
+      @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
+    end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
@@ -76,7 +88,11 @@ class InformesController < ApplicationController
       :default_filter_params => {fecha_gte: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
-    @visitas = @filterrific.find.visitas.page(params[:page])
+    if request.format.xlsx?
+      @visitas = @filterrific.find.visitas
+    else
+      @visitas = @filterrific.find.visitas.page(params[:page])
+    end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
