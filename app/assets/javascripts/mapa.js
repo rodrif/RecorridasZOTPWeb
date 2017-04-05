@@ -21,7 +21,7 @@ function initialize() {
     zoom:15,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
-  
+
   map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
   map.addListener('rightclick', function() {
     window.location = '/people/new';
@@ -31,7 +31,7 @@ function initialize() {
   addPersonasToMap();
 }
 
-function addPersonasToMap() { 
+function addPersonasToMap() {
   for (var i = 0; i < listaPersonasViewModels.length; i++) {
     addMarker(listaPersonasViewModels[i]);
   }
@@ -48,27 +48,28 @@ function addMarker(personaViewModel) {
     data: personaViewModel
   });
 
-  //Listen for click event  
-  google.maps.event.addListener(marker, 'mouseover', function() { 
-    //map.setCenter(new google.maps.LatLng(marker.position.lat(), marker.position.lng())); 
-    //map.setZoom(18); 
-    mostrarInfoWindow(event, marker); 
+  //Listen for click event
+  google.maps.event.addListener(marker, 'mouseover', function() {
+    //map.setCenter(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
+    //map.setZoom(18);
+    mostrarInfoWindow(event, marker);
   });
-  google.maps.event.addListener(marker, 'click', function() { 
+  google.maps.event.addListener(marker, 'click', function() {
     window.location = '/people/' + marker.data.persona_id + '/edit';
   });
 }
 
-// Info window trigger function 
-function mostrarInfoWindow(event, marker) { 
-  // Create content  
-  var contentString = marker.data.nombre + " " + marker.data.apellido + "<br /><hr />Coordinate: " + marker.data.latitud +"," + marker.data.longitud; 
+// Info window trigger function
+function mostrarInfoWindow(event, marker) {
+  // Create content
+  //var contentString = marker.data.nombre + " " + marker.data.apellido + "<br /><hr />Coordinate: " + marker.data.latitud +"," + marker.data.longitud;
+  var contentString = marker.data.nombre + " " + marker.data.apellido;
 
-  // Replace our Info Window's content and position 
-  infowindow.setContent(contentString); 
+  // Replace our Info Window's content and position
+  infowindow.setContent(contentString);
   infowindow.idPersona = marker.data.persona_id;
   infowindow.open(map, marker);
-} 
+}
 
 function geoLocalizacion() {
   var infoWindowNav = new google.maps.InfoWindow({map: map});
@@ -99,5 +100,5 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: Your browser doesn\'t support geolocation.');
 }
 
- 
+
 
