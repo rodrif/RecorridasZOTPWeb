@@ -8,7 +8,7 @@
 
 estados = State.create!([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
-areas = Area.create!([ { nombre: 'Zona Oeste', state_id: 1 } ])
+areas = Area.create!([ { nombre: 'Oeste', state_id: 1 }, { nombre: 'Capital', state_id: 1 } ])
 
 zonas = Zone.create!([
 	{ nombre: 'Haedo', latitud: '-34.644699880461665', longitud: '-58.59469532948424', area: areas[0], state_id: 1 },
@@ -179,6 +179,22 @@ User.create!([
     rol_id: 5,
     area: areas[0],
     state_id: 1
+  },
+  {
+    name: 'Juan',
+    apellido: 'Perez',
+    password: '123456789',
+    encrypted_password: '$2a$10$Gpq4hV3d88XGgr6HfP9HIuiHNL8BWR51Ov5XB2zeCOie6sjMQUDRK',
+    email: 'juanperez@gmail.com',
+    uid: 'juanperez@gmail.com',
+    provider: 'email',
+    confirmation_token: 'aTkfHp14is8DkKXYcfM1',
+    confirmed_at: '2016-02-27 01:19:05.754497',
+    confirmation_sent_at: '2016-02-27 01:17:58.521644',
+    sign_in_count: 0,
+    rol_id: 1,
+    area: areas[0],
+    state_id: 1
   }
 ])
 
@@ -202,7 +218,7 @@ familias = Familia.create!([
 personas = Array.new
 
 personas << Person.create!(
-	nombre: "Facundo", apellido: "Rodriguez",
+	nombre: "Pedro", apellido: "Rodriguez",
 	zone: zonas[0], ranchada: ranchadas[1], familia: familias[0], state_id: 1)
 
 personas << Person.create!(
