@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
   <div class="form-group">
     <%= f.label :dni, class: "col-md-1 control-label", for: "person_dni" %>
     <div class="col-md-10">
@@ -82,7 +82,7 @@
     <% end %>
   </div>
 
-  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
   <div class="form-group">
       <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>
       <div class="col-md-2">
@@ -160,7 +160,7 @@
     <% end %>
   <% end %>
 
-  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
   <div class="form-group">
     <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
     <div class="col-md-10">
