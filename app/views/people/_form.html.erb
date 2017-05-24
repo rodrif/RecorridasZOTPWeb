@@ -27,6 +27,7 @@
     </div>
   </div>
 
+  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
   <div class="form-group">
     <%= f.label :dni, class: "col-md-1 control-label", for: "person_dni" %>
     <div class="col-md-10">
@@ -34,14 +35,12 @@
     </div>
   </div>
 
-  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
     <div class="form-group">
       <%= f.label :telefono, class: "col-md-1 control-label", for: "person_telefono" %>
       <div class="col-md-10">
         <%= f.text_field :telefono, class: "form-control", type: "number", :disabled => disabled %>
       </div>
     </div>
-  <% end %>
 
   <div class="form-group">
     <%= f.label :fecha_nacimiento, class: "col-md-1 control-label", for: "person_fecha_nacimiento" %>
@@ -49,6 +48,7 @@
       <%= f.date_field :fecha_nacimiento, class: "form-control", :disabled => disabled %>
     </div>
   </div>
+<% end %>
 
   <div class="form-group">
     <%= f.label "Área", class: "col-xs-12 col-md-1 control-label", for: "person_area_id" %>
@@ -82,6 +82,7 @@
     <% end %>
   </div>
 
+  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
   <div class="form-group">
       <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>
       <div class="col-md-2">
@@ -119,6 +120,7 @@
         <% end %>
       </div>
     </div>
+  <% end %>
   <% end %>
 
   <% primero = true %>
@@ -158,12 +160,14 @@
     <% end %>
   <% end %>
 
+  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
   <div class="form-group">
     <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
     <div class="col-md-10">
       <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
     </div>
   </div>
+  <% end %>
 
   <%= render 'layouts/buttons_submit', path: path, f: f, mostrar_aceptar: puede_editar %>
 
