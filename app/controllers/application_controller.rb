@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def puede_ver_telefono_persona
-    if !RolDataAccess.puede_ver_telefono_persona(current_user)
+  def puede_ver_datos_persona
+    if !RolDataAccess.puede_ver_datos_persona(current_user)
       redireccionar
     end
   end

@@ -52,9 +52,9 @@ class Auditoria < ActiveRecord::Base
 
   scope :visitas, lambda { |area_id = nil|
     if area_id.blank?
-      with_entidad(Auditoria::VISITA).joins(visit: [person: [{zone: :area}]]).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(*) as count")
+      with_entidad(Auditoria::VISITA).joins(visit: [person: [{zone: :area}]]).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(DISTINCT visits.id) as count")
     else
-      with_entidad(Auditoria::VISITA).joins(visit: [person: [{zone: :area}]]).where("areas.id = ?", area_id).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(*) as count")
+      with_entidad(Auditoria::VISITA).joins(visit: [person: [{zone: :area}]]).where("areas.id = ?", area_id).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(DISTINCT visits.id) as count")
     end
   }
 

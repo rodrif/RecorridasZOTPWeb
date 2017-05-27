@@ -27,28 +27,28 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :dni, class: "col-md-1 control-label", for: "person_dni" %>
-    <div class="col-md-10">
-      <%= f.text_field :dni, class: "form-control", :disabled => disabled %>
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
+    <div class="form-group">
+      <%= f.label :dni, class: "col-md-1 control-label", for: "person_dni" %>
+      <div class="col-md-10">
+        <%= f.text_field :dni, class: "form-control", :disabled => disabled %>
+      </div>
     </div>
-  </div>
 
-  <% if RolDataAccess.puede_ver_telefono_persona(current_user) %>
     <div class="form-group">
       <%= f.label :telefono, class: "col-md-1 control-label", for: "person_telefono" %>
       <div class="col-md-10">
         <%= f.text_field :telefono, class: "form-control", type: "number", :disabled => disabled %>
       </div>
     </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :fecha_nacimiento, class: "col-md-1 control-label", for: "person_fecha_nacimiento" %>
-    <div class="col-md-10">
-      <%= f.date_field :fecha_nacimiento, class: "form-control", :disabled => disabled %>
+    <div class="form-group">
+      <%= f.label :fecha_nacimiento, class: "col-md-1 control-label", for: "person_fecha_nacimiento" %>
+      <div class="col-md-10">
+        <%= f.date_field :fecha_nacimiento, class: "form-control", :disabled => disabled %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label "Área", class: "col-xs-12 col-md-1 control-label", for: "person_area_id" %>
@@ -82,43 +82,45 @@
     <% end %>
   </div>
 
-  <div class="form-group">
-      <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>
-      <div class="col-md-2">
-        <%= f.text_field :pantalon, class: "form-control", :disabled => disabled %>
-      </div>
-
-      <%= f.label :remera, class: "col-md-1 control-label", for: "person_nombre" %>
-      <div class="col-md-2">
-        <%= f.text_field :remera, class: "form-control", :disabled => disabled %>
-      </div>
-
-      <%= f.label :zapatillas, class: "col-md-1 control-label", for: "person_nombre" %>
-      <div class="col-md-2">
-        <%= f.text_field :zapatillas, class: "form-control", :disabled => disabled %>
-      </div>
-  </div>
-
-  <% if RolDataAccess.puede_ver_estado(current_user) %>
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
     <div class="form-group">
-      <%= f.label t("activerecord.models.estado.one"), class: "col-md-1 control-label", for: "person_estado_id" %>
-      <div class="col-xs-12 col-md-10">
-        <%= f.collection_select :estado_id, Estado.activos, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
-      </div>
-    </div>
-  <% end %>
+        <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>
+        <div class="col-md-2">
+          <%= f.text_field :pantalon, class: "form-control", :disabled => disabled %>
+        </div>
 
-  <% if RolDataAccess.puede_ver_departamento(current_user) %>
-    <div class="form-group">
-      <%= f.label t("activerecord.models.departamento.other"), class: "col-md-1 control-label", for: "person_departamento_nombre" %>
-      <div class="col-md-10">
-        <%= f.collection_check_boxes(:departamento_ids, Departamento.activos, :id, :nombre) do |b| %>
-          <span>
-            <%= b.label(:"data-value" => b.value) { b.check_box + ' ' + b.text } %>
-          </span>
-        <% end %>
-      </div>
+        <%= f.label :remera, class: "col-md-1 control-label", for: "person_nombre" %>
+        <div class="col-md-2">
+          <%= f.text_field :remera, class: "form-control", :disabled => disabled %>
+        </div>
+
+        <%= f.label :zapatillas, class: "col-md-1 control-label", for: "person_nombre" %>
+        <div class="col-md-2">
+          <%= f.text_field :zapatillas, class: "form-control", :disabled => disabled %>
+        </div>
     </div>
+
+    <% if RolDataAccess.puede_ver_estado(current_user) %>
+      <div class="form-group">
+        <%= f.label t("activerecord.models.estado.one"), class: "col-md-1 control-label", for: "person_estado_id" %>
+        <div class="col-xs-12 col-md-10">
+          <%= f.collection_select :estado_id, Estado.activos, :id, :nombre, {:include_blank => 'Ninguno'}, {:class => "form-control", :disabled => disabled} %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if RolDataAccess.puede_ver_departamento(current_user) %>
+      <div class="form-group">
+        <%= f.label t("activerecord.models.departamento.other"), class: "col-md-1 control-label", for: "person_departamento_nombre" %>
+        <div class="col-md-10">
+          <%= f.collection_check_boxes(:departamento_ids, Departamento.activos, :id, :nombre) do |b| %>
+            <span>
+              <%= b.label(:"data-value" => b.value) { b.check_box + ' ' + b.text } %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 
   <% primero = true %>
@@ -158,12 +160,14 @@
     <% end %>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
-    <div class="col-md-10">
-      <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
+    <div class="form-group">
+      <%= f.label :descripcion, class: "col-md-1 control-label", for: "person_descripcion" %>
+      <div class="col-md-10">
+        <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <%= render 'layouts/buttons_submit', path: path, f: f, mostrar_aceptar: puede_editar %>
 
