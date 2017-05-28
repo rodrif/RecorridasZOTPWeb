@@ -5,6 +5,11 @@
   class: 'ubicacion_modal',
   id: 'personas-xlsx'
 %>
+<%= link_to image_tag('word-icon.png', size: '30x30'),
+  '',
+  class: 'ubicacion_modal',
+  id: 'personas-word'
+%>
 </h2>
 
 <div class="container-fluid well">
@@ -27,4 +32,5 @@
 
 <script defer>
   downloadXlsx('personas-xlsx', 'filterrific_filter');
+  downloadWord('personas-word', 'filterrific_filter');
 </script>
