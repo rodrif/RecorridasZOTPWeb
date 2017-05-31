@@ -7,8 +7,12 @@ class VisitsController < ApplicationController
   before_action :puede_borrar_visita, only: [:destroy]
 
   def getDireccion
-    #render :plain => Geocoder.coordinates()
-    render :plain => Geocoder.search(params['lat'] + "," + params['lng']).first.data['formatted_address']
+    direccion = Geocoder.search(params['lat'] + "," + params['lng'])
+    if direccion.first
+      render :plain => direccion.first.data['formatted_address']
+    else
+      render :plain => ''
+    end
   end
 
   def getCoordenadas
