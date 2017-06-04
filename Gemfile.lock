@@ -277,7 +277,6 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails (~> 5.0, >= 5.0.5)
-  nokogiri (~> 1.7.0)
   pg
   rails (= 4.2.1)
   rails_12factor
