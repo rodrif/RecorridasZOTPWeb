@@ -16,7 +16,7 @@ group :production do
 	gem 'rails_12factor'
 end
 
-gem "daemons"
+gem 'nokogiri', '~> 1.6.8'
 gem 'jquery-turbolinks'
 gem 'whenever', :require => false
 gem 'delayed_job_active_record'
