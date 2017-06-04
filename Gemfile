@@ -17,7 +17,6 @@ end
 
 gem 'jquery-turbolinks'
 gem 'whenever', :require => false
-gem 'delayed_job_active_record'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'will_paginate-bootstrap'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
@@ -34,7 +33,7 @@ gem 'geocoder'
 gem 'exception_notification'
 gem "simple_calendar", "~> 2.0"
 gem 'caracal-rails'
-gem 'nokogiri', '~> 1.6.8'
+gem 'nokogiri', '~> 1.6.9'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
