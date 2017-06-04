@@ -1,0 +1,53 @@
+docx.page_numbers true do
+  align :center
+end
+
+docx.font name: 'Courier New'
+docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
+
+@personas.each do |persona|
+    docx.p 'Nombre/apellido: ' + persona.nombre + ' ' + persona.apellido
+    if persona.fecha_nacimiento
+      docx.p 'Edad: ' + age(persona.fecha_nacimiento).to_s
+    else
+      docx.p 'Edad:'
+    end
+    if persona.telefono
+      docx.p 'Teléfono: ' + persona.telefono
+    else
+      docx.p 'Teléfono:'
+    end
+    if persona.estado
+      docx.p 'Estado: ' + persona.estado.nombre
+    else
+      docx.p 'Estado:'
+    end
+    if persona.dni
+      docx.p 'DNI: ' + persona.dni
+    else
+      docx.p 'DNI:'
+    end
+    if persona.zone.nil?
+      docx.p 'Área:'
+    else
+      docx.p 'Área: ' + persona.zone.area.nombre
+    end
+    if persona.zone.nil?
+      docx.p 'Zona:'
+    else
+      docx.p 'Zona: ' + persona.zone.nombre
+    end  
+    if persona.visits && persona.visits.first
+      docx.p 'Ubicación: ' + persona.visits.first.direccion.to_s
+    else
+      docx.p 'Ubicación:'
+    end
+    if persona.descripcion
+      docx.p 'Relación/Avances: ' + persona.descripcion
+    else
+      docx.p 'Relación/Avances:'
+    end
+    docx.p 'Áreas Involucradas: ' + persona.departamentos.map { |d| d.nombre }.join(', ')
+    docx.page
+end
+
