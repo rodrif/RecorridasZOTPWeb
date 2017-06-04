@@ -34,6 +34,7 @@ gem 'geocoder'
 gem 'exception_notification'
 gem "simple_calendar", "~> 2.0"
 gem 'caracal-rails'
+gem 'nokogiri', '~> 1.6.8'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
