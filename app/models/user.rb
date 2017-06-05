@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
 
   scope :activos, -> { where.not(state_id: 3).order(:name) }
 
+  scope :coordinadores, lambda { |area_id|
+    where.not(state_id: 3).where(rol_id: [1,2,3]).with_area_id(area_id)
+  }
+
   scope :voluntarios_activos, lambda { |reference_time|
     return nil if reference_time.blank?
     where.not(state_id: 3).joins(:auditorias).where('fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s).group("users.id").order(:name)
