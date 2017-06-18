@@ -110,8 +110,8 @@ es:
         one:   Referente
         other: Referentes
       notificacion:
-        zero:  Notificación
-        one:   Notificación
+        zero:  Notificacion
+        one:   Notificacion
         other: Notificaciones
   date:
     abbr_day_names:
