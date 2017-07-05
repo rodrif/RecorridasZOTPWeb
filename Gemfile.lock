@@ -138,6 +138,7 @@ GEM
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
     pkg-config (1.1.7)
+    puma (3.9.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -275,6 +276,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails (~> 5.0, >= 5.0.5)
   mysql2 (~> 0.3.18)
+  puma
   rails (= 4.2.1)
   rails_12factor
   rspec-rails

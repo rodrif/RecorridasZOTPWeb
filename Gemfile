@@ -83,6 +83,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'therubyracer'
+  gem 'puma'
   
 end
 
