@@ -14,7 +14,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user.rol_id = 5
     @user.save
     AuditoriaDataAccess.log current_user, Auditoria::ALTA, Auditoria::USUARIO, @user
-    Enviador.nuevo_voluntario_registrado(@user).deliver_now
+
+    coordinadores = User.coordinadores(@user.area_id)
+    coordinadores.each do |c|
+      Enviador.nuevo_voluntario_registrado(@user, c).deliver_now
+    end
   end
 
   # GET /resource/edit

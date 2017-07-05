@@ -7,10 +7,15 @@ module ApplicationHelper
     if (entity && @zonas.first)
       entity.area_id = @zonas.first.area_id
       entity.zone_id = @zonas.first.id
-    end 
+    end
     if (entity && @familias.first && entity.has_attribute?('familia_id'))
       entity.familia_id = @familias.first.area_id
     end
+  end
+
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
 end

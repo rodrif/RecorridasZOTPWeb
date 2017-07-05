@@ -77,9 +77,17 @@ function loadMapaScript(callback) {
 }
 
 function downloadXlsx(buttonId, formId) {
-	$('#' + buttonId).click(function(ev) {
+    return downloadFile(buttonId, formId, 'xlsx');
+}
+
+function downloadWord(buttonId, formId) {
+    return downloadFile(buttonId, formId, 'docx');
+}
+
+function downloadFile(buttonId, formId, extension) {
+    $('#' + buttonId).click(function(ev) {
     var oldAction = $('#' + formId).attr('action');
-    $('#' + formId).attr('action', oldAction + '.xlsx');
+    $('#' + formId).attr('action', oldAction + '.' + extension);
     $('#' + formId).submit();
     $('#' + formId).attr('action', oldAction);
     return false;
