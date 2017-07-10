@@ -303,10 +303,10 @@ ActiveRecord::Schema.define(version: 20170312132850) do
     t.text     "descripcion", limit: 65535
     t.datetime "fecha"
     t.integer  "person_id",   limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.decimal  "latitud",                   precision: 10
-    t.decimal  "longitud",                  precision: 10
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.decimal  "latitud",                   precision: 20, scale: 17
+    t.decimal  "longitud",                  precision: 20, scale: 17
     t.integer  "state_id",    limit: 4
     t.string   "direccion",   limit: 255
   end
@@ -327,11 +327,11 @@ ActiveRecord::Schema.define(version: 20170312132850) do
 
   create_table "zones", force: :cascade do |t|
     t.string   "nombre",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.integer  "area_id",    limit: 4
-    t.float    "latitud",    limit: 24
-    t.float    "longitud",   limit: 24
+    t.decimal  "latitud",                precision: 20, scale: 17
+    t.decimal  "longitud",               precision: 20, scale: 17
     t.integer  "state_id",   limit: 4
   end
 
