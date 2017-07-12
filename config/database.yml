@@ -22,4 +22,4 @@ test:
 
 production:
   <<: *default
-  database: tp_development
+  database: tp_production
