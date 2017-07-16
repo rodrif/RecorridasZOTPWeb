@@ -13,7 +13,6 @@
     <%= f.label "Contraseña", class: "col-md-1 control-label", for: "resource_password" %>
     <div class="col-md-11">
       <%= f.password_field :password, autocomplete: "off", class: "form-control", :onkeypress => "if (event.keyCode == 13) { this.form.submit(); return false; }" %>
-      <input type="submit" style="display: none" />
     </div>
   </div>
 
