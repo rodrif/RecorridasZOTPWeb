@@ -37,7 +37,7 @@ class PedidosController < ApplicationController
 
     def new
         @pedido = Pedido.new
-        @pedido.fecha = Time.now.ago(1.days)
+        @pedido.fecha = Time.now
     end
 
   def edit

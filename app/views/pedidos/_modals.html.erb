@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
         <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'pedidos/form', :@pedido => Pedido.new(fecha: Time.now.ago(1.days)), modal: true, puede_editar: RolDataAccess.puede_editar_visita(current_user), mostrar_aceptar: RolDataAccess.puede_editar_visita(current_user)%>
+        <%= render 'pedidos/form', :@pedido => Pedido.new(fecha: Time.now, modal: true, puede_editar: RolDataAccess.puede_editar_visita(current_user), mostrar_aceptar: RolDataAccess.puede_editar_visita(current_user)%>
       </div>
     </div>
   </div>
