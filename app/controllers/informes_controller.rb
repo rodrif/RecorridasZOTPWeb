@@ -41,13 +41,14 @@ class InformesController < ApplicationController
       :default_filter_params => {personas_activas: 3.month.ago.strftime("%d/%m/%Y")},
       persistence_id: false
     ) or return
-    if request.format.xlsx?
+    if request.format.xlsx? || request.format.docx?
       @personas = @filterrific.find.includes(zone: [:area])
     else
       @personas = @filterrific.find.includes(zone: [:area]).page(params[:page])
     end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
+      format.docx
       format.html
       format.js
       format.xlsx
