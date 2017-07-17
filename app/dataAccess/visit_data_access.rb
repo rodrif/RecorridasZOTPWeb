@@ -47,7 +47,7 @@ class VisitDataAccess
       visit.latitud = v['latitud'] ? v['latitud'] : nil
       visit.longitud = v['longitud'] ? v['longitud'] : nil
       visit.direccion = v['direccion'] ? v['direccion'] : nil
-      if visit.direccion.nil
+      if visit.direccion.nil?
         visit.reverse_geocode
       end
 
