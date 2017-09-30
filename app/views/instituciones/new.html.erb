@@ -1,0 +1,3 @@
+<h2 class="sub-header">Nueva institución</h2>
+
+<%= render 'form', :path => instituciones_path, puede_editar: RolDataAccess.puede_crear_institucion(current_user) %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312132850) do
+ActiveRecord::Schema.define(version: 20170929235556) do
 
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -116,6 +116,21 @@ ActiveRecord::Schema.define(version: 20170312132850) do
     t.datetime "updated_at",             null: false
     t.integer  "code",       limit: 4
   end
+
+  create_table "instituciones", force: :cascade do |t|
+    t.string   "nombre",      limit: 255
+    t.text     "descripcion", limit: 65535
+    t.string   "direccion",   limit: 255
+    t.decimal  "latitud",                   precision: 20, scale: 17
+    t.decimal  "longitud",                  precision: 20, scale: 17
+    t.integer  "state_id",    limit: 4
+    t.integer  "zone_id",     limit: 4
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  add_index "instituciones", ["state_id"], name: "index_instituciones_on_state_id", using: :btree
+  add_index "instituciones", ["zone_id"], name: "index_instituciones_on_zone_id", using: :btree
 
   create_table "jornadas", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -347,6 +362,8 @@ ActiveRecord::Schema.define(version: 20170312132850) do
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"
+  add_foreign_key "instituciones", "states"
+  add_foreign_key "instituciones", "zones"
   add_foreign_key "notificaciones", "frecuencia_tipos"
   add_foreign_key "notificaciones", "notificacion_tipos"
   add_foreign_key "notificaciones", "states"

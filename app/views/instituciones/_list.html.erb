@@ -1,0 +1,49 @@
+<div id="filterrific_results">
+
+  <div class="container-fluid">
+    <%= page_entries_info instituciones %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Dirección</th>
+          <th>Zona</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @instituciones.each do |institucion| %>
+          <tr>
+            <td><%= institucion.nombre %></td>
+            <td><%= institucion.descripcion %></td>
+            <td><%= institucion.direccion %></td>
+            <% if institucion.zone.nil? %>
+              <td>Sin zona</td>
+            <% else %>
+              <td><%= institucion.zone.nombre %></td>
+            <% end %>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: edit_institucion_path(institucion),
+                delete_path: RolDataAccess.puede_borrar_institucion(current_user) ? institucion : nil
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="paginacion">
+    <%= will_paginate instituciones, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
+
+</div>
+

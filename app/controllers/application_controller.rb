@@ -97,6 +97,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def puede_crear_institucion
+    if !RolDataAccess.puede_crear_institucion(current_user)
+      redireccionar
+    end
+  end
+
+  def puede_editar_institucion
+    if !RolDataAccess.puede_editar_institucion(current_user)
+      redireccionar
+    end
+  end
+
+  def puede_borrar_institucion
+    if !RolDataAccess.puede_borrar_institucion(current_user)
+      redireccionar
+    end
+  end
+
   def is_admin
     if !current_user.rol_id || current_user.rol_id != 1
       redireccionar

@@ -18,6 +18,7 @@ class Auditoria < ActiveRecord::Base
   PEDIDO = 'Pedido'
   DEPARTAMENTO = 'Departamento'
   ESTADO = 'Estado'
+  INSTITUCION = 'Institucion'
 
   self.per_page = 20
 
