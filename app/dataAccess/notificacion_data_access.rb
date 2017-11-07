@@ -72,7 +72,7 @@ class NotificacionDataAccess
   def self.createRequest url, notificacion, topic, areaId, personaId = nil
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
     request.body = "{
-      \"to\": \"/topics/#{topic + "-dev"}\",
+      \"to\": \"/topics/#{topic}\",
       \"data\": {
         \"titulo\": \"#{notificacion.titulo}\",
         \"subtitulo\": \"#{notificacion.subtitulo}\",
