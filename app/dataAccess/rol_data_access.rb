@@ -70,8 +70,8 @@ class RolDataAccess
   end
 
   def self.puede_ver_estado current_user = nil
-    # admin, coordinador
-    return current_user && (current_user.rol_id == 1 || current_user.rol_id == 3)
+    # admin
+    return current_user && current_user.rol_id == 1
   end
 
   def self.puede_editar_estado current_user = nil
