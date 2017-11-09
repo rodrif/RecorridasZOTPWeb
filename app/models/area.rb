@@ -6,7 +6,7 @@ class Area < ActiveRecord::Base
   belongs_to :state
   has_and_belongs_to_many :notificaciones
 
-  VERSION = 1
+  VERSION = 33
   self.per_page = 20
 
   filterrific(

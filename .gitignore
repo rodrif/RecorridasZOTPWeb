@@ -19,3 +19,5 @@
 # Ignoro archivos generados por puma
 /shared/*
 /public/assets/*
+
+Gemfile.lock
