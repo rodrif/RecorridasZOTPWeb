@@ -79,7 +79,7 @@ class Person < ActiveRecord::Base
   }
 
   scope :with_departamento_id, lambda { |departamento_ids|
-    return nil if departamento_ids.all? &:blank?
+    return nil if departamento_ids.all? { |item| item.blank? }
     joins(:departamentos).where(departamentos: {id: [*departamento_ids]}).uniq
   }
 
