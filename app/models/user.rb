@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     return nil  if query.blank?
 
     # condition query, parse into individual keywords
-    terms = query.downcase.split(/\s+/)
+    terms = query.to_s.downcase.split(/\s+/)
 
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
