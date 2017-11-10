@@ -6,7 +6,7 @@ class Area < ActiveRecord::Base
   belongs_to :state
   has_and_belongs_to_many :notificaciones
 
-  VERSION = 1
+  VERSION = 33
   self.per_page = 20
 
   filterrific(
@@ -19,7 +19,7 @@ class Area < ActiveRecord::Base
   return nil  if query.blank?
 
   # condition query, parse into individual keywords
-  terms = query.downcase.split(/\s+/)
+  terms = query.to_s.downcase.split(/\s+/)
 
   # replace "*" with "%" for wildcard searches,
   # append '%', remove duplicate '%'s

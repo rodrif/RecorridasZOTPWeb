@@ -47,7 +47,7 @@ class Person < ActiveRecord::Base
 	return nil  if query.blank?
 
 	# condition query, parse into individual keywords
-	terms = query.downcase.split(/\s+/)
+	terms = query.to_s.downcase.split(/\s+/)
 
 	# replace "*" with "%" for wildcard searches,
 	# append '%', remove duplicate '%'s
@@ -79,7 +79,7 @@ class Person < ActiveRecord::Base
   }
 
   scope :with_departamento_id, lambda { |departamento_ids|
-    return nil if departamento_ids.all? &:blank?
+    return nil if departamento_ids.all? { |item| item.blank? }
     joins(:departamentos).where(departamentos: {id: [*departamento_ids]}).uniq
   }
 
