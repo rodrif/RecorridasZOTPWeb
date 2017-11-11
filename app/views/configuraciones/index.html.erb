@@ -18,6 +18,9 @@
     <% if RolDataAccess.is_admin(current_user) %>
       <%= link_to "Informes", informes_path %><br />
     <% end %>
+     <% if RolDataAccess.puede_editar_institucion(current_user) %>
+      <%= link_to "Instituciones", instituciones_path %><br />
+    <% end %>
     <%= link_to "Mis datos", edit_user_registration_path(current_user) %><br />
     <% if RolDataAccess.is_admin(current_user) %>
       <%= link_to "Notificaciones", notificaciones_path %><br />

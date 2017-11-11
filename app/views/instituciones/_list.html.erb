@@ -11,7 +11,9 @@
           <th>Nombre</th>
           <th>Descripción</th>
           <th>Dirección</th>
-          <th>Zona</th>
+          <th>Localidad</th>
+          <th>Provincia</th>
+          <th>Código postal</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -22,11 +24,9 @@
             <td><%= institucion.nombre %></td>
             <td><%= institucion.descripcion %></td>
             <td><%= institucion.direccion %></td>
-            <% if institucion.zone.nil? %>
-              <td>Sin zona</td>
-            <% else %>
-              <td><%= institucion.zone.nombre %></td>
-            <% end %>
+            <td><%= institucion.localidad %></td>
+            <td><%= institucion.provincia %></td>
+            <td><%= institucion.codigo_postal %></td>
             <td>
               <%=
                 render 'layouts/acciones',
