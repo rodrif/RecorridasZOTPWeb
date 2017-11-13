@@ -13,6 +13,7 @@
           <th>Área</th>
           <th>Rol</th>
           <th>Email</th>
+          <th>Versión</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -33,6 +34,7 @@
               <td><%= user.rol.nombre %></td>
             <% end %>
             <td><%= user.email %></td>
+            <td><%= user.version %></td>
             <td>
               <%= link_to '', edit_user_path(user), {
                   class: 'glyphicon glyphicon-edit',

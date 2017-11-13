@@ -10,6 +10,8 @@ class AreaDataAccess
       respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
     end
     if !version.blank?
+      user.version = version.to_i
+      user.save
       if version.to_i < Area::VERSION
         respuesta['errores'] = Hash.new
         respuesta['errores']['version'] = 'Por favor actualice la versión de la aplicación'
