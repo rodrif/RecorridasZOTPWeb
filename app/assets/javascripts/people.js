@@ -10,8 +10,8 @@ function cargarUbicacionPersona() {
 	var longitud = $(lngSelector).val();
 
 	if (!latitud || !longitud) {
-		latitud = -34.6425867
-		longitud = -58.5659176;
+		latitud = -34.5803526
+		longitud = -58.4360354;
 	}
 
 	var mapDisabled = !!(document.getElementById('mapDisabled'));
