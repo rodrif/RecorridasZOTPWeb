@@ -4,8 +4,8 @@ class CreateInstituciones < ActiveRecord::Migration
       t.string :nombre
       t.text :descripcion
       t.string :direccion
-      t.string :localidad
-      t.string :provincia
+      t.string :contacto
+      t.string :telefono
       t.string :codigo_postal
       t.decimal :latitud, precision: 20, scale: 17
       t.decimal :longitud, precision: 20, scale: 17

@@ -21,6 +21,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label "Tipo", class: "col-md-1 control-label", for: "institucion_institucion_tipo_id" %>
+    <div class="col-md-10">
+      <%= f.collection_select :institucion_tipo_id, InstitucionTipo.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
       <%= f.label :descripcion, class: "col-md-1 control-label", for: "institucion_descripcion" %>
       <div class="col-md-10">
         <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
@@ -35,16 +42,16 @@
   </div>
 
   <div class="form-group">
-    <%= f.label 'Localidad', class: "col-md-1 control-label", for: "institucion_localidad" %>
+    <%= f.label 'Contacto', class: "col-md-1 control-label", for: "institucion_contacto" %>
     <div class="col-md-10">
-      <%= f.text_field :localidad, class: "form-control", :disabled => disabled %>
+      <%= f.text_field :contacto, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Provincia', class: "col-md-1 control-label", for: "institucion_provincia" %>
+    <%= f.label 'Teléfono', class: "col-md-1 control-label", for: "institucion_telefono" %>
     <div class="col-md-10">
-      <%= f.text_field :provincia, class: "form-control", :disabled => disabled %>
+      <%= f.text_field :telefono, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 

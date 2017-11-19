@@ -1,6 +1,7 @@
 class Institucion < ActiveRecord::Base
   belongs_to :state
   belongs_to :zone
+	belongs_to :institucion_tipo
 
   filterrific(
     available_filters: [

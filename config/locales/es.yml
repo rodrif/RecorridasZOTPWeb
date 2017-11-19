@@ -113,6 +113,10 @@ es:
         zero:  Notificacion
         one:   Notificacion
         other: Notificaciones
+      institucion:
+        zero:  Institucion
+        one:   Institucion
+        other: Instituciones
   date:
     abbr_day_names:
     - dom

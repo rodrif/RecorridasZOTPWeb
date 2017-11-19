@@ -10,9 +10,10 @@
         <tr>
           <th>Nombre</th>
           <th>Descripción</th>
+          <th>Tipo</th>
           <th>Dirección</th>
-          <th>Localidad</th>
-          <th>Provincia</th>
+          <th>Contacto</th>
+          <th>Teléfono</th>
           <th>Código postal</th>
           <th>Acciones</th>
         </tr>
@@ -23,9 +24,14 @@
           <tr>
             <td><%= institucion.nombre %></td>
             <td><%= institucion.descripcion %></td>
+            <% if institucion.institucion_tipo.nil? %>
+              <td></td>
+            <% else %>
+              <td><%= institucion.institucion_tipo.nombre %></td>
+            <% end %>
             <td><%= institucion.direccion %></td>
-            <td><%= institucion.localidad %></td>
-            <td><%= institucion.provincia %></td>
+            <td><%= institucion.contacto %></td>
+            <td><%= institucion.telefono %></td>
             <td><%= institucion.codigo_postal %></td>
             <td>
               <%=
