@@ -110,12 +110,12 @@ es:
         one:   Referente
         other: Referentes
       notificacion:
-        zero:  Notificacion
-        one:   Notificacion
+        zero:  Notificación
+        one:   Notificación
         other: Notificaciones
       institucion:
-        zero:  Institucion
-        one:   Institucion
+        zero:  Institución
+        one:   Institución
         other: Instituciones
   date:
     abbr_day_names:
