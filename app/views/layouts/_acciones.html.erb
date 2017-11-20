@@ -1,5 +1,6 @@
 <% current_user ||= false %>
 <% visits_person_id ||= false %>
+<% institucion_id ||= false %>
 <% edit_path ||= false %>
 <% delete_path ||= false %>
 <% new_path ||= false %>
@@ -15,6 +16,20 @@
 	    {
 	      :class => 'glyphicon glyphicon-eye-open',
 	      :title => 'Visitas'
+	    }
+	%>
+<% end %>
+
+<% if institucion_id %>
+	<%= link_to '',
+	    {
+	      :controller => 'people',
+	      :action => :index,
+	      :institucion_id => institucion_id
+	    },
+	    {
+	      :class => 'glyphicon glyphicon-user',
+	      :title => 'Personas'
 	    }
 	%>
 <% end %>

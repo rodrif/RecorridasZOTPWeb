@@ -10,6 +10,15 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
+    if (params[:institucion_id])
+      if !params[:filterrific]
+        params[:filterrific] = Hash.new
+      end
+      params[:filterrific][:with_institucion_id] = params[:institucion_id]
+    else
+      session["people#index"] = nil
+    end
+
     @filterrific = initialize_filterrific(
       Person,
       params[:filterrific],

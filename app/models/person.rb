@@ -30,6 +30,7 @@ class Person < ActiveRecord::Base
       :with_area_id,
       :with_estado_id,
       :with_departamento_id,
+      :with_institucion_id,
       :personas_activas
     ]
   )
@@ -77,6 +78,10 @@ class Person < ActiveRecord::Base
 
   scope :with_estado_id, lambda { |estado_ids|
     where(estado_id: [*estado_ids])
+  }
+
+  scope :with_institucion_id, lambda { |institucion_ids|
+	  where(institucion_id: [*institucion_ids])
   }
 
   scope :with_departamento_id, lambda { |departamento_ids|

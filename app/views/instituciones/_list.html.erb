@@ -37,6 +37,7 @@
               <%=
                 render 'layouts/acciones',
                 current_user: current_user,
+                institucion_id: institucion.id,
                 edit_path: edit_institucion_path(institucion),
                 delete_path: RolDataAccess.puede_borrar_institucion(current_user) ? institucion : nil
               %>
