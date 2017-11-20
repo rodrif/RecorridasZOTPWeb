@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929235556) do
+ActiveRecord::Schema.define(version: 20171120123219) do
 
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -117,20 +117,28 @@ ActiveRecord::Schema.define(version: 20170929235556) do
     t.integer  "code",       limit: 4
   end
 
-  create_table "instituciones", force: :cascade do |t|
-    t.string   "nombre",        limit: 255
-    t.text     "descripcion",   limit: 65535
-    t.string   "direccion",     limit: 255
-    t.string   "localidad",     limit: 255
-    t.string   "provincia",     limit: 255
-    t.string   "codigo_postal", limit: 255
-    t.decimal  "latitud",                     precision: 20, scale: 17
-    t.decimal  "longitud",                    precision: 20, scale: 17
-    t.integer  "state_id",      limit: 4
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+  create_table "institucion_tipos", force: :cascade do |t|
+    t.string   "nombre",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
+  create_table "instituciones", force: :cascade do |t|
+    t.string   "nombre",              limit: 255
+    t.text     "descripcion",         limit: 65535
+    t.string   "direccion",           limit: 255
+    t.string   "contacto",            limit: 255
+    t.string   "telefono",            limit: 255
+    t.string   "codigo_postal",       limit: 255
+    t.decimal  "latitud",                           precision: 20, scale: 17
+    t.decimal  "longitud",                          precision: 20, scale: 17
+    t.integer  "state_id",            limit: 4
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.integer  "institucion_tipo_id", limit: 4
+  end
+
+  add_index "instituciones", ["institucion_tipo_id"], name: "index_instituciones_on_institucion_tipo_id", using: :btree
   add_index "instituciones", ["state_id"], name: "index_instituciones_on_state_id", using: :btree
 
   create_table "jornadas", force: :cascade do |t|
@@ -219,10 +227,12 @@ ActiveRecord::Schema.define(version: 20170929235556) do
     t.string   "remera",           limit: 255
     t.string   "zapatillas",       limit: 255
     t.integer  "estado_id",        limit: 4
+    t.integer  "institucion_id",   limit: 4
   end
 
   add_index "people", ["estado_id"], name: "index_people_on_estado_id", using: :btree
   add_index "people", ["familia_id"], name: "index_people_on_familia_id", using: :btree
+  add_index "people", ["institucion_id"], name: "index_people_on_institucion_id", using: :btree
   add_index "people", ["ranchada_id"], name: "index_people_on_ranchada_id", using: :btree
   add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
   add_index "people", ["zone_id"], name: "index_people_on_zone_id", using: :btree
@@ -306,6 +316,7 @@ ActiveRecord::Schema.define(version: 20170929235556) do
     t.string   "dia",                    limit: 255
     t.date     "fecha_nacimiento"
     t.string   "telefono",               limit: 255
+    t.integer  "version",                limit: 4
   end
 
   add_index "users", ["area_id"], name: "index_users_on_area_id", using: :btree
@@ -363,6 +374,7 @@ ActiveRecord::Schema.define(version: 20170929235556) do
   add_foreign_key "familias", "ranchadas"
   add_foreign_key "familias", "states"
   add_foreign_key "familias", "zones"
+  add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "frecuencia_tipos"
   add_foreign_key "notificaciones", "notificacion_tipos"
@@ -371,6 +383,7 @@ ActiveRecord::Schema.define(version: 20170929235556) do
   add_foreign_key "pedidos", "states"
   add_foreign_key "people", "estados"
   add_foreign_key "people", "familias"
+  add_foreign_key "people", "instituciones"
   add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
