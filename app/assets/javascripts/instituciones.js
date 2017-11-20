@@ -5,9 +5,9 @@ function cargarUbicacionInstitucion() {
 	var latitud = $(latSelector).val();
 	var longitud = $(lngSelector).val();
 
-	if (!latitud || !longitud) {
-		latitud = -34.6425867
-		longitud = -58.5659176;
+  if (!latitud || !longitud) {
+		latitud = -34.5803526
+		longitud = -58.4360354;
 	}
 
 	var mapDisabled = !!(document.getElementById('mapDisabled'));
