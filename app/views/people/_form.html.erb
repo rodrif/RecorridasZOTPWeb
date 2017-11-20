@@ -82,6 +82,13 @@
     <% end %>
   </div>
 
+  <div class="form-group">
+    <%= f.label "Institución", class: "col-xs-12 col-md-1 control-label", for: "person_institucion_id" %>
+      <div class="col-xs-12 col-md-10">
+        <%= f.collection_select :institucion_id, Institucion.all, :id, :nombre, {:include_blank => true}, {:class => "form-control", :disabled => disabled} %>
+      </div>
+  </div>
+
   <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
     <div class="form-group">
         <%= f.label 'Pantalón', class: "col-md-1 control-label", for: "person_nombre" %>

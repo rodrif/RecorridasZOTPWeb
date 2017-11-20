@@ -182,6 +182,7 @@ class PeopleController < ApplicationController
         :pantalon,
         :remera,
         :zapatillas,
+        :institucion_id,
         visits_attributes: [:id, :descripcion, :latitud, :longitud])
     end
 end

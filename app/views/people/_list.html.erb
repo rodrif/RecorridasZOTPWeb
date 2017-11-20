@@ -12,6 +12,7 @@
           <th>Dirección</th>
           <th>Área</th>
           <th>Zona</th>
+          <th>Institución</th>
           <% if RolDataAccess.puede_ver_estado(current_user) %>
             <th><%= t("activerecord.models.estado.one") %></th>
           <% end %>
@@ -40,6 +41,11 @@
               <td>Sin zona</td>
             <% else %>
               <td><%= person.zone.nombre %></td>
+            <% end %>
+            <% if person.institucion.nil? %>
+              <td></td>
+            <% else %>
+              <td><%= person.institucion.nombre %></td>
             <% end %>
             <% if RolDataAccess.puede_ver_estado(current_user) %>
               <td><%= person.estado.nil? ? '' : person.estado.nombre %></td>
