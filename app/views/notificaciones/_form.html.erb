@@ -87,6 +87,6 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: notificaciones_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.is_admin(current_user) %>
+  <%= render 'layouts/buttons_submit', path: notificaciones_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.puede_ver_notificaciones(current_user) %>
 
 <% end %>
