@@ -2,7 +2,7 @@ class InformesController < ApplicationController
   # include ApplicationHelper
   # before_action :set_ranchada, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :is_admin
+  before_action :puede_ver_informes
 
   def index
   end

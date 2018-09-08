@@ -104,6 +104,11 @@ class RolDataAccess
     return current_user && (current_user.rol_id == 1 || current_user.rol_id == 3)
   end
 
+  def self.puede_ver_informes current_user = nil
+    # admin, referente
+    return current_user && (current_user.rol_id == 1 || current_user.rol_id == 2)
+  end
+
   def self.is_admin current_user = nil
     return current_user && current_user.rol_id == 1
   end

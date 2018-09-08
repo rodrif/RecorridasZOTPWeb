@@ -115,6 +115,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def puede_ver_informes
+    if !RolDataAccess.puede_ver_informes(current_user)
+      redireccionar
+    end
+  end
+
   def is_admin
     if !current_user.rol_id || current_user.rol_id != 1
       redireccionar
