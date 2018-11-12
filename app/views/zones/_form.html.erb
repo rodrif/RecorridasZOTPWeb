@@ -22,7 +22,7 @@
 
 
   <div class="form-group">
-    <%= f.label "Área", class: "#{label_col} control-label", for: "zone_area_id" %>
+    <%= f.label "Sede", class: "#{label_col} control-label", for: "zone_area_id" %>
     <div class="<%= input_col %>">
       <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
     </div>

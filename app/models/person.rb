@@ -97,7 +97,7 @@ class Person < ActiveRecord::Base
   }
 
   def getDescripcionAuditoria
-    return "Nombre: #{nombre} Apellido: #{apellido} Área: #{zone.area.nombre if !zone.nil?} Zona: #{zone.nombre if !zone.nil?}"
+    return "Nombre: #{nombre} Apellido: #{apellido} Sede: #{zone.area.nombre if !zone.nil?} Zona: #{zone.nombre if !zone.nil?}"
   end
 
 end

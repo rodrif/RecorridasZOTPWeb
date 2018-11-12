@@ -3,7 +3,7 @@
 <div class="container-fluid">
 
     <% if RolDataAccess.puede_editar_area(current_user) %>
-      <%= link_to "Áreas", areas_path %><br />
+      <%= link_to "Sedes", areas_path %><br />
     <% end %>
     <% if RolDataAccess.is_admin(current_user) %>
       <%= link_to "Auditoría", auditoria_index_path %><br />

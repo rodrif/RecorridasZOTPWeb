@@ -77,7 +77,7 @@
       <% end %>
     </div>
 
-    <%= f.label 'Áreas', class: "col-md-1 control-label", for: "notificacion_area_nombre" %>
+    <%= f.label 'Sedes', class: "col-md-1 control-label", for: "notificacion_area_nombre" %>
     <div class="col-md-4">
       <%= f.collection_check_boxes(:area_ids, Area.activas.all, :id, :nombre) do |b| %>
         <div>

@@ -29,12 +29,12 @@ describe 'Personas' do
     end
   end
 
-  describe "index page" do    
+  describe "index page" do
     before { visit people_path }
 
     it { should have_selector('h2', text: 'Personas') }
   end
-  
+
   describe "edit page", js: true do
     let(:person) { Person.find_by_nombre("Facundo") }
     before { visit edit_person_path(person) }
@@ -71,17 +71,17 @@ describe 'Personas' do
 
   describe "should modals works", :js => true do
     before { visit new_person_path }
-    
+
     it "modals" do
       # Area modal
-      should_not have_selector('h4', text: 'Nueva Área')
+      should_not have_selector('h4', text: 'Nueva Sede')
       click_link 'area_modal'
-      should have_selector('h4', text: 'Nueva Área')
+      should have_selector('h4', text: 'Nueva Sede')
       within('#new_area_modal') do
         fill_in 'area[nombre]', with: "Area personaSpec test"
         find('input[name="commit"]').click
-      end 
-      should_not have_selector('h4', text: 'Nueva Área')
+      end
+      should_not have_selector('h4', text: 'Nueva Sede')
       should have_select('person[area_id]', selected: "Area personaSpec test")
 
       area = Area.find_by_nombre "Area personaSpec test"
@@ -95,7 +95,7 @@ describe 'Personas' do
         select "Area personaSpec test", from: "zone_area_id"
         fill_in 'zone[nombre]', with: "Zona personaSpec test"
         find('input[name="commit"]').click
-      end 
+      end
       should_not have_selector('h4', text: 'Nueva Zona')
       should have_select('person[zone_id]', selected: "Zona personaSpec test")
 
@@ -111,7 +111,7 @@ describe 'Personas' do
         select "Zona personaSpec test", from: "ranchada_zone_id"
         fill_in 'ranchada[nombre]', with: "Ranchada personaSpec test"
         find('input[name="commit"]').click
-      end 
+      end
       should_not have_selector('h4', text: 'Nueva Ranchada')
       should have_select('person[ranchada_id]', selected: "Ranchada personaSpec test")
 
@@ -128,7 +128,7 @@ describe 'Personas' do
         select "Ranchada personaSpec test", from: "familia_ranchada_id"
         fill_in 'familia[nombre]', with: "Familia personaSpec test"
         find('input[name="commit"]').click
-      end 
+      end
       should_not have_selector('h4', text: 'Nueva Familia')
       should have_select('person[familia_id]', selected: "Familia personaSpec test")
 

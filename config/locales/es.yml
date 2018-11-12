@@ -61,7 +61,7 @@ es:
         subtitulo: Subtítulo
         descripcion: Descripción
         frecuencia_cant: Frecuencia
-        areas: Áreas
+        areas: Sedes
       pedido:
         person: Persona
     models:
@@ -86,9 +86,9 @@ es:
         one:   Visita
         other: Visitas
       area:
-        zero:  Área
-        one:   Área
-        other: Áreas
+        zero:  Sede
+        one:   Sedes
+        other: Sedes
       zone:
         zero:  Zona
         one:   Zona

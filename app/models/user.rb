@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def getDescripcionAuditoria
-    return "Nombre: #{name} Apellido: #{apellido} Área: #{area.nombre} Rol: #{rol.nombre} Email: #{email}"
+    return "Nombre: #{name} Apellido: #{apellido} Sede: #{area.nombre} Rol: #{rol.nombre} Email: #{email}"
   end
 
 end

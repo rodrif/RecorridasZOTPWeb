@@ -28,15 +28,15 @@ docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
       docx.p 'DNI:'
     end
     if persona.zone.nil?
-      docx.p 'Área:'
+      docx.p 'Sede:'
     else
-      docx.p 'Área: ' + persona.zone.area.nombre
+      docx.p 'Sede: ' + persona.zone.area.nombre
     end
     if persona.zone.nil?
       docx.p 'Zona:'
     else
       docx.p 'Zona: ' + persona.zone.nombre
-    end  
+    end
     if persona.visits && persona.visits.first
       docx.p 'Ubicación: ' + persona.visits.first.direccion.to_s
     else
@@ -47,7 +47,7 @@ docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
     else
       docx.p 'Relación/Avances:'
     end
-    docx.p 'Áreas Involucradas: ' + persona.departamentos.map { |d| d.nombre }.join(', ')
+    docx.p 'Sedes Involucradas: ' + persona.departamentos.map { |d| d.nombre }.join(', ')
     docx.page
 end
 

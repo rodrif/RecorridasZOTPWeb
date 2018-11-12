@@ -51,7 +51,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label "Área", class: "col-xs-12 col-md-1 control-label", for: "person_area_id" %>
+    <%= f.label "Sede", class: "col-xs-12 col-md-1 control-label", for: "person_area_id" %>
     <% if RolDataAccess.is_admin(current_user) %>
       <div class="col-xs-10 col-md-9">
         <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>

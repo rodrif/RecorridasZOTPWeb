@@ -9,7 +9,7 @@ wb.styles do |style|
       "Id",
       "Nombre",
       "Apellido",
-      "Área",
+      "Sede",
       "Zona",
       "Fecha última visita",
       "Dirección",
