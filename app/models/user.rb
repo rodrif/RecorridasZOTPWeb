@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     where("area_id = ?", area_id)
   }
 
-  scope :activos, -> { where.not(state_id: 3).order(:name) }
+  scope :activos, -> { where.not(state_id: 3) }
 
   scope :coordinadores, lambda { |area_id|
     where.not(state_id: 3).where(rol_id: [1,2,3]).with_area_id(area_id)
