@@ -19,12 +19,10 @@ services:
       context: .      
       dockerfile: ./docker/app/Dockerfile 
     command: bundle exec puma -C config/puma.rb
-    environment:
-      - RAILS_ENV=development
     entrypoint: [./docker/app/update-dev.sh]
     volumes:
       - .:/myapp
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     depends_on:
       - db

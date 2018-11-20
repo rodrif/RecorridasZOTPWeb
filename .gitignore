@@ -21,3 +21,6 @@
 /public/assets/*
 
 Gemfile.lock
+
+# Para no guardar variables de entorno como la email pass
+.env
