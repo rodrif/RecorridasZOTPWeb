@@ -69,7 +69,7 @@ group :development, :test do
 
   gem 'bullet', '~> 5.0'
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '~> 2.15.1'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
 
