@@ -1,0 +1,13 @@
+<div class="container-fluid well">
+
+  <%= form_for_filterrific @filterrific do |f| %>
+
+    <%= render 'shared/filtroArea', f: f %>
+
+    <%= render 'shared/filtroTexto', f: f %>
+
+    <%= render 'shared/filtroEmail', f: f %>
+
+  <% end %>
+
+</div>
