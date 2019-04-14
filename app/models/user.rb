@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
     available_filters: [
       :search_query,
       :with_area_id,
-      :voluntarios_activos
+      :voluntarios_activos,
+      :with_email
     ]
   )
 
@@ -51,6 +52,10 @@ class User < ActiveRecord::Base
 
   scope :with_area_id, lambda { |area_id|
     where("area_id = ?", area_id)
+  }
+
+  scope :with_email, lambda { |email|
+    where("email = ?", email)
   }
 
   scope :activos, -> { where.not(state_id: 3) }
