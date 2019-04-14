@@ -50,7 +50,7 @@ group :development, :test do
   gem 'faker'
   gem 'bullet', '~> 5.0'
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '~> 2.15.1'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
