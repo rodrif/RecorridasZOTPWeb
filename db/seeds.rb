@@ -26,6 +26,12 @@ notificaciones_tipo = NotificacionTipo.create!([
 
 frecuencias_tipo = FrecuenciaTipo.create!([{ nombre: 'Única', code: 1 }, { nombre: 'Día/s', code: 2 }, { nombre: 'Semana/s', code: 3 }, { nombre: 'Mes/es', code: 4 }])
 
+instituciones_tipo = InstitucionTipo.create!([
+  { id: 1, nombre: 'Merendero' },
+  { id: 2, nombre: 'Colegio' },
+  { id: 3, nombre: 'Universidad' }
+])
+
 roles = Rol.create([
   { id: 1, nombre: "administrador",
     puede_crear_persona: 1,

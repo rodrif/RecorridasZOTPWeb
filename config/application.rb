@@ -27,5 +27,7 @@ module TpRecorridasZO
     config.assets.initialize_on_precompile = false
 
     config.active_job.queue_adapter = :delayed_job
+
+    config.web_console.development_only = false
   end
 end
