@@ -53,13 +53,15 @@ class Pedido < ActiveRecord::Base
     joins(:person).where("people.id = ?", person_id)
   }
 
-    scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
-
-    def estaCompletado
-      return self.completado ? 'Si' : 'No'
     end
 
-    def getDescripcionAuditoria
-        return "Persona: #{person.full_name if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
-    end
+  scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
+
+  def estaCompletado
+    return self.completado ? 'Si' : 'No'
+  end
+
+  def getDescripcionAuditoria
+    return "Persona: #{person.full_name if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
+  end
 end
