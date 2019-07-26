@@ -12,7 +12,8 @@ class PedidosController < ApplicationController
           params[:filterrific],
           select_options: {
             with_area_id: Area.options_for_select,
-            with_zone_id: Zone.options_for_select
+            with_zone_id: Zone.options_for_select,
+            is_complete: ['Si', 'No']
           },
           default_filter_params: {}
         ) or return

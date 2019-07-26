@@ -14,6 +14,7 @@ class Pedido < ActiveRecord::Base
       :with_area_id,
       :with_zone_id,
       :with_person_id,
+      :is_complete,
     ]
   )
 
@@ -53,7 +54,14 @@ class Pedido < ActiveRecord::Base
     joins(:person).where("people.id = ?", person_id)
   }
 
+  scope :is_complete, lambda { |is_complete|
+    if is_complete == 'Si'
+      value = 1
+    else
+      value = 0
     end
+    where("completado = ?", value)
+  }
 
   scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
 
