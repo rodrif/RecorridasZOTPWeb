@@ -56,11 +56,10 @@ class Pedido < ActiveRecord::Base
 
   scope :is_complete, lambda { |is_complete|
     if is_complete == 'Si'
-      value = 1
+      where("completado = ?", 1)
     else
-      value = 0
+      where("completado = ? or completado is null", 0)
     end
-    where("completado = ?", value)
   }
 
   scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
