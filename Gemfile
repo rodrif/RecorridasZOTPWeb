@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.8'
+gem 'rails', '~> 5.0.7.2'
 
 #gem 'pg'
 
@@ -23,16 +23,16 @@ gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'will_paginate', '~> 3.0.6'
 gem 'filterrific', '~> 2.1.2', git: 'https://github.com/ayaman/filterrific.git'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
-gem 'devise', '~> 3.5', '>= 3.5.2'
-gem 'devise_token_auth', '~> 0.1.31'
+gem 'devise', '~> 4.7.1'
+gem 'devise_token_auth', '~> 1.1.3'
 gem 'google-analytics-rails', '1.1.0'
 gem 'zip-zip' # will load compatibility for old rubyzip API.
 gem 'geocoder'
 gem 'exception_notification'
 gem "simple_calendar", "~> 2.0"
 gem 'mysql2', '~> 0.3.18'
-gem 'rubyzip', '~> 1.1.0'
-gem 'axlsx', '2.1.0.pre'
+gem 'rubyzip', '~> 1.3.0'
+gem 'axlsx', '~> 1.3.6'
 gem 'axlsx_rails'
 gem 'caracal-rails'
 
@@ -84,6 +84,6 @@ group :development, :test do
 
   gem 'therubyracer'
   gem 'puma'
-  
+
 end
 
