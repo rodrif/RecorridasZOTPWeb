@@ -17,7 +17,7 @@ end
 
 gem 'jquery-turbolinks'
 gem 'whenever', :require => false
-gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+gem 'bcrypt', '= 3.1.12'
 gem 'will_paginate-bootstrap'
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'will_paginate', '~> 3.0.6'
