@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe NotificacionesController, type: :controller do
+RSpec.xdescribe NotificacionesController, type: :controller do
 
   describe "GET #new" do
     it "returns http success" do

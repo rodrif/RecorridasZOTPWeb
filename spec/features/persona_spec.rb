@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Personas' do
+xdescribe 'Personas' do
   before(:each) do
    load "#{Rails.root}/db/seeds.rb"
   end

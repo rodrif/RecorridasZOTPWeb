@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe InstitucionController, type: :controller do
+RSpec.describe InstitucionesController, type: :controller do
 
 end

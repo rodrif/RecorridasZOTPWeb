@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Familias' do
+xdescribe 'Familias' do
   before(:each) do
    load "#{Rails.root}/db/seeds.rb"
   end

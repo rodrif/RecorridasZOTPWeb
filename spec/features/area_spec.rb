@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Areas' do 
+xdescribe 'Areas' do
   before(:each) do
    load "#{Rails.root}/db/seeds.rb"
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Ranchadas' do
+xdescribe 'Ranchadas' do
   before(:each) do
    load "#{Rails.root}/db/seeds.rb"
   end
