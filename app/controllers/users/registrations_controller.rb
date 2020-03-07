@@ -18,6 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     coordinadores = User.coordinadores(@user.area_id)
     coordinadores.each do |c|
       Enviador.nuevo_voluntario_registrado(@user, c).deliver_now
+    Enviador.nuevo_voluntario_registrado_diego(@user).deliver_now
     end
   end
 
