@@ -81,6 +81,8 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {:host => "recorridaszo.ddns.net"}
 
+  config.force_ssl = true
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
