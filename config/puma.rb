@@ -12,7 +12,8 @@ rails_env = ENV['RAILS_ENV'] || "production"
 environment rails_env
 
 # Set up socket location
-bind "unix://#{shared_dir}/sockets/puma.sock"
+#bind "unix://#{shared_dir}/sockets/puma.sock"
+bind "ssl://0.0.0.0:443?key=localhost.key&cert=localhost.crt"
 
 # Logging
 stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
