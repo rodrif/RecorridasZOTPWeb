@@ -20,6 +20,9 @@ services:
       dockerfile: ./docker/app/Dockerfile 
     command: bundle exec puma -C config/puma.rb
     entrypoint: [./docker/app/update-dev.sh]
+    tty: true
+    stdin_open: true
+    container_name: recorridas
     volumes:
       - .:/myapp
     ports:

@@ -24,10 +24,12 @@ class AreasController < ApplicationController
     # e.g., to apply permissions or to hard coded exclude certain types of records.
     @areas = @filterrific.find.activas.page(params[:page])
 
+    #binding.pry
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
       format.html
       format.js
+      format.json { render json: @areas }
     end
   end
 

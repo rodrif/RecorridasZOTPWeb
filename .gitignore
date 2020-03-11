@@ -15,6 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
 
 # Ignoro archivos generados por puma
 /shared/*
@@ -27,3 +28,4 @@ Gemfile.lock
 
 # Ignore RubyMine config files
 .idea/*
+
