@@ -1,25 +1,26 @@
 class VisitDataAccess
 
 	def self.download datosJson = nil, fecha = nil
-		respuesta = Hash.new
-		respuesta['datos'] = Hash.new
-		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
 		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, latitud, longitud, state_id AS estado, updated_at'
     if fecha.nil?
-      respuesta['datos'] = Visit.select(query)
+      sqlResult = Visit.select(query)
     else
-      respuesta['datos'] = Visit.where('updated_at > ?', fecha).select(query)
+      sqlResult = Visit.where('updated_at > ?', fecha).select(query)
     end
 
-		respuesta['datos'].each_with_index do |v, index|
+    resultado = Hash.new
+    resultado['datos'] = []
+    resultado['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
+
+		sqlResult.each_with_index do |v, index|
 			fecha = v.fecha.to_datetime.strftime('%Q')
 			v = v.attributes
 			v['fecha'] = fecha
-			respuesta['datos'][index] = v
+			resultado['datos'][index] = v
 		end
 
-		respuesta
+		resultado
 	end
 
 	def self.upload user, json, fecha = nil
