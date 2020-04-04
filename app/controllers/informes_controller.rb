@@ -81,7 +81,7 @@ class InformesController < ApplicationController
 
   def visitas
     @filterrific = initialize_filterrific(
-      Auditoria,
+      Visit,
       params[:filterrific],
       select_options: {
         visitas: Area.options_for_select,
@@ -92,7 +92,9 @@ class InformesController < ApplicationController
     if request.format.xlsx?
       @visitas = @filterrific.find.visitas
     else
-      @visitas = @filterrific.find.visitas.page(params[:page])
+      # TODO no anda paginacion
+      # @visitas = @filterrific.find.visitas.page(params[:page])
+      @visitas = @filterrific.find.visitas
     end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|

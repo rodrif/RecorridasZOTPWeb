@@ -26,6 +26,8 @@ class Visit < ActiveRecord::Base
       :with_estado_id,
       :with_departamento_id,
       :with_person_id,
+      :fecha_gte,
+      :visitas
     ]
   )
 
@@ -76,6 +78,20 @@ class Visit < ActiveRecord::Base
 
 
   scope :activas, -> { where.not(state_id: 3).order(fecha: :desc, id: :desc) }
+
+  scope :fecha_gte, lambda { |reference_time|
+    return nil if reference_time.blank?
+    where('visits.fecha >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
+  }
+
+  #TODO renombrar a informe
+  scope :visitas, lambda { |area_id = nil|
+    if area_id.blank?
+      Visit.joins(person: [{zone: :area}]).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(DISTINCT visits.id) as count")
+    else
+      Visit.joins(person: [{zone: :area}]).where("areas.id = ?", area_id).group("zones.id", "areas.id").select("zones.nombre as zona_nombre", "areas.nombre as area_nombre", "COUNT(DISTINCT visits.id) as count")
+    end
+  }
 
   def getDescripcionAuditoria
     return "Persona: #{person.nombre if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
