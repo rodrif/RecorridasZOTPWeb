@@ -22,4 +22,7 @@
     </table>
   </div>
 
+  <div class="paginacion">
+    <%= will_paginate @visitas, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 </div>

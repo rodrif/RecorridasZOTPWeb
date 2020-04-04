@@ -92,9 +92,7 @@ class InformesController < ApplicationController
     if request.format.xlsx?
       @visitas = @filterrific.find.visitas
     else
-      # TODO no anda paginacion
-      # @visitas = @filterrific.find.visitas.page(params[:page])
-      @visitas = @filterrific.find.visitas
+      @visitas = @filterrific.find.visitas.page(params[:page])
     end
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
