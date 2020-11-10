@@ -25,6 +25,7 @@ services:
     container_name: recorridas
     volumes:
       - .:/myapp
+      - /dev/shm:/dev/shm
     ports:
       - "3000:3000"
     depends_on:
