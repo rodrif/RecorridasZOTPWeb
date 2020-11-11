@@ -1,15 +1,16 @@
 require 'rails_helper'
 
-RSpec.feature "Creating Articles" do
+RSpec.feature "Crear Areas" do
 
   before do
-    @rol_admin = Rol.create!(nombre: "admin", puede_ver_web: 1)
-    @admin = User.create!(email: "admin@example.com", password: "password", rol: @rol_admin)
+    @admin = create(:user_admin)
+    @non_admin = create(:user)
     @admin.confirm
-    login_as(@admin)
+    @non_admin.confirm
   end
 
   scenario "Un usuario administrador crea un area nueva" do
+    login_as @admin
     visit "/"
 
     click_link "Configuración"
@@ -21,6 +22,15 @@ RSpec.feature "Creating Articles" do
 
     expect(page).to have_content("Área creada correctamente")
     expect(current_path).to eq(departamentos_path)
+  end
+
+  scenario "Un usuario no administrador no puede crear areas" do
+    login_as @non_admin
+    visit "/"
+    
+    click_link "Configuración"
+
+    expect(page).not_to have_link("Áreas")
   end
 
 end

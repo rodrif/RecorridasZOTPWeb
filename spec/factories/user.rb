@@ -1,14 +1,13 @@
 FactoryBot.define do
   factory :user do
-    apellido { "admin" }
     email { Faker::Internet.email }
-    uid { email }
     password { "123456789" }
-    provider { "email" }
-    rol
+    name { Faker::Name.first_name }
+    apellido { Faker::Name.last_name }
+    rol_id {2}
 
-    trait :admin do
-      association :rol, :admin
+    factory :user_admin do
+      rol_id {1}
     end
   end
 end
