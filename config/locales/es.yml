@@ -219,7 +219,7 @@ es:
       already_confirmed: "ya has sido confirmado, por favor intenta iniciar sesión."
       confirmation_period_expired: "necesitas ser confirmado en %{period}, por favor vuelve a solicitarla."
       expired: "ha expirado, por favor vuelve a solicitarla."
-      not_found: "no se ha encontrado."
+      not_found: "%{prefix} %{resource} no se ha podido encontrar."
       not_locked: "no estaba bloqueado."
       not_saved:
         one: "1 error impidió que este %{resource} fuera guardado:"

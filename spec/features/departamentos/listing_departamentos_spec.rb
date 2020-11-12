@@ -7,7 +7,7 @@ RSpec.feature "Ver Areas" do
     @admin.confirm
     @non_admin = create(:user)
     @non_admin.confirm
-    @area = create(:departamento)
+    @departamento = create(:departamento)
   end
 
   scenario "con un usuario administrador" do
@@ -17,7 +17,7 @@ RSpec.feature "Ver Areas" do
     click_link "Configuración"
     click_link "Áreas"
 
-    expect(page).to have_content(@area.nombre)
+    expect(page).to have_content(@departamento.nombre)
   end
 
 

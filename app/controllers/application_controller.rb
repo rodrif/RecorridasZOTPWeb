@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
   #protect_from_forgery with: :exception
 
+  rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
+
   rescue_from 'ActiveRecord::InvalidForeignKey' do
     flash[:error] = I18n.t('common.errores.foreign_key')
     redirect_to :back
@@ -127,19 +129,25 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  protected
+
+    def resource_not_found
+    end
+
+
   private
 
-  def redireccionar
-    if !current_user.rol.puede_ver_web
-      sign_out current_user
+    def redireccionar
+      if !current_user.rol.puede_ver_web
+        sign_out current_user
+      end
+      redirect_to acceso_denegado_path
     end
-    redirect_to acceso_denegado_path
-  end
 
-  def prepare_exception_notifier
-    request.env["exception_notifier.exception_data"] = {
-      :current_user => current_user
-    }
-  end
+    def prepare_exception_notifier
+      request.env["exception_notifier.exception_data"] = {
+        :current_user => current_user
+      }
+    end
 
 end

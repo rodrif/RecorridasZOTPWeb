@@ -5,7 +5,7 @@ RSpec.feature "Editar Areas" do
   before do
     @admin = create(:user_admin)
     @admin.confirm
-    @area = create(:departamento)
+    @departamento = create(:departamento)
   end
 
   scenario "con un usuario administrador" do
