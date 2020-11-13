@@ -6,10 +6,12 @@ RSpec.describe "Departamentos", type: :request do
     @admin = create(:user_admin)
     @admin.confirm
     @departamento = create(:departamento)
+    @non_admin = create(:user)
+    @non_admin.confirm
   end
 
   describe 'GET /departamentos/:id/edit' do
-    context 'con user no logueado' do
+    context 'sin user logueado' do
       before { get "/departamentos/#{@departamento.id}/edit" }
 
       it "redirecciona a página de sign in" do
@@ -19,7 +21,7 @@ RSpec.describe "Departamentos", type: :request do
       end
     end
 
-    context 'con user administrador logueado' do
+    context 'con user administrador' do
       before do
         login_as @admin
         get "/departamentos/#{@departamento.id}/edit"
@@ -27,6 +29,18 @@ RSpec.describe "Departamentos", type: :request do
 
       it "muestra la página de edit" do
         expect(response.status).to eq 200
+      end
+    end
+
+    context 'con user no administrador' do
+      before do
+        login_as @non_admin
+        get "/departamentos/#{@departamento.id}/edit"
+      end
+
+      it "redirecciona a la página de acceso denegado" do
+        expect(response).to redirect_to(acceso_denegado_path)
+        expect(response.status).to eq 302
       end
     end
 
@@ -42,8 +56,36 @@ RSpec.describe "Departamentos", type: :request do
         expect(flash[:alert]).to eq flash_message
       end
     end
-
-
   end
+
+  describe 'POST /departamentos' do
+    context 'con user administrador' do
+      before do
+        login_as @admin
+        post "/departamentos", {departamento: {nombre: "Nuevo departamento"} }
+      end
+
+      it "crea el departamento y redirecciona a la página de departamentos" do
+        flash_message = "Área creada correctamente."
+        expect(response).to redirect_to(departamentos_path)
+        expect(response.status).to eq 302
+        expect(flash[:notice]).to eq flash_message
+      end
+    end
+
+    context 'con user no administrador' do
+      before do
+        login_as @non_admin
+        post "/departamentos", {departamento: {nombre: "Nuevo departamento"} }
+      end
+
+      it "redirecciona a la página de acceso denegado" do
+        expect(response).to redirect_to(acceso_denegado_path)
+        expect(response.status).to eq 302
+      end
+    end
+  end
+
+
 
 end
