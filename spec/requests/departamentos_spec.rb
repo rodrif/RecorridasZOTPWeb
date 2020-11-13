@@ -86,6 +86,61 @@ RSpec.describe "Departamentos", type: :request do
     end
   end
 
+  describe 'PUT /departamentos/:id/edit' do
+    context 'con user administrador' do
+      before do
+        login_as @admin
+        put "/departamentos/#{@departamento.id}", {departamento: {nombre: "Nuevo departamento"} }
+      end
+
+      it "actualiza el departamento y redirecciona a la página de departamentos" do
+        flash_message = "Área actualizada correctamente."
+        expect(response).to redirect_to(departamentos_path)
+        expect(response.status).to eq 302
+        expect(flash[:notice]).to eq flash_message
+      end
+    end
+
+    context 'con user no administrador' do
+      before do
+        login_as @non_admin
+        put "/departamentos/#{@departamento.id}", {departamento: {nombre: "Nuevo departamento"} }
+      end
+
+      it "redirecciona a la página de acceso denegado" do
+        expect(response).to redirect_to(acceso_denegado_path)
+        expect(response.status).to eq 302
+      end
+    end
+  end
+
+  describe 'DELETE /departamentos/:id' do
+    context 'con user administrador' do
+      before do
+        login_as @admin
+        delete "/departamentos/#{@departamento.id}", {departamento: {nombre: "Nuevo departamento"} }
+      end
+
+      it "borra el departamento y redirecciona a la página de departamentos" do
+        flash_message = "Área borrada correctamente."
+        expect(response).to redirect_to(departamentos_path)
+        expect(response.status).to eq 302
+        expect(flash[:notice]).to eq flash_message
+      end
+    end
+
+    context 'con user no administrador' do
+      before do
+        login_as @non_admin
+        delete"/departamentos/#{@departamento.id}", {departamento: {nombre: "Nuevo departamento"} }
+      end
+
+      it "redirecciona a la página de acceso denegado" do
+        expect(response).to redirect_to(acceso_denegado_path)
+        expect(response.status).to eq 302
+      end
+    end
+  end
 
 
 end
