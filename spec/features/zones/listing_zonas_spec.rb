@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Listar sedes" do
+RSpec.feature "Listar zonas" do
 
   before do
     @admin = create(:user_admin)
@@ -8,8 +8,10 @@ RSpec.feature "Listar sedes" do
     @coordinador = create(:user_coordinador)
     @voluntario = create(:user_voluntario)
     @invitado = create(:user_invitado)
-    @area = create(:area)
   end
+
+  let!(:area) { create(:area) }
+  let!(:zona) { create(:zone, area_id: area.id) }
 
   context "puede listar satisfactoriamente" do
     scenario "si usuario es administrador" do
@@ -17,9 +19,12 @@ RSpec.feature "Listar sedes" do
       visit "/"
 
       click_link "Configuración"
-      click_link "Sedes"
+      click_link "Zonas"
 
-      expect(page).to have_content(@area.nombre)
+      expect(page).to have_content(zona.nombre)
+      expect(page).to have_content(zona.latitud)
+      expect(page).to have_content(zona.latitud)
+      expect(page).to have_content(area.nombre)
     end
 
     scenario "si usuario es referente" do
@@ -27,9 +32,12 @@ RSpec.feature "Listar sedes" do
       visit "/"
 
       click_link "Configuración"
-      click_link "Sedes"
+      click_link "Zonas"
 
-      expect(page).to have_content(@area.nombre)
+      expect(page).to have_content(zona.nombre)
+      expect(page).to have_content(zona.latitud)
+      expect(page).to have_content(zona.latitud)
+      expect(page).to have_content(area.nombre)
     end
 
     scenario "si usuario es coordinador" do
@@ -37,9 +45,12 @@ RSpec.feature "Listar sedes" do
       visit "/"
 
       click_link "Configuración"
-      click_link "Sedes"
+      click_link "Zonas"
 
-      expect(page).to have_content(@area.nombre)
+      expect(page).to have_content(zona.nombre)
+      expect(page).to have_content(zona.latitud)
+      expect(page).to have_content(zona.latitud)
+      expect(page).to have_content(area.nombre)
     end
   end
 
@@ -48,7 +59,7 @@ RSpec.feature "Listar sedes" do
       login_as @voluntario
       visit "/"
 
-      expect(page).not_to have_link("Sedes")
+      expect(page).not_to have_link("Zonas")
     end
   end
 end
