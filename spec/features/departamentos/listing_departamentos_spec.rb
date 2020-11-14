@@ -4,9 +4,7 @@ RSpec.feature "Ver areas" do
 
   before do
     @admin = create(:user_admin)
-    @admin.confirm
-    @non_admin = create(:user)
-    @non_admin.confirm
+    @non_admin = create(:user_referente)
     @departamento = create(:departamento)
   end
 
