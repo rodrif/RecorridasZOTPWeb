@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Un usuario quiere borrar un area existente" do
+RSpec.feature "Borrar Area" do
 
   before do
     @admin = create(:user_admin)
