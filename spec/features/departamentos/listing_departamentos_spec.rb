@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Ver Areas" do
+RSpec.feature "Un usuario quiere ver las areas existentes" do
 
   before do
     @admin = create(:user_admin)
@@ -10,7 +10,7 @@ RSpec.feature "Ver Areas" do
     @departamento = create(:departamento)
   end
 
-  scenario "con un usuario administrador" do
+  scenario "siendo administrador" do
     login_as @admin
     visit "/"
 
@@ -21,7 +21,7 @@ RSpec.feature "Ver Areas" do
   end
 
 
-  scenario "con un usuario no administrador" do
+  scenario "sin ser administrador" do
     login_as @non_admin
     visit "/"
 

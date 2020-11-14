@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Editar Areas" do
+RSpec.feature "Un usuario quiere editar un area existente" do
 
   before do
     @admin = create(:user_admin)
@@ -8,7 +8,7 @@ RSpec.feature "Editar Areas" do
     @departamento = create(:departamento)
   end
 
-  scenario "con un usuario administrador" do
+  scenario "siendo administrador" do
     login_as @admin
     visit "/"
 

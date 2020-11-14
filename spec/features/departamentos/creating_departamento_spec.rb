@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "Crear Areas" do
+RSpec.feature "Un usuario quiere crear un area nueva" do
 
   before do
     @admin = create(:user_admin)
     @admin.confirm
   end
 
-  scenario "con un usuario administrador" do
+  scenario "siendo administrador" do
     login_as @admin
     visit "/"
 
