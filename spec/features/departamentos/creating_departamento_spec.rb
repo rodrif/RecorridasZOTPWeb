@@ -4,7 +4,6 @@ RSpec.feature "Crear area" do
 
   before do
     @admin = create(:user_admin)
-    @admin.confirm
   end
 
   scenario "siendo administrador" do

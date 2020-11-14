@@ -4,7 +4,6 @@ RSpec.feature "Editar area" do
 
   before do
     @admin = create(:user_admin)
-    @admin.confirm
     @departamento = create(:departamento)
   end
 
