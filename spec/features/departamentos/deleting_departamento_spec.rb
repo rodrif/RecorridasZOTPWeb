@@ -11,8 +11,6 @@ RSpec.feature "Borrar Area" do
     login_as @admin
     visit "/"
 
-    @departamento.nombre
-
     click_link "Configuración"
     click_link "Áreas"
 
