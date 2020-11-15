@@ -1,6 +1,5 @@
 <h2 class="sub-header"><%= t("activerecord.models.estado.other") %></h2>
 
-<% binding.pry %>
 <%= render 'list' %>
 
 <% if RolDataAccess.puede_editar_estado(current_user) %>
