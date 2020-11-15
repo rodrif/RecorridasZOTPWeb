@@ -60,7 +60,20 @@ RSpec.feature "Crear sede" do
       expect(current_path).to eq(areas_path)
       expect(page).to have_content(area.nombre)
     end
+  end
 
+  context "falla al crear" do
+    scenario "si el nombre no tiene solo letras" do
+      login_as @admin
+
+      visit areas_path
+      click_link "Nueva sede"
+
+      fill_in "Nombre", with: "ABCDE123456"
+      click_button "Aceptar"
+
+      expect(page).to have_content("Nombre solo admite letras")
+    end
   end
 
 end

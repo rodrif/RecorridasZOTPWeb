@@ -79,8 +79,20 @@ RSpec.feature "Crear zona" do
       expect(page).to have_content(zona.latitud)
       expect(page).to have_content(@area.nombre)
     end
+  end
 
+  context "falla al crear" do
+    scenario "si el nombre no tiene solo letras y núymeros" do
+      login_as @admin
 
+      visit zones_path
+      click_link "Nueva zona"
+
+      fill_in "Nombre", with: "ABCDE123456!?+="
+      click_button "Aceptar"
+
+      expect(page).to have_content("Nombre solo admite letras y números")
+    end
   end
 
 end
