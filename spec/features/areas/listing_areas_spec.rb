@@ -48,6 +48,8 @@ RSpec.feature "Listar sedes" do
       login_as @voluntario
       visit "/"
 
+      click_link "Configuración"
+
       expect(page).not_to have_link("Sedes")
     end
   end

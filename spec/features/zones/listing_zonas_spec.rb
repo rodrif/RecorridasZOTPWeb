@@ -59,6 +59,8 @@ RSpec.feature "Listar zonas" do
       login_as @voluntario
       visit "/"
 
+      click_link "Configuración"
+
       expect(page).not_to have_link("Zonas")
     end
   end
