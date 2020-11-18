@@ -52,9 +52,7 @@ class ZoneDataAccess
   end
 
   def self.borrar_logico zone, user
-    if Person.activas.where(zone_id: zone.id).first ||
-      Ranchada.activas.where(zone_id: zone.id).first ||
-      Familia.activas.where(zone_id: zone.id).first
+    if Person.activas.where(zone_id: zone.id).first
         raise ActiveRecord::InvalidForeignKey, 'error'
     end
     zone.state_id = 3

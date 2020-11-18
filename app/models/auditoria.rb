@@ -7,10 +7,7 @@ class Auditoria < ActiveRecord::Base
   MODIFICACION = 'Modificación'
 
   AREA = 'Sede'
-  FAMILIA = 'Familia'
   PERSONA = 'Persona'
-  RANCHADA = 'Ranchada'
-  REFERENTE = 'Referente'
   VISITA = 'Visita'
   ZONA = 'Zona'
   USUARIO = 'Usuario'

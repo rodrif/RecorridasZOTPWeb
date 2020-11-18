@@ -17,28 +17,29 @@ class PersonDataAccessTest < ActionController::TestCase
 
 	    assert_not_nil respuesta, "respuesta null"
 
-		assert respuesta["datos"]["11"] > 0, "respuesta incorrecta de servidor"
-		assert respuesta["datos"]["2"] > 0, "respuesta incorrecta de servidor"
+			assert respuesta["datos"]["11"] > 0, "respuesta incorrecta de servidor"
+			assert respuesta["datos"]["2"] > 0, "respuesta incorrecta de servidor"
 
 	    assert (Person.find_by nombre: "GuardarPersonasFromJsonUno"), "No se guardo la persona en la bd"
-		assert (Person.find_by nombre: "GuardarPersonasFromJsonDos"), "No se guardo la persona en la bd"
-		assert_equal 3, Person.find(3).state_id, "fallo borrado logico"
+			assert (Person.find_by nombre: "GuardarPersonasFromJsonDos"), "No se guardo la persona en la bd"
+			assert_equal 3, Person.find(3).state_id, "fallo borrado logico"
 
 		# download
 		personas = PersonDataAccess.download
 
-	    #TODO mejorar test
 	    assert_equal 6, personas["datos"].size, "cantidad de personas no coincide"
 
-	    assert_equal personas.first[1].to_a[0].state_id, 1, "test state_id persona 0"
-	    assert_equal personas.first[1].to_a[1].state_id, 1, "test state_id persona 1"
-	    assert_equal personas.first[1].to_a[2].state_id, 1, "test state_id persona 2"
-	    assert_equal personas.first[1].to_a[3].state_id, 1, "test state_id persona 3"
-	    assert_equal personas.first[1].to_a[4].state_id, 1, "test state_id persona 4"
-	    assert_equal personas.first[1].to_a[5].state_id, 3, "test state_id persona 5"
+		  states_1 = 0
+		  states_3 = 0
+			personas.first[1].to_a.each do |persona|
+				states_1 +=1 if persona.state_id == 1
+				states_3 +=1 if persona.state_id == 3
+			end
+	    assert_equal 5, states_1, "test state_id 1 hay 5 personas"
+			assert_equal 1, states_3, "test state_id 3 hay 1 persona"
 
 	    assert (Person.find_by nombre: "GuardarPersonasFromJsonUno"), "No se guardo la persona en la bd"
-		assert (Person.find_by nombre: "GuardarPersonasFromJsonDos"), "No se guardo la persona en la bd"
+			assert (Person.find_by nombre: "GuardarPersonasFromJsonDos"), "No se guardo la persona en la bd"
 	end
 
 end

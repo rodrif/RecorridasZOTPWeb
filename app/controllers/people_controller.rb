@@ -35,7 +35,7 @@ class PeopleController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @people = @filterrific.find.includes(zone: [:area]).includes(:estado).includes(:departamentos).activas.page(params[:page])
+    @people = @filterrific.find.includes(zone: [:area]).includes(:estado).includes(:departamentos).includes(:institucion).activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -64,22 +64,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  def update_ranchadas
-    @ranchadas = Ranchada.where("zone_id = ?", params[:zone_id])
-    @selectorRanchada = params[:selector_ranchada]
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def update_familias
-    @familias = Familia.where("zone_id = ?", params[:zone_id])
-    @selectorFamilia = params[:selector_familia]
-    respond_to do |format|
-      format.js
-    end
-  end
-
   # GET /people/1
   # GET /people/1.json
   def show
@@ -96,8 +80,6 @@ class PeopleController < ApplicationController
   def edit
     @person.area_id = @person.zone.area_id
     @zonas = Zone.where(:area_id => @person.area_id)
-    @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
-    @familias = Familia.where(:zone_id => @person.zone_id)
   end
 
   # POST /people
@@ -117,8 +99,6 @@ class PeopleController < ApplicationController
       else
         if @person.zone
           @zonas = Zone.where(:area_id => @person.zone.area_id)
-          @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
-          @familias = Familia.where(:zone_id => @person.zone_id)
         else
           loadDefaultDropdowns(@person)
         end
@@ -140,17 +120,13 @@ class PeopleController < ApplicationController
       else
         if @person.zone
           @zonas = Zone.where(:area_id => @person.zone.area_id)
-          @ranchadas = Ranchada.where(:zone_id => @person.zone_id)
-          @familias = Familia.where(:zone_id => @person.zone_id)
         else
           @zonas = Zone.zonas_primer_area
-          @ranchadas = Ranchada.where(:zone_id => @zonas.first.id)
           @person.area_id = @zonas.first.area_id
           @person.zone_id = @zonas.first.id
-          @familias = Familia.where(:zone_id => @person.zone_id)
         end
 
-        format.html { render :edit, zonas: @zonas, ranchadas: @ranchadas }
+        format.html { render :edit, zonas: @zonas }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -183,8 +159,6 @@ class PeopleController < ApplicationController
         :fecha_nacimiento,
         :area_id,
         :zone_id,
-        :ranchada_id,
-        :familia_id,
         :estado_id,
         :page,
         :descripcion,
