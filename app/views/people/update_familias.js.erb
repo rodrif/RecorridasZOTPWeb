@@ -1,1 +1,0 @@
-$("#" + "<%= @selectorFamilia %>").html("<%= escape_javascript select 'familia', 'familia_id', @familias.collect {|f| [f.nombre, f.id]}, :include_blank => 'Ninguno' %>");

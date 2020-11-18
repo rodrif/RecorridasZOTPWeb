@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120123219) do
+ActiveRecord::Schema.define(version: 20201117234142) do
 
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -95,20 +95,6 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   end
 
   add_index "estados", ["state_id"], name: "index_estados_on_state_id", using: :btree
-
-  create_table "familias", force: :cascade do |t|
-    t.string   "nombre",      limit: 255
-    t.integer  "zone_id",     limit: 4
-    t.integer  "ranchada_id", limit: 4
-    t.text     "descripcion", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "state_id",    limit: 4
-  end
-
-  add_index "familias", ["ranchada_id"], name: "index_familias_on_ranchada_id", using: :btree
-  add_index "familias", ["state_id"], name: "index_familias_on_state_id", using: :btree
-  add_index "familias", ["zone_id"], name: "index_familias_on_zone_id", using: :btree
 
   create_table "frecuencia_tipos", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -220,9 +206,7 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "dni",              limit: 255
     t.date     "fecha_nacimiento"
     t.string   "telefono",         limit: 255
-    t.integer  "familia_id",       limit: 4
     t.text     "descripcion",      limit: 65535
-    t.integer  "ranchada_id",      limit: 4
     t.string   "pantalon",         limit: 255
     t.string   "remera",           limit: 255
     t.string   "zapatillas",       limit: 255
@@ -231,25 +215,9 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   end
 
   add_index "people", ["estado_id"], name: "index_people_on_estado_id", using: :btree
-  add_index "people", ["familia_id"], name: "index_people_on_familia_id", using: :btree
   add_index "people", ["institucion_id"], name: "index_people_on_institucion_id", using: :btree
-  add_index "people", ["ranchada_id"], name: "index_people_on_ranchada_id", using: :btree
   add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
   add_index "people", ["zone_id"], name: "index_people_on_zone_id", using: :btree
-
-  create_table "ranchadas", force: :cascade do |t|
-    t.string   "nombre",      limit: 255
-    t.integer  "zone_id",     limit: 4
-    t.text     "descripcion", limit: 65535
-    t.decimal  "latitud",                   precision: 10
-    t.decimal  "longitud",                  precision: 10
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "state_id",    limit: 4
-  end
-
-  add_index "ranchadas", ["state_id"], name: "index_ranchadas_on_state_id", using: :btree
-  add_index "ranchadas", ["zone_id"], name: "index_ranchadas_on_zone_id", using: :btree
 
   create_table "referentes", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -371,9 +339,6 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   add_foreign_key "auditorias", "users"
   add_foreign_key "departamentos", "states"
   add_foreign_key "estados", "states"
-  add_foreign_key "familias", "ranchadas"
-  add_foreign_key "familias", "states"
-  add_foreign_key "familias", "zones"
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "frecuencia_tipos"
@@ -382,12 +347,8 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   add_foreign_key "pedidos", "people"
   add_foreign_key "pedidos", "states"
   add_foreign_key "people", "estados"
-  add_foreign_key "people", "familias"
-  add_foreign_key "people", "ranchadas"
   add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
-  add_foreign_key "ranchadas", "states"
-  add_foreign_key "ranchadas", "zones"
   add_foreign_key "referentes", "areas"
   add_foreign_key "referentes", "states"
   add_foreign_key "users", "areas"

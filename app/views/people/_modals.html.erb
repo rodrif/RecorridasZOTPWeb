@@ -30,36 +30,3 @@
   </div>
 </div>
 
-<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade" id="new_ranchada_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelRanchada" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelRanchada">Nueva Ranchada</h4>
-      </div>
-      <div class="modal-body">
-        <% @ranchada = Ranchada.new %>
-        <% loadDefaultDropdowns(@ranchada) %>
-        <%= render 'ranchadas/form', :@ranchada => @ranchada, modal: true, puede_editar: true %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade container-fluid" id="new_familia_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelFamilia" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content container-fluid">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelFamilia">Nueva Familia</h4>
-      </div>
-      <div class="modal-body">
-        <% @familia = Familia.new %>
-        <% loadDefaultDropdowns(@familia) %>
-        <%= render 'familias/form', :@familia => @familia, modal: true, puede_editar: true %>
-      </div>
-    </div>
-  </div>
-</div>

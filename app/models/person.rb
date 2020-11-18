@@ -11,8 +11,6 @@ class Person < ActiveRecord::Base
   validates :zone, presence: true
 
   belongs_to :zone
-  belongs_to :ranchada
-  belongs_to :familia
   belongs_to :state
   belongs_to :estado
   belongs_to :institucion

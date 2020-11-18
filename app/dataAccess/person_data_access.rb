@@ -11,7 +11,7 @@ class PersonDataAccess
 		respuesta['datos'] = Hash.new
 		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
-    query = 'id AS web_id, zone_id AS web_zone_id, ranchada_id AS web_ranchada_id, familia_id AS web_familia_id, nombre, apellido, dni, fecha_nacimiento, telefono, descripcion, pantalon, remera, zapatillas, state_id, updated_at'
+    query = 'id AS web_id, zone_id AS web_zone_id, nombre, apellido, dni, fecha_nacimiento, telefono, descripcion, pantalon, remera, zapatillas, state_id, updated_at'
     if fecha.nil?
       respuesta['datos'] = Person.select(query)
     else
@@ -41,8 +41,6 @@ class PersonDataAccess
         person.state_id = 1
       end
       person.zone_id = p['web_zone_id']
-      person.ranchada_id = p['web_ranchada_id'] ? p['web_ranchada_id'] : nil
-      person.familia_id = p['web_familia_id'] ? p['web_familia_id'] : nil
       person.nombre = p['nombre']
       person.apellido = p['apellido'] ? p['apellido'] : nil
       person.dni = p['dni'] ? p['dni'] : nil
@@ -71,27 +69,6 @@ class PersonDataAccess
 		Visit.select(:latitud, :longitud).activas.where(person_id: idPersona).first
 	end
 
-	def self.actualizar_dependencias_ranchada ranchada
-      personas = Person.where(:ranchada_id => ranchada.id)
-      Person.transaction do
-        personas.each do |p|
-          p.zone_id = ranchada.zone_id
-          p.save!
-        end
-      end
-  end
-
-  def self.actualizar_dependencias_familia familia
-    personas = Person.where(:familia_id => familia.id)
-    Person.transaction do
-      personas.each do |p|
-        p.zone_id = familia.zone_id
-        p.ranchada_id = familia.ranchada_id
-        p.save
-      end
-    end
-  end
-
   def self.borrar_logico person, user
     person.state_id = 3
     person.visits.each do |v|
@@ -104,8 +81,6 @@ class PersonDataAccess
       AuditoriaDataAccess.log user, Auditoria::BAJA, Auditoria::PERSONA, person
     end
     person.zone_id = nil
-    person.ranchada_id = nil
-    person.familia_id = nil
     person.save(validate: false)
   end
 
