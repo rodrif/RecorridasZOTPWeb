@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201117234142) do
+ActiveRecord::Schema.define(version: 20201118122219) do
 
   create_table "alert_types", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -219,20 +219,6 @@ ActiveRecord::Schema.define(version: 20201117234142) do
   add_index "people", ["state_id"], name: "index_people_on_state_id", using: :btree
   add_index "people", ["zone_id"], name: "index_people_on_zone_id", using: :btree
 
-  create_table "referentes", force: :cascade do |t|
-    t.string   "nombre",     limit: 255
-    t.string   "apellido",   limit: 255
-    t.string   "telefono",   limit: 255
-    t.integer  "area_id",    limit: 4
-    t.string   "dia",        limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "state_id",   limit: 4
-  end
-
-  add_index "referentes", ["area_id"], name: "index_referentes_on_area_id", using: :btree
-  add_index "referentes", ["state_id"], name: "index_referentes_on_state_id", using: :btree
-
   create_table "roles", force: :cascade do |t|
     t.string   "nombre",                     limit: 255
     t.boolean  "puede_crear_persona",        limit: 1
@@ -349,8 +335,6 @@ ActiveRecord::Schema.define(version: 20201117234142) do
   add_foreign_key "people", "estados"
   add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
-  add_foreign_key "referentes", "areas"
-  add_foreign_key "referentes", "states"
   add_foreign_key "users", "areas"
   add_foreign_key "users", "states"
   add_foreign_key "visits", "people"

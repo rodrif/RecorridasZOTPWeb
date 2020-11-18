@@ -8,7 +8,6 @@ class Auditoria < ActiveRecord::Base
 
   AREA = 'Sede'
   PERSONA = 'Persona'
-  REFERENTE = 'Referente'
   VISITA = 'Visita'
   ZONA = 'Zona'
   USUARIO = 'Usuario'

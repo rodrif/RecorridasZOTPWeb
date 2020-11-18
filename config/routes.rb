@@ -19,8 +19,6 @@ Rails.application.routes.draw do
     post 'pedidos/upload' => 'pedidos#upload'
     post 'people/download' => 'people#download'
     post 'people/upload' => 'people#upload'
-    post 'referentes/download' => 'referentes#download'
-    post 'referentes/upload' => 'referentes#upload'
   end
 
   get 'calendario' => 'calendario#index'
