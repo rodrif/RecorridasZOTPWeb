@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :prepare_exception_notifier
+  before_action :prepare_exception_notifier
   #protect_from_forgery with: :null_session
   #skip_before_filter :verify_authenticity_token
   #include DeviseTokenAuth::Concerns::SetUserByToken
