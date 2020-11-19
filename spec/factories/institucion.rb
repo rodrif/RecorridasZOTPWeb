@@ -4,7 +4,7 @@ FactoryBot.define do
     descripcion {Faker::Lorem.sentence }
     direccion { Faker::Address.street_address }
     contacto { Faker::Internet.email }
-    telefono { Faker::PhoneNumber.cell_phone }
+    telefono { Faker::Number.number(digits: 10) }
     codigo_postal { Faker::Address.zip_code }
     latitud { Faker::Address.latitude }
     longitud { Faker::Address.longitude }

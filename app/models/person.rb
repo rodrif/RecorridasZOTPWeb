@@ -16,7 +16,6 @@ class Person < ActiveRecord::Base
   belongs_to :institucion
   has_many :visits, -> {order(fecha: :desc, id: :desc)}, :dependent => :delete_all
   has_many :pedidos, -> {order(fecha: :desc)}, :dependent => :delete_all
-  accepts_nested_attributes_for :visits
   has_and_belongs_to_many :departamentos
 
   self.per_page = 20
