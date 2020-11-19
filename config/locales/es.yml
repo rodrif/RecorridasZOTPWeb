@@ -22,6 +22,7 @@ es:
       errores: Errores
       solo_letras: solo admite letras
       solo_alfanumerico: solo admite letras y números
+      solo_numeros: solo admite números
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
