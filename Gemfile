@@ -48,7 +48,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'hirb'
 
 group :development, :test do
-  gem 'faker'
   gem 'bullet', '~> 5.0'
   gem 'rspec-rails'
   gem 'database_cleaner'
