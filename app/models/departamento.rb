@@ -1,4 +1,4 @@
-class Departamento < ActiveRecord::Base
+class Departamento < ApplicationRecord
     belongs_to :state
     has_and_belongs_to_many :people
 

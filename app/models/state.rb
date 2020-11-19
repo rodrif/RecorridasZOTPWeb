@@ -1,2 +1,2 @@
-class State < ActiveRecord::Base
+class State < ApplicationRecord
 end

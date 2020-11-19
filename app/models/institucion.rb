@@ -1,4 +1,4 @@
-class Institucion < ActiveRecord::Base
+class Institucion < ApplicationRecord
   belongs_to :state
   belongs_to :zone
 	belongs_to :institucion_tipo

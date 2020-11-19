@@ -1,4 +1,4 @@
-class Pedido < ActiveRecord::Base
+class Pedido < ApplicationRecord
     belongs_to :person
     belongs_to :state
 

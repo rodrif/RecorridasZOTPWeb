@@ -1,4 +1,4 @@
-class Area < ActiveRecord::Base
+class Area < ApplicationRecord
   extend ModelHelper
   validates :nombre, presence: true, uniqueness: { case_sensitive: false },
     format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }

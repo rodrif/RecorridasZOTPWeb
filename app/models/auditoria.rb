@@ -1,4 +1,4 @@
-class Auditoria < ActiveRecord::Base
+class Auditoria < ApplicationRecord
   belongs_to :user
   belongs_to :visit, :foreign_key => :entity_id
 

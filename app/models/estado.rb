@@ -1,4 +1,4 @@
-class Estado < ActiveRecord::Base
+class Estado < ApplicationRecord
   belongs_to :state
   scope :activos, -> { where.not(state_id: 3).order(:nombre) }
 

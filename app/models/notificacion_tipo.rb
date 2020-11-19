@@ -1,4 +1,4 @@
-class NotificacionTipo < ActiveRecord::Base
+class NotificacionTipo < ApplicationRecord
 
 	PROGRAMADA = 1
 	URGENTE = 2

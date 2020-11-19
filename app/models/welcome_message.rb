@@ -1,3 +1,3 @@
-class WelcomeMessage < ActiveRecord::Base
+class WelcomeMessage < ApplicationRecord
   belongs_to :person
 end

@@ -1,4 +1,4 @@
-class Person < ActiveRecord::Base
+class Person < ApplicationRecord
   attr_accessor :area_id
   extend ModelHelper
 

@@ -1,4 +1,4 @@
-class Familia < ActiveRecord::Base
+class Familia < ApplicationRecord
   attr_accessor :area_id
   extend ModelHelper
   belongs_to :area # TODO borrar

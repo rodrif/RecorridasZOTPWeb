@@ -1,4 +1,4 @@
-class Rol < ActiveRecord::Base
+class Rol < ApplicationRecord
 
 	ADMINISTRADOR = 1
 	REFERENTE = 2

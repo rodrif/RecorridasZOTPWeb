@@ -1,4 +1,4 @@
-class Referente < ActiveRecord::Base
+class Referente < ApplicationRecord
   extend ModelHelper
   belongs_to :area
   belongs_to :state

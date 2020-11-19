@@ -1,2 +1,2 @@
-class InstitucionTipo < ActiveRecord::Base
+class InstitucionTipo < ApplicationRecord
 end

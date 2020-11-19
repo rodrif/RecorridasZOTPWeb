@@ -1,4 +1,4 @@
-class Zone < ActiveRecord::Base
+class Zone < ApplicationRecord
   extend ModelHelper
   belongs_to :area
   belongs_to :state

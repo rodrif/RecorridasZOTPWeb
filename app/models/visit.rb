@@ -1,4 +1,4 @@
-class Visit < ActiveRecord::Base
+class Visit < ApplicationRecord
 
   belongs_to :person
   belongs_to :state

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
   extend ModelHelper
   after_validation :ensure_uid

@@ -1,4 +1,4 @@
-class Ranchada < ActiveRecord::Base
+class Ranchada < ApplicationRecord
   attr_accessor :area_id
   extend ModelHelper
   belongs_to :area

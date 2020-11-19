@@ -1,2 +1,2 @@
-class AlertType < ActiveRecord::Base
+class AlertType < ApplicationRecord
 end

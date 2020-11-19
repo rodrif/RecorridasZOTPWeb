@@ -1,4 +1,4 @@
-class Notificacion < ActiveRecord::Base
+class Notificacion < ApplicationRecord
   belongs_to :frecuencia_tipo
   belongs_to :notificacion_tipo
   belongs_to :state
@@ -7,8 +7,8 @@ class Notificacion < ActiveRecord::Base
   has_and_belongs_to_many :areas
   accepts_nested_attributes_for :notificacion_roles, allow_destroy: true
   validates :titulo, :subtitulo, :fecha_desde, :frecuencia_tipo_id, :presence => true
-  validates :fecha_hasta, :presence => true, :unless => "frecuencia_tipo_id == 1"
-  validates :frecuencia_cant, :presence => true, :unless => "frecuencia_tipo_id == 1 || notificacion_tipo_id == 4"
+  validates :fecha_hasta, :presence => true, unless: -> { frecuencia_tipo_id == 1 }
+  validates :frecuencia_cant, :presence => true, unless: -> { frecuencia_tipo_id == 1 || notificacion_tipo_id == 4 }
   validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
   validates :areas, :presence => true
   validate :fecha_desde_mayor_fecha_hasta

@@ -1,4 +1,4 @@
-class FrecuenciaTipo < ActiveRecord::Base
+class FrecuenciaTipo < ApplicationRecord
 	UNICA = 1
 	DIA = 2
 	SEMANA = 3
