@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   create_table "alerts", force: :cascade do |t|
     t.string   "mensaje",       limit: 255
     t.datetime "fecha"
-    t.integer  "zone_id",       limit: 4
+    t.bigint   "zone_id",       limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "alert_type_id", limit: 4
+    t.bigint   "alert_type_id", limit: 4
   end
 
   add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id", using: :btree
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "nombre",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "state_id",   limit: 4
+    t.bigint  "state_id",   limit: 4
   end
 
   add_index "areas", ["state_id"], name: "index_areas_on_state_id", using: :btree
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.text     "descripcion", limit: 65535
-    t.integer  "user_id",     limit: 4
+    t.bigint   "user_id",     limit: 4
   end
 
   add_index "auditorias", ["user_id"], name: "index_auditorias_on_user_id", using: :btree
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20171120123219) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string  "nombre",   limit: 255
-    t.integer "state_id", limit: 4
+    t.bigint  "state_id", limit: 4
   end
 
   add_index "departamentos", ["state_id"], name: "index_departamentos_on_state_id", using: :btree
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20171120123219) do
 
   create_table "estados", force: :cascade do |t|
     t.string   "nombre",     limit: 255
-    t.integer  "state_id",   limit: 4
+    t.bigint   "state_id",   limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -98,12 +98,12 @@ ActiveRecord::Schema.define(version: 20171120123219) do
 
   create_table "familias", force: :cascade do |t|
     t.string   "nombre",      limit: 255
-    t.integer  "zone_id",     limit: 4
-    t.integer  "ranchada_id", limit: 4
+    t.bigint   "zone_id",     limit: 4
+    t.bigint   "ranchada_id", limit: 4
     t.text     "descripcion", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "state_id",    limit: 4
+    t.bigint   "state_id",    limit: 4
   end
 
   add_index "familias", ["ranchada_id"], name: "index_familias_on_ranchada_id", using: :btree
@@ -132,10 +132,10 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "codigo_postal",       limit: 255
     t.decimal  "latitud",                           precision: 20, scale: 17
     t.decimal  "longitud",                          precision: 20, scale: 17
-    t.integer  "state_id",            limit: 4
+    t.bigint   "state_id",            limit: 4
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
-    t.integer  "institucion_tipo_id", limit: 4
+    t.bigint   "institucion_tipo_id", limit: 4
   end
 
   add_index "instituciones", ["institucion_tipo_id"], name: "index_instituciones_on_institucion_tipo_id", using: :btree
@@ -182,13 +182,13 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "subtitulo",            limit: 255
     t.datetime "fecha_desde"
     t.datetime "fecha_hasta"
-    t.integer  "notificacion_tipo_id", limit: 4
+    t.bigint   "notificacion_tipo_id", limit: 4
     t.text     "descripcion",          limit: 65535
     t.integer  "frecuencia_cant",      limit: 4
-    t.integer  "frecuencia_tipo_id",   limit: 4
+    t.bigint   "frecuencia_tipo_id",   limit: 4
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.integer  "state_id",             limit: 4
+    t.bigint   "state_id",             limit: 4
     t.datetime "prox_envio"
     t.boolean  "finalizada",           limit: 1
   end
@@ -200,11 +200,11 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   create_table "pedidos", force: :cascade do |t|
     t.datetime "fecha"
     t.string   "descripcion", limit: 255
-    t.integer  "person_id",   limit: 4
+    t.bigint   "person_id",   limit: 4
     t.boolean  "completado",  limit: 1
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "state_id",    limit: 4
+    t.bigint   "state_id",    limit: 4
   end
 
   add_index "pedidos", ["person_id"], name: "index_pedidos_on_person_id", using: :btree
@@ -213,21 +213,21 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   create_table "people", force: :cascade do |t|
     t.string   "nombre",           limit: 255
     t.string   "apellido",         limit: 255
-    t.integer  "zone_id",          limit: 4
+    t.bigint   "zone_id",          limit: 4
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "state_id",         limit: 4
+    t.bigint   "state_id",         limit: 4
     t.string   "dni",              limit: 255
     t.date     "fecha_nacimiento"
     t.string   "telefono",         limit: 255
-    t.integer  "familia_id",       limit: 4
+    t.bigint   "familia_id",       limit: 4
     t.text     "descripcion",      limit: 65535
-    t.integer  "ranchada_id",      limit: 4
+    t.bigint   "ranchada_id",      limit: 4
     t.string   "pantalon",         limit: 255
     t.string   "remera",           limit: 255
     t.string   "zapatillas",       limit: 255
-    t.integer  "estado_id",        limit: 4
-    t.integer  "institucion_id",   limit: 4
+    t.bigint   "estado_id",        limit: 4
+    t.bigint   "institucion_id",   limit: 4
   end
 
   add_index "people", ["estado_id"], name: "index_people_on_estado_id", using: :btree
@@ -239,13 +239,13 @@ ActiveRecord::Schema.define(version: 20171120123219) do
 
   create_table "ranchadas", force: :cascade do |t|
     t.string   "nombre",      limit: 255
-    t.integer  "zone_id",     limit: 4
+    t.bigint   "zone_id",     limit: 4
     t.text     "descripcion", limit: 65535
     t.decimal  "latitud",                   precision: 10
     t.decimal  "longitud",                  precision: 10
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.integer  "state_id",    limit: 4
+    t.bigint   "state_id",    limit: 4
   end
 
   add_index "ranchadas", ["state_id"], name: "index_ranchadas_on_state_id", using: :btree
@@ -255,11 +255,11 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "nombre",     limit: 255
     t.string   "apellido",   limit: 255
     t.string   "telefono",   limit: 255
-    t.integer  "area_id",    limit: 4
+    t.bigint   "area_id",    limit: 4
     t.string   "dia",        limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.integer  "state_id",   limit: 4
+    t.bigint   "state_id",   limit: 4
   end
 
   add_index "referentes", ["area_id"], name: "index_referentes_on_area_id", using: :btree
@@ -309,10 +309,10 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "nickname",               limit: 255
     t.string   "image",                  limit: 255
     t.text     "tokens",                 limit: 65535
-    t.integer  "rol_id",                 limit: 4
+    t.bigint   "rol_id",                 limit: 4
     t.string   "apellido",               limit: 255
-    t.integer  "area_id",                limit: 4
-    t.integer  "state_id",               limit: 4
+    t.bigint   "area_id",                limit: 4
+    t.bigint   "state_id",               limit: 4
     t.string   "dia",                    limit: 255
     t.date     "fecha_nacimiento"
     t.string   "telefono",               limit: 255
@@ -329,12 +329,12 @@ ActiveRecord::Schema.define(version: 20171120123219) do
   create_table "visits", force: :cascade do |t|
     t.text     "descripcion", limit: 65535
     t.datetime "fecha"
-    t.integer  "person_id",   limit: 4
+    t.bigint   "person_id",   limit: 4
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.decimal  "latitud",                   precision: 20, scale: 17
     t.decimal  "longitud",                  precision: 20, scale: 17
-    t.integer  "state_id",    limit: 4
+    t.bigint   "state_id",    limit: 4
     t.string   "direccion",   limit: 255
   end
 
@@ -345,7 +345,7 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "mensaje",     limit: 255
     t.datetime "fecha_desde"
     t.datetime "fecha_hasta"
-    t.integer  "person_id",   limit: 4
+    t.bigint   "person_id",   limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -356,10 +356,10 @@ ActiveRecord::Schema.define(version: 20171120123219) do
     t.string   "nombre",     limit: 255
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
-    t.integer  "area_id",    limit: 4
+    t.bigint   "area_id",    limit: 4
     t.decimal  "latitud",                precision: 20, scale: 17
     t.decimal  "longitud",               precision: 20, scale: 17
-    t.integer  "state_id",   limit: 4
+    t.bigint   "state_id",   limit: 4
   end
 
   add_index "zones", ["area_id"], name: "index_zones_on_area_id", using: :btree
