@@ -17,20 +17,63 @@ RSpec.feature "Listar personas" do
   let(:visita) { build(:visit)}
   let!(:persona) { create(:person, zone: zona, estado: estado, institucion: institucion, departamento_ids: [departamento.id], visits: [visita]) }
 
-  context "puede listar satisfactoriamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  scenario "usuario administrador ve todos los campos" do
+    login_as @admin
+    visit "/"
 
-      click_link "Personas"
+    click_link "Personas"
 
-      expect(page).to have_content(persona.nombre)
-      expect(page).to have_content(persona.visits.first.direccion)
-      expect(page).to have_content(persona.zone.area.nombre)
-      expect(page).to have_content(persona.zone.nombre)
-      expect(page).to have_content(persona.institucion.nombre)
-      expect(page).to have_content(persona.estado.nombre)
-      expect(page).to have_content(departamento.nombre)
-    end
+    expect(page).to have_content(persona.nombre)
+    expect(page).to have_content(persona.visits.first.direccion)
+    expect(page).to have_content(persona.zone.area.nombre)
+    expect(page).to have_content(persona.zone.nombre)
+    expect(page).to have_content(persona.institucion.nombre)
+    expect(page).to have_content(persona.estado.nombre)
+    expect(page).to have_content(departamento.nombre)
+  end
+
+  scenario "usuario coordinador ve todos los campos" do
+    login_as @coordinador
+    visit "/"
+
+    click_link "Personas"
+
+    expect(page).to have_content(persona.nombre)
+    expect(page).to have_content(persona.visits.first.direccion)
+    expect(page).to have_content(persona.zone.area.nombre)
+    expect(page).to have_content(persona.zone.nombre)
+    expect(page).to have_content(persona.institucion.nombre)
+    expect(page).to have_content(persona.estado.nombre)
+    expect(page).to have_content(departamento.nombre)
+  end
+
+  scenario "usuario referente ve todos los campos, excepto estado" do
+    login_as @referente
+    visit "/"
+
+    click_link "Personas"
+
+    expect(page).to have_content(persona.nombre)
+    expect(page).to have_content(persona.visits.first.direccion)
+    expect(page).to have_content(persona.zone.area.nombre)
+    expect(page).to have_content(persona.zone.nombre)
+    expect(page).to have_content(persona.institucion.nombre)
+    expect(page).not_to have_content(persona.estado.nombre)
+    expect(page).to have_content(departamento.nombre)
+  end
+
+  scenario "usuario voluntario ve todos los campos, excepto estado y área" do
+    login_as @voluntario
+    visit "/"
+
+    click_link "Personas"
+
+    expect(page).to have_content(persona.nombre)
+    expect(page).to have_content(persona.visits.first.direccion)
+    expect(page).to have_content(persona.zone.area.nombre)
+    expect(page).to have_content(persona.zone.nombre)
+    expect(page).to have_content(persona.institucion.nombre)
+    expect(page).not_to have_content(persona.estado.nombre)
+    expect(page).not_to have_content(departamento.nombre)
   end
 end
