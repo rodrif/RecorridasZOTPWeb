@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :institucion do
-    nombre { Faker::Name.first_name }
+    nombre { Faker::University.suffix }
     descripcion {Faker::Lorem.sentence }
     direccion { Faker::Address.street_address }
     contacto { Faker::Internet.email }

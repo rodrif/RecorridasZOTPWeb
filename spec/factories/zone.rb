@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :zone do
-    nombre { Faker::Name.first_name }
+    nombre { Faker::Alphanumeric.alpha(number: 10) }
     latitud { Faker::Address.latitude}
     longitud { Faker::Address.longitude}
     area_id { 1 }

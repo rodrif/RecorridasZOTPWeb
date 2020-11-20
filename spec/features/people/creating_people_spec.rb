@@ -17,26 +17,7 @@ RSpec.feature "Crear persona" do
     let(:visita) { build(:visit)}
     let(:persona) { create(:person, zone: zona, estado: estado, institucion: institucion, departamento_ids: [departamento.id], visits: [visita]) }
 
-    scenario "usuario administrador carga todos los campos" do
-      login_as @admin
-      visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
-
-      fill_in name: "person[nombre]", with: persona.nombre
-      select area.nombre, from: "person[area_id]"
-
-      within("#new_person") do
-        click_button "Aceptar"
-      end
-
-      expect(page).to have_content("Persona creada correctamente")
-      expect(current_path).to eq(people_path)
-      expect(page).to have_content(persona.nombre)
-    end
-
-    scenario "administrador carga solo nombre, sede y zona" do
+    scenario "administrador carga todos los campos" do
       login_as @admin
       visit "/"
 
@@ -65,10 +46,35 @@ RSpec.feature "Crear persona" do
 
       expect(page).to have_content("Persona creada correctamente")
       expect(current_path).to eq(people_path)
+      tr = find("td", :text => persona.nombre).find(:xpath, '..')
+      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
+      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
+      expect(tr.find(:xpath, 'td[3]')).to have_content(area.nombre)
+      expect(tr.find(:xpath, 'td[4]')).to have_content(zona.nombre)
+      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
+      expect(tr.find(:xpath, 'td[6]')).to have_content(estado.nombre)
+      expect(tr.find(:xpath, 'td[7]')).to have_content(departamento.nombre)
+    end
+
+    scenario "usuario administrador carga solo nombre, sede y zona" do
+      login_as @admin
+      visit "/"
+
+      click_link "Personas"
+      click_link "Nueva persona"
+
+      fill_in name: "person[nombre]", with: persona.nombre
+      select area.nombre, from: "person[area_id]"
+
+      within("#new_person") do
+        click_button "Aceptar"
+      end
+
+      expect(page).to have_content("Persona creada correctamente")
+      expect(current_path).to eq(people_path)
       expect(page).to have_content(persona.nombre)
-      expect(page).to have_content(visita.direccion)
-      expect(page).to have_content(estado.nombre)
-      expect(page).to have_content(departamento.nombre)
+      expect(page).to have_content(area.nombre)
+      expect(page).to have_content(zona.nombre)
     end
 
     scenario "usuario coordinador carga todos los campos" do
@@ -100,10 +106,14 @@ RSpec.feature "Crear persona" do
 
       expect(page).to have_content("Persona creada correctamente")
       expect(current_path).to eq(people_path)
-      expect(page).to have_content(persona.nombre)
-      expect(page).to have_content(visita.direccion)
-      expect(page).to have_content(estado.nombre)
-      expect(page).to have_content(departamento.nombre)
+      tr = find("td", :text => persona.nombre).find(:xpath, '..')
+      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
+      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
+      expect(tr.find(:xpath, 'td[3]')).to have_content(area.nombre)
+      expect(tr.find(:xpath, 'td[4]')).to have_content(zona.nombre)
+      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
+      expect(tr.find(:xpath, 'td[6]')).to have_content(estado.nombre)
+      expect(tr.find(:xpath, 'td[7]')).to have_content(departamento.nombre)
     end
 
     scenario "usuario referente carga todos los campos, excepto Estado" do
@@ -135,10 +145,13 @@ RSpec.feature "Crear persona" do
 
       expect(current_path).to eq(people_path)
       expect(page).to have_content("Persona creada correctamente")
-      expect(page).to have_content(persona.nombre)
-      expect(page).to have_content(visita.direccion)
-      expect(page).not_to have_content(estado.nombre)
-      expect(page).to have_content(departamento.nombre)
+      tr = find("td", :text => persona.nombre).find(:xpath, '..')
+      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
+      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
+      expect(tr.find(:xpath, 'td[3]')).to have_content(area.nombre)
+      expect(tr.find(:xpath, 'td[4]')).to have_content(zona.nombre)
+      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
+      expect(tr.find(:xpath, 'td[6]')).to have_content(departamento.nombre)
     end
   end
 
