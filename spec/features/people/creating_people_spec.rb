@@ -55,12 +55,12 @@ RSpec.feature "Un usuario crea una persona" do
 
       expect(page).to have_content("Persona creada correctamente")
       expect(current_path).to eq(people_path)
-      tr = find("td", :text => persona.nombre).find(:xpath, '..')
-      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
-      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
-      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
-      expect(tr.find(:xpath, 'td[6]')).to have_content(estado.nombre)
-      expect(tr.find(:xpath, 'td[7]')).to have_content(departamento.nombre)
+
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => estado.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
     end
 
     scenario "solo nombre, sede y zona" do
@@ -79,8 +79,7 @@ RSpec.feature "Un usuario crea una persona" do
 
       expect(page).to have_content("Persona creada correctamente")
       expect(current_path).to eq(people_path)
-      tr = find("td", :text => persona.nombre).find(:xpath, '..')
-      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
     end
 
     scenario "al crearlo se genera una visita asociada con la dirección cargada" do
@@ -100,15 +99,14 @@ RSpec.feature "Un usuario crea una persona" do
       end
 
       expect(page).to have_content("Persona creada correctamente")
-      find("td", :text => persona.nombre).find(:xpath, '../td[8]/a', :class => "glyphicon-eye-open").click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-eye-open").click
 
       expect(current_path).to eq(visits_path(person_id: persona.id))
-      tr = find("td", :text => persona.nombre).find(:xpath, '..')
-      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
-      expect(tr.find(:xpath, 'td[3]')).to have_content("Persona vista por primera vez")
-      expect(tr.find(:xpath, 'td[4]')).to have_content(visita.latitud)
-      expect(tr.find(:xpath, 'td[5]')).to have_content(visita.longitud)
-      expect(tr.find(:xpath, 'td[6]')).to have_content(visita.direccion)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => "Persona vista por primera vez")
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.latitud)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.longitud)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
     end
 
 
@@ -142,12 +140,11 @@ RSpec.feature "Un usuario crea una persona" do
 
       expect(page).to have_content("Persona creada correctamente")
       expect(current_path).to eq(people_path)
-      tr = find("td", :text => persona.nombre).find(:xpath, '..')
-      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
-      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
-      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
-      expect(tr.find(:xpath, 'td[6]')).to have_content(estado.nombre)
-      expect(tr.find(:xpath, 'td[7]')).to have_content(departamento.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => estado.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
     end
 
     scenario "usuario referente carga todos los campos, excepto Estado que no lo tiene visible" do
@@ -179,11 +176,10 @@ RSpec.feature "Un usuario crea una persona" do
 
       expect(current_path).to eq(people_path)
       expect(page).to have_content("Persona creada correctamente")
-      tr = find("td", :text => persona.nombre).find(:xpath, '..')
-      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
-      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
-      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
-      expect(tr.find(:xpath, 'td[6]')).to have_content(departamento.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
     end
 
     scenario "usuario voluntario carga todos los campos, excepto Estado, DNI, Telefono, Fecha de Nac, Pantalón, Remera, Zapatilla que no lo tiene visible" do
@@ -215,10 +211,9 @@ RSpec.feature "Un usuario crea una persona" do
 
       expect(current_path).to eq(people_path)
       expect(page).to have_content("Persona creada correctamente")
-      tr = find("td", :text => persona.nombre).find(:xpath, '..')
-      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
-      expect(tr.find(:xpath, 'td[2]')).to have_content(visita.direccion)
-      expect(tr.find(:xpath, 'td[5]')).to have_content(institucion.nombre)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
+      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
     end
   end
 

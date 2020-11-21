@@ -23,7 +23,7 @@ RSpec.feature "Borrar persona" do
       login_as @admin
 
       visit people_path
-      find(:xpath, "//tr[contains(., #{persona.nombre})]/td/a", :text => 'Borrar').click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
 
       expect(page).to have_content("Persona borrada correctamente")
       expect(page).not_to have_content(persona.nombre)
@@ -35,7 +35,7 @@ RSpec.feature "Borrar persona" do
       login_as @coordinador
 
       visit people_path
-      find(:xpath, "//tr[contains(., #{persona.nombre})]/td/a", :text => 'Borrar').click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
 
       expect(page).to have_content("Persona borrada correctamente")
       expect(page).not_to have_content(persona.nombre)
@@ -47,7 +47,7 @@ RSpec.feature "Borrar persona" do
       login_as @referente
 
       visit people_path
-      find(:xpath, "//tr[contains(., #{persona.nombre})]/td/a", :text => 'Borrar').click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
 
       expect(page).to have_content("Persona borrada correctamente")
       expect(page).not_to have_content(persona.nombre)
@@ -56,13 +56,13 @@ RSpec.feature "Borrar persona" do
     end
   end
 
-  # context "no puede eliminar" do
-  #   scenario "si usuario es referente" do
-  #     login_as @referente
-  #
-  #     visit instituciones_path
-  #
-  #     expect(page).not_to have_link("Borrar")
-  #   end
-  # end
+  context "no puede eliminar" do
+    scenario "si usuario es voluntario" do
+      login_as @voluntario
+
+      visit people_path
+
+      expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove")
+    end
+  end
 end
