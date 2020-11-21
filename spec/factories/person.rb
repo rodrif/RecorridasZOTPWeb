@@ -9,6 +9,7 @@ FactoryBot.define do
     remera { 'M' }
     zapatillas { '41' }
     descripcion { Faker::Lorem.sentence }
+    zone { Zone.first }
     state_id { 1 }
   end
 
