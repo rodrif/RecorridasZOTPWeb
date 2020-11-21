@@ -50,7 +50,6 @@ Rails.application.routes.draw do
   get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
 
   resources :visits
-  resources :locations
   resources :people
   resources :zones
   resources :mapa
