@@ -83,6 +83,35 @@ RSpec.feature "Un usuario crea una persona" do
       expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
     end
 
+    scenario "al crearlo se genera una visita asociada con la dirección cargada" do
+      login_as @admin
+      visit "/"
+
+      click_link "Personas"
+      click_link "Nueva persona"
+
+      fill_in name: "person[nombre]", with: persona.nombre
+      select area.nombre, from: "person[area_id]"
+      fill_in name: "person[visits_attributes][0][latitud]", with: visita.latitud
+      fill_in name: "person[visits_attributes][0][longitud]", with: visita.longitud
+
+      within("#new_person") do
+        click_button "Aceptar"
+      end
+
+      expect(page).to have_content("Persona creada correctamente")
+      find("td", :text => persona.nombre).find(:xpath, '../td[8]/a', :class => "glyphicon-eye-open").click
+
+      expect(current_path).to eq(visits_path(person_id: persona.id))
+      tr = find("td", :text => persona.nombre).find(:xpath, '..')
+      expect(tr.find(:xpath, 'td[1]')).to have_content(persona.nombre)
+      expect(tr.find(:xpath, 'td[3]')).to have_content("Persona vista por primera vez")
+      expect(tr.find(:xpath, 'td[4]')).to have_content(visita.latitud)
+      expect(tr.find(:xpath, 'td[5]')).to have_content(visita.longitud)
+      expect(tr.find(:xpath, 'td[6]')).to have_content(visita.direccion)
+    end
+
+
     scenario "usuario coordinador carga todos los campos" do
       login_as @coordinador
       visit "/"
