@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :institucion do
-    nombre { Faker::University.suffix }
+    nombre { Faker::Alphanumeric.alpha(number: 10) }
     descripcion {Faker::Lorem.sentence }
     direccion { Faker::Address.street_address }
     contacto { Faker::Internet.email }
