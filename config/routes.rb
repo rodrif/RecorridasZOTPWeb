@@ -49,9 +49,7 @@ Rails.application.routes.draw do
   get 'mapa/mostrar' => 'mapa#mostrar'
   get 'mapa/mobMapaPersonas' => 'mapa#mobMapaPersonas'
 
-  resources :welcome_messages
   resources :visits
-  resources :locations
   resources :people
   resources :zones
   resources :mapa

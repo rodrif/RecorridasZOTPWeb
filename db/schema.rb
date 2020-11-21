@@ -11,25 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201118122219) do
-
-  create_table "alert_types", force: :cascade do |t|
-    t.string   "nombre",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "alerts", force: :cascade do |t|
-    t.string   "mensaje",       limit: 255
-    t.datetime "fecha"
-    t.integer  "zone_id",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "alert_type_id", limit: 4
-  end
-
-  add_index "alerts", ["alert_type_id"], name: "index_alerts_on_alert_type_id", using: :btree
-  add_index "alerts", ["zone_id"], name: "index_alerts_on_zone_id", using: :btree
+ActiveRecord::Schema.define(version: 20201121232938) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -295,17 +277,6 @@ ActiveRecord::Schema.define(version: 20201118122219) do
   add_index "visits", ["person_id"], name: "index_visits_on_person_id", using: :btree
   add_index "visits", ["state_id"], name: "index_visits_on_state_id", using: :btree
 
-  create_table "welcome_messages", force: :cascade do |t|
-    t.string   "mensaje",     limit: 255
-    t.datetime "fecha_desde"
-    t.datetime "fecha_hasta"
-    t.integer  "person_id",   limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  add_index "welcome_messages", ["person_id"], name: "index_welcome_messages_on_person_id", using: :btree
-
   create_table "zones", force: :cascade do |t|
     t.string   "nombre",     limit: 255
     t.datetime "created_at",                                       null: false
@@ -319,8 +290,6 @@ ActiveRecord::Schema.define(version: 20201118122219) do
   add_index "zones", ["area_id"], name: "index_zones_on_area_id", using: :btree
   add_index "zones", ["state_id"], name: "index_zones_on_state_id", using: :btree
 
-  add_foreign_key "alerts", "alert_types"
-  add_foreign_key "alerts", "zones"
   add_foreign_key "areas", "states"
   add_foreign_key "auditorias", "users"
   add_foreign_key "departamentos", "states"
@@ -339,7 +308,6 @@ ActiveRecord::Schema.define(version: 20201118122219) do
   add_foreign_key "users", "states"
   add_foreign_key "visits", "people"
   add_foreign_key "visits", "states"
-  add_foreign_key "welcome_messages", "people"
   add_foreign_key "zones", "areas"
   add_foreign_key "zones", "states"
 end
