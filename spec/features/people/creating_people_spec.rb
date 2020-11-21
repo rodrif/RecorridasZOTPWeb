@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature "Un usuario crea una persona" do
+RSpec.feature "Crear persona" do
 
   before do
     @admin = create(:user_admin)
