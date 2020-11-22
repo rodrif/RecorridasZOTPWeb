@@ -22,10 +22,14 @@
 env :PATH, ENV['PATH']
 set :output, "log/cron_log.log"
 
-every 1.hour do
-  runner "NotificacionDataAccess.enviarNotificaciones"
+every 1.day, at: '10:00 am' do
+  runner "NotificacionDataAccess.proxCumpleanios", :environment => "production"
 end
 
-# every 1.hour do
-#   runner "NotificacionDataAccess.enviarNotificaciones", :environment => :development
-# end
+every 1.day, at: '10:00 am' do
+  runner "NotificacionDataAccess.enviarCumpleanios", :environment => "production"
+end
+
+ every 1.hour do
+   runner "NotificacionDataAccess.enviarNotificaciones", :environment => "production"
+ end
