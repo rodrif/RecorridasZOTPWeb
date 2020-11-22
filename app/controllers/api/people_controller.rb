@@ -12,4 +12,9 @@ class Api::PeopleController < Api::ApiController
     render :json => respuesta
   end
 
+  def get
+    respuesta = PersonDataAccess.get
+    render :json => respuesta
+  end
+
 end

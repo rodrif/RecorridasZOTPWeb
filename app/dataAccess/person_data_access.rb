@@ -20,7 +20,12 @@ class PersonDataAccess
     end
 
 		respuesta
-	end
+  end
+
+  def self.get
+    select = 'people.id as person_id, people.nombre as person_name, people.apellido as person_apellido, zones.nombre as zone_nombre'
+    Person.joins(:zone).select(select)
+  end
 
   def self.upload user, json, fecha = nil
     respuesta = Hash.new
