@@ -3,7 +3,7 @@
     <div class="table-responsive well">
         <div class="row-fluid">
           <div class="col-xs-12 col-md-3 margen-vert">
-            Área
+            Sede
             <%= select 'aaa', 'area_id', Area.activas.collect {|a| [a.nombre, a.id]},
           { include_blank: 'Todas' } %>
           </div>

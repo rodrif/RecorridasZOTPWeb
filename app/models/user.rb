@@ -21,7 +21,8 @@ class User < ApplicationRecord
     available_filters: [
       :search_query,
       :with_area_id,
-      :voluntarios_activos
+      :voluntarios_activos,
+      :with_email
     ]
   )
 
@@ -53,7 +54,11 @@ class User < ApplicationRecord
     where("area_id = ?", area_id)
   }
 
-  scope :activos, -> { where.not(state_id: 3).order(:name) }
+  scope :with_email, lambda { |email|
+    where("email = ?", email)
+  }
+
+  scope :activos, -> { where.not(state_id: 3) }
 
   scope :coordinadores, lambda { |area_id|
     where.not(state_id: 3).where(rol_id: [1,2,3]).with_area_id(area_id)
@@ -71,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def getDescripcionAuditoria
-    return "Nombre: #{name} Apellido: #{apellido} Área: #{area.nombre} Rol: #{rol.nombre} Email: #{email}"
+    return "Nombre: #{name} Apellido: #{apellido} Sede: #{area.nombre} Rol: #{rol.nombre} Email: #{email}"
   end
 
 end

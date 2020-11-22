@@ -14,7 +14,7 @@ class Familia < ApplicationRecord
 
   filterrific(
     available_filters: [
-      :search_query,    
+      :search_query,
       :with_zone_id,
       :with_area_id
     ]
@@ -54,7 +54,7 @@ class Familia < ApplicationRecord
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
   def getDescripcionAuditoria
-    return "Nombre: #{nombre} Área: #{zone.area.nombre} Zona: #{zone.nombre} Ranchada: #{ranchada.nombre if !ranchada.nil?} Descripción: #{descripcion}"
+    return "Nombre: #{nombre} Sede: #{zone.area.nombre} Zona: #{zone.nombre} Ranchada: #{ranchada.nombre if !ranchada.nil?} Descripción: #{descripcion}"
   end
 
 end

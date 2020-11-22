@@ -6,7 +6,7 @@ wb.styles do |style|
 
   wb.add_worksheet(name: "Visitas") do |sheet|
     sheet.add_row [
-      "Área",
+      "Sede",
       "Zona",
       "Visitas"
     ], :style => title_cell

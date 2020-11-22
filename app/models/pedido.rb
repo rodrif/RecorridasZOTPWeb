@@ -14,6 +14,7 @@ class Pedido < ApplicationRecord
       :with_area_id,
       :with_zone_id,
       :with_person_id,
+      :is_complete,
     ]
   )
 
@@ -53,13 +54,21 @@ class Pedido < ApplicationRecord
     joins(:person).where("people.id = ?", person_id)
   }
 
-    scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
-
-    def estaCompletado
-      return self.completado ? 'Si' : 'No'
+  scope :is_complete, lambda { |is_complete|
+    if is_complete == 'Si'
+      where("completado = ?", 1)
+    else
+      where("completado = ? or completado is null", 0)
     end
+  }
 
-    def getDescripcionAuditoria
-        return "Persona: #{person.full_name if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
-    end
+  scope :activos, -> { where.not(state_id: 3).order(fecha: :desc) }
+
+  def estaCompletado
+    return self.completado ? 'Si' : 'No'
+  end
+
+  def getDescripcionAuditoria
+    return "Persona: #{person.full_name if !person.nil?} Fecha: #{fecha.to_date()} Descripción: #{descripcion}"
+  end
 end

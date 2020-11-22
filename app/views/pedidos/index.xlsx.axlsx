@@ -9,7 +9,7 @@ wb.styles do |style|
       "Fecha",
       "Persona",
       "Descripción",
-      "Área",
+      "Sede",
       "Zona",
       "Estado",
       "Completado"

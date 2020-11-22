@@ -8,7 +8,7 @@
         <%= f.select(
           :with_area_id,
           @filterrific.select_options[:with_area_id],
-          { include_blank: 'Área' },
+          { include_blank: 'Sede' },
           { class: "form-control" }
         ) %>
       </div>
@@ -69,7 +69,7 @@
 <!-- Initialize the plugin: -->
 <script type="text/javascript">
     $('#filterrific_with_departamento_id').multiselect({
-      nonSelectedText: 'Sectores',
+      nonSelectedText: 'Áreas',
       numberDisplayed: 1,
       nSelectedText: ' seleccionados',
       allSelectedText: 'Todos'

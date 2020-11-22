@@ -6,7 +6,7 @@ class Auditoria < ApplicationRecord
   BAJA = 'Baja'
   MODIFICACION = 'Modificación'
 
-  AREA = 'Área'
+  AREA = 'Sede'
   FAMILIA = 'Familia'
   PERSONA = 'Persona'
   RANCHADA = 'Ranchada'

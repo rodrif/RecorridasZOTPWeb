@@ -1,25 +1,26 @@
 class PedidoDataAccess
 
 	def self.download datosJson = nil, fecha = nil
-		respuesta = Hash.new
-		respuesta['datos'] = Hash.new
-		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
 
 		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, completado, state_id AS estado, updated_at'
     if fecha.nil?
-      respuesta['datos'] = Pedido.select(query)
+      sqlResult = Pedido.select(query)
     else
-      respuesta['datos'] = Pedido.where('updated_at > ?', fecha).select(query)
+      sqlResult = Pedido.where('updated_at > ?', fecha).select(query)
     end
 
-		respuesta['datos'].each_with_index do |p, index|
+    resultado = Hash.new
+    resultado['datos'] = []
+    resultado['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
+
+		sqlResult.each_with_index do |p, index|
 			fecha = p.fecha.to_datetime.strftime('%Q')
 			p = p.attributes
 			p['fecha'] = fecha
-			respuesta['datos'][index] = p
+			resultado['datos'][index] = p
 		end
 
-		respuesta
+		resultado
 	end
 
 	def self.upload user, json, fecha = nil

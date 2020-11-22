@@ -13,7 +13,7 @@ class Ranchada < ApplicationRecord
 
   filterrific(
     available_filters: [
-      :search_query,    
+      :search_query,
       :with_zone_id,
       :with_area_id
     ]
@@ -53,7 +53,7 @@ class Ranchada < ApplicationRecord
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
   def getDescripcionAuditoria
-    return "Nombre: #{nombre} Área: #{zone.area.nombre} Zona: #{zone.nombre} Descripción: #{descripcion}"
+    return "Nombre: #{nombre} Sede: #{zone.area.nombre} Zona: #{zone.nombre} Descripción: #{descripcion}"
   end
 
 end

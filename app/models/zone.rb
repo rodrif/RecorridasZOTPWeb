@@ -58,7 +58,7 @@ class Zone < ApplicationRecord
   scope :activas, -> { where.not(state_id: 3).order(:nombre) }
 
   def getDescripcionAuditoria
-    return "Nombre: #{nombre} Área: #{area.nombre if !area.nil?}"
+    return "Nombre: #{nombre} Sede: #{area.nombre if !area.nil?}"
   end
 
 end

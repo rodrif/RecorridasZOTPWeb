@@ -81,7 +81,7 @@ class InformesController < ApplicationController
 
   def visitas
     @filterrific = initialize_filterrific(
-      Auditoria,
+      Visit,
       params[:filterrific],
       select_options: {
         visitas: Area.options_for_select,

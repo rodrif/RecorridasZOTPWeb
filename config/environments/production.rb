@@ -24,7 +24,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -79,7 +79,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = {:host => "recorridaszo.ddnsking.com"}
+  config.action_mailer.default_url_options = {:host => "recorridaszo.ddns.net"}
+
+  config.force_ssl = true
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

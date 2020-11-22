@@ -5,16 +5,16 @@ es:
     estado: Estado
     estados: Estados
     nuevo_estado: Nueva estado
-    nuevo_departamento: Nuevo sector
+    nuevo_departamento: Nueva área
     telefono: Teléfono
     ver_editar: Ver / Editar
     exito:
       creacion_estado: Estado creado correctamente.
       actualizacion_estado: Estado actualizado correctamente.
       borrado_estado: Estado borrado correctamente.
-      creacion_departamento: Sector creado correctamente.
-      actualizacion_departamento: Sector actualizado correctamente.
-      borrado_departamento: Sector borrado correctamente.
+      creacion_departamento: Área creada correctamente.
+      actualizacion_departamento: Área actualizada correctamente.
+      borrado_departamento: Área borrada correctamente.
       actualizacion_ranchada: Ranchada actualizada correctamente.
       borrado_ranchada: Ranchada borrada correctamente.
     errores:
@@ -61,14 +61,14 @@ es:
         subtitulo: Subtítulo
         descripcion: Descripción
         frecuencia_cant: Frecuencia
-        areas: Áreas
+        areas: Sedes
       pedido:
         person: Persona
     models:
       departamento:
-        zero:  Sector
-        one:   Sector
-        other: Sectores
+        zero:  Área
+        one:   Área
+        other: Áreas
       estado:
         zero:  Estado
         one:   Estado
@@ -86,9 +86,9 @@ es:
         one:   Visita
         other: Visitas
       area:
-        zero:  Área
-        one:   Área
-        other: Áreas
+        zero:  Sede
+        one:   Sedes
+        other: Sedes
       zone:
         zero:  Zona
         one:   Zona

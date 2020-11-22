@@ -8,7 +8,7 @@ wb.styles do |style|
     sheet.add_row [
       "Nombre",
       "Apellido",
-      "Área",
+      "Sede",
       "Rol",
       "Email",
       "Teléfono",

@@ -10,7 +10,7 @@
         <tr>
           <th>Nombre</th>
           <th>Apellido</th>
-          <th>Área</th>
+          <th>Sede</th>
           <th>Rol</th>
           <th>Email</th>
           <th>Teléfono</th>
@@ -25,7 +25,7 @@
             <td><%= voluntario.name %></td>
             <td><%= voluntario.apellido %></td>
             <% if voluntario.area.nil? %>
-              <td>Sin Área</td>
+              <td>Sin Sede</td>
             <% else %>
               <td><%= voluntario.area.nombre %></td>
             <% end %>

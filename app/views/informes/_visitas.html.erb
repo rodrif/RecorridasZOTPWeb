@@ -4,7 +4,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Área</th>
+          <th>Sede</th>
           <th>Zona</th>
           <th>Cantidad de visitas</th>
         </tr>
@@ -22,4 +22,7 @@
     </table>
   </div>
 
+  <div class="paginacion">
+    <%= will_paginate @visitas, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
+  </div>
 </div>
