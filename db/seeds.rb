@@ -198,3 +198,79 @@ User.create!([
   }
 ])
 
+Jornada.create([
+  { id: 1, nombre: 'Lunes'},
+  { id: 2, nombre: 'Martes'},
+  { id: 3, nombre: 'Miercoles'},
+  { id: 4, nombre: 'Jueves'},
+  { id: 5, nombre: 'Viernes'},
+  { id: 6, nombre: 'Sabado'},
+  { id: 7, nombre: 'Domingo'}
+])
+
+Departamento.create([
+  { id: 1, nombre: 'Adicciones', state_id: 1},
+  { id: 2, nombre: 'Animales', state_id: 1},
+  { id: 3, nombre: 'Asesoramiento Jurídico', state_id: 1},
+  { id: 4, nombre: 'Asistencia Social', state_id: 1},
+  { id: 5, nombre: 'Documentación', state_id: 1},
+  { id: 6, nombre: 'Inclusión Escolar', state_id: 1},
+  { id: 7, nombre: 'Inclusión Laboral', state_id: 1},
+  { id: 8, nombre: 'Jubilaciones', state_id: 1},
+  { id: 9, nombre: 'Materno Infantil', state_id: 1},
+  { id: 10, nombre: 'Psicología', state_id: 1},
+  { id: 11, nombre: 'Salud', state_id: 1},
+  { id: 12, nombre: 'Visitas', state_id: 1}
+])
+
+Person.create([
+  {
+    id: 1,
+    nombre: 'persona a',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  }
+])
+
+Visit.create([
+  {
+    id: 1,
+    descripcion: 'Persona vista por primera vez',
+    fecha: '2020-11-22 03:00:00',
+    person_id: 1,
+    latitud: -34.64018822007153000,
+    longitud: -58.52389718458151000,
+    state_id: 1,
+    direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+  }
+])
+
+Pedido.create([
+  {
+    id: 1,
+    fecha: '2020-11-22 03:00:00',
+    descripcion: 'Frazada',
+    person_id: 1,
+    completado: 0,
+    state_id: 1
+  }
+])
+
+
+Institucion.create([
+  {
+    id: 1,
+    nombre: 'Institucion 1',
+    descripcion: 'Una descripcion',
+    direccion: 'Direccion manual',
+    contacto: 'Juan',
+    telefono: 111111111,
+    codigo_postal: 1111,
+    latitud: -34.59171496828844000,
+    longitud: -58.41477054009286000,
+    state_id: 1
+  }
+])
