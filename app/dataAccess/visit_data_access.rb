@@ -21,7 +21,12 @@ class VisitDataAccess
 		end
 
 		resultado
-	end
+  end
+
+  def self.get
+    select = 'people.id as person_id, people.nombre as person_name, coalesce(people.apellido, "") as person_apellido, zones.nombre as zone_nombre, DATE_FORMAT(visits.fecha, "%d/%m/%Y") as visit_fecha'
+    Visit.joins(person: :zone).select(select)
+  end
 
 	def self.upload user, json, fecha = nil
 		respuesta = Hash.new

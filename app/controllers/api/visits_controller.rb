@@ -12,4 +12,9 @@ class Api::VisitsController < Api::ApiController
     render :json => respuesta
   end
 
+  def get
+    respuesta = VisitDataAccess.get
+    render :json => respuesta
+  end
+
 end
