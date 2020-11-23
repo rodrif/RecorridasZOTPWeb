@@ -36,6 +36,7 @@ gem 'axlsx'
 gem 'caxlsx_rails'
 gem 'caracal-rails'
 gem 'delayed_job'
+gem 'google-api-client', '~> 0.34'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
