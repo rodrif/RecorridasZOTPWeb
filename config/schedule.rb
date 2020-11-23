@@ -30,6 +30,6 @@ every 1.day, at: '10:00 am' do
   runner "NotificacionDataAccess.enviarCumpleanios", :environment => "production"
 end
 
- every 1.hour do
-   runner "NotificacionDataAccess.enviarNotificaciones", :environment => "production"
- end
+every 1.hour do
+  runner "NotificacionDataAccess.enviarNotificaciones", :environment => "production"
+end
