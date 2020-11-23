@@ -1,3 +1,6 @@
+require 'google/apis/content_v2'
+require 'googleauth' # https://github.com/googleapis/google-auth-library-ruby
+
 class NotificacionDataAccess
 
   # def self.download datosJson = nil, fecha = nil
@@ -33,6 +36,17 @@ class NotificacionDataAccess
     #delay.enviarPrueba
   end
 
+  def self.getToken
+    content = Google::Apis::ContentV2::ShoppingContentService.new
+    scope = 'https://www.googleapis.com/auth/firebase.messaging'
+    content.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
+      json_key_io: File.open('./config/service-account-file.json'),
+      scope: scope
+    )
+    token = content.authorization.fetch_access_token!
+    token["access_token"]
+  end
+
   def self.borrar_logico notificacion, user
     notificacion.state_id = 3
     notificacion.save(validate: false)
@@ -53,14 +67,12 @@ class NotificacionDataAccess
       notificacion.descripcion = "#{descripcion}"
       notificacion.notificacion_tipo = NotificacionTipo.new
       notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
-      Rol.activos.each do |r|
-        response = http.request(self.createRequest(url, notificacion, r.nombre, p.zone.area_id, p.id))
-      end
+      response = http.request(self.createRequest(url, notificacion, 'all', p.zone.area_id, p.id))
     end
   end
 
   def self.createUrl
-    return URI.parse('https://gcm-http.googleapis.com/gcm/send')
+    return URI.parse('https://fcm.googleapis.com/v1/projects/recorridasflutter/messages:send')
   end
 
   def self.createHttp url
@@ -70,17 +82,22 @@ class NotificacionDataAccess
   end
 
   def self.createRequest url, notificacion, topic, areaId, personaId = nil
-    request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'key=AIzaSyDdrRhWx2vSJF9VQShaBQ1zFo8IkI67Vcc'})
+    request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'Bearer ' + self.getToken()})
     request.body = "{
-      \"to\": \"/topics/#{topic}\",
-      \"data\": {
-        \"titulo\": \"#{notificacion.titulo}\",
-        \"subtitulo\": \"#{notificacion.subtitulo}\",
-        \"descripcion\": \"#{notificacion.descripcion}\",
-        \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
-        \"persona_id\": \"#{personaId ? personaId : ''}\",
-        \"area_id\": \"#{areaId ? areaId.to_s : ''}\"
-       }
+      \"message\": {
+        \"topic\": \"all\",
+        \"notification\": {
+          \"title\": \"#{notificacion.titulo}\",
+          \"body\": \"#{notificacion.subtitulo}\"
+        },
+        \"data\": {
+          \"click_action\": \"FLUTTER_NOTIFICATION_CLICK\",
+          \"descripcion\": \"#{notificacion.descripcion}\",
+          \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
+          \"persona_id\": \"#{personaId ? personaId : ''}\",
+          \"area_id\": \"#{areaId ? areaId.to_s : ''}\"
+        }
+      }
     }"
     return request
   end
