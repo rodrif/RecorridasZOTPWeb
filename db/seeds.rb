@@ -8,6 +8,15 @@
 
 estados = State.create!([ { nombre: 'Actualizado', id: 1 }, { nombre: 'Borrado', id: 3 } ])
 
+Jornada.create!([
+  { nombre: "Lunes" },
+  { nombre: "Martes" },
+  { nombre: "Miércoles" },
+  { nombre: "Jueves" },
+  { nombre: "Viernes" },
+  { nombre: "Sábado" },
+  { nombre: "Domingo" }
+])
 areas = Area.create!([ { nombre: 'Oeste', state_id: 1 }, { nombre: 'Capital', state_id: 1 } ])
 
 zonas = Zone.create!([
