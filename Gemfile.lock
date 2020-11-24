@@ -177,7 +177,6 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     jwt (2.2.2)
-    libv8 (3.16.14.19)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -238,7 +237,6 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
     rdoc (6.2.1)
-    ref (2.0.0)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -297,9 +295,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -371,7 +366,6 @@ DEPENDENCIES
   selenium-webdriver
   simple_calendar
   spring
-  therubyracer
   turbolinks
   uglifier
   web-console
