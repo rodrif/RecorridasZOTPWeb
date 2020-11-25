@@ -28,6 +28,7 @@ FactoryBot.define do
     end
 
     factory :user_invitado do
+      confirmed_at {Faker::Date.backward(days: 14)}
       rol_id {5}
     end
   end
