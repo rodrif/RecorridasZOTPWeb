@@ -42,4 +42,11 @@ RSpec.feature "Registración de usuario" do
     expect(mail_to_coordinador.subject).to eq("Un voluntario se registró en la web")
   end
 
+  scenario "si el mail registrado ya existe falla" do
+    user.email = coordinador.email
+    fill_form_and_sign_up
+
+    expect(page).to have_content("Email ya ha sido tomado")
+  end
+
 end
