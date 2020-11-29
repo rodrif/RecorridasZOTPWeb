@@ -15,8 +15,6 @@ es:
       creacion_departamento: Área creada correctamente.
       actualizacion_departamento: Área actualizada correctamente.
       borrado_departamento: Área borrada correctamente.
-      actualizacion_ranchada: Ranchada actualizada correctamente.
-      borrado_ranchada: Ranchada borrada correctamente.
     errores:
       foreign_key: No se pudo borrar porque el registro esta siendo utilizado.
       errores: Errores
@@ -53,10 +51,6 @@ es:
         password_confirmation: Confirmar contraseña
         current_password: Contraseña actual
         telefono: Teléfono
-      ranchada:
-        descripcion: Descripción
-      familia:
-        descripcion: Descripción
       notificacion:
         titulo: Título
         subtitulo: Subtítulo
@@ -98,14 +92,6 @@ es:
         zero:  Pedido
         one:   Pedido
         other: Pedidos
-      ranchada:
-        zero:  Ranchada
-        one:   Ranchada
-        other: Ranchadas
-      familia:
-        zero:  Familia
-        one:   Familia
-        other: Familias
       referente:
         zero:  Referente
         one:   Referente
