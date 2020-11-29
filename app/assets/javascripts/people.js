@@ -18,7 +18,6 @@ function cargarUbicacionPersona() {
 	var mapaUbicacion = new MapaUbicacion(latitud, longitud, latSelector, lngSelector, "googleMapPersona", mapDisabled);
 
 	cargarUbicacionZona();
-	cargarUbicacionRanchada();
 
   if (mapDisabled) {
     $('#person_visits_attributes_0_direccion').prop('disabled', true);
