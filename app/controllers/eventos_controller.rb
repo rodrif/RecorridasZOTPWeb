@@ -1,10 +1,11 @@
 class EventosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
 
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all
+    @eventos = current_user.eventos.all
   end
 
   # GET /eventos/1
@@ -25,6 +26,7 @@ class EventosController < ApplicationController
   # POST /eventos.json
   def create
     @evento = Evento.new(evento_params)
+    @evento.user = current_user
 
     respond_to do |format|
       if @evento.save
