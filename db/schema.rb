@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201121232938) do
+ActiveRecord::Schema.define(version: 20201201005935) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -77,6 +77,21 @@ ActiveRecord::Schema.define(version: 20201121232938) do
   end
 
   add_index "estados", ["state_id"], name: "index_estados_on_state_id", using: :btree
+
+  create_table "eventos", force: :cascade do |t|
+    t.string   "titulo",      limit: 255
+    t.string   "descripcion", limit: 255
+    t.datetime "fecha_desde"
+    t.datetime "fecha_hasta"
+    t.string   "ubicacion",   limit: 255
+    t.integer  "person_id",   limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "eventos", ["person_id"], name: "index_eventos_on_person_id", using: :btree
+  add_index "eventos", ["user_id"], name: "index_eventos_on_user_id", using: :btree
 
   create_table "frecuencia_tipos", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -294,6 +309,8 @@ ActiveRecord::Schema.define(version: 20201121232938) do
   add_foreign_key "auditorias", "users"
   add_foreign_key "departamentos", "states"
   add_foreign_key "estados", "states"
+  add_foreign_key "eventos", "people"
+  add_foreign_key "eventos", "users"
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "frecuencia_tipos"

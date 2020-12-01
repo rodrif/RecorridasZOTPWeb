@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :eventos
   get 'areas/lanzarException' => 'areas#lanzarException'
 
   devise_for :users, controllers: {
