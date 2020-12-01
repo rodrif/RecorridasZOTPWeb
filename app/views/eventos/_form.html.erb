@@ -1,7 +1,7 @@
-<%= form_for(@evento) do |f| %>
+<%= form_for(@evento, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
   <% if @evento.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this evento from being saved:</h2>
+      <h2><%= t('common.errores.errores') %></h2>
 
       <ul>
       <% @evento.errors.full_messages.each do |message| %>
@@ -11,35 +11,47 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :titulo %><br>
-    <%= f.text_field :titulo %>
+  <div class="form-group">
+    <%= f.label :titulo, "Título", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :titulo, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :descripcion %><br>
-    <%= f.text_field :descripcion %>
+
+  <div class="form-group">
+    <%= f.label :descripcion, "Descripción", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :descripcion, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :fecha_desde %><br>
-    <%= f.datetime_select :fecha_desde %>
+
+  <div class="form-group">
+    <%= f.label :fecha_desde, "Fecha Desde", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.datetime_field :fecha_desde, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :fecha_hasta %><br>
-    <%= f.datetime_select :fecha_hasta %>
+
+  <div class="form-group">
+    <%= f.label :fecha_hasta, "Fecha Hasta", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.datetime_field :fecha_hasta, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :ubicacion %><br>
-    <%= f.text_field :ubicacion %>
+
+  <div class="form-group">
+    <%= f.label :ubicacion, "Ubicación", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :ubicacion, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :person_id %><br>
-    <%= f.text_field :person_id %>
+
+  <div class="form-group">
+    <%= f.label :person_id, "Persona", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => true}, {:class => "form-control"} %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= render 'layouts/buttons_submit', path: eventos_path, f: f, remote: false, mostrar_aceptar: true %>
 <% end %>
