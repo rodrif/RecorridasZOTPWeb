@@ -16,6 +16,10 @@ class EventosController < ApplicationController
   # GET /eventos/new
   def new
     @evento = Evento.new
+    if params['date']
+      @evento.fecha_desde = params['date']
+      @evento.fecha_hasta = params['date']
+    end
   end
 
   # GET /eventos/1/edit

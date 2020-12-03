@@ -1,0 +1,8 @@
+<%= month_calendar attribute: :fecha_desde, end_attribute: :fecha_hasta, events: eventos do |date, eventos| %>
+  <%= link_to date.strftime("%-d"), new_evento_path({date: date})%>
+  <% eventos.each do |evento| %>
+    <div>
+      <%= link_to evento.titulo, evento, class: "link" %>
+    </div>
+  <% end %>
+<% end %>

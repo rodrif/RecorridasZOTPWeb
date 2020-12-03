@@ -13,4 +13,8 @@ module ApplicationHelper
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
+  def readable_time(time)
+    time.strftime("%b %d, %I:%M%P")
+  end
+
 end
