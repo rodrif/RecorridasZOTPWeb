@@ -232,6 +232,105 @@ Person.create([
     dni: 11111111,
     fecha_nacimiento: '2020-11-22',
     descripcion: 'Una descripcion'
+  },
+  {
+    id: 2,
+    nombre: 'persona b',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 3,
+    nombre: 'persona c',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 4,
+    nombre: 'persona d',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 5,
+    nombre: 'persona e',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 6,
+    nombre: 'persona f',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 7,
+    nombre: 'persona g',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 8,
+    nombre: 'persona h',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 9,
+    nombre: 'persona i',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 10,
+    nombre: 'persona j',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 11,
+    nombre: 'persona k',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 12,
+    nombre: 'persona l',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
   }
 ])
 
