@@ -22,9 +22,9 @@ class PersonDataAccess
 		respuesta
   end
 
-  def self.get
+  def self.get limit, offset
     select = 'people.id as person_id, people.nombre as person_name, coalesce(people.apellido, "") as person_apellido, zones.nombre as zone_nombre'
-    Person.joins(:zone).select(select)
+    Person.joins(:zone).limit(limit).offset(offset).select(select)
   end
 
   def self.upload user, json, fecha = nil

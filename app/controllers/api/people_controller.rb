@@ -13,7 +13,7 @@ class Api::PeopleController < Api::ApiController
   end
 
   def get
-    respuesta = PersonDataAccess.get
+    respuesta = PersonDataAccess.get params['limit'], params['offset']
     render :json => respuesta
   end
 
