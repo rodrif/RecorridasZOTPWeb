@@ -331,6 +331,141 @@ Person.create([
     dni: 11111111,
     fecha_nacimiento: '2020-11-22',
     descripcion: 'Una descripcion'
+  },
+  {
+    id: 13,
+    nombre: 'persona m',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 14,
+    nombre: 'persona n',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 15,
+    nombre: 'persona o',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 16,
+    nombre: 'persona p',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 17,
+    nombre: 'persona q',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 18,
+    nombre: 'persona r',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 19,
+    nombre: 'persona s',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 20,
+    nombre: 'persona t',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 21,
+    nombre: 'persona u',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 22,
+    nombre: 'persona v',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 23,
+    nombre: 'persona w',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 24,
+    nombre: 'persona x',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 25,
+    nombre: 'persona y',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 26,
+    nombre: 'persona z',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
+  },
+  {
+    id: 27,
+    nombre: 'persona aa',
+    zone_id: 2,
+    state_id: 1,
+    dni: 11111111,
+    fecha_nacimiento: '2020-11-22',
+    descripcion: 'Una descripcion'
   }
 ])
 
