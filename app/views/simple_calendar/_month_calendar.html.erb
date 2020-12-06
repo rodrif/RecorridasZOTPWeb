@@ -7,11 +7,11 @@
 
   <table class="table table-striped">
     <thead>
-    <tr>
-      <% date_range.slice(0, 7).each do |day| %>
-        <th class="text-sm text-grey-darkest"><%= t('date.abbr_day_names')[day.wday] %></th>
-      <% end %>
-    </tr>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
     </thead>
 
     <tbody>
