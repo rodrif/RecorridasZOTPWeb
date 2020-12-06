@@ -3,16 +3,6 @@
 
 <div class="container-fluid well">
   <%= form_for_filterrific @filterrific do |f| %>
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
-        <%= f.select(
-          :with_tipo,
-          @filterrific.select_options[:with_notificacion_tipo],
-          { include_blank: 'Tipo' },
-          { class: "form-control" }
-        ) %>
-      </div>
-    </div>
 
     <div class="row-fluid">
       <div class="col-xs-12 col-md-3 margen-vert">

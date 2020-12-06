@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201201005935) do
+ActiveRecord::Schema.define(version: 20201206162152) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -153,31 +153,22 @@ ActiveRecord::Schema.define(version: 20201201005935) do
   add_index "notificacion_roles", ["notificacion_id"], name: "index_notificacion_roles_on_notificacion_id", using: :btree
   add_index "notificacion_roles", ["rol_id"], name: "index_notificacion_roles_on_rol_id", using: :btree
 
-  create_table "notificacion_tipos", force: :cascade do |t|
-    t.string   "nombre",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "code",       limit: 4
-  end
-
   create_table "notificaciones", force: :cascade do |t|
-    t.string   "titulo",               limit: 255
-    t.string   "subtitulo",            limit: 255
+    t.string   "titulo",             limit: 255
+    t.string   "subtitulo",          limit: 255
     t.datetime "fecha_desde"
     t.datetime "fecha_hasta"
-    t.integer  "notificacion_tipo_id", limit: 4
-    t.text     "descripcion",          limit: 65535
-    t.integer  "frecuencia_cant",      limit: 4
-    t.integer  "frecuencia_tipo_id",   limit: 4
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.integer  "state_id",             limit: 4
+    t.text     "descripcion",        limit: 65535
+    t.integer  "frecuencia_cant",    limit: 4
+    t.integer  "frecuencia_tipo_id", limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "state_id",           limit: 4
     t.datetime "prox_envio"
-    t.boolean  "finalizada",           limit: 1
+    t.boolean  "finalizada",         limit: 1
   end
 
   add_index "notificaciones", ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id", using: :btree
-  add_index "notificaciones", ["notificacion_tipo_id"], name: "index_notificaciones_on_notificacion_tipo_id", using: :btree
   add_index "notificaciones", ["state_id"], name: "index_notificaciones_on_state_id", using: :btree
 
   create_table "pedidos", force: :cascade do |t|
@@ -314,7 +305,6 @@ ActiveRecord::Schema.define(version: 20201201005935) do
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "frecuencia_tipos"
-  add_foreign_key "notificaciones", "notificacion_tipos"
   add_foreign_key "notificaciones", "states"
   add_foreign_key "pedidos", "people"
   add_foreign_key "pedidos", "states"

@@ -51,8 +51,6 @@ class NotificacionDataAccess
       notificacion.titulo = 'Cumpleaños'
       notificacion.subtitulo = "#{p.full_name}"
       notificacion.descripcion = "#{descripcion}"
-      notificacion.notificacion_tipo = NotificacionTipo.new
-      notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
       Rol.activos.each do |r|
         response = http.request(self.createRequest(url, notificacion, r.nombre, p.zone.area_id, p.id))
       end
@@ -77,7 +75,6 @@ class NotificacionDataAccess
         \"titulo\": \"#{notificacion.titulo}\",
         \"subtitulo\": \"#{notificacion.subtitulo}\",
         \"descripcion\": \"#{notificacion.descripcion}\",
-        \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
         \"persona_id\": \"#{personaId ? personaId : ''}\",
         \"area_id\": \"#{areaId ? areaId.to_s : ''}\"
        }

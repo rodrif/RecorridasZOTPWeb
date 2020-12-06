@@ -8,7 +8,6 @@ class NotificacionesController < ApplicationController
     @filterrific = initialize_filterrific(
       Notificacion,
       params[:filterrific],
-      select_options: { with_notificacion_tipo: NotificacionTipo.options_for_select },
       default_filter_params: {}
     ) or return
     # Get an ActiveRecord::Relation for all students that match the filter settings.
@@ -16,7 +15,7 @@ class NotificacionesController < ApplicationController
     # NOTE: filterrific_find returns an ActiveRecord Relation that can be
     # chained with other scopes to further narrow down the scope of the list,
     # e.g., to apply permissions or to hard coded exclude certain types of records.
-    @notificaciones = @filterrific.find.includes(:notificacion_tipo, :frecuencia_tipo, :roles).activas.page(params[:page])
+    @notificaciones = @filterrific.find.includes(:frecuencia_tipo, :roles).activas.page(params[:page])
 
     # Respond to html for initial page load and to js for AJAX filter updates.
     respond_to do |format|
@@ -32,9 +31,6 @@ class NotificacionesController < ApplicationController
       @notificacion.fecha_desde = params['date']
       @notificacion.fecha_hasta = params['date']
     end
-    if params['notificacion_tipo_id']
-      @notificacion.notificacion_tipo_id = NotificacionTipo::CALENDARIO
-    end
     @notificacion.setup_roles!
   end
 
@@ -48,7 +44,6 @@ class NotificacionesController < ApplicationController
   def create
     @notificacion = Notificacion.new(notificacion_params)
     @notificacion.state = State.find_by_nombre('Actualizado')
-    @notificacion.frecuencia_tipo_id = 1 if @notificacion.notificacion_tipo_id == NotificacionTipo::CALENDARIO
     @notificacion.sacar_minutos
     @notificacion.prox_envio = @notificacion.fecha_desde
     @notificacion.finalizada = false
@@ -83,7 +78,6 @@ class NotificacionesController < ApplicationController
         exitoActualziar = @notificacion.update(notificacion_params)
       end
       if exitoActualziar
-        @notificacion.frecuencia_tipo_id = 1 if @notificacion.notificacion_tipo_id == 4
         @notificacion.sacar_minutos
         @notificacion.save
         AuditoriaDataAccess.log current_user, Auditoria::MODIFICACION, Auditoria::NOTIFICACION, @notificacion
@@ -121,7 +115,6 @@ class NotificacionesController < ApplicationController
         :subtitulo,
         :fecha_desde,
         :fecha_hasta,
-        :notificacion_tipo_id,
         :descripcion,
         :frecuencia_cant,
         :frecuencia_tipo_id,

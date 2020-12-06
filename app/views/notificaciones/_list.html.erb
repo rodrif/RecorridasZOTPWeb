@@ -13,7 +13,6 @@
           <th>Desde</th>
           <th>Hasta</th>
           <th>Prox Notificación</th>
-          <th>Tipo</th>
           <th>Frecuencia</th>
           <th>Roles</th>
           <th>Finalizada</th>
@@ -29,7 +28,6 @@
             <td><%= notificacion.fecha_desde %></td>
             <td><%= notificacion.fecha_hasta if notificacion.frecuencia_tipo.code != FrecuenciaTipo::UNICA %></td>
             <td><%= notificacion.prox_envio %></td>
-            <td><%= notificacion.notificacion_tipo.nombre if !notificacion.notificacion_tipo.nil? %></td>
             <td><%= notificacion.frecuencia %></td>
             <td>
               <% notificacion.roles.each do |rol| %>
