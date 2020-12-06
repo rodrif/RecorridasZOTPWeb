@@ -8,7 +8,11 @@ RSpec.feature "Crear evento" do
 
   scenario "siendo administrador" do
     login_as admin
-    visit new_evento_path
+    visit "/"
+
+    click_link "Configuración"
+    click_link "Calendario"
+    click_link DateTime.now.day.to_s
 
     fill_in "Título", with: evento.titulo
     fill_in "Descripción", with: evento.descripcion

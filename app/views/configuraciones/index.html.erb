@@ -7,7 +7,7 @@
     <% end %>
     <% if RolDataAccess.is_admin(current_user) %>
       <%= link_to "Auditoría", auditoria_index_path %><br />
-      <%= link_to "Calendario", calendario_path %><br />
+      <%= link_to "Calendario", eventos_path %><br />
     <% end %>
     <% if RolDataAccess.puede_editar_departamento(current_user) %>
       <%= link_to t("activerecord.models.departamento.other"), departamentos_path %><br />
