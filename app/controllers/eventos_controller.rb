@@ -34,6 +34,7 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.save
+        Notificacion.schedule(@evento.titulo, @evento.descripcion, @evento.fecha_desde, @evento.fecha_hasta, @evento.fecha_desde.advance(hours: -1), [current_user.area.id], [1,2,3,4], @evento)
         format.html { redirect_to @evento, notice: 'Evento creado correctamente.' }
         format.json { render :show, status: :created, location: @evento }
       else

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201206164916) do
+ActiveRecord::Schema.define(version: 20201206184327) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -158,8 +158,10 @@ ActiveRecord::Schema.define(version: 20201206164916) do
     t.integer  "state_id",           limit: 4
     t.datetime "prox_envio"
     t.boolean  "finalizada",         limit: 1
+    t.integer  "evento_id",          limit: 4
   end
 
+  add_index "notificaciones", ["evento_id"], name: "index_notificaciones_on_evento_id", using: :btree
   add_index "notificaciones", ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id", using: :btree
   add_index "notificaciones", ["state_id"], name: "index_notificaciones_on_state_id", using: :btree
 
@@ -296,6 +298,7 @@ ActiveRecord::Schema.define(version: 20201206164916) do
   add_foreign_key "eventos", "users"
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
+  add_foreign_key "notificaciones", "eventos"
   add_foreign_key "notificaciones", "frecuencia_tipos"
   add_foreign_key "notificaciones", "states"
   add_foreign_key "pedidos", "people"
