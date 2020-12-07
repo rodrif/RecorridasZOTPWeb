@@ -67,7 +67,7 @@ class NotificacionDataAccess
       notificacion.descripcion = "#{descripcion}"
       notificacion.notificacion_tipo = NotificacionTipo.new
       notificacion.notificacion_tipo.code = NotificacionTipo::CUMPLEANIOS
-      response = http.request(self.createRequest(url, notificacion, 'all', p.zone.area_id, p.id))
+      response = http.request(self.createRequest(url, notificacion, 'all', p.zone.area_id, p.id, 'cumpleanios'))
     end
   end
 
@@ -81,21 +81,22 @@ class NotificacionDataAccess
     return http
   end
 
-  def self.createRequest url, notificacion, topic, areaId, personaId = nil
+  def self.createRequest url, notificacion, topic, areaId, personaId = nil, handler = nil
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'Bearer ' + self.getToken()})
     request.body = "{
-      \"message\": {
-        \"topic\": \"all\",
-        \"notification\": {
-          \"title\": \"#{notificacion.titulo}\",
-          \"body\": \"#{notificacion.subtitulo}\"
+      'message': {
+        'topic': 'all',
+        'notification': {
+          'title': \"#{notificacion.titulo}\",
+          'body': \"#{notificacion.subtitulo}\"
         },
-        \"data\": {
-          \"click_action\": \"FLUTTER_NOTIFICATION_CLICK\",
-          \"descripcion\": \"#{notificacion.descripcion}\",
-          \"tipo\": \"#{notificacion.notificacion_tipo.code}\",
-          \"persona_id\": \"#{personaId ? personaId : ''}\",
-          \"area_id\": \"#{areaId ? areaId.to_s : ''}\"
+        'data': {
+          'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+          'descripcion': \"#{notificacion.descripcion}\",
+          'tipo': \"#{notificacion.notificacion_tipo.code}\",
+          'persona_id': \"#{personaId ? personaId : ''}\",
+          'handler': \"#{handler}\",
+          'sede_id': \"#{areaId ? areaId.to_s : ''}\"
         }
       }
     }"
