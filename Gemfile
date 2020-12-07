@@ -70,16 +70,15 @@ gem 'faker'
 group :development, :test do
 
   gem 'bullet'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara', '~> 2.15.1'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -87,4 +86,13 @@ group :development, :test do
   # gem 'therubyracer'
   gem 'puma'
 
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console'
+end
+
+group :test do
+  gem 'capybara-email'
 end

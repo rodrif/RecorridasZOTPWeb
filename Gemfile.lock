@@ -87,6 +87,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-email (3.0.2)
+      capybara (>= 2.4, < 4.0)
+      mail
     caracal (1.4.1)
       nokogiri (~> 1.6)
       rubyzip (~> 1.1)
@@ -135,6 +138,11 @@ GEM
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
     execjs (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
     faraday (1.1.0)
@@ -246,6 +254,10 @@ GEM
       railties (>= 5.0)
     retriable (3.1.2)
     rexml (3.2.4)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.0)
@@ -338,6 +350,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara (~> 2.15.1)
+  capybara-email
   caracal-rails
   caxlsx_rails
   coffee-rails
@@ -346,6 +359,7 @@ DEPENDENCIES
   devise
   devise_token_auth
   exception_notification
+  factory_bot_rails
   faker
   filterrific (>= 2.1.2)!
   geocoder
@@ -359,6 +373,7 @@ DEPENDENCIES
   puma
   rails (= 6.0.3.4)
   rails_12factor
+  rspec
   rspec-rails
   rubyzip
   sass-rails
