@@ -19,5 +19,5 @@
 <%= render 'list', areas: @areas %>
 
 <% if RolDataAccess.puede_editar_area(current_user) %>
-  <%= render 'layouts/new_button', :label => 'Nueva área', :path => new_area_path %>
+  <%= render 'layouts/new_button', :label => 'Nueva sede', :path => new_area_path %>
 <% end %>
