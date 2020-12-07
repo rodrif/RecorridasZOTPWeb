@@ -21,3 +21,6 @@
 /public/assets/*
 
 Gemfile.lock
+
+# Ignore RubyMine config files
+.idea/*
