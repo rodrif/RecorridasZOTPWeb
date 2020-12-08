@@ -7,6 +7,7 @@ RSpec.feature "Listar visitas" do
     @referente = create(:user_referente)
     @coordinador = create(:user_coordinador)
     @voluntario = create(:user_voluntario)
+    Person.update_all(state_id: 3)
   end
 
   let!(:persona) { create(:person) }
