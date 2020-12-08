@@ -85,7 +85,7 @@ class NotificacionDataAccess
     request = Net::HTTP::Post.new(url.path, {'Content-Type' =>'application/json', 'Authorization' => 'Bearer ' + self.getToken()})
     request.body = "{
       'message': {
-        'topic': 'all',
+        'topic': topic,
         'notification': {
           'title': \"#{notificacion.titulo}\",
           'body': \"#{notificacion.subtitulo}\"
