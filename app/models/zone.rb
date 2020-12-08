@@ -50,7 +50,7 @@ class Zone < ApplicationRecord
   def self.zonas_primer_area
     zonas = Zone.activas.where(:area_id => Area.first.id)
     if zonas.length == 0
-      zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
+      zonas.to_a.push(Zone.new(nombre: 'Ninguna', id: 0))
     end
     zonas
   end
