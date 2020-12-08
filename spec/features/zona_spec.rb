@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-describe 'Zonas' do 
-  before(:each) do
-   load "#{Rails.root}/db/seeds.rb"
-  end
+xdescribe 'Zonas' do
 
   subject { page }
 

@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-describe 'Familias' do
-  before(:each) do
-   load "#{Rails.root}/db/seeds.rb"
-  end
+xdescribe 'Familias' do
 
   subject { page }
 
