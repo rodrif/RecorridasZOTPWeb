@@ -62,4 +62,20 @@ RSpec.feature "Editar sede" do
       expect(page).to have_content(area.nombre)
     end
   end
+
+  context "falla al editar" do
+    scenario "si el nombre no tiene solo letras" do
+      login_as @admin
+      visit "/"
+
+      click_link "Configuración"
+      click_link "Sedes"
+      find("td", :text => @area.nombre).find(:xpath, '../td[2]/a', :class => "glyphicon-edit").click
+
+      fill_in "Nombre", with: "ABCDE123456"
+      click_button "Aceptar"
+
+      expect(page).to have_content("Nombre solo admite letras")
+    end
+  end
 end

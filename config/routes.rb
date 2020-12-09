@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'areas/lanzarException' => 'areas#lanzarException'
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

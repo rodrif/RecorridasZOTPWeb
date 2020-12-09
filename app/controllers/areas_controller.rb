@@ -4,10 +4,6 @@ class AreasController < ApplicationController
   before_action :puede_ver_web
   before_action :puede_editar_area, only: [:new, :edit, :create, :update, :destroy]
 
-  def lanzarException
-    raise "Exception de prueba"
-  end
-
   # GET /areas
   # GET /areas.json
   def index
