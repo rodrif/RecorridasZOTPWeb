@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-describe 'Areas' do 
-  before(:each) do
-   load "#{Rails.root}/db/seeds.rb"
-  end
+xdescribe 'Areas' do
 
   subject { page }
 

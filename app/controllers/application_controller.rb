@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from 'ActiveRecord::InvalidForeignKey' do
     flash[:error] = I18n.t('common.errores.foreign_key')
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   def puede_crear_persona

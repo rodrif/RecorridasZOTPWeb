@@ -4,7 +4,7 @@ es:
     dia: Día
     estado: Estado
     estados: Estados
-    nuevo_estado: Nueva estado
+    nuevo_estado: Nuevo estado
     nuevo_departamento: Nueva área
     telefono: Teléfono
     ver_editar: Ver / Editar
@@ -15,13 +15,12 @@ es:
       creacion_departamento: Área creada correctamente.
       actualizacion_departamento: Área actualizada correctamente.
       borrado_departamento: Área borrada correctamente.
-      actualizacion_ranchada: Ranchada actualizada correctamente.
-      borrado_ranchada: Ranchada borrada correctamente.
     errores:
       foreign_key: No se pudo borrar porque el registro esta siendo utilizado.
       errores: Errores
       solo_letras: solo admite letras
       solo_alfanumerico: solo admite letras y números
+      solo_numeros: solo admite números
   will_paginate:
     previous_label: "Anterior"
     next_label: "Siguiente"
@@ -52,10 +51,6 @@ es:
         password_confirmation: Confirmar contraseña
         current_password: Contraseña actual
         telefono: Teléfono
-      ranchada:
-        descripcion: Descripción
-      familia:
-        descripcion: Descripción
       notificacion:
         titulo: Título
         subtitulo: Subtítulo
@@ -97,14 +92,6 @@ es:
         zero:  Pedido
         one:   Pedido
         other: Pedidos
-      ranchada:
-        zero:  Ranchada
-        one:   Ranchada
-        other: Ranchadas
-      familia:
-        zero:  Familia
-        one:   Familia
-        other: Familias
       referente:
         zero:  Referente
         one:   Referente
@@ -119,13 +106,13 @@ es:
         other: Instituciones
   date:
     abbr_day_names:
-    - dom
-    - lun
-    - mar
-    - mié
-    - jue
-    - vie
-    - sáb
+    - Dom
+    - Lun
+    - Mar
+    - Mié
+    - Jue
+    - Vie
+    - Sáb
     abbr_month_names:
     -
     - ene
@@ -219,7 +206,7 @@ es:
       already_confirmed: "ya has sido confirmado, por favor intenta iniciar sesión."
       confirmation_period_expired: "necesitas ser confirmado en %{period}, por favor vuelve a solicitarla."
       expired: "ha expirado, por favor vuelve a solicitarla."
-      not_found: "no se ha encontrado."
+      not_found: "%{prefix} %{resource} no se ha podido encontrar."
       not_locked: "no estaba bloqueado."
       not_saved:
         one: "1 error impidió que este %{resource} fuera guardado:"

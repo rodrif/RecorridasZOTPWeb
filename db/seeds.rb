@@ -493,6 +493,11 @@ Pedido.create([
   }
 ])
 
+InstitucionTipo.create!([
+  { id: 1, nombre: 'Merendero' },
+  { id: 2, nombre: 'Colegio' },
+  { id: 3, nombre: 'Universidad' }
+])
 
 Institucion.create([
   {

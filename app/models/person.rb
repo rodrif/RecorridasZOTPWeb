@@ -6,13 +6,11 @@ class Person < ApplicationRecord
     format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
   validates :apellido, allow_blank: true,
     format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
-  validates :dni, allow_blank: true, numericality: { only_integer: true }
-  validates :telefono, allow_blank: true, numericality: { only_integer: true }
+  validates :dni, allow_blank: true, numericality: { only_integer: true, message: I18n.t('common.errores.solo_numeros') }
+  validates :telefono, allow_blank: true, numericality: { only_integer: true, message: I18n.t('common.errores.solo_numeros') }
   validates :zone, presence: true
 
   belongs_to :zone
-  belongs_to :ranchada
-  belongs_to :familia
   belongs_to :state
   belongs_to :estado
   belongs_to :institucion

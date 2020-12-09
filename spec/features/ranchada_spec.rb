@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-describe 'Ranchadas' do
-  before(:each) do
-   load "#{Rails.root}/db/seeds.rb"
-  end
+xdescribe 'Ranchadas' do
 
   subject { page }
 
