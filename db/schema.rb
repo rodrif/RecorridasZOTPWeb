@@ -122,11 +122,19 @@ ActiveRecord::Schema.define(version: 2020_12_09_230649) do
     t.index ["rol_id"], name: "index_notificacion_roles_on_rol_id"
   end
 
+  create_table "notificacion_tipos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "code"
+  end
+
   create_table "notificaciones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "titulo"
     t.string "subtitulo"
     t.datetime "fecha_desde"
     t.datetime "fecha_hasta"
+    t.bigint "notificacion_tipo_id"
     t.text "descripcion"
     t.integer "frecuencia_cant"
     t.bigint "frecuencia_tipo_id"
@@ -136,6 +144,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_230649) do
     t.datetime "prox_envio"
     t.boolean "finalizada"
     t.index ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id"
+    t.index ["notificacion_tipo_id"], name: "index_notificaciones_on_notificacion_tipo_id"
     t.index ["state_id"], name: "index_notificaciones_on_state_id"
   end
 
@@ -266,6 +275,7 @@ ActiveRecord::Schema.define(version: 2020_12_09_230649) do
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "frecuencia_tipos"
+  add_foreign_key "notificaciones", "notificacion_tipos"
   add_foreign_key "notificaciones", "states"
   add_foreign_key "pedidos", "people"
   add_foreign_key "pedidos", "states"
