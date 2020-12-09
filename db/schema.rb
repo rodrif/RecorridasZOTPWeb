@@ -10,24 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_104541) do
-
-  create_table "alert_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "alerts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "mensaje"
-    t.datetime "fecha"
-    t.bigint "zone_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "alert_type_id"
-    t.index ["alert_type_id"], name: "index_alerts_on_alert_type_id"
-    t.index ["zone_id"], name: "index_alerts_on_zone_id"
-  end
+ActiveRecord::Schema.define(version: 2020_12_09_105033) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
@@ -303,8 +286,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_104541) do
     t.index ["state_id"], name: "index_zones_on_state_id"
   end
 
-  add_foreign_key "alerts", "alert_types"
-  add_foreign_key "alerts", "zones"
   add_foreign_key "areas", "states"
   add_foreign_key "auditorias", "users"
   add_foreign_key "departamentos", "states"
