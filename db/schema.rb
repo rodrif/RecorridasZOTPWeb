@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_105033) do
+ActiveRecord::Schema.define(version: 2020_12_09_105428) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
@@ -264,16 +264,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_105033) do
     t.index ["state_id"], name: "index_visits_on_state_id"
   end
 
-  create_table "welcome_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "mensaje"
-    t.datetime "fecha_desde"
-    t.datetime "fecha_hasta"
-    t.bigint "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_welcome_messages_on_person_id"
-  end
-
   create_table "zones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -306,7 +296,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_105033) do
   add_foreign_key "users", "states"
   add_foreign_key "visits", "people"
   add_foreign_key "visits", "states"
-  add_foreign_key "welcome_messages", "people"
   add_foreign_key "zones", "areas"
   add_foreign_key "zones", "states"
 end
