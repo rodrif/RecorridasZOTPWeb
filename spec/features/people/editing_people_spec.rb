@@ -127,6 +127,24 @@ RSpec.feature "Editar persona" do
       expect(page).to have_field(name: "person[visits_attributes][0][latitud]", disabled: true)
       expect(page).to have_field(name: "person[visits_attributes][0][longitud]", disabled: true)
     end
-
   end
+
+  context "falla al editar" do
+    scenario "nombre está vacío" do
+      login_as @admin
+      visit people_path
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-edit").click
+
+      fill_in name: "person[nombre]", with: ""
+
+      within("#edit_person_#{persona.id}") do
+        click_button "Aceptar"
+      end
+
+      expect(current_path).to eq(person_path(persona))
+      expect(page).to have_content("Nombre no puede estar en blanco")
+    end
+  end
+
+
 end

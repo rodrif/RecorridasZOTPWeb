@@ -310,6 +310,6 @@ RSpec.feature "Crear persona" do
       expect(current_path).to eq(people_path)
       expect(page).to have_content("Zona no puede estar en blanco")
     end
-   end
+  end
 
 end
