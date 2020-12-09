@@ -4,10 +4,6 @@ RSpec.feature "Editar zona" do
 
   before do
     @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
     @area_nueva = create(:area)
   end
 
@@ -42,6 +38,21 @@ RSpec.feature "Editar zona" do
       expect(page).to have_content(zona_editada.latitud)
       expect(page).to have_css("td", :text => @area_nueva.nombre)
     end
+  end
 
+  context "falla al editar" do
+    scenario "si el nombre no tiene solo letras y núymeros" do
+      login_as @admin
+      visit "/"
+
+      click_link "Configuración"
+      click_link "Zonas"
+      find("td", :text => zona.nombre).find(:xpath, '../td[5]/a', :class => "glyphicon-edit").click
+
+      fill_in "Nombre", with: "ABCDE123456!?+="
+      click_button "Aceptar"
+
+      expect(page).to have_content("Nombre solo admite letras y números")
+    end
   end
 end
