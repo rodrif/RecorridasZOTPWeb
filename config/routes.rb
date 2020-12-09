@@ -13,10 +13,6 @@ Rails.application.routes.draw do
     post 'areas/upload' => 'areas#upload'
     post 'zones/download' => 'zones#download'
     post 'zones/upload' => 'zones#upload'
-    post 'ranchadas/download' => 'ranchadas#download'
-    post 'ranchadas/upload' => 'ranchadas#upload'
-    post 'familias/download' => 'familias#download'
-    post 'familias/upload' => 'familias#upload'
     post 'visits/download' => 'visits#download'
     post 'visits/upload' => 'visits#upload'
     post 'pedidos/download' => 'pedidos#download'
@@ -36,8 +32,6 @@ Rails.application.routes.draw do
   resources :notificaciones
   resources :auditoria
   resources :users
-  resources :familias
-  resources :ranchadas
   resources :areas
   root 'mapa#index'
 
@@ -53,8 +47,6 @@ Rails.application.routes.draw do
 
 
   get 'people/update_zonas', as: 'update_zonas'
-  get 'people/update_ranchadas', as: 'update_ranchadas'
-  get 'people/update_familias', as: 'update_familias'
 
   post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
   get 'visits/getDireccion' => 'visits#getDireccion'

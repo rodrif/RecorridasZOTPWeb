@@ -73,18 +73,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def puede_editar_ranchada
-    if !RolDataAccess.puede_editar_ranchada(current_user)
-      redireccionar
-    end
-  end
-
-  def puede_editar_familia
-    if !RolDataAccess.puede_editar_familia(current_user)
-      redireccionar
-    end
-  end
-
   def puede_editar_usuarios
     if !RolDataAccess.puede_editar_usuarios(current_user)
       redireccionar

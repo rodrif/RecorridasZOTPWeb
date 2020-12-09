@@ -1,9 +1,0 @@
-<h2 class="sub-header"><%=t('common.estados')%></h2>
-
-<%= render 'layouts/filtros', label_searcher: "Nombre" %>
-
-<%= render 'list', familias: @familias %>
-
-<% if RolDataAccess.puede_editar_familia(current_user) %>
-	<%= render 'layouts/new_button', :label => t('common.nuevo_estado'), :path => new_familia_path %>
-<% end %>

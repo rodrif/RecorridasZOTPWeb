@@ -18,11 +18,7 @@ xdescribe 'Personas' do
       should_not have_content('Facundo')
 
       expect(persona.zone_id).to_not be_nil
-      expect(persona.ranchada_id).to_not be_nil
-      expect(persona.familia_id).to_not be_nil
       expect(persona.reload.zone_id).to be_nil
-      expect(persona.reload.ranchada_id).to be_nil
-      expect(persona.reload.familia_id).to be_nil
     end
   end
 
@@ -41,15 +37,12 @@ xdescribe 'Personas' do
       should have_field('person[apellido]', with: 'Rodriguez')
       should have_select('person[area_id]', selected: "Zona Oeste")
       should have_select('person[zone_id]', selected: "Haedo")
-      should have_select('person[ranchada_id]', selected: "Familia Rodriguez")
-      should have_select('person[familia_id]', selected: "Rodriguez")
 
       fill_in 'person[nombre]', with: 'Facundo test'
       fill_in 'person[apellido]', with: 'Rodriguez test'
       fill_in 'person[dni]', with: '34358272'
       fill_in 'person[fecha_nacimiento]', with: '28/01/1989'
       select "Liniers", from: "person_zone_id"
-      select "Estacion liniers", from: "person_ranchada_id"
 
       find('input[name="commit"]').click
       expect(current_path).to eq(people_path)
@@ -59,10 +52,8 @@ xdescribe 'Personas' do
       expect(person.nombre).to eq("Facundo test")
       expect(person.apellido).to eq('Rodriguez test')
       expect(person.zone.nombre).to eq("Liniers")
-      expect(person.ranchada.nombre).to eq("Estacion liniers")
       expect(person.dni).to eq(34358272)
       expect(person.fecha_nacimiento.to_s).to eq('1989-01-28')
-      # TODO expect(person.familia).to be_nil
     end
   end
 
@@ -98,39 +89,6 @@ xdescribe 'Personas' do
 
       zona = Zone.find_by_nombre "Zona personaSpec test"
       expect(zona).to_not be_nil
-
-      # Ranchada modal
-      should_not have_selector('h4', text: 'Nueva Ranchada')
-      click_link 'ranchada_modal'
-      should have_selector('h4', text: 'Nueva Ranchada')
-      within('#new_ranchada_modal') do
-        select "Area personaSpec test", from: "ranchada_area_id"
-        select "Zona personaSpec test", from: "ranchada_zone_id"
-        fill_in 'ranchada[nombre]', with: "Ranchada personaSpec test"
-        find('input[name="commit"]').click
-      end
-      should_not have_selector('h4', text: 'Nueva Ranchada')
-      should have_select('person[ranchada_id]', selected: "Ranchada personaSpec test")
-
-      ranchada = Ranchada.find_by_nombre "Ranchada personaSpec test"
-      expect(ranchada).to_not be_nil
-
-      # Familia modal
-      should_not have_selector('h4', text: 'Nueva Familia')
-      click_link 'familia_modal'
-      should have_selector('h4', text: 'Nueva Familia')
-      within('#new_familia_modal') do
-        select "Area personaSpec test", from: "familia_area_id"
-        select "Zona personaSpec test", from: "familia_zone_id"
-        select "Ranchada personaSpec test", from: "familia_ranchada_id"
-        fill_in 'familia[nombre]', with: "Familia personaSpec test"
-        find('input[name="commit"]').click
-      end
-      should_not have_selector('h4', text: 'Nueva Familia')
-      should have_select('person[familia_id]', selected: "Familia personaSpec test")
-
-      familia = Familia.find_by_nombre "Familia personaSpec test"
-      expect(familia).to_not be_nil
     end
   end
 
