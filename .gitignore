@@ -24,3 +24,7 @@ Gemfile.lock
 
 # Ignore RubyMine config files
 .idea/*
+**/.idea/
+
+# Workspace files are user-specific
+*.sublime-workspace
