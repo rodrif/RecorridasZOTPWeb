@@ -7,7 +7,7 @@ RSpec.feature "Editar estado" do
     @estado = create(:estado)
   end
 
-  scenario "siendo administrador" do
+  scenario "satisfactoriamente" do
     login_as @admin
     visit "/"
 
@@ -23,5 +23,20 @@ RSpec.feature "Editar estado" do
     expect(current_path).to eq(estados_path)
     expect(current_path).not_to have_content(@estado.nombre)
     expect(page).to have_content(nuevo_nombre_estado)
+  end
+
+  scenario "falla si nombre está vacío" do
+    login_as @admin
+    visit "/"
+
+    click_link "Configuración"
+    click_link "Estados"
+    click_link "Ver / Editar"
+
+    fill_in "Nombre", with: ""
+    click_button "Aceptar"
+
+    expect(current_path).to eq(estado_path(@estado))
+    expect(page).to have_content("Nombre no puede estar en blanco")
   end
 end
