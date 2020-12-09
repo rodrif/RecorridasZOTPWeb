@@ -2,6 +2,8 @@ class Institucion < ApplicationRecord
   belongs_to :state
   belongs_to :zone
 	belongs_to :institucion_tipo
+	validates :nombre, presence: true
+	validates :telefono, allow_blank: true, numericality: { only_integer: true, message: I18n.t('common.errores.solo_numeros') }
 
   filterrific(
     available_filters: [

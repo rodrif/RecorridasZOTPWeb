@@ -59,6 +59,8 @@ es:
         areas: Sedes
       pedido:
         person: Persona
+      institucion:
+        telefono: Teléfono
     models:
       departamento:
         zero:  Área

@@ -79,8 +79,37 @@ RSpec.feature "Crear institucion" do
 
       visit instituciones_path
       expect(page).not_to have_link("Nueva institución")
+    end
+  end
 
+  context "Falla al crear" do
+    scenario "Nombre está vacío" do
+      login_as @admin
+      visit "/"
 
+      visit instituciones_path
+      click_link "Nueva institución"
+
+      click_button "Aceptar"
+
+      expect(current_path).to eq(instituciones_path(@institucion))
+      expect(page).to have_content("Nombre no puede estar en blanco")
+    end
+
+    scenario "Teléfono contiene caracteres no numéricos" do
+      login_as @admin
+      visit "/"
+
+      visit instituciones_path
+      click_link "Nueva institución"
+
+      fill_in "Nombre", with: institucion.nombre
+      fill_in "Teléfono", with: "4345-6789"
+
+      click_button "Aceptar"
+
+      expect(current_path).to eq(instituciones_path)
+      expect(page).to have_content("Teléfono solo admite números")
     end
   end
 

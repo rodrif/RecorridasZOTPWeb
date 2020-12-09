@@ -14,49 +14,49 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :nombre, class: "col-md-1 control-label", for: "institucion_nombre" %>
+    <%= f.label :nombre, class: "col-md-1 control-label" %>
     <div class="col-md-10">
       <%= f.text_field :nombre, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label "Tipo", class: "col-md-1 control-label", for: "institucion_institucion_tipo_id" %>
+    <%= f.label :institucion_tipo_id, "Tipo", class: "col-md-1 control-label" %>
     <div class="col-md-10">
       <%= f.collection_select :institucion_tipo_id, InstitucionTipo.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
     </div>
   </div>
 
   <div class="form-group">
-      <%= f.label "Descripción", class: "col-md-1 control-label", for: "institucion_descripcion" %>
+      <%= f.label :descripcion, "Descripción", class: "col-md-1 control-label"%>
       <div class="col-md-10">
         <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
       </div>
     </div>
 
   <div class="form-group">
-    <%= f.label 'Dirección', class: "col-md-1 control-label", for: "institucion_direccion" %>
+    <%= f.label :direccion, 'Dirección', class: "col-md-1 control-label" %>
     <div class="col-md-10">
       <%= f.text_field :direccion, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Contacto', class: "col-md-1 control-label", for: "institucion_contacto" %>
+    <%= f.label :contacto, class: "col-md-1 control-label"%>
     <div class="col-md-10">
       <%= f.text_field :contacto, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label 'Teléfono', class: "col-md-1 control-label", for: "institucion_telefono" %>
+    <%= f.label :telefono, class: "col-md-1 control-label"%>
     <div class="col-md-10">
       <%= f.text_field :telefono, class: "form-control", :disabled => disabled %>
     </div>
   </div>
 
    <div class="form-group">
-    <%= f.label 'Código postal', class: "col-md-1 control-label", for: "institucion_codigo_postal" %>
+    <%= f.label :codigo_postal, 'Código postal', class: "col-md-1 control-label"%>
     <div class="col-md-10">
       <%= f.text_field :codigo_postal, class: "form-control", :disabled => disabled %>
     </div>

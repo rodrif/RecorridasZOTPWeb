@@ -47,7 +47,7 @@ class InstitucionesController < ApplicationController
   # POST /instituciones.json
   def create
     @institucion = Institucion.new(institucion_params)
-    @institucion.state = State.find_by_nombre('Actualizado');
+    @institucion.state = State.find_by_nombre('Actualizado')
 
     respond_to do |format|
       if @institucion.save

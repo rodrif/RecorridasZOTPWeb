@@ -86,6 +86,36 @@ RSpec.feature "Editar institución" do
       expect(page).to have_field("Código postal", disabled: true)
       expect(page).not_to have_button("Aceptar")
     end
+  end
 
+  context "Falla al editar" do
+    scenario "Nombre está vacío" do
+      login_as @admin
+
+      visit instituciones_path
+      find(:xpath, "//tr[contains(., '#{@institucion.nombre}')]/td/a", :class => "glyphicon-edit").click
+
+      fill_in "Nombre", with: ""
+
+      click_button "Aceptar"
+
+      expect(current_path).to eq(institucion_path(@institucion))
+      expect(page).to have_content("Nombre no puede estar en blanco")
+    end
+
+    scenario "Teléfono contiene caracteres no numéricos" do
+      login_as @admin
+
+      visit instituciones_path
+      find(:xpath, "//tr[contains(., '#{@institucion.nombre}')]/td/a", :class => "glyphicon-edit").click
+
+      fill_in "Nombre", with: institucion.nombre
+      fill_in "Teléfono", with: "4345-6789"
+
+      click_button "Aceptar"
+
+      expect(current_path).to eq(institucion_path(@institucion))
+      expect(page).to have_content("Teléfono solo admite números")
+    end
   end
 end
