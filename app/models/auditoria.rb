@@ -8,7 +8,6 @@ class Auditoria < ApplicationRecord
 
   AREA = 'Sede'
   PERSONA = 'Persona'
-  REFERENTE = 'Referente'
   VISITA = 'Visita'
   ZONA = 'Zona'
   USUARIO = 'Usuario'

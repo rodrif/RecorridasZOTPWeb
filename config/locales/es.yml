@@ -92,10 +92,6 @@ es:
         zero:  Pedido
         one:   Pedido
         other: Pedidos
-      referente:
-        zero:  Referente
-        one:   Referente
-        other: Referentes
       notificacion:
         zero:  Notificación
         one:   Notificación

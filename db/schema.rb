@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_101604) do
+ActiveRecord::Schema.define(version: 2020_12_09_104541) do
 
   create_table "alert_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
@@ -207,19 +207,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_101604) do
     t.index ["zone_id"], name: "index_people_on_zone_id"
   end
 
-  create_table "referentes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "nombre"
-    t.string "apellido"
-    t.string "telefono"
-    t.bigint "area_id"
-    t.string "dia"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "state_id"
-    t.index ["area_id"], name: "index_referentes_on_area_id"
-    t.index ["state_id"], name: "index_referentes_on_state_id"
-  end
-
   create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
     t.boolean "puede_crear_persona"
@@ -333,8 +320,6 @@ ActiveRecord::Schema.define(version: 2020_12_09_101604) do
   add_foreign_key "people", "instituciones"
   add_foreign_key "people", "states"
   add_foreign_key "people", "zones"
-  add_foreign_key "referentes", "areas"
-  add_foreign_key "referentes", "states"
   add_foreign_key "users", "areas"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "states"
