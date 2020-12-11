@@ -60,6 +60,15 @@ class DepartamentosController < ApplicationController
     end
   end
 
+  protected
+
+  def resource_not_found
+    message = I18n.t('errors.messages.not_found', prefix: 'El', resource: 'área')
+    flash[:alert] = message
+    redirect_to root_path
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_departamento

@@ -32,15 +32,24 @@ RSpec.feature "Registración de usuario" do
     expect(user_saved.rol_id).to eq(Rol::INVITADO)
   end
 
-  scenario "al registrarse se envía un mail al usuario registrado y a los coordinadores de la sede y a Diego Pintos" do
+  scenario "al registrarse se envía un mail al usuario registrado" do
     expect{ (fill_form_and_sign_up) }.to change { Enviador.deliveries.count }.by(3)
-
     mail_to_registrado = open_email(user.email)
-    mail_to_coordinador = open_email(coordinador.email)
-    mail_to_diego = open_email('diegopintos81@gmail.com')
 
     expect(mail_to_registrado.subject).to eq("Instrucciones de confirmación")
+  end
+
+  scenario "al registrarse se envía un mail a los coordinadores de la sede" do
+    fill_form_and_sign_up
+    mail_to_coordinador = open_email(coordinador.email)
+
     expect(mail_to_coordinador.subject).to eq("Un voluntario se registró en la web")
+  end
+
+  scenario "a Diego Pintos" do
+    fill_form_and_sign_up
+    mail_to_diego = open_email('diegopintos81@gmail.com')
+
     expect(mail_to_diego.subject).to eq("Un voluntario se registró en la web")
   end
 

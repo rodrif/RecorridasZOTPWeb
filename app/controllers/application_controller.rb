@@ -1,12 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :prepare_exception_notifier
-  #protect_from_forgery with: :null_session
-  #skip_before_filter :verify_authenticity_token
-  #include DeviseTokenAuth::Concerns::SetUserByToken
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
 
-  #protect_from_forgery with: :exception
+  rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
 
   rescue_from 'ActiveRecord::InvalidForeignKey' do
     flash[:error] = I18n.t('common.errores.foreign_key')
@@ -113,6 +108,11 @@ class ApplicationController < ActionController::Base
     if !current_user.rol_id || current_user.rol_id != 1
       redireccionar
     end
+  end
+
+  protected
+
+  def resource_not_found
   end
 
   private
