@@ -63,7 +63,7 @@ class DepartamentosController < ApplicationController
   protected
 
   def resource_not_found
-    message = I18n.t('errors.messages.not_found', prefix: 'El', resource: 'área')
+    message = I18n.t('errors.messages.not_found', resource: 'Área')
     flash[:alert] = message
     redirect_to root_path
   end
