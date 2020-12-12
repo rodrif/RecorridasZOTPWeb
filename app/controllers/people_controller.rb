@@ -1,7 +1,6 @@
 class PeopleController < ApplicationController
   include ApplicationHelper
   before_action :set_person, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   before_action :puede_ver_web
   before_action :puede_crear_persona, only: [:create]
   before_action :puede_editar_persona, only: [:update]

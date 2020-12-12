@@ -1,6 +1,5 @@
 class InstitucionesController < ApplicationController
     before_action :set_institucion, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!
     before_action :puede_ver_web
     before_action :puede_crear_institucion, only: [:create]
     before_action :puede_editar_institucion, only: [:update]

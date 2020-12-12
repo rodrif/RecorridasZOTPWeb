@@ -1,6 +1,4 @@
 class MapaController < ApplicationController
-  before_action :authenticate_user!
-  before_action :esInvitado
   before_action :puede_ver_web, only: [:index, :mostrar]
 
   def index

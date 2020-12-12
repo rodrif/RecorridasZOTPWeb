@@ -1,6 +1,5 @@
 class VisitsController < ApplicationController
   before_action :set_visit, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   before_action :puede_ver_web
   before_action :puede_crear_visita, only: [:create]
   before_action :puede_editar_visita, only: [:update]

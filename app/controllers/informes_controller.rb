@@ -1,6 +1,5 @@
 class InformesController < ApplicationController
   # include ApplicationHelper
-  before_action :authenticate_user!
   before_action :puede_ver_informes
 
   def index
