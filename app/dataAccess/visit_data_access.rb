@@ -48,7 +48,7 @@ class VisitDataAccess
         visit.state_id = 1
       end
       visit.person_id = v['web_person_id']
-      visit.fecha = Time.at(v['fecha'] / 1000)
+      visit.fecha = v['fecha'] ? Time.at(v['fecha'] / 1000) : nil
       visit.descripcion = v['descripcion'] ? v['descripcion'] : nil
       visit.latitud = v['latitud'] ? v['latitud'] : nil
       visit.longitud = v['longitud'] ? v['longitud'] : nil
