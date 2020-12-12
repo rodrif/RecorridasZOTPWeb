@@ -23,6 +23,7 @@ RSpec.shared_examples "edit user" do
 end
 
 RSpec.feature "Editar usuarios" do
+  Person.update_all(state_id: 3)
   let!(:saved) { create(:user_voluntario) }
   let!(:area) { create(:area) }
   let(:new_data_user) { build(:user) }
