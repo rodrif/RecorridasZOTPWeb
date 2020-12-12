@@ -26,6 +26,8 @@ gem 'caxlsx_rails'
 gem 'caracal-rails'
 gem 'delayed_job'
 gem 'google-api-client', '~> 0.34'
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'

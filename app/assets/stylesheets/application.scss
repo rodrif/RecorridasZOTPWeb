@@ -13,125 +13,130 @@
  *= require_tree .
  *= require_self
  *= require simple_calendar
+ *= require material_icons
  */
+@import "materialize";
 
- .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
- 	background-color: #80379B;
- 	color: white;
- }
 
- .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
- 	background-color: #F0AB00;
- }
 
-#flash-error {
-  color: red;
-}
-
-.ubicacion_modal {
-  background-color: transparent !important;
-}
-
-.modal-ubicacion {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 1%; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-ubicacion-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0px;
-  border: 1px solid #888;
-  border-radius: 10px;
-  width: 80%;
-}
-
-#googleMapUbicacion {
-	border-radius: 10px;
-}
-
-.calendar-title {
-  font-size: 2em;
-}
-
-.calendar-heading {
-  margin-top: 1.5em;
-}
-
-.calendario-data a {
-  &:visited {
-    color: #000;
-  }
-  &:hover {
-    color: #000;
-    background-color: transparent;
-  }
-}
-
-.table-striped > tbody > tr:nth-child(2n+1) > td > div > a, .table-striped > tbody > tr:nth-child(2n+1) > th > div > a {
-    background-color: #80379B;
-    color: white;
-}
-
-.table-striped > tbody > tr:nth-child(2n) > td > div > a, .table-striped > tbody > tr:nth-child(2n) > th > div > a {
-    background-color: #F0AB00;
-    color: black;
-}
-
-.logoRecorridas {
-  &:visited {
-    color: #000;
-  }
-  &:hover {
-    color: #000;
-    background-color: transparent;
-  }
-}
-
-.sub-header {
-  padding: 0.5em;
-}
-
-.botones {
-  margin-bottom: 1em;
-}
-
-.paginacion {
-  width: 100%;
-  text-align: center;
-}
-
-.estilos-paginacion {
-  margin: 0 0 0.7em 0;
-}
-
-.margen-vert {
-  margin: 0.4em 0;
-}
-
-a.glyphicon {
-  &:visited {
-    color: #000;
-  }
-  &:hover {
-    color: #000;
-    background-color: transparent;
-  }
-}
-
-.botones-submit {
-  margin-bottom: 1em;
-}
-
-a.btn:visited {
-  color: #fff;
-}
+//
+// .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+// 	background-color: #80379B;
+// 	color: white;
+// }
+//
+// .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+// 	background-color: #F0AB00;
+// }
+//
+//#flash-error {
+//  color: red;
+//}
+//
+//.ubicacion_modal {
+//  background-color: transparent !important;
+//}
+//
+//.modal-ubicacion {
+//    display: none; /* Hidden by default */
+//    position: fixed; /* Stay in place */
+//    z-index: 1; /* Sit on top */
+//    padding-top: 1%; /* Location of the box */
+//    left: 0;
+//    top: 0;
+//    width: 100%; /* Full width */
+//    height: 100%; /* Full height */
+//    overflow: auto; /* Enable scroll if needed */
+//    background-color: rgb(0,0,0); /* Fallback color */
+//    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+//}
+//
+//.modal-ubicacion-content {
+//  background-color: #fefefe;
+//  margin: auto;
+//  padding: 0px;
+//  border: 1px solid #888;
+//  border-radius: 10px;
+//  width: 80%;
+//}
+//
+//#googleMapUbicacion {
+//	border-radius: 10px;
+//}
+//
+//.calendar-title {
+//  font-size: 2em;
+//}
+//
+//.calendar-heading {
+//  margin-top: 1.5em;
+//}
+//
+//.calendario-data a {
+//  &:visited {
+//    color: #000;
+//  }
+//  &:hover {
+//    color: #000;
+//    background-color: transparent;
+//  }
+//}
+//
+//.table-striped > tbody > tr:nth-child(2n+1) > td > div > a, .table-striped > tbody > tr:nth-child(2n+1) > th > div > a {
+//    background-color: #80379B;
+//    color: white;
+//}
+//
+//.table-striped > tbody > tr:nth-child(2n) > td > div > a, .table-striped > tbody > tr:nth-child(2n) > th > div > a {
+//    background-color: #F0AB00;
+//    color: black;
+//}
+//
+//.logoRecorridas {
+//  &:visited {
+//    color: #000;
+//  }
+//  &:hover {
+//    color: #000;
+//    background-color: transparent;
+//  }
+//}
+//
+//.sub-header {
+//  padding: 0.5em;
+//}
+//
+//.botones {
+//  margin-bottom: 1em;
+//}
+//
+//.paginacion {
+//  width: 100%;
+//  text-align: center;
+//}
+//
+//.estilos-paginacion {
+//  margin: 0 0 0.7em 0;
+//}
+//
+//.margen-vert {
+//  margin: 0.4em 0;
+//}
+//
+//a.glyphicon {
+//  &:visited {
+//    color: #000;
+//  }
+//  &:hover {
+//    color: #000;
+//    background-color: transparent;
+//  }
+//}
+//
+//.botones-submit {
+//  margin-bottom: 1em;
+//}
+//
+//a.btn:visited {
+//  color: #fff;
+//}
