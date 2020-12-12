@@ -17,7 +17,15 @@
  */
 @import "materialize";
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
+main {
+  flex: 1 0 auto;
+}
 
 //
 // .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
