@@ -43,7 +43,7 @@ class PedidoDataAccess
         pedido.state_id = 1
       end
       pedido.person_id = p['web_person_id']
-      pedido.fecha = Time.at(p['fecha'] / 1000)
+      pedido.fecha =p['fecha'] ? Time.at(p['fecha'] / 1000) : nil
       pedido.descripcion = p['descripcion'] ? p['descripcion'] : nil
       pedido.completado = p['completado'] ? p['completado'] : nil
 
