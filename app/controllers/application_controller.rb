@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :prepare_exception_notifier
+  before_action :authenticate_user!
+  before_action :es_invitado
 
   rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
 
@@ -128,6 +130,15 @@ class ApplicationController < ActionController::Base
     request.env["exception_notifier.exception_data"] = {
       :current_user => current_user
     }
+  end
+
+  def es_invitado
+    if current_user
+      if !current_user.rol_id || current_user.rol_id == 5
+        sign_out current_user
+        redirect_to falta_confirmacion_path
+      end
+    end
   end
 
 end

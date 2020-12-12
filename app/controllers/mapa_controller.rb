@@ -14,14 +14,4 @@ class MapaController < ApplicationController
   def mobMapaPersonas
     render :json => PersonDataAccess.listPersonaMapa.to_json
   end
-
-  private
-
-    def esInvitado
-      if !current_user.rol_id || current_user.rol_id == 5
-        sign_out current_user
-        redirect_to falta_confirmacion_path
-      end
-    end
-
 end

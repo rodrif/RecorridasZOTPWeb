@@ -1,65 +1,65 @@
-<nav>
-  <div class="nav-wrapper deep-purple lighten-2">
-    <%= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'brand-logo'} %>
-    <div class="container">
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-<!--  <nav class="navbar-default barra">-->
-<!--    <div class="container-fluid">-->
-
-<!--      <div class="navbar-header">-->
-<!--        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-<!--          <span class="sr-only">Toggle navigation</span>-->
-<!--          <span class="icon-bar"></span>-->
-<!--          <span class="icon-bar"></span>-->
-<!--          <span class="icon-bar"></span>-->
-<!--        </button>-->
-<%#= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'logoRecorridas'} %>
-<!--      </div>-->
-
-
-<!--      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-<!--        <ul class="nav navbar-nav">-->
-<%# if current_user && current_user.rol_id != 5 %>
-<!--            <li class="<%#= 'active' if params[:controller] == 'mapa' %>"><%#= link_to 'Inicio', root_path %></li>-->
-<!--            <li class="<%#= 'active' if params[:controller] == 'people' %>"><%#= link_to 'Personas', people_path %></li>-->
-<%# if RolDataAccess.puede_ver_institucion(current_user) %>
-<!--              <li class="<%#= 'active' if params[:controller] == 'instituciones' %>"><%#= link_to 'Instituciones', instituciones_path %></li>-->
-<%# end %>
-<!--            <li class="<%#= 'active' if params[:controller] == 'visits' %>"><%#= link_to 'Visitas', visits_path %></li>-->
-<!--            <li class="<%#= 'active' if params[:controller] == 'pedidos' %>"><%#= link_to 'Pedidos', pedidos_path %></li>-->
-<!--            <li class="<%#= 'active' if params[:controller] == 'configuraciones' %>"><%#= link_to 'Configuración', configuraciones_path %></li>-->
-<%# end %>
-<!--        </ul>-->
-
-<!--        <ul class="nav navbar-nav navbar-right">-->
-<%# if user_signed_in? %>
-<!--            <li>-->
-<%#= link_to('Salir', destroy_user_session_path, :method => :delete) %>
-<!--            </li>-->
-<!--            <li>-->
-<%# if !current_user.name.blank? %>
-<%#= link_to(current_user.name, edit_user_registration_path(current_user)) %>
-<%# else %>
-<%#= link_to(current_user.email, edit_user_registration_path(current_user)) %>
-<%# end %>
-<!--            </li>-->
-<%# else %>
-<!--            <li>-->
-<%#= link_to('Ingresar', new_user_session_path)  %>
-<!--            </li>-->
-<%# end %>
-<!--        </ul>-->
-
-<!--      </div>-->
+<!--<nav>-->
+<!--  <div class="nav-wrapper deep-purple lighten-2">-->
+    <%#= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'brand-logo'} %>
+<!--    <div class="container">-->
+<!--      <ul id="nav-mobile" class="left hide-on-med-and-down">-->
+<!--        <li><a href="sass.html">Sass</a></li>-->
+<!--        <li><a href="badges.html">Components</a></li>-->
+<!--        <li><a href="collapsible.html">JavaScript</a></li>-->
+<!--      </ul>-->
 <!--    </div>-->
-<!--  </nav>-->
+<!--  </div>-->
+<!--</nav>-->
+
+
+
+  <nav class="navbar-default barra">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+<%= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'logoRecorridas'} %>
+      </div>
+
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+<% if current_user && current_user.rol_id != 5 %>
+            <li class="<%= 'active' if params[:controller] == 'mapa' %>"><%= link_to 'Inicio', root_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'people' %>"><%= link_to 'Personas', people_path %></li>
+<% if RolDataAccess.puede_ver_institucion(current_user) %>
+              <li class="<%= 'active' if params[:controller] == 'instituciones' %>"><%= link_to 'Instituciones', instituciones_path %></li>
+<% end %>
+            <li class="<%= 'active' if params[:controller] == 'visits' %>"><%= link_to 'Visitas', visits_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'pedidos' %>"><%= link_to 'Pedidos', pedidos_path %></li>
+            <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><%= link_to 'Configuración', configuraciones_path %></li>
+<% end %>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+<% if user_signed_in? %>
+            <li>
+<%= link_to('Salir', destroy_user_session_path, :method => :delete) %>
+            </li>
+            <li>
+<% if !current_user.name.blank? %>
+<%= link_to(current_user.name, edit_user_registration_path(current_user)) %>
+<% else %>
+<%= link_to(current_user.email, edit_user_registration_path(current_user)) %>
+<% end %>
+            </li>
+<% else %>
+            <li>
+<%= link_to('Ingresar', new_user_session_path)  %>
+            </li>
+<% end %>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
