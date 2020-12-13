@@ -8,12 +8,12 @@
     <div class="row">
       <div class="input-field col s6">
         <%= f.text_field :nombre, :disabled => disabled %>
-        <%= f.label :nombre %>
+        <%= f.label :nombre, class: "active" %>
       </div>
 
       <div class="input-field col s6">
         <%= f.text_field :apellido, :disabled => disabled %>
-        <%= f.label :apellido %>
+        <%= f.label :apellido, class: "active" %>
       </div>
     </div>
 
@@ -21,21 +21,21 @@
       <div class="row">
         <div class="input-field col s12">
           <%= f.text_field :dni, :disabled => disabled %>
-          <%= f.label :dni %>
+          <%= f.label :dni, class: "active" %>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <%= f.text_field :telefono, type: "number", :disabled => disabled %>
-          <%= f.label :telefono %>
+          <%= f.label :telefono, class: "active" %>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s12">
           <%= f.text_field :fecha_nacimiento, class: "datepicker", :disabled => disabled %>
-          <%= f.label :fecha_nacimiento %>
+          <%= f.label :fecha_nacimiento, class: "active" %>
         </div>
       </div>
     <% end %>
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="input-field col s10">
         <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:disabled => disabled} %>
-        <%= f.label :area_id, "Sede"%>
+        <%= f.label :area_id, "Sede", class: "active"%>
       </div>
       <% if RolDataAccess.is_admin(current_user) %>
         <div class="col s2">
@@ -55,7 +55,7 @@
     <div class="row">
       <div class="input-field col s10">
         <%= f.collection_select :zone_id, @zonas, :id, :nombre, {:include_blank => false}, {:disabled => disabled} %>
-        <%= f.label :zone_id, "Zona"%>
+        <%= f.label :zone_id, "Zona", class: "active"%>
       </div>
       <% if RolDataAccess.is_admin(current_user) %>
         <div class="col s2">
@@ -67,7 +67,7 @@
     <div class="row">
       <div class="input-field col s12">
         <%= f.collection_select :institucion_id, Institucion.all, :id, :nombre, {:include_blank => true}, {:disabled => disabled} %>
-        <%= f.label :institucion_id, "Institución" %>
+        <%= f.label :institucion_id, "Institución", class: "active" %>
       </div>
     </div>
 
@@ -75,17 +75,17 @@
       <div class="row">
         <div class="input-field col s4">
           <%= f.text_field :pantalon, :disabled => disabled %>
-          <%= f.label :pantalon %>
+          <%= f.label :pantalon, class: "active" %>
         </div>
 
         <div class="input-field col s4">
           <%= f.text_field :remera, :disabled => disabled %>
-          <%= f.label :remera %>
+          <%= f.label :remera, class: "active" %>
         </div>
 
         <div class="input-field col s4">
           <%= f.text_field :zapatillas, :disabled => disabled %>
-          <%= f.label :zapatillas %>
+          <%= f.label :zapatillas, class: "active" %>
         </div>
       </div>
 
@@ -93,7 +93,7 @@
         <div class="row">
           <div class="input-field col s12">
             <%= f.collection_select :estado_id, Estado.activos, :id, :nombre, {:include_blank => 'Ninguno'}, {:disabled => disabled} %>
-            <%= f.label :estado_id, t("activerecord.models.estado.one") %>
+            <%= f.label :estado_id, t("activerecord.models.estado.one"), class: "active" %>
           </div>
         </div>
       <% end %>
@@ -102,7 +102,7 @@
         <div class="row">
           <div class="input-field col s12">
             <%= f.collection_select :departamento_ids, Departamento.activos, :id, :nombre, {:include_blank => true}, {multiple: true, :disabled => disabled} %>
-            <%= f.label :departamento_ids, t("activerecord.models.departamento.other") %>
+            <%= f.label :departamento_ids, t("activerecord.models.departamento.other"), class: "active" %>
           </div>
         </div>
       <% end %>
@@ -116,7 +116,7 @@
         <div class="row">
           <div class="input-field col s12">
             <%= field.text_field :direccion, :disabled => disabled %>
-            <%= field.label :direccion, 'Dirección' %>
+            <%= field.label :direccion, 'Dirección', class: "active" %>
           </div>
         </div>
 
@@ -124,11 +124,11 @@
           <% if !Rails.env.production? %>
             <div class="input-field col s6">
               <%= field.text_field :latitud, :disabled => disabled %>
-              <%= field.label :latitud %>
+              <%= field.label :latitud, class: "active" %>
             </div>
             <div class="input-field col s6">
               <%= field.text_field :longitud, :disabled => disabled %>
-              <%= field.label :longitud %>
+              <%= field.label :longitud, class: "active" %>
             </div>
           <% else %>
             <%= field.hidden_field :latitud, :disabled => disabled %>
@@ -149,7 +149,7 @@
       <div class="row">
         <div class="input-field col s12">
           <%= f.text_area :descripcion, class:"materialize-textarea", :disabled => disabled %>
-          <%= f.label :descripcion %>
+          <%= f.label :descripcion, class: "active" %>
         </div>
       </div>
     <% end %>

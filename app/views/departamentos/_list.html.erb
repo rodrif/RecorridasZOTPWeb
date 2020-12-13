@@ -1,29 +1,31 @@
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <% if RolDataAccess.puede_editar_departamento(current_user) %>
-          <th>Acciones</th>
-        <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @departamentos.each do |departamento| %>
+<div class="card">
+  <div class="scroll">
+    <table class="form-table">
+      <thead>
         <tr>
-          <td><%= departamento.nombre %></td>
-          <td>
-            <%=
-              render 'layouts/acciones',
-              current_user: current_user,
-              edit_path: RolDataAccess.puede_editar_departamento(current_user) ? edit_departamento_path(departamento) : nil,
-              delete_path: RolDataAccess.puede_editar_departamento(current_user) ? departamento : nil
-            %>
-          </td>
+          <th>Nombre</th>
+          <% if RolDataAccess.puede_editar_departamento(current_user) %>
+            <th>Acciones</th>
+          <% end %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @departamentos.each do |departamento| %>
+          <tr>
+            <td><%= departamento.nombre %></td>
+            <td>
+              <%=
+                render 'layouts/acciones',
+                current_user: current_user,
+                edit_path: RolDataAccess.puede_editar_departamento(current_user) ? edit_departamento_path(departamento) : nil,
+                delete_path: RolDataAccess.puede_editar_departamento(current_user) ? departamento : nil
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 

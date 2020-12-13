@@ -11,9 +11,8 @@ RSpec.feature "Editar area" do
     login_as @admin
     visit "/"
 
-    click_link "Configuración"
     click_link "Áreas"
-    find(:xpath, "//tr[contains(., '#{@departamento.nombre}')]/td/a", :class => "glyphicon-edit").click
+    find(:xpath, "//tr[contains(., '#{@departamento.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
     fill_in "Nombre", with: "Casos complejos"
     click_button "Aceptar"

@@ -13,7 +13,6 @@ RSpec.feature "Ver areas" do
       login_as @admin
       visit "/"
 
-      click_link "Configuración"
       click_link "Áreas"
 
       expect(page).to have_content(@departamento.nombre)
@@ -24,8 +23,6 @@ RSpec.feature "Ver areas" do
     scenario "no puede ver" do
       login_as @non_admin
       visit "/"
-
-      click_link "Configuración"
 
       expect(page).not_to have_link("Áreas")
     end

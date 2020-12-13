@@ -10,7 +10,6 @@ RSpec.feature "Crear area" do
     login_as @admin
     visit "/"
 
-    click_link "Configuración"
     click_link "Áreas"
     click_link "Nueva área"
 

@@ -3,22 +3,11 @@
 <% puede_editar ||= false %>
 <% disabled = !puede_editar %>
 
-<%= form_for(@departamento, remote: remote, :html => {'data-model' => 'departamento', :class => 'form-horizontal container-fluid'} ) do |f| %>
+<%= form_for(@departamento, remote: remote, :html => {:class => 'col s12'} ) do |f| %>
 
-  <% if @departamento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
-
-      <ul>
-      <% @departamento.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', obj: @departamento %>
 
   <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "departamento_nombre", f: f, remote: remote, puede_editar: puede_editar %>
-
 
   <%= render 'layouts/buttons_submit', path: departamentos_path, f: f, remote: remote, mostrar_aceptar: puede_editar %>
 

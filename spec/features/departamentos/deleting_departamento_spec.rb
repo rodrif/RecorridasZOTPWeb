@@ -11,12 +11,11 @@ RSpec.feature "Borrar Area" do
     login_as @admin
     visit "/"
 
-    click_link "Configuración"
     click_link "Áreas"
 
     expect(page).to have_content(@departamento.nombre)
 
-    find(:xpath, "//tr[contains(., '#{@departamento.nombre}')]/td/a", :class => "glyphicon-remove").click
+    find(:xpath, "//tr[contains(., '#{@departamento.nombre}')]/td/a[@title='Borrar']").click
 
     expect(page).to have_content("Área borrada correctamente")
     expect(page).not_to have_content(@departamento.nombre)
