@@ -8,8 +8,8 @@ def look_for_user_and_update()
   fill_in name: "person[nombre]", with: persona_nueva.nombre
   select institucion_nueva.nombre, from: "Institución"
   select estado_nuevo.nombre, from: "Estado"
-  uncheck departamento.nombre
-  check departamento_nuevo.nombre
+  unselect departamento.nombre, from: "Áreas"
+  select departamento_nuevo.nombre, from: "Áreas"
   fill_in name: "person[visits_attributes][0][latitud]", with: visita_edit.latitud
   fill_in name: "person[visits_attributes][0][longitud]", with: visita_edit.longitud
 
