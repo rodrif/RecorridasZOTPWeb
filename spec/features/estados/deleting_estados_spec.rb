@@ -11,7 +11,6 @@ RSpec.feature "Borrar Estado" do
     login_as @admin
     visit "/"
 
-    click_link "Configuración"
     click_link "Estados"
 
     expect(page).to have_content(@estado.nombre)

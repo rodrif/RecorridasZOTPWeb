@@ -15,7 +15,6 @@ RSpec.feature "Ver estados" do
       login_as @admin
       visit "/"
 
-      click_link "Configuración"
       click_link "Estados"
 
       expect(page).to have_content(@estado.nombre)
@@ -27,8 +26,6 @@ RSpec.feature "Ver estados" do
       login_as @referente
       visit "/"
 
-      click_link "Configuración"
-
       expect(page).not_to have_link("Estados")
     end
 
@@ -36,16 +33,12 @@ RSpec.feature "Ver estados" do
       login_as @coordinador
       visit "/"
 
-      click_link "Configuración"
-
       expect(page).not_to have_link("Estados")
     end
 
     scenario "si es voluntario" do
       login_as @voluntario
       visit "/"
-
-      click_link "Configuración"
 
       expect(page).not_to have_link("Estados")
     end

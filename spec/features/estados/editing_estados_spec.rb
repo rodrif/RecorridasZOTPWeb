@@ -11,7 +11,6 @@ RSpec.feature "Editar estado" do
     login_as @admin
     visit "/"
 
-    click_link "Configuración"
     click_link "Estados"
     click_link "Ver / Editar"
 
@@ -29,7 +28,6 @@ RSpec.feature "Editar estado" do
     login_as @admin
     visit "/"
 
-    click_link "Configuración"
     click_link "Estados"
     click_link "Ver / Editar"
 
