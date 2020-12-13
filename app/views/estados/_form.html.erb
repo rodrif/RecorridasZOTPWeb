@@ -4,21 +4,9 @@
 <% disabled = !puede_editar %>
 
 <%= form_for(@estado, remote: remote, :html => {'data-model' => 'estado', :class => 'form-horizontal container-fluid'} ) do |f| %>
+  <%= render 'shared/errors', obj: @estado %>
 
-  <% if @estado.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
-
-      <ul>
-      <% @estado.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, label_name_for: "estado_nombre", f: f, remote: remote, puede_editar: puede_editar %>
-
+  <%= render 'layouts/text_field', name: :nombre, label_name: :nombre, f: f, remote: remote, puede_editar: puede_editar %>
 
   <%= render 'layouts/buttons_submit', path: estados_path, f: f, remote: remote, mostrar_aceptar: puede_editar %>
 
