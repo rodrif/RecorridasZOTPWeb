@@ -18,10 +18,12 @@
 //= require filterrific/filterrific-jquery
 
 $(document).on('turbolinks:load', function() {
+    $('.sidenav').sidenav();
     $(".dropdown-trigger").dropdown({
         coverTrigger: false,
         constrainWidth: false
     });
+    $('select').formSelect();
 });
 
 function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapDisabled) {

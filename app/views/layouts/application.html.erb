@@ -11,7 +11,7 @@
   <%= analytics_init if GoogleAnalytics.valid_tracker? %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="grey lighten-4">
     <%= render 'layouts/navigation' %>
     <div class="container">
       <% if flash[:error] %>

@@ -22,6 +22,7 @@
   <nav>
     <div class="nav-wrapper">
       <%= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'brand-logo'} %>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <div class="container">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li class="<%= 'active' if params[:controller] == 'people' %>"><a class="dropdown-trigger" data-target="people-dropdown">Personas<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -37,7 +38,15 @@
   </nav>
 </div>
 
-
+<ul class="sidenav" id="mobile-demo">
+  <li><%= link_to 'Personas', people_path %></li>
+  <% if RolDataAccess.puede_ver_institucion(current_user) %>
+    <li><%= link_to 'Instituciones', instituciones_path %></li>
+  <% end %>
+  <li><%= link_to 'Visitas', visits_path %></li>
+  <li><%= link_to 'Pedidos', pedidos_path %></li>
+  <li><%= link_to 'Configuración', configuraciones_path %></li>
+</ul>
 <!--  <nav class="navbar-default barra">-->
 <!--    <div class="container-fluid">-->
 

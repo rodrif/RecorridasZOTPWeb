@@ -1,75 +1,54 @@
 <% label_searcher ||= false %>
 
-<div class="container-fluid well">
-
-  <%= form_for_filterrific @filterrific do |f| %>
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-2 margen-vert">
-        <%= f.select(
-          :with_area_id,
-          @filterrific.select_options[:with_area_id],
-          { include_blank: 'Sede' },
-          { class: "form-control" }
-        ) %>
-      </div>
-    </div>
-
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-2 margen-vert">
-        <%= f.select(
-          :with_zone_id,
-          @filterrific.select_options[:with_zone_id],
-          { include_blank: 'Zona' },
-          { class: "form-control" }
-        ) %>
-      </div>
-    </div>
-
-    <% if RolDataAccess.puede_ver_estado(current_user) %>
-      <div class="row-fluid">
-        <div class="col-xs-12 col-md-2 margen-vert">
+<div class="container-fluid">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
+        <div class="col s2">
           <%= f.select(
-            :with_estado_id,
-            @filterrific.select_options[:with_estado_id],
-            { include_blank: t("activerecord.models.estado.one") },
+            :with_area_id,
+            @filterrific.select_options[:with_area_id],
+            { include_blank: 'Sede' },
             { class: "form-control" }
           ) %>
         </div>
-      </div>
-    <% end %>
 
-    <% if RolDataAccess.puede_ver_departamento(current_user) %>
-      <div class="row-fluid">
-        <div class="col-xs-12 col-md-2 margen-vert">
+        <div class="col s2" style="padding-right:15px">
           <%= f.select(
-            :with_departamento_id,
-            @filterrific.select_options[:with_departamento_id],
-            { },
-            multiple: true
+            :with_zone_id,
+            @filterrific.select_options[:with_zone_id],
+            { include_blank: 'Zona' },
+            { class: "form-control" }
           ) %>
         </div>
-      </div>
+
+        <% if RolDataAccess.puede_ver_estado(current_user) %>
+          <div class="col s2">
+            <%= f.select(
+              :with_estado_id,
+              @filterrific.select_options[:with_estado_id],
+              { include_blank: t("activerecord.models.estado.one") },
+              { class: "form-control" }
+            ) %>
+          </div>
+        <% end %>
+
+        <div class="col s3 offset-s1">
+          <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+          <%= f.text_field(
+            :search_query,
+            class: 'filterrific-periodically-observed form-control',
+            placeholder: label_searcher ? label_searcher : 'Nombre / Apodo'
+          ) %>
+        </div>
+
     <% end %>
-
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-4 margen-vert">
-        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-        <%= f.text_field(
-          :search_query,
-          class: 'filterrific-periodically-observed form-control',
-          placeholder: label_searcher ? label_searcher : 'Nombre / Apodo'
-        ) %>
-      </div>
-    </div>
-
-  <% end %>
-
+  </div>
 </div>
 
 <!-- Initialize the plugin: -->
 <script type="text/javascript">
-    $('#filterrific_with_departamento_id').multiselect({
-      nonSelectedText: 'Áreas',
+    $('#filterrific_with_departamento_id').select({
+      title: 'Áreas',
       numberDisplayed: 1,
       nSelectedText: ' seleccionados',
       allSelectedText: 'Todos'

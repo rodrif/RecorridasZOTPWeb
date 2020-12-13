@@ -3,74 +3,73 @@
   <div class="container-fluid">
     <%= page_entries_info people %>
   </div>
-
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Sede</th>
-          <th>Zona</th>
-          <th>Institución</th>
-          <% if RolDataAccess.puede_ver_estado(current_user) %>
-            <th><%= t("activerecord.models.estado.one") %></th>
-          <% end %>
-          <% if RolDataAccess.puede_ver_departamento(current_user) %>
-            <th><%= t("activerecord.models.departamento.other") %></th>
-          <% end %>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @people.each do |person| %>
+  <div class="card">
+    <div class="scroll">
+      <table>
+        <thead>
           <tr>
-            <td><%= person.nombre %></td>
-            <% if person.visits.nil? || person.visits.first.nil? %>
-              <td></td>
-            <% else %>
-              <td><%= person.visits.first.direccion %></td>
-            <% end %>
-            <% if person.zone.nil? %>
-              <td>Sin area</td>
-            <% else %>
-              <td><%= person.zone.area.nombre %></td>
-            <% end %>
-            <% if person.zone.nil? %>
-              <td>Sin zona</td>
-            <% else %>
-              <td><%= person.zone.nombre %></td>
-            <% end %>
-            <% if person.institucion.nil? %>
-              <td></td>
-            <% else %>
-              <td><%= person.institucion.nombre %></td>
-            <% end %>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Sede</th>
+            <th>Zona</th>
+            <th>Institución</th>
             <% if RolDataAccess.puede_ver_estado(current_user) %>
-              <td><%= person.estado.nil? ? '' : person.estado.nombre %></td>
+              <th><%= t("activerecord.models.estado.one") %></th>
             <% end %>
             <% if RolDataAccess.puede_ver_departamento(current_user) %>
-              <td><%= person.departamentos.map { |d| d.nombre }.join(', ') %></td>
+              <th><%= t("activerecord.models.departamento.other") %></th>
             <% end %>
-            <td>
-              <%=
-                render 'layouts/acciones',
-                current_user: current_user,
-                visits_person_id: person.id,
-                edit_path: edit_person_path(person),
-                delete_path: RolDataAccess.puede_borrar_persona(current_user) ? person : nil
-              %>
-            </td>
+            <th>Acciones</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @people.each do |person| %>
+            <tr>
+              <td><%= person.nombre %></td>
+              <% if person.visits.nil? || person.visits.first.nil? %>
+                <td></td>
+              <% else %>
+                <td><%= person.visits.first.direccion %></td>
+              <% end %>
+              <% if person.zone.nil? %>
+                <td>Sin area</td>
+              <% else %>
+                <td><%= person.zone.area.nombre %></td>
+              <% end %>
+              <% if person.zone.nil? %>
+                <td>Sin zona</td>
+              <% else %>
+                <td><%= person.zone.nombre %></td>
+              <% end %>
+              <% if person.institucion.nil? %>
+                <td></td>
+              <% else %>
+                <td><%= person.institucion.nombre %></td>
+              <% end %>
+              <% if RolDataAccess.puede_ver_estado(current_user) %>
+                <td><%= person.estado.nil? ? '' : person.estado.nombre %></td>
+              <% end %>
+              <% if RolDataAccess.puede_ver_departamento(current_user) %>
+                <td><%= person.departamentos.map { |d| d.nombre }.join(', ') %></td>
+              <% end %>
+              <td>
+                <%=
+                  render 'layouts/acciones',
+                  current_user: current_user,
+                  visits_person_id: person.id,
+                  edit_path: edit_person_path(person),
+                  delete_path: RolDataAccess.puede_borrar_persona(current_user) ? person : nil
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="paginacion">
-    <%= will_paginate people, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
-  </div>
+  <%= will_paginate people %>
 
 </div>
 

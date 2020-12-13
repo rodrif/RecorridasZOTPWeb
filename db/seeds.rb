@@ -223,6 +223,27 @@ Departamento.create([
   { id: 12, nombre: 'Visitas', state_id: 1}
 ])
 
+InstitucionTipo.create!([
+  { id: 1, nombre: 'Merendero' },
+  { id: 2, nombre: 'Colegio' },
+  { id: 3, nombre: 'Universidad' }
+])
+
+Institucion.create([
+  {
+    id: 1,
+    nombre: 'Institucion 1',
+    descripcion: 'Una descripcion',
+    direccion: 'Direccion manual',
+    contacto: 'Juan',
+    telefono: 111111111,
+    codigo_postal: 1111,
+    latitud: -34.59171496828844000,
+    longitud: -58.41477054009286000,
+    state_id: 1
+  }
+])
+
 Person.create([
   {
     id: 1,
@@ -489,27 +510,6 @@ Pedido.create([
     descripcion: 'Frazada',
     person_id: 1,
     completado: 0,
-    state_id: 1
-  }
-])
-
-InstitucionTipo.create!([
-  { id: 1, nombre: 'Merendero' },
-  { id: 2, nombre: 'Colegio' },
-  { id: 3, nombre: 'Universidad' }
-])
-
-Institucion.create([
-  {
-    id: 1,
-    nombre: 'Institucion 1',
-    descripcion: 'Una descripcion',
-    direccion: 'Direccion manual',
-    contacto: 'Juan',
-    telefono: 111111111,
-    codigo_postal: 1111,
-    latitud: -34.59171496828844000,
-    longitud: -58.41477054009286000,
     state_id: 1
   }
 ])

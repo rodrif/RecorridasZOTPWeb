@@ -28,6 +28,8 @@ gem 'delayed_job'
 gem 'google-api-client', '~> 0.34'
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
+gem 'will_paginate-materialize', git: 'https://github.com/mldoscar/will_paginate-materialize', branch: 'master'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
