@@ -1,0 +1,16 @@
+<% if obj.errors.any? %>
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card-panel red lighten-2">
+          <span class="white-text">
+            <h4><%= t('common.errores.errores') %></h4>
+            <ul>
+              <% obj.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+<% end %>

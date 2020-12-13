@@ -38,6 +38,7 @@ $(document).on('turbolinks:load', function() {
             weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"],
         }
     });
+    $('#fade-out-target').fadeOut(4000);
 });
 
 function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapDisabled) {

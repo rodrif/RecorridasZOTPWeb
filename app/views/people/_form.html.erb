@@ -3,16 +3,7 @@
 
 <div class="row">
   <%= form_for(@person, :html => {:class => 'col s12'} ) do |f| %>
-    <% if @person.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= t('common.errores.errores') %></h2>
-        <ul>
-        <% @person.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'shared/errors', obj: @person %>
 
     <div class="row">
       <div class="input-field col s6">

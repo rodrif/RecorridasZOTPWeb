@@ -14,15 +14,7 @@
 <body class="grey lighten-4">
     <%= render 'layouts/navigation' %>
     <div class="container">
-      <% if flash[:error] %>
-        <p id="flash-error" class="alert alert-danger"><%= flash[:error] %></p>
-      <% end %>
-      <% if flash[:alert] %>
-        <p id="flash-alert" class="alert alert-danger"><%= flash[:alert] %></p>
-      <% end %>
-      <% if flash[:notice] %>
-        <p id="flash-notice" class="alert alert-success"><%= flash[:notice] %></p>
-      <% end %>
+      <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
 </body>

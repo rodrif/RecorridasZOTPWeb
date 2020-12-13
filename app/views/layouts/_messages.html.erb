@@ -1,0 +1,13 @@
+<div class="container">
+  <% flash.each do |key, msg| %>
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card-panel <%= key == "notice" ? "green" : "red" %> lighten-2 fade-out-target" id="fade-out-target">
+          <span class="white-text">
+            <%= msg %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
