@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.feature "Registración de usuario" do
 
   let!(:area) { create(:area) }

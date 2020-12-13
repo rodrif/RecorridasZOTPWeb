@@ -25,7 +25,7 @@ RSpec.feature "Borrar persona" do
       login_as @admin
 
       visit people_path
-      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='Borrar']").click
 
       expect(page).to have_content("Persona borrada correctamente")
       expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]")
@@ -37,7 +37,7 @@ RSpec.feature "Borrar persona" do
       login_as @coordinador
 
       visit people_path
-      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='Borrar']").click
 
       expect(page).to have_content("Persona borrada correctamente")
       expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]")
@@ -49,7 +49,7 @@ RSpec.feature "Borrar persona" do
       login_as @referente
 
       visit people_path
-      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='Borrar']").click
 
       expect(page).to have_content("Persona borrada correctamente")
       expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]")
@@ -64,7 +64,7 @@ RSpec.feature "Borrar persona" do
 
       visit people_path
 
-      expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove")
+      expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]/td/a[@title='Borrar']")
     end
   end
 end

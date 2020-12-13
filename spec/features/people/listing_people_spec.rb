@@ -22,7 +22,7 @@ RSpec.feature "Listar personas" do
     login_as @admin
     visit "/"
 
-    click_link "Personas"
+    click_link "Ver Personas"
 
     expect(page).to have_content(persona.nombre)
     expect(page).to have_content(persona.visits.first.direccion)
@@ -37,7 +37,7 @@ RSpec.feature "Listar personas" do
     login_as @coordinador
     visit "/"
 
-    click_link "Personas"
+    click_link "Ver Personas"
 
     expect(page).to have_content(persona.nombre)
     expect(page).to have_content(persona.visits.first.direccion)
@@ -52,7 +52,7 @@ RSpec.feature "Listar personas" do
     login_as @referente
     visit "/"
 
-    click_link "Personas"
+    click_link "Ver Personas"
 
     expect(page).to have_content(persona.nombre)
     expect(page).to have_content(persona.visits.first.direccion)
@@ -67,7 +67,7 @@ RSpec.feature "Listar personas" do
     login_as @voluntario
     visit "/"
 
-    click_link "Personas"
+    click_link "Ver Personas"
 
     expect(page).to have_content(persona.nombre)
     expect(page).to have_content(persona.visits.first.direccion)

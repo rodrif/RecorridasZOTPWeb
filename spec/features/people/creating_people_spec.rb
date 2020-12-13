@@ -21,9 +21,7 @@ RSpec.feature "Crear persona" do
     scenario "siendo administrador carga todos los campos" do
       login_as @admin
       visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
+      click_link "Nueva Persona"
 
       fill_in name: "person[nombre]", with: persona.nombre
       fill_in name: "person[apellido]", with: persona.apellido
@@ -67,9 +65,7 @@ RSpec.feature "Crear persona" do
     scenario "solo nombre, sede y zona" do
       login_as @admin
       visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
+      click_link "Nueva Persona"
 
       fill_in name: "person[nombre]", with: persona.nombre
       select area.nombre, from: "person[area_id]"
@@ -86,9 +82,7 @@ RSpec.feature "Crear persona" do
     scenario "al crearlo se genera una visita asociada con la dirección cargada" do
       login_as @admin
       visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
+      click_link "Nueva Persona"
 
       fill_in name: "person[nombre]", with: persona.nombre
       select area.nombre, from: "person[area_id]"
@@ -100,7 +94,7 @@ RSpec.feature "Crear persona" do
       end
 
       expect(page).to have_content("Persona creada correctamente")
-      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-eye-open").click
+      find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='Visitas']").click
 
       expect(current_path).to eq(visits_path(person_id: persona.id))
       expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
@@ -114,9 +108,7 @@ RSpec.feature "Crear persona" do
     scenario "usuario coordinador carga todos los campos" do
       login_as @coordinador
       visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
+      click_link "Nueva Persona"
 
       fill_in name: "person[nombre]", with: persona.nombre
       fill_in name: "person[apellido]", with: persona.apellido
@@ -151,9 +143,7 @@ RSpec.feature "Crear persona" do
     scenario "usuario referente carga todos los campos" do
       login_as @referente
       visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
+      click_link "Nueva Persona"
 
       fill_in name: "person[nombre]", with: persona.nombre
       fill_in name: "person[apellido]", with: persona.apellido
@@ -186,9 +176,7 @@ RSpec.feature "Crear persona" do
     scenario "usuario voluntario carga todos los campos, excepto Estado, DNI, Telefono, Fecha de Nac, Pantalón, Remera, Zapatilla que no lo tiene visible" do
       login_as @voluntario
       visit "/"
-
-      click_link "Personas"
-      click_link "Nueva persona"
+      click_link "Nueva Persona"
 
       fill_in name: "person[nombre]", with: persona.nombre
       fill_in name: "person[apellido]", with: persona.apellido
