@@ -24,6 +24,7 @@ $(document).on('turbolinks:load', function() {
         constrainWidth: false
     });
     $('select').formSelect();
+    $('.modal').modal();
 });
 
 function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapDisabled) {

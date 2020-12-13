@@ -1,32 +1,18 @@
-<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade" id="new_area_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelArea" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelArea">Nueva Sede</h4>
-      </div>
-      <div class="modal-body">
-        <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'areas/form', :@area => Area.new, modal: true, puede_editar: true %>
-      </div>
-    </div>
+<div  id="new_area_modal"  class="modal">
+  <div class="modal-content">
+    <button class="modal-close btn-flat" style="position:absolute;top:0;right:0;">X</button>
+    <h4>Nueva Sede</h4>
+    <div class="divider"></div>
+    <%= render 'areas/form', :@area => Area.new, modal: true, puede_editar: true %>
   </div>
 </div>
 
-<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade" id="new_zone_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelZona" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div id="new_zone_modal" class="modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelZona">Nueva Zona</h4>
-      </div>
-      <div class="modal-body">
-        <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'zones/form', :@zone => Zone.new, modal: true, puede_editar: true %>
-      </div>
+      <button class="modal-close btn-flat" style="position:absolute;top:0;right:0;">X</button>
+      <h4>Nueva Zona</h4>
+      <div class="divider"></div>
+      <%= render 'zones/form', :@zone => Zone.new, modal: true, puede_editar: true %>
     </div>
-  </div>
 </div>
 

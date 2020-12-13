@@ -56,7 +56,7 @@
       </div>
       <% if RolDataAccess.is_admin(current_user) %>
         <div class="col s2">
-          <%= link_to material_icon.add, '#new_area_modal', class: "btn-floating", 'data-toggle' => 'modal', id: 'area_modal' %>
+          <%= link_to material_icon.add, '#new_area_modal', class: "btn-floating modal-trigger" %>
         </div>
       <% end %>
     </div>
@@ -68,7 +68,7 @@
       </div>
       <% if RolDataAccess.is_admin(current_user) %>
         <div class="col s2">
-          <%= link_to material_icon.add, '#new_zone_modal', class: "btn-floating", 'data-toggle' => 'modal', id: 'zona_modal' %>
+          <%= link_to material_icon.add, '#new_zone_modal', class: "btn-floating modal-trigger" %>
         </div>
       <% end %>
     </div>
@@ -166,16 +166,17 @@
     <%= render 'layouts/buttons_submit', path: path, f: f, mostrar_aceptar: puede_editar %>
 
   <% end %>
+
+  <div id="modalsDiv">
+    <%= render 'modals' %>
+  </div>
+
+  <% if @person.id %>
+    <div id="mapDisabled"></div>
+  <% end %>
+
+  <script defer>
+    loadMapaScript('cargarUbicacionPersona');
+  </script>
+
 </div>
-
-<div id="modalsDiv">
-  <%= render 'modals' %>
-</div>
-
-<% if @person.id %>
-  <div id="mapDisabled"></div>
-<% end %>
-
-<script defer>
-  loadMapaScript('cargarUbicacionPersona');
-</script>
