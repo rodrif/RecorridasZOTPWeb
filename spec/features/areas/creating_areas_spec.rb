@@ -1,70 +1,55 @@
 require 'rails_helper'
 
-RSpec.feature "Crear sede" do
+def fill_in_form_and_submit()
+  visit "/"
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
+  click_link "Sedes"
+  click_link "Nueva sede"
+
+  fill_in "Nombre", with: area.nombre
+  click_button "Aceptar"
+end
+
+
+RSpec.shared_examples "create area" do
+  scenario "crea sede satisfactoriamente" do
+    login_as user
+
+    fill_in_form_and_submit
+
+    expect(page).to have_content("Sede creada correctamente")
+    expect(current_path).to eq(areas_path)
+    expect(page).to have_content(area.nombre)
   end
+end
+
+
+RSpec.feature "Crear sede" do
 
   let(:area) {build(:area)}
 
-  context "crea satisfoctariamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin)}
 
-      click_link "Configuración"
-      click_link "Sedes"
-      click_link "Nueva sede"
-
-      fill_in "Nombre", with: area.nombre
-      click_button "Aceptar"
-
-      expect(page).to have_content("Sede creada correctamente")
-      expect(current_path).to eq(areas_path)
-      expect(page).to have_content(area.nombre)
-    end
-
-    scenario "si usuario es referente" do
-      login_as @referente
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Sedes"
-      click_link "Nueva sede"
-
-      fill_in "Nombre", with: area.nombre
-      click_button "Aceptar"
-
-      expect(page).to have_content("Sede creada correctamente")
-      expect(current_path).to eq(areas_path)
-      expect(page).to have_content(area.nombre)
-    end
-
-    scenario "si usuario es coordinador" do
-      login_as @coordinador
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Sedes"
-      click_link "Nueva sede"
-
-      fill_in "Nombre", with: area.nombre
-      click_button "Aceptar"
-
-      expect(page).to have_content("Sede creada correctamente")
-      expect(current_path).to eq(areas_path)
-      expect(page).to have_content(area.nombre)
-    end
+    include_examples "create area"
   end
 
-  context "falla al crear" do
-    scenario "si el nombre no tiene solo letras" do
-      login_as @admin
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador)}
+
+    include_examples "create area"
+  end
+
+  context "siendo referente" do
+    let(:user) { create(:user_referente)}
+
+    include_examples "create area"
+  end
+
+  context "cuando el nombre incluye caracteres no alfabéticos" do
+    let(:user) { create(:user_admin)}
+    scenario "falla al crear" do
+      login_as user
 
       visit areas_path
       click_link "Nueva sede"

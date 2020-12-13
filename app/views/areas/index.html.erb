@@ -1,11 +1,9 @@
-
-
 <h2 class="sub-header">Sedes</h2>
 
-<div class="container-fluid well">
+<div class="container-fluid">
   <%= form_for_filterrific @filterrific do |f| %>
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3">
+    <div class="row">
+      <div class="col s12 m3">
         <%= f.text_field(
           :search_query,
           class: 'filterrific-periodically-observed form-control',

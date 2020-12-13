@@ -1,76 +1,57 @@
 require 'rails_helper'
 
-RSpec.feature "Editar sede" do
+def look_for_area_and_update()
+  visit areas_path
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
-    @area = create(:area)
+  find(:xpath, "//tr[contains(., '#{area_existente.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
+
+  fill_in "Nombre", with: area.nombre
+  click_button "Aceptar"
+end
+
+RSpec.shared_examples "edit area" do
+  scenario "edita sede satisfactoriamente" do
+    login_as user
+
+    look_for_area_and_update
+
+    expect(page).to have_content("Sede actualizada correctamente")
+    expect(current_path).to eq(areas_path)
+    expect(page).to have_content(area.nombre)
   end
+end
 
+RSpec.feature "Editar sede" do
+  let!(:area_existente) {create(:area)}
   let(:area) {build(:area)}
 
-  context "cambia nombre satisfactoriamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin)}
 
-      click_link "Configuración"
-      click_link "Sedes"
-      find("td", :text => @area.nombre).find(:xpath, '../td[2]/a', :class => "glyphicon-edit").click
-
-      fill_in "Nombre", with: area.nombre
-      click_button "Aceptar"
-
-      expect(page).to have_content("Sede actualizada correctamente")
-      expect(current_path).to eq(areas_path)
-      expect(page).to have_content(area.nombre)
-    end
-
-    scenario "si usuario es referente" do
-      login_as @referente
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Sedes"
-      find("td", :text => @area.nombre).find(:xpath, '../td[2]/a', :class => "glyphicon-edit").click
-
-      fill_in "Nombre", with: area.nombre
-      click_button "Aceptar"
-
-      expect(page).to have_content("Sede actualizada correctamente")
-      expect(current_path).to eq(areas_path)
-      expect(page).to have_content(area.nombre)
-    end
-
-    scenario "si usuario es coordinador" do
-      login_as @coordinador
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Sedes"
-      find("td", :text => @area.nombre).find(:xpath, '../td[2]/a', :class => "glyphicon-edit").click
-
-      fill_in "Nombre", with: area.nombre
-      click_button "Aceptar"
-
-      expect(page).to have_content("Sede actualizada correctamente")
-      expect(current_path).to eq(areas_path)
-      expect(page).to have_content(area.nombre)
-    end
+    include_examples "edit area"
   end
 
-  context "falla al editar" do
-    scenario "si el nombre no tiene solo letras" do
-      login_as @admin
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador)}
+
+    include_examples "edit area"
+  end
+
+  context "siendo referente" do
+    let(:user) { create(:user_referente)}
+
+    include_examples "edit area"
+  end
+
+  context "cuando el nombre incluye caracteres no alfabéticos" do
+    let(:user) { create(:user_admin)}
+    scenario "falla al editar" do
+      login_as user
+
       visit "/"
 
-      click_link "Configuración"
       click_link "Sedes"
-      find("td", :text => @area.nombre).find(:xpath, '../td[2]/a', :class => "glyphicon-edit").click
+      find(:xpath, "//tr[contains(., '#{area_existente.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
       fill_in "Nombre", with: "ABCDE123456"
       click_button "Aceptar"

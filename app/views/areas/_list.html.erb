@@ -4,37 +4,37 @@
     <%= page_entries_info areas %>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <% if RolDataAccess.puede_editar_area(current_user) %>
-            <th>Acciones</th>
-          <% end %>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @areas.each do |area| %>
+  <div class="card">
+    <div class="scroll">
+      <table class="form-table">
+        <thead>
           <tr>
-            <td><%= area.nombre %></td>
-            <td>
-              <%=
-                render 'layouts/acciones',
-                current_user: current_user,
-                edit_path: RolDataAccess.puede_editar_area(current_user) ? edit_area_path(area) : nil,
-                delete_path: RolDataAccess.puede_editar_area(current_user) ? area : nil
-              %>
-            </td>
+            <th>Nombre</th>
+            <% if RolDataAccess.puede_editar_area(current_user) %>
+              <th>Acciones</th>
+            <% end %>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @areas.each do |area| %>
+            <tr>
+              <td><%= area.nombre %></td>
+              <td>
+                <%=
+                  render 'layouts/acciones',
+                  current_user: current_user,
+                  edit_path: RolDataAccess.puede_editar_area(current_user) ? edit_area_path(area) : nil,
+                  delete_path: RolDataAccess.puede_editar_area(current_user) ? area : nil
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="paginacion">
-    <%= will_paginate areas, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
-  </div>
+  <%= will_paginate areas %>
 
 </div>

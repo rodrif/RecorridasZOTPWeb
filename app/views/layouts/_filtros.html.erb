@@ -1,10 +1,10 @@
 <% label_searcher ||= false %>
 
-<div class="container-fluid well">
+<div class="container-fluid">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
 
-  <%= form_for_filterrific @filterrific do |f| %>
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
+      <div class="col s12 m3">
         <%= f.select(
           :with_area_id,
           @filterrific.select_options[:with_area_id],
@@ -12,10 +12,8 @@
           { class: "form-control" }
         ) %>
       </div>
-    </div>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
+      <div class="col s12 m3">
         <%= f.select(
           :with_zone_id,
           @filterrific.select_options[:with_zone_id],
@@ -23,19 +21,15 @@
           { class: "form-control" }
         ) %>
       </div>
-    </div>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-6 margen-vert">
-        <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+      <div class="col s12 m3">
         <%= f.text_field(
           :search_query,
           class: 'filterrific-periodically-observed form-control',
           placeholder: label_searcher ? label_searcher : 'Nombre / Apodo'
         ) %>
       </div>
-    </div>
 
-  <% end %>
-
+    <% end %>
+  </div>
 </div>

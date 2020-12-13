@@ -18,6 +18,34 @@
   <li><%= link_to 'Nuevo Pedido', new_pedido_path %></li>
 </ul>
 
+<ul id="configuracion-dropdown" class="dropdown-content">
+  <% if RolDataAccess.puede_editar_area(current_user) %>
+    <li><%= link_to 'Sedes', areas_path %></li>
+  <% end %>
+  <% if RolDataAccess.puede_editar_zona(current_user) %>
+    <li><%= link_to 'Zonas', zones_path %></li>
+  <% end %>
+  <% if RolDataAccess.is_admin(current_user) %>
+    <li><%= link_to 'Auditoría', auditoria_index_path %></li>
+    <li><%= link_to 'Calendario', calendario_path %></li>
+  <% end %>
+  <% if RolDataAccess.puede_editar_departamento(current_user) %>
+    <li><%= link_to 'Áreas', departamentos_path %></li>
+  <% end %>
+  <% if RolDataAccess.puede_editar_estado(current_user) %>
+    <li><%= link_to 'Estados', estados_path %></li>
+  <% end %>
+  <% if RolDataAccess.puede_ver_informes(current_user) %>
+    <li><%= link_to 'Informes', informes_path %></li>
+  <% end %>
+  <% if RolDataAccess.puede_ver_notificaciones(current_user) %>
+    <li><%= link_to 'Notificaciones', notificaciones_path %></li>
+  <% end %>
+  <% if RolDataAccess.puede_editar_usuarios(current_user) %>
+    <li><%= link_to "Usuarios", users_path %></li>
+  <% end %>
+</ul>
+
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
@@ -31,7 +59,7 @@
             <% end %>
           <li class="<%= 'active' if params[:controller] == 'visits' %>"><a class="dropdown-trigger" data-target="visitas-dropdown">Visitas<i class="material-icons right">arrow_drop_down</i></a></li>
           <li class="<%= 'active' if params[:controller] == 'pedidos' %>"><a class="dropdown-trigger" data-target="pedidos-dropdown">Pedidos<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><%= link_to 'Configuración', configuraciones_path %></li>
+          <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><a class="dropdown-trigger" data-target="configuracion-dropdown">Configuración<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
       </div>
     </div>

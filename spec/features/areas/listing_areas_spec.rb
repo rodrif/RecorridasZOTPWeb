@@ -1,55 +1,42 @@
 require 'rails_helper'
 
+RSpec.shared_examples "list area" do
+  scenario "lista sedes satisfactoriamente" do
+    login_as user
+    visit "/"
+    click_link "Sedes"
+
+    expect(page).to have_content(area.nombre)
+  end
+end
+
 RSpec.feature "Listar sedes" do
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
-    @area = create(:area)
+  let!(:area) {create(:area)}
+
+  context "siendo administrador" do
+    let(:user) { create(:user_admin)}
+
+    include_examples "list area"
   end
 
-  context "puede listar satisfactoriamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador)}
 
-      click_link "Configuración"
-      click_link "Sedes"
-
-      expect(page).to have_content(@area.nombre)
-    end
-
-    scenario "si usuario es referente" do
-      login_as @referente
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Sedes"
-
-      expect(page).to have_content(@area.nombre)
-    end
-
-    scenario "si usuario es coordinador" do
-      login_as @coordinador
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Sedes"
-
-      expect(page).to have_content(@area.nombre)
-    end
+    include_examples "list area"
   end
 
-  context "no puede listar" do
-    scenario "si usuario es voluntario" do
-      login_as @voluntario
+  context "siendo referente" do
+    let(:user) { create(:user_referente)}
+
+    include_examples "list area"
+  end
+
+  context "siendo voluntario" do
+    let(:voluntario) { create(:user_voluntario)}
+    scenario "no tiene acceso a listar areas" do
+      login_as voluntario
       visit "/"
-
-      click_link "Configuración"
-
       expect(page).not_to have_link("Sedes")
     end
   end
