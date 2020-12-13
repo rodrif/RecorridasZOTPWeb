@@ -1,4 +1,47 @@
 require 'rails_helper'
+
+def fill_in_form_and_submit()
+  visit "/"
+  click_link "Nueva Persona"
+
+  fill_in name: "person[nombre]", with: persona.nombre
+  fill_in "Apellido", with: persona.apellido
+  fill_in "Dni", with: persona.dni
+  fill_in "Teléfono", with: persona.telefono
+  fill_in "Fecha nacimiento", with: persona.fecha_nacimiento
+  select area.nombre, from: "person[area_id]"
+  select institucion.nombre, from: "Institución"
+  fill_in "Pantalón", with: persona.pantalon
+  fill_in "Remera", with: persona.remera
+  fill_in "Zapatillas", with: persona.zapatillas
+  select estado.nombre, from: "Estado"
+  select departamento.nombre, from: "Áreas"
+  fill_in name: "person[visits_attributes][0][latitud]", with: visita.latitud
+  fill_in name: "person[visits_attributes][0][longitud]", with: visita.longitud
+  fill_in "Descripción", with: persona.descripcion
+
+  within("#new_person") do
+    click_button "Aceptar"
+  end
+end
+
+RSpec.shared_examples "create user" do
+  scenario "crea usuario con los datos asignados" do
+    login_as user
+
+    fill_in_form_and_submit
+
+    expect(page).to have_content("Persona creada correctamente")
+    expect(current_path).to eq(people_path)
+
+    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
+    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
+    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => estado.nombre)
+    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
+  end
+end
+
 RSpec.feature "Crear persona" do
 
   before do
@@ -9,7 +52,7 @@ RSpec.feature "Crear persona" do
     Person.update_all(state_id: 3)
   end
 
-  context "satisfactoriamente" do
+  context "carga todos los campos satisfactoriamente" do
     let!(:area) { create(:area) }
     let!(:zona) { create(:zone, area: area) }
     let!(:estado) { create(:estado) }
@@ -18,49 +61,35 @@ RSpec.feature "Crear persona" do
     let(:visita) { create(:visit) }
     let(:persona) { build(:person, zone: zona, estado: estado, institucion: institucion, departamento_ids: [departamento.id], visits: [visita]) }
 
-    scenario "siendo administrador carga todos los campos" do
-      login_as @admin
-      visit "/"
-      click_link "Nueva Persona"
+    context "siendo administrador" do
+      let(:user) { create(:user_admin)}
 
-      fill_in name: "person[nombre]", with: persona.nombre
-      fill_in name: "person[apellido]", with: persona.apellido
-      fill_in name: "person[dni]", with: persona.dni
-      fill_in name: "person[telefono]", with: persona.telefono
-      fill_in "Fecha nacimiento", with: persona.fecha_nacimiento
-      select area.nombre, from: "person[area_id]"
-      select institucion.nombre, from: "Institución"
-      fill_in name: "person[pantalon]", with: persona.pantalon
-      fill_in name: "person[remera]", with: persona.remera
-      fill_in name: "person[zapatillas]", with: persona.zapatillas
-      select estado.nombre, from: "Estado"
-      check departamento.nombre
-      fill_in name: "person[visits_attributes][0][latitud]", with: visita.latitud
-      fill_in name: "person[visits_attributes][0][longitud]", with: visita.longitud
-      fill_in name: "person[descripcion]", with: persona.descripcion
-
-      expect(page).to have_select("Estado")
-      expect(page).to have_css("input", id: "person_dni")
-      expect(page).to have_css("input", id: "person_fecha_nacimiento")
-      expect(page).to have_css("input", id: "person_pantalon")
-      expect(page).to have_css("input", id: "person_remera")
-      expect(page).to have_css("input", id: "person_zapatillas")
-      expect(page).to have_css("label", text: "Áreas")
-      expect(page).to have_css("textarea", id: "person_descripcion")
-
-      within("#new_person") do
-        click_button "Aceptar"
-      end
-
-      expect(page).to have_content("Persona creada correctamente")
-      expect(current_path).to eq(people_path)
-
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => estado.nombre)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
+      include_examples "create user"
     end
+
+    context "siendo coordinador" do
+      let(:user) { create(:user_coordinador)}
+
+      include_examples "create user"
+    end
+
+    context "siendo referente" do
+      let(:user) { create(:user_referente)}
+
+      include_examples "create user"
+    end
+
+
+
+    # scenario "siendo administrador carga todos los campos" do
+    #   expect(page).to have_select("Estado")
+    #   expect(page).to have_css("input", id: "person_dni")
+    #   expect(page).to have_css("input", id: "person_fecha_nacimiento")
+    #   expect(page).to have_css("input", id: "person_pantalon")
+    #   expect(page).to have_css("input", id: "person_remera")
+    #   expect(page).to have_css("input", id: "person_zapatillas")
+    #   expect(page).to have_css("label", text: "Áreas")
+    # end
 
     scenario "solo nombre, sede y zona" do
       login_as @admin
@@ -102,75 +131,6 @@ RSpec.feature "Crear persona" do
       expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.latitud)
       expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.longitud)
       expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
-    end
-
-
-    scenario "usuario coordinador carga todos los campos" do
-      login_as @coordinador
-      visit "/"
-      click_link "Nueva Persona"
-
-      fill_in name: "person[nombre]", with: persona.nombre
-      fill_in name: "person[apellido]", with: persona.apellido
-      fill_in name: "person[dni]", with: persona.dni
-      fill_in name: "person[telefono]", with: persona.telefono
-      fill_in "Fecha nacimiento", with: persona.fecha_nacimiento
-      select area.nombre, from: "person[area_id]"
-      select institucion.nombre, from: "Institución"
-      fill_in name: "person[pantalon]", with: persona.pantalon
-      fill_in name: "person[remera]", with: persona.remera
-      fill_in name: "person[zapatillas]", with: persona.zapatillas
-      select estado.nombre, from: "Estado"
-      check departamento.nombre
-      fill_in name: "person[visits_attributes][0][latitud]", with: visita.latitud
-      fill_in name: "person[visits_attributes][0][longitud]", with: visita.longitud
-      fill_in name: "person[descripcion]", with: persona.descripcion
-      expect(page). to have_select("Estado")
-
-      within("#new_person") do
-        click_button "Aceptar"
-      end
-
-      expect(page).to have_content("Persona creada correctamente")
-      expect(current_path).to eq(people_path)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => estado.nombre)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
-    end
-
-    scenario "usuario referente carga todos los campos" do
-      login_as @referente
-      visit "/"
-      click_link "Nueva Persona"
-
-      fill_in name: "person[nombre]", with: persona.nombre
-      fill_in name: "person[apellido]", with: persona.apellido
-      fill_in name: "person[dni]", with: persona.dni
-      fill_in name: "person[telefono]", with: persona.telefono
-      fill_in "Fecha nacimiento", with: persona.fecha_nacimiento
-      select area.nombre, from: "person[area_id]"
-      select institucion.nombre, from: "Institución"
-      fill_in name: "person[pantalon]", with: persona.pantalon
-      fill_in name: "person[remera]", with: persona.remera
-      fill_in name: "person[zapatillas]", with: persona.zapatillas
-      check departamento.nombre
-      fill_in name: "person[visits_attributes][0][latitud]", with: visita.latitud
-      fill_in name: "person[visits_attributes][0][longitud]", with: visita.longitud
-      fill_in name: "person[descripcion]", with: persona.descripcion
-      expect(page). to have_select("Estado")
-
-      within("#new_person") do
-        click_button "Aceptar"
-      end
-
-      expect(current_path).to eq(people_path)
-      expect(page).to have_content("Persona creada correctamente")
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => visita.direccion)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => institucion.nombre)
-      expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]/td", :text => departamento.nombre)
     end
 
     scenario "usuario voluntario carga todos los campos, excepto Estado, DNI, Telefono, Fecha de Nac, Pantalón, Remera, Zapatilla que no lo tiene visible" do

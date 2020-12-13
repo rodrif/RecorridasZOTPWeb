@@ -46,6 +46,7 @@ es:
         nombre: Nombre
         telefono: Teléfono
         descripcion: Descripción
+        pantalon: Pantalón
       user:
         password: Contraseña
         password_confirmation: Confirmar contraseña
