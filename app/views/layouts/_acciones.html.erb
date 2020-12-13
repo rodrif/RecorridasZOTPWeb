@@ -7,36 +7,33 @@
 <% remote ||= false %>
 
 <% if visits_person_id %>
-	<%= link_to '',
+	<%= link_to material_icon.remove_red_eye,
 	    {
 	      :controller => 'visits',
 	      :action => :index,
 	      :person_id => visits_person_id
 	    },
 	    {
-	      :class => 'glyphicon glyphicon-eye-open',
 	      :title => 'Visitas'
 	    }
 	%>
 <% end %>
 
 <% if institucion_id %>
-	<%= link_to '',
+	<%= link_to material_icon.person,
 	    {
 	      :controller => 'people',
 	      :action => :index,
 	      :institucion_id => institucion_id
 	    },
 	    {
-	      :class => 'glyphicon glyphicon-user',
 	      :title => 'Personas'
 	    }
 	%>
 <% end %>
 
 <% if new_path && remote %>
-    <%= link_to '', new_path, {
-        class: 'glyphicon glyphicon-plus',
+    <%= link_to material_icon.add_box, new_path, {
         title: 'crear',
         data: {toggle: 'modal'}
       }
@@ -45,25 +42,22 @@
 
 <% if edit_path && current_user %>
   <% if remote %>
-    <%= link_to '', edit_path,
-        class: 'glyphicon glyphicon-edit',
+    <%= link_to material_icon.edit, edit_path,
         title: 'editar',
         remote: true,
         data: {toggle: 'modal', target: '#edit_pedido_modal'}
     %>
   <% else %>
-    <%= link_to '', edit_path,
-      class: 'glyphicon glyphicon-edit',
+    <%= link_to material_icon.edit, edit_path,
       title: t("common.ver_editar")
     %>
   <% end %>
 <% end %>
 
 <% if delete_path && current_user %>
-	<%= link_to '', delete_path,
+	<%= link_to material_icon.delete, delete_path,
     method: :delete,
     data: { confirm: '¿Estás seguro?' },
-    class: 'glyphicon glyphicon-remove',
     title: 'Borrar'
   %>
 <% end %>
