@@ -2,7 +2,7 @@
 <% disabled = !puede_editar %>
 
 <div class="row">
-  <%= form_for(@person, :html => {:class => 'col s10'} ) do |f| %>
+  <%= form_for(@person, :html => {:class => 'col s12'} ) do |f| %>
     <% if @person.errors.any? %>
       <div id="error_explanation">
         <h2><%= t('common.errores.errores') %></h2>
@@ -43,7 +43,7 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <%= f.date_field :fecha_nacimiento, :disabled => disabled %>
+          <%= f.text_field :fecha_nacimiento, class: "datepicker", :disabled => disabled %>
           <%= f.label :fecha_nacimiento %>
         </div>
       </div>
