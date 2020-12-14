@@ -1,107 +1,87 @@
 require 'rails_helper'
 
-RSpec.feature "Crear institucion" do
+def fill_in_form_and_submit()
+  visit "/"
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
+  click_link "Nueva Institución"
+
+  fill_in "Nombre", with: institucion.nombre
+  select institucion.institucion_tipo.nombre, from: "Tipo"
+  fill_in "Descripción", with: institucion.descripcion
+  fill_in "Dirección", with: institucion.direccion
+  fill_in "Contacto", with: institucion.contacto
+  fill_in "Teléfono", with: institucion.telefono
+  fill_in "Código postal", with: institucion.codigo_postal
+  find("#institucion_latitud", visible: false).set institucion.latitud
+  find("#institucion_longitud", visible: false).set institucion.longitud
+
+  click_button "Aceptar"
+end
+
+RSpec.shared_examples "create institucion" do
+  scenario "crea institución satisfactoriamente" do
+    login_as user
+
+    fill_in_form_and_submit
+
+    expect(page).to have_content("Institución creada correctamente")
+    expect(current_path).to eq(instituciones_path)
+    expect(page).to have_content(institucion.nombre)
+    expect(page).to have_content(institucion.descripcion)
+    expect(page).to have_content(institucion.institucion_tipo.nombre)
+    expect(page).to have_content(institucion.direccion)
+    expect(page).to have_content(institucion.contacto)
+    expect(page).to have_content(institucion.telefono)
+    expect(page).to have_content(institucion.codigo_postal)
   end
+end
+
+RSpec.feature "Crear institucion" do
 
   let(:institucion) {build(:merendero)}
 
-  context "crea satisfoctariamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin)}
 
-      visit instituciones_path
-      click_link "Nueva institución"
-
-      fill_in "Nombre", with: institucion.nombre
-      select institucion.institucion_tipo.nombre, from: "Tipo"
-      fill_in "Descripción", with: institucion.descripcion
-      fill_in "Dirección", with: institucion.direccion
-      fill_in "Contacto", with: institucion.contacto
-      fill_in "Teléfono", with: institucion.telefono
-      fill_in "Código postal", with: institucion.codigo_postal
-      find("#institucion_latitud", visible: false).set institucion.latitud
-      find("#institucion_longitud", visible: false).set institucion.longitud
-
-      click_button "Aceptar"
-
-      expect(page).to have_content("Institución creada correctamente")
-      expect(current_path).to eq(instituciones_path)
-      expect(page).to have_content(institucion.nombre)
-      expect(page).to have_content(institucion.descripcion)
-      expect(page).to have_content(institucion.institucion_tipo.nombre)
-      expect(page).to have_content(institucion.direccion)
-      expect(page).to have_content(institucion.contacto)
-      expect(page).to have_content(institucion.telefono)
-      expect(page).to have_content(institucion.codigo_postal)
-    end
-
-    scenario "si usuario es coordinador" do
-      login_as @coordinador
-      visit "/"
-
-      visit instituciones_path
-      click_link "Nueva institución"
-
-      fill_in "Nombre", with: institucion.nombre
-      select institucion.institucion_tipo.nombre, from: "Tipo"
-      fill_in "Descripción", with: institucion.descripcion
-      fill_in "Dirección", with: institucion.direccion
-      fill_in "Contacto", with: institucion.contacto
-      fill_in "Teléfono", with: institucion.telefono
-      fill_in "Código postal", with: institucion.codigo_postal
-      find("#institucion_latitud", visible: false).set institucion.latitud
-      find("#institucion_longitud", visible: false).set institucion.longitud
-
-      click_button "Aceptar"
-
-      expect(page).to have_content("Institución creada correctamente")
-      expect(current_path).to eq(instituciones_path)
-      expect(page).to have_content(institucion.nombre)
-      expect(page).to have_content(institucion.descripcion)
-      expect(page).to have_content(institucion.institucion_tipo.nombre)
-      expect(page).to have_content(institucion.direccion)
-      expect(page).to have_content(institucion.contacto)
-      expect(page).to have_content(institucion.telefono)
-      expect(page).to have_content(institucion.codigo_postal)
-    end
+    include_examples "create institucion"
   end
 
-  context "No puede crear" do
-    scenario "si es usuario referente" do
-      login_as @referente
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador)}
+
+    include_examples "create institucion"
+  end
+
+  context "siendo referente" do
+    let(:user) { create(:user_referente)}
+
+    scenario "no puede crear" do
+      login_as user
       visit "/"
 
-      visit instituciones_path
       expect(page).not_to have_link("Nueva institución")
     end
   end
 
   context "Falla al crear" do
+    let(:user) { create(:user_admin)}
+
     scenario "Nombre está vacío" do
-      login_as @admin
+      login_as user
       visit "/"
 
-      visit instituciones_path
-      click_link "Nueva institución"
-
+      click_link "Nueva Institución"
       click_button "Aceptar"
 
-      expect(current_path).to eq(instituciones_path(@institucion))
+      expect(current_path).to eq(instituciones_path(institucion))
       expect(page).to have_content("Nombre no puede estar en blanco")
     end
 
     scenario "Teléfono contiene caracteres no numéricos" do
-      login_as @admin
+      login_as user
       visit "/"
 
-      visit instituciones_path
-      click_link "Nueva institución"
+      click_link "Nueva Institución"
 
       fill_in "Nombre", with: institucion.nombre
       fill_in "Teléfono", with: "4345-6789"

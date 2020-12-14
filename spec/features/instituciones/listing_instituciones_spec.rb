@@ -16,7 +16,7 @@ RSpec.feature "Listar instituciones" do
       login_as @admin
       visit "/"
 
-      click_link "Instituciones"
+      click_link "Ver Instituciones"
 
       expect(page).to have_content(institucion.nombre)
       expect(page).to have_content(institucion.descripcion)
@@ -32,7 +32,7 @@ RSpec.feature "Listar instituciones" do
       login_as @referente
       visit "/"
 
-      click_link "Instituciones"
+      click_link "Ver Instituciones"
 
       expect(page).to have_content(institucion.nombre)
       expect(page).to have_content(institucion.descripcion)
@@ -48,7 +48,7 @@ RSpec.feature "Listar instituciones" do
       login_as @coordinador
       visit "/"
 
-      click_link "Instituciones"
+      click_link "Ver Instituciones"
 
       expect(page).to have_content(institucion.nombre)
       expect(page).to have_content(institucion.descripcion)
@@ -66,7 +66,7 @@ RSpec.feature "Listar instituciones" do
       login_as @voluntario
       visit "/"
 
-      expect(page).not_to have_link("Instituciones")
+      expect(page).not_to have_link("Ver Instituciones")
     end
   end
 end

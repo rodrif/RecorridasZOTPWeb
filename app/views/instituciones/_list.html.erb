@@ -4,53 +4,53 @@
     <%= page_entries_info instituciones %>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Tipo</th>
-          <th>Dirección</th>
-          <th>Contacto</th>
-          <th>Teléfono</th>
-          <th>Código postal</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @instituciones.each do |institucion| %>
+  <div class="card">
+    <div class="scroll">
+      <table class="form-table">
+        <thead>
           <tr>
-            <td><%= institucion.nombre %></td>
-            <td><%= institucion.descripcion %></td>
-            <% if institucion.institucion_tipo.nil? %>
-              <td></td>
-            <% else %>
-              <td><%= institucion.institucion_tipo.nombre %></td>
-            <% end %>
-            <td><%= institucion.direccion %></td>
-            <td><%= institucion.contacto %></td>
-            <td><%= institucion.telefono %></td>
-            <td><%= institucion.codigo_postal %></td>
-            <td>
-              <%=
-                render 'layouts/acciones',
-                current_user: current_user,
-                institucion_id: institucion.id,
-                edit_path: edit_institucion_path(institucion),
-                delete_path: RolDataAccess.puede_borrar_institucion(current_user) ? institucion : nil
-              %>
-            </td>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Tipo</th>
+            <th>Dirección</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Código postal</th>
+            <th>Acciones</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @instituciones.each do |institucion| %>
+            <tr>
+              <td><%= institucion.nombre %></td>
+              <td><%= institucion.descripcion %></td>
+              <% if institucion.institucion_tipo.nil? %>
+                <td></td>
+              <% else %>
+                <td><%= institucion.institucion_tipo.nombre %></td>
+              <% end %>
+              <td><%= institucion.direccion %></td>
+              <td><%= institucion.contacto %></td>
+              <td><%= institucion.telefono %></td>
+              <td><%= institucion.codigo_postal %></td>
+              <td>
+                <%=
+                  render 'layouts/acciones',
+                  current_user: current_user,
+                  institucion_id: institucion.id,
+                  edit_path: edit_institucion_path(institucion),
+                  delete_path: RolDataAccess.puede_borrar_institucion(current_user) ? institucion : nil
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="paginacion">
-    <%= will_paginate instituciones, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
-  </div>
+  <%= will_paginate instituciones %>
 
 </div>
 

@@ -62,6 +62,7 @@ es:
         person: Persona
       institucion:
         telefono: Teléfono
+        descripcion: Descripción
     models:
       departamento:
         zero:  Área

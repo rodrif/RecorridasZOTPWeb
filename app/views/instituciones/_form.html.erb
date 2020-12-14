@@ -2,63 +2,54 @@
 <% disabled = !puede_editar %>
 
 <%= form_for(@institucion, :html => {:class => 'form-horizontal container-fluid'} ) do |f| %>
-  <% if @institucion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
-      <ul>
-      <% @institucion.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', obj: @institucion %>
 
-  <div class="form-group">
-    <%= f.label :nombre, class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :nombre, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :nombre, :disabled => disabled %>
+      <%= f.label :nombre, class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :institucion_tipo_id, "Tipo", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.collection_select :institucion_tipo_id, InstitucionTipo.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.collection_select :institucion_tipo_id, InstitucionTipo.all, :id, :nombre, {:include_blank => true}, {:disabled => disabled} %>
+      <%= f.label :institucion_tipo_id, "Tipo", class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-      <%= f.label :descripcion, "Descripción", class: "col-md-1 control-label"%>
-      <div class="col-md-10">
-        <%= f.text_area :descripcion, class: "form-control", type: "text", :disabled => disabled %>
-      </div>
-    </div>
-
-  <div class="form-group">
-    <%= f.label :direccion, 'Dirección', class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :direccion, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_area :descripcion, class:"materialize-textarea", :disabled => disabled %>
+      <%= f.label :descripcion, class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :contacto, class: "col-md-1 control-label"%>
-    <div class="col-md-10">
-      <%= f.text_field :contacto, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :direccion, :disabled => disabled %>
+      <%= f.label :direccion, 'Dirección', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :telefono, class: "col-md-1 control-label"%>
-    <div class="col-md-10">
-      <%= f.text_field :telefono, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :contacto, :disabled => disabled %>
+      <%= f.label :contacto, class: "active" %>
     </div>
   </div>
 
-   <div class="form-group">
-    <%= f.label :codigo_postal, 'Código postal', class: "col-md-1 control-label"%>
-    <div class="col-md-10">
-      <%= f.text_field :codigo_postal, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :telefono, :disabled => disabled %>
+      <%= f.label :telefono, class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :codigo_postal, :disabled => disabled %>
+      <%= f.label :codigo_postal, 'Código postal', class: "active" %>
     </div>
   </div>
  
