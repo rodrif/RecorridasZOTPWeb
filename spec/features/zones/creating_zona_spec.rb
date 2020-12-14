@@ -1,89 +1,62 @@
 require 'rails_helper'
 
+def fill_in_form_and_submit()
+  visit "/"
+
+  click_link "Zonas"
+  click_link "Nueva zona"
+
+  fill_in "Nombre", with: zona.nombre
+  select area.nombre, from: "Sede"
+  fill_in "Latitud", with: zona.latitud
+  fill_in "Longitud", with: zona.longitud
+
+  click_button "Aceptar"
+end
+
+RSpec.shared_examples "create zone" do
+  scenario "crea zona satisfactoriamente" do
+    login_as user
+
+    fill_in_form_and_submit
+
+    expect(page).to have_content("Zona creada correctamente")
+    expect(current_path).to eq(zones_path)
+
+    expect(page).to have_xpath("//tr[contains(., '#{zona.nombre}')]")
+    expect(page).to have_xpath("//tr[contains(., '#{zona.nombre}')]/td", :text => zona.latitud)
+    expect(page).to have_xpath("//tr[contains(., '#{zona.nombre}')]/td", :text => zona.longitud)
+    expect(page).to have_xpath("//tr[contains(., '#{zona.nombre}')]/td", :text => area.nombre)
+  end
+end
+
 RSpec.feature "Crear zona" do
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
-    @area = create(:area)
-  end
-
+  let!(:area) {create(:area)}
   let(:zona) {build(:zone)}
 
-  context "crea satisfoctariamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin)}
 
-      click_link "Configuración"
-      click_link "Zonas"
-      click_link "Nueva zona"
-
-      fill_in "Nombre", with: zona.nombre
-      select @area.nombre, from: "Sede"
-      fill_in "Latitud", with: zona.latitud
-      fill_in "Longitud", with: zona.longitud
-      click_button "Aceptar"
-
-      expect(page).to have_content("Zona creada correctamente")
-      expect(current_path).to eq(zones_path)
-      expect(page).to have_content(zona.nombre)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(@area.nombre)
-    end
-
-    scenario "si usuario es referente" do
-      login_as @referente
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Zonas"
-      click_link "Nueva zona"
-
-      fill_in "Nombre", with: zona.nombre
-      select @area.nombre, from: "Sede"
-      fill_in "Latitud", with: zona.latitud
-      fill_in "Longitud", with: zona.longitud
-      click_button "Aceptar"
-
-      expect(page).to have_content("Zona creada correctamente")
-      expect(current_path).to eq(zones_path)
-      expect(page).to have_content(zona.nombre)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(@area.nombre)
-    end
-
-    scenario "si usuario es coordinador" do
-      login_as @coordinador
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Zonas"
-      click_link "Nueva zona"
-
-      fill_in "Nombre", with: zona.nombre
-      select @area.nombre, from: "Sede"
-      fill_in "Latitud", with: zona.latitud
-      fill_in "Longitud", with: zona.longitud
-      click_button "Aceptar"
-
-      expect(page).to have_content("Zona creada correctamente")
-      expect(current_path).to eq(zones_path)
-      expect(page).to have_content(zona.nombre)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(@area.nombre)
-    end
+    include_examples "create zone"
   end
 
-  context "falla al crear" do
-    scenario "si el nombre no tiene solo letras y núymeros" do
-      login_as @admin
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador)}
+
+    include_examples "create zone"
+  end
+
+  context "siendo referente" do
+    let(:user) { create(:user_referente)}
+
+    include_examples "create zone"
+  end
+
+  context "cuando el nombre tiene caracteres no alfanuméricos" do
+    let(:user) { create(:user_admin)}
+    scenario "no crea y muestra mensaje de error" do
+      login_as user
 
       visit zones_path
       click_link "Nueva zona"

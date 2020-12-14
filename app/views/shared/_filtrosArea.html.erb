@@ -2,9 +2,10 @@
 
   <%= form_for_filterrific @filterrific do |f| %>
 
-    <%= render 'shared/filtroArea', f: f %>
-
-    <%= render 'shared/filtroTexto', f: f %>
+    <div class="row">
+      <%= render 'shared/filtroArea', f: f %>
+      <%= render 'shared/filtroTexto', f: f %>
+    </div>
 
   <% end %>
 

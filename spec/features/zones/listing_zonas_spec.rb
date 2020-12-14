@@ -1,67 +1,48 @@
 require 'rails_helper'
 
-RSpec.feature "Listar zonas" do
+RSpec.shared_examples "list zone" do
+  scenario "lista zonas satisfactoriamente" do
+    login_as user
+    visit "/"
+    click_link "Zonas"
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
+    expect(page).to have_content(zona.nombre)
+    expect(page).to have_content(zona.latitud)
+    expect(page).to have_content(zona.latitud)
+    expect(page).to have_content(area.nombre)
   end
+end
+
+RSpec.feature "Listar zonas" do
 
   let!(:area) { create(:area) }
   let!(:zona) { create(:zone, area_id: area.id) }
 
-  context "puede listar satisfactoriamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin) }
 
-      click_link "Configuración"
-      click_link "Zonas"
-
-      expect(page).to have_content(zona.nombre)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(area.nombre)
-    end
-
-    scenario "si usuario es referente" do
-      login_as @referente
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Zonas"
-
-      expect(page).to have_content(zona.nombre)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(area.nombre)
-    end
-
-    scenario "si usuario es coordinador" do
-      login_as @coordinador
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Zonas"
-
-      expect(page).to have_content(zona.nombre)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(zona.latitud)
-      expect(page).to have_content(area.nombre)
-    end
+    include_examples "list zone"
   end
 
-  context "no puede listar" do
-    scenario "si usuario es voluntario" do
-      login_as @voluntario
-      visit "/"
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador) }
 
-      click_link "Configuración"
+    include_examples "list zone"
+  end
 
+  context "siendo referente" do
+    let(:user) { create(:user_referente) }
+
+    include_examples "list zone"
+  end
+
+  context "siendo voluntario" do
+    let(:user) { create(:user_voluntario) }
+
+    scenario "no puede ver las zonas" do
+      login_as user
       expect(page).not_to have_link("Zonas")
     end
   end
+
 end

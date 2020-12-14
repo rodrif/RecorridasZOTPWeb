@@ -4,51 +4,51 @@
     <%= page_entries_info zones %>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Sede</th>
-        <% if !Rails.env.production? %>
-          <th>Latitud</th>
-          <th>Longitud</th>
-        <% end %>
-        <% if RolDataAccess.puede_editar_zona(current_user) %>
-          <th>Acciones</th>
-        <% end %>
-      </tr>
-    </thead>
+  <div class="card">
+    <div class="scroll">
+      <table class="form-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Sede</th>
+            <% if !Rails.env.production? %>
+              <th>Latitud</th>
+              <th>Longitud</th>
+            <% end %>
+            <% if RolDataAccess.puede_editar_zona(current_user) %>
+              <th>Acciones</th>
+            <% end %>
+          </tr>
+        </thead>
 
-    <tbody>
-      <% @zones.each do |zone| %>
-        <tr>
-          <td><%= zone.nombre %></td>
-          <% if zone.area.nil? %>
-            <td>Sin Area</td>
-          <% else %>
-            <td><%= zone.area.nombre %></td>
+        <tbody>
+          <% @zones.each do |zone| %>
+            <tr>
+              <td><%= zone.nombre %></td>
+              <% if zone.area.nil? %>
+                <td>Sin Area</td>
+              <% else %>
+                <td><%= zone.area.nombre %></td>
+              <% end %>
+              <% if !Rails.env.production? %>
+                <td><%= zone.latitud %></td>
+                <td><%= zone.longitud %></td>
+              <% end %>
+              <td>
+                <%=
+                  render 'layouts/acciones',
+                  current_user: current_user,
+                  edit_path: RolDataAccess.puede_editar_zona(current_user) ? edit_zone_path(zone) : nil,
+                  delete_path: RolDataAccess.puede_editar_zona(current_user) ? zone : nil
+                %>
+              </td>
+            </tr>
           <% end %>
-          <% if !Rails.env.production? %>
-            <td><%= zone.latitud %></td>
-            <td><%= zone.longitud %></td>
-          <% end %>
-          <td>
-            <%=
-              render 'layouts/acciones',
-              current_user: current_user,
-              edit_path: RolDataAccess.puede_editar_zona(current_user) ? edit_zone_path(zone) : nil,
-              delete_path: RolDataAccess.puede_editar_zona(current_user) ? zone : nil
-            %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="paginacion">
-    <%= will_paginate zones, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
-  </div>
+  <%= will_paginate zones %>
 
 </div>

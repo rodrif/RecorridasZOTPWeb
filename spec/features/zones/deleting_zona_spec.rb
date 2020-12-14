@@ -1,56 +1,40 @@
 require 'rails_helper'
 
-RSpec.feature "Borrar zona" do
+RSpec.shared_examples "delete zone" do
+  scenario "borra zona satisfactoriamente" do
+    login_as user
+    visit "/"
 
-  before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
-    @invitado = create(:user_invitado)
+    click_link "Zonas"
+
+    find(:xpath, "//tr[contains(., '#{zona.nombre}')]/td/a[@title='Borrar']").click
+
+    expect(page).to have_content("Zona borrada correctamente")
+    expect(current_path).to eq(zones_path)
+    expect(page).not_to have_content(zona.nombre)
   end
+end
+
+RSpec.feature "Borrar zona" do
 
   let!(:area) { create(:area) }
   let!(:zona) { create(:zone, area_id: area.id) }
 
-  context "elimina satisfactoriamente" do
-    scenario "si usuario es administrador" do
-      login_as @admin
-      visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin)}
 
-      click_link "Configuración"
-      click_link "Zonas"
-      find("td", :text => zona.nombre).find(:xpath, '../td[5]/a', :class => "glyphicon-remove").click
+    include_examples "delete zone"
+  end
 
-      expect(page).to have_content("Zona borrada correctamente")
-      expect(current_path).to eq(zones_path)
-      expect(page).not_to have_content(zona.nombre)
-    end
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador)}
 
-    scenario "si usuario es referente" do
-      login_as @referente
-      visit "/"
+    include_examples "delete zone"
+  end
 
-      click_link "Configuración"
-      click_link "Zonas"
-      find("td", :text => zona.nombre).find(:xpath, '../td[5]/a', :class => "glyphicon-remove").click
+  context "siendo referente" do
+    let(:user) { create(:user_referente)}
 
-      expect(page).to have_content("Zona borrada correctamente")
-      expect(current_path).to eq(zones_path)
-      expect(page).not_to have_content(zona.nombre)
-    end
-
-    scenario "si usuario es coodinador" do
-      login_as @coordinador
-      visit "/"
-
-      click_link "Configuración"
-      click_link "Zonas"
-      find("td", :text => zona.nombre).find(:xpath, '../td[5]/a', :class => "glyphicon-remove").click
-
-      expect(page).to have_content("Zona borrada correctamente")
-      expect(current_path).to eq(zones_path)
-      expect(page).not_to have_content(zona.nombre)
-    end
+    include_examples "delete zone"
   end
 end

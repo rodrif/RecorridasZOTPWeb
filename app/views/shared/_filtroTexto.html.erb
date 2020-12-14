@@ -1,12 +1,9 @@
-<% extraCss ||= "col-md-3" %>
 <% labelSearcher ||= "Nombre" %>
 
-<div class="row-fluid">
-  <div class="col-xs-12 <%= extraCss %> margen-vert">
-    <%= f.text_field(
-      :search_query,
-      class: 'filterrific-periodically-observed form-control',
-      placeholder: labelSearcher
-    ) %>
-  </div>
+<div class="col s3">
+  <%= f.text_field(
+    :search_query,
+    class: 'filterrific-periodically-observed form-control',
+    placeholder: labelSearcher
+  ) %>
 </div>

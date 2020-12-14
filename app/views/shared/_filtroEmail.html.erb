@@ -1,8 +1,7 @@
-<% extraCss ||= "col-md-3" %>
 <% labelSearcher ||= "Email" %>
 
-<div class="row-fluid">
-  <div class="col-xs-12 <%= extraCss %> margen-vert">
+<div class="row">
+  <div class="col s3">
     <%= f.text_field(
       :with_email,
       class: 'filterrific-periodically-observed form-control',

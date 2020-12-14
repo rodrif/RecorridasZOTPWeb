@@ -4,7 +4,7 @@
   <div class="row">
     <%= form_for_filterrific @filterrific do |f| %>
 
-      <div class="col s12 m3">
+      <div class="col s4 m3">
         <%= f.select(
           :with_area_id,
           @filterrific.select_options[:with_area_id],
@@ -13,7 +13,7 @@
         ) %>
       </div>
 
-      <div class="col s12 m3">
+      <div class="col s4 m3">
         <%= f.select(
           :with_zone_id,
           @filterrific.select_options[:with_zone_id],
@@ -22,7 +22,7 @@
         ) %>
       </div>
 
-      <div class="col s12 m3">
+      <div class="col s4 m3">
         <%= f.text_field(
           :search_query,
           class: 'filterrific-periodically-observed form-control',

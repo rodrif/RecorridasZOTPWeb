@@ -1,13 +1,10 @@
-<% extraCss ||= "col-md-3" %>
 <% filtro ||= :with_area_id %>
 
-<div class="row-fluid">
-  <div class="col-xs-12 <%= extraCss %> margen-vert">
-    <%= f.select(
-      filtro,
-      @filterrific.select_options[filtro],
-      { include_blank: 'Sede' },
-      { class: "form-control" }
-    ) %>
-  </div>
+<div class="col s3">
+  <%= f.select(
+    filtro,
+    @filterrific.select_options[filtro],
+    { include_blank: 'Sede' },
+    { class: "form-control" }
+  ) %>
 </div>
