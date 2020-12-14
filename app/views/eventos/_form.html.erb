@@ -1,0 +1,57 @@
+<%= form_for(@evento, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+  <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('common.errores.errores') %></h2>
+
+      <ul>
+      <% @evento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :titulo, "Título", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :titulo, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :descripcion, "Descripción", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :descripcion, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fecha_desde, "Fecha Desde", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.datetime_select :fecha_desde, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :fecha_hasta, "Fecha Hasta", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.datetime_select :fecha_hasta, class: "form-control"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :ubicacion, "Ubicación", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :ubicacion, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :person_id, "Persona", class: "col-md-1 control-label" %>
+    <div class="col-md-10">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control"} %>
+    </div>
+  </div>
+
+  <%= render 'layouts/buttons_submit', path: eventos_path, f: f, remote: false, mostrar_aceptar: true %>
+<% end %>

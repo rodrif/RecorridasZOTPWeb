@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_230649) do
+ActiveRecord::Schema.define(version: 2020_12_14_221220) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
@@ -70,6 +70,20 @@ ActiveRecord::Schema.define(version: 2020_12_09_230649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_estados_on_state_id"
+  end
+
+  create_table "eventos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "titulo"
+    t.string "descripcion"
+    t.datetime "fecha_desde"
+    t.datetime "fecha_hasta"
+    t.string "ubicacion"
+    t.bigint "person_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_eventos_on_person_id"
+    t.index ["user_id"], name: "index_eventos_on_user_id"
   end
 
   create_table "frecuencia_tipos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -272,6 +286,8 @@ ActiveRecord::Schema.define(version: 2020_12_09_230649) do
   add_foreign_key "auditorias", "users"
   add_foreign_key "departamentos", "states"
   add_foreign_key "estados", "states"
+  add_foreign_key "eventos", "people"
+  add_foreign_key "eventos", "users"
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "frecuencia_tipos"

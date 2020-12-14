@@ -153,4 +153,21 @@ class Notificacion < ApplicationRecord
       notificacion_roles.build(rol: rol) unless tiene_rol?(rol.id)
     }
   end
+
+  def self.schedule(titulo, subtitulo, fecha_desde, fecha_hasta, prox_envio, area_ids, rol_ids, evento = nil)
+    Notificacion.create!(
+        titulo: titulo,
+        subtitulo: subtitulo,
+        fecha_desde: fecha_desde.change(:min => 0),
+        fecha_hasta: fecha_hasta.change(:min => 0),
+        prox_envio: prox_envio.change(:min => 0),
+        area_ids: area_ids,
+        rol_ids: rol_ids,
+        finalizada: false,
+        frecuencia_cant: 1,
+        frecuencia_tipo_id: FrecuenciaTipo::UNICA,
+        evento: evento,
+        state: State.find_by_nombre('Actualizado')
+    )
+  end
 end

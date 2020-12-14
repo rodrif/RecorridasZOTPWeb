@@ -15,6 +15,7 @@
  *= require simple_calendar
  *= require material_icons
  */
+@import "simple_calendar";
 @import "materialize/components/color-variables";
 $primary-color: color("deep-purple", "lighten-2") !default;
 

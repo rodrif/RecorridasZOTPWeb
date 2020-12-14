@@ -28,7 +28,7 @@
     <% end %>
     <% if RolDataAccess.is_admin(current_user) %>
       <li><%= link_to 'Auditoría', auditoria_index_path %></li>
-      <li><%= link_to 'Calendario', calendario_path %></li>
+      <li><%= link_to 'Calendario', eventos_path %></li>
     <% end %>
     <% if RolDataAccess.puede_editar_departamento(current_user) %>
       <li><%= link_to 'Áreas', departamentos_path %></li>
