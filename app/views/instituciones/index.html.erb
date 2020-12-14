@@ -1,7 +1,3 @@
 <h2 class="sub-header">Instituciones</h2>
 
 <%= render 'instituciones/list', instituciones: @instituciones %>
-
-<% if RolDataAccess.puede_crear_institucion(current_user) %>
-  <%= render 'layouts/new_button', :label => 'Nueva institución', :path => new_institucion_path %>
-<% end %>
