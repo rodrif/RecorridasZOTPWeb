@@ -2,59 +2,49 @@
 <% disabled = !puede_editar %>
 
 <%= form_for(@visit, :html => {:class => 'form-horizontal container-fluid'})  do |f| %>
-  <% if @visit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
+  <%= render 'shared/errors', obj: @visit %>
 
-      <ul>
-      <% @visit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label "Persona", class: "col-md-1 control-label", for: "visit_person_id" %>
-    <div class="col-md-10">
-      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.collection_select :person_id, Person.activas, :id, :nombre, {:include_blank => true}, {:disabled => disabled} %>
+      <%= f.label :person_id, "Persona", class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :fecha, class: "col-md-1 control-label", for: "visit_fecha" %>
-    <div class="col-md-10">
-      <%= f.date_field :fecha, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :fecha, class: "datepicker", :disabled => disabled %>
+      <%= f.label :fecha, class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label 'Comentario', class: "col-md-1 control-label", for: "visit_descripcion" %>
-    <div class="col-md-10">
-      <%= f.text_area :descripcion, class: "form-control", :disabled => disabled, type: "text" %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_area :descripcion, class:"materialize-textarea", :disabled => disabled %>
+      <%= f.label :descripcion, 'Comentario', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label 'Dirección', class: "col-md-1 control-label", for: "visit_direccion" %>
-    <div class="col-md-10">
-      <%= f.text_field :direccion, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :direccion, :disabled => disabled %>
+      <%= f.label :direccion, 'Dirección', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
+  <div class="row">
     <% if !Rails.env.production? %>
-      <%= f.label :latitud, class: "col-md-1 control-label", for: "visit_latitud" %>
-      <div class="col-md-4">
-        <%= f.text_field :latitud, class: "form-control", :disabled => disabled %>
+      <div class="input-field col s6">
+        <%= f.text_field :latitud, :disabled => disabled %>
+        <%= f.label :latitud, class: "active" %>
       </div>
-      <%= f.label :longitud, class: "col-md-1 control-label", for: "visit_longitud" %>
-      <div class="col-md-4">
-        <%= f.text_field :longitud, class: "form-control", :disabled => disabled %>
+      <div class="input-field col s6">
+        <%= f.text_field :longitud, :disabled => disabled %>
+        <%= f.label :longitud, class: "active" %>
       </div>
     <% else %>
-      <%= f.hidden_field :latitud, class: "form-control", :disabled => disabled %>
-      <%= f.hidden_field :longitud, class: "form-control", :disabled => disabled %>
+      <%= f.hidden_field :latitud, :disabled => disabled %>
+      <%= f.hidden_field :longitud, :disabled => disabled %>
     <% end %>
   </div>
 

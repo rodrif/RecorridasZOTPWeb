@@ -1,57 +1,47 @@
 require 'rails_helper'
 
+RSpec.shared_examples "delete visit" do
+  scenario "borra visita satisfactoriamente" do
+    login_as user
+    visit "/"
+
+    click_link "Ver Visitas"
+    find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='Borrar']").click
+
+    expect(page).to have_content("Visita borrada correctamente")
+  end
+end
+
 RSpec.feature "Borrar visitas" do
 
   before do
-    @admin = create(:user_admin)
-    @referente = create(:user_referente)
-    @coordinador = create(:user_coordinador)
-    @voluntario = create(:user_voluntario)
     Person.update_all(state_id: 3)
   end
 
   let!(:persona) { create(:person) }
   let!(:visita) { create(:visit, person: persona)}
 
-  scenario "siendo usuario administrador borra" do
-    login_as @admin
-    visit "/"
+  context "siendo administrador" do
+    let(:user) { create(:user_admin) }
 
-    click_link "Visitas"
-    find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
-
-    expect(page).to have_content("Visita borrada correctamente")
+    include_examples "delete visit"
   end
 
-  scenario "siendo usuario coordinador borra" do
-    login_as @coordinador
-    visit "/"
+  context "siendo coordinador" do
+    let(:user) { create(:user_coordinador) }
 
-    click_link "Visitas"
-    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
-    find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
-
-    expect(page).to have_content("Visita borrada correctamente")
-    expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+    include_examples "delete visit"
   end
 
-  scenario "siendo usuario referente borra" do
-    login_as @referente
-    visit "/"
+  context "siendo referente" do
+    let(:user) { create(:user_referente) }
 
-    click_link "Visitas"
-    expect(page).to have_xpath("//tr[contains(., '#{persona.nombre}')]")
-    find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove").click
-
-    expect(page).to have_content("Visita borrada correctamente")
-    expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]")
+    include_examples "delete visit"
   end
 
-  scenario "siendo usuario voluntario no tiene opción de borrar" do
-    login_as @voluntario
-    visit "/"
+  context "siendo voluntario" do
+    let(:user) { create(:user_referente) }
 
-    click_link "Visitas"
-    expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]/td/a", :class => "glyphicon-remove")
+    include_examples "delete visit"
   end
 end

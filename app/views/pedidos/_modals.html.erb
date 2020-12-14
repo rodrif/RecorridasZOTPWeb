@@ -1,30 +1,19 @@
-<%# Bootstrap modal markup. @see: http://getbootstrap.com/javascript/#modals %>
-<div class="modal fade" id="new_pedido_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelNuevoPedido" aria-hidden="true">
+<div id="new_pedido_modal"  class="modal">
   <div id="selector-persona-new-pedido-modal" style="display: none"><%= selectorPersona %></div>
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelNuevoPedido">Nuevo Pedido</h4>
-      </div>
-      <div class="modal-body">
-        <%# Render the new zone form (passing modal => true to enable remote => true) %>
-        <%= render 'pedidos/form', :@pedido => Pedido.new(fecha: Time.now), modal: true, puede_editar: RolDataAccess.puede_editar_visita(current_user), mostrar_aceptar: RolDataAccess.puede_editar_visita(current_user)%>
-      </div>
-    </div>
+  <div class="modal-content">
+    <button class="modal-close btn-flat" style="position:absolute;top:0;right:0;">X</button>
+    <h4>Nuevo Pedido</h4>
+    <div class="divider"></div>
+    <%= render 'pedidos/form', :@pedido => Pedido.new(fecha: Time.now), modal: true, puede_editar: RolDataAccess.puede_editar_visita(current_user), mostrar_aceptar: RolDataAccess.puede_editar_visita(current_user)%>
   </div>
 </div>
 
-<div class="modal fade" id="edit_pedido_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabelNuevoPedido" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabelEditPedido">Editar Pedido</h4>
-      </div>
-      <div id="edit_pedido_modal_body" class="modal-body">
-      </div>
-    </div>
+<div id="edit_pedido_modal"  class="modal">
+  <div class="modal-content">
+    <button class="modal-close btn-flat" style="position:absolute;top:0;right:0;">X</button>
+    <h4>Editar Pedido</h4>
+    <div class="divider"></div>
+    <div id="edit_pedido_modal_body" class="modal-body"></div>
   </div>
 </div>
 
