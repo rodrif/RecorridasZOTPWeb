@@ -3461,20 +3461,6 @@
         "branches": {
         }
       },
-      "/Users/mmargonari/RubymineProjects/rails_6_recorridas/RecorridasZOTPWeb/app/controllers/configuraciones_controller.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/Users/mmargonari/RubymineProjects/rails_6_recorridas/RecorridasZOTPWeb/app/controllers/informes_controller.rb": {
         "lines": [
           0,
@@ -3732,6 +3718,6 @@
         }
       }
     },
-    "timestamp": 1607968919
+    "timestamp": 1607971401
   }
 }

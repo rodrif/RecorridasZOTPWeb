@@ -46,14 +46,42 @@
       <li><%= link_to "Usuarios", users_path %></li>
     <% end %>
   </ul>
+
+  <ul id="configuracion-mobile-dropdown" class="dropdown-content">
+    <% if RolDataAccess.puede_editar_area(current_user) %>
+      <li><%= link_to 'Sedes', areas_path %></li>
+    <% end %>
+    <% if RolDataAccess.puede_editar_zona(current_user) %>
+      <li><%= link_to 'Zonas', zones_path %></li>
+    <% end %>
+    <% if RolDataAccess.is_admin(current_user) %>
+      <li><%= link_to 'Auditoría', auditoria_index_path %></li>
+      <li><%= link_to 'Calendario', calendario_path %></li>
+    <% end %>
+    <% if RolDataAccess.puede_editar_departamento(current_user) %>
+      <li><%= link_to 'Áreas', departamentos_path %></li>
+    <% end %>
+    <% if RolDataAccess.puede_editar_estado(current_user) %>
+      <li><%= link_to 'Estados', estados_path %></li>
+    <% end %>
+    <% if RolDataAccess.puede_ver_informes(current_user) %>
+      <li><%= link_to 'Informes', informes_path %></li>
+    <% end %>
+    <% if RolDataAccess.puede_ver_notificaciones(current_user) %>
+      <li><%= link_to 'Notificaciones', notificaciones_path %></li>
+    <% end %>
+    <% if RolDataAccess.puede_editar_usuarios(current_user) %>
+      <li><%= link_to "Usuarios", users_path %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <div class="navbar-fixed">
-  <nav>
+  <nav style="padding:0px">
     <div class="nav-wrapper">
       <%= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'brand-logo'} %>
       <% if current_user && current_user.rol_id != 5 %>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <div class="container">
           <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li class="<%= 'active' if params[:controller] == 'people' %>"><a class="dropdown-trigger" data-target="people-dropdown">Personas<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -89,13 +117,13 @@
 </div>
 
 <% if current_user && current_user.rol_id != 5 %>
-  <ul class="sidenav" id="mobile-demo">
-    <li class="<%= 'active' if params[:controller] == 'people' %>"><a class="dropdown-trigger" data-target="people-dropdown">Personas<i class="material-icons right">arrow_drop_down</i></a></li>
+  <ul class="sidenav" id="mobile-nav">
+    <li class="<%= 'active' if params[:controller] == 'people' %>"><a class="dropdown-trigger" data-target="people-mobile-dropdown">Personas<i class="material-icons right">arrow_drop_down</i></a></li>
     <% if RolDataAccess.puede_ver_institucion(current_user) %>
-      <li class="<%= 'active' if params[:controller] == 'instituciones' %>"><a class="dropdown-trigger" data-target="instituciones-dropdown">Instituciones<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li class="<%= 'active' if params[:controller] == 'instituciones' %>"><a class="dropdown-trigger" data-target="instituciones-mobile-dropdown">Instituciones<i class="material-icons right">arrow_drop_down</i></a></li>
     <% end %>
-    <li class="<%= 'active' if params[:controller] == 'visits' %>"><a class="dropdown-trigger" data-target="visitas-dropdown">Visitas<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li class="<%= 'active' if params[:controller] == 'pedidos' %>"><a class="dropdown-trigger" data-target="pedidos-dropdown">Pedidos<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><a class="dropdown-trigger" data-target="configuracion-dropdown">Configuración<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li class="<%= 'active' if params[:controller] == 'visits' %>"><a class="dropdown-trigger" data-target="visitas-mobile-dropdown">Visitas<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li class="<%= 'active' if params[:controller] == 'pedidos' %>"><a class="dropdown-trigger" data-target="pedidos-mobile-dropdown">Pedidos<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><a class="dropdown-trigger" data-target="configuracion-mobile-dropdown">Configuración<i class="material-icons right">arrow_drop_down</i></a></li>
   </ul>
 <% end %>
