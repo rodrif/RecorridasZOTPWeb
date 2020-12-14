@@ -1,28 +1,24 @@
 require 'rails_helper'
 
-def look_for_user_and_update()
-  visit people_path
-
-  find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
-
-  fill_in name: "person[nombre]", with: persona_nueva.nombre
-  select institucion_nueva.nombre, from: "Institución"
-  select estado_nuevo.nombre, from: "Estado"
-  unselect departamento.nombre, from: "Áreas"
-  select departamento_nuevo.nombre, from: "Áreas"
-  fill_in name: "person[visits_attributes][0][latitud]", with: visita_edit.latitud
-  fill_in name: "person[visits_attributes][0][longitud]", with: visita_edit.longitud
-
-  within("#edit_person_#{persona.id}") do
-    click_button "Aceptar"
-  end
-end
-
 RSpec.shared_examples "update user" do
   scenario "actualiza datos satisfactoriamente" do
     login_as user
 
-    look_for_user_and_update
+    visit people_path
+
+    find(:xpath, "//tr[contains(., '#{persona.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
+
+    fill_in name: "person[nombre]", with: persona_nueva.nombre
+    select institucion_nueva.nombre, from: "Institución"
+    select estado_nuevo.nombre, from: "Estado"
+    unselect departamento.nombre, from: "Áreas"
+    select departamento_nuevo.nombre, from: "Áreas"
+    fill_in name: "person[visits_attributes][0][latitud]", with: visita_edit.latitud
+    fill_in name: "person[visits_attributes][0][longitud]", with: visita_edit.longitud
+
+    within("#edit_person_#{persona.id}") do
+      click_button "Aceptar"
+    end
 
     expect(page).to have_content("Persona actualizada correctamente")
     expect(current_path).to eq(people_path)

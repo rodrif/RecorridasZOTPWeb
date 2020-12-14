@@ -1,19 +1,15 @@
 require 'rails_helper'
 
-def look_for_area_and_update()
-  visit areas_path
-
-  find(:xpath, "//tr[contains(., '#{area_existente.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
-
-  fill_in "Nombre", with: area.nombre
-  click_button "Aceptar"
-end
-
 RSpec.shared_examples "edit area" do
   scenario "edita sede satisfactoriamente" do
     login_as user
 
-    look_for_area_and_update
+    visit areas_path
+
+    find(:xpath, "//tr[contains(., '#{area_existente.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
+
+    fill_in "Nombre", with: area.nombre
+    click_button "Aceptar"
 
     expect(page).to have_content("Sede actualizada correctamente")
     expect(current_path).to eq(areas_path)

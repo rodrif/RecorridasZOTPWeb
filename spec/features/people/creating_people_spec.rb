@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-def fill_in_form_and_submit()
+def fill_in_form_person_and_submit()
   visit "/"
   click_link "Nueva Persona"
 
@@ -29,7 +29,7 @@ RSpec.shared_examples "create user" do
   scenario "crea usuario con los datos asignados" do
     login_as user
 
-    fill_in_form_and_submit
+    fill_in_form_person_and_submit
 
     expect(page).to have_content("Persona creada correctamente")
     expect(current_path).to eq(people_path)

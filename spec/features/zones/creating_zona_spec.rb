@@ -1,24 +1,20 @@
 require 'rails_helper'
 
-def fill_in_form_and_submit()
-  visit "/"
-
-  click_link "Zonas"
-  click_link "Nueva zona"
-
-  fill_in "Nombre", with: zona.nombre
-  select area.nombre, from: "Sede"
-  fill_in "Latitud", with: zona.latitud
-  fill_in "Longitud", with: zona.longitud
-
-  click_button "Aceptar"
-end
-
 RSpec.shared_examples "create zone" do
   scenario "crea zona satisfactoriamente" do
     login_as user
 
-    fill_in_form_and_submit
+    visit "/"
+
+    click_link "Zonas"
+    click_link "Nueva zona"
+
+    fill_in "Nombre", with: zona.nombre
+    select area.nombre, from: "Sede"
+    fill_in "Latitud", with: zona.latitud
+    fill_in "Longitud", with: zona.longitud
+
+    click_button "Aceptar"
 
     expect(page).to have_content("Zona creada correctamente")
     expect(current_path).to eq(zones_path)

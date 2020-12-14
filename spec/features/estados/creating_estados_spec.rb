@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-def fill_in_form_and_submit(nombre)
+def fill_in_form_estado_and_submit(nombre)
   visit "/"
 
   click_link "Estados"
@@ -17,7 +17,7 @@ RSpec.feature "Crear estado" do
     scenario "satisfactoriamente al colocar un nombre" do
       login_as user
 
-      fill_in_form_and_submit "Casa"
+      fill_in_form_estado_and_submit "Casa"
 
       expect(page).to have_content("Estado creado correctamente")
       expect(current_path).to eq(estados_path)
@@ -26,7 +26,7 @@ RSpec.feature "Crear estado" do
     scenario "falla si nombre está vacío" do
       login_as user
 
-      fill_in_form_and_submit ""
+      fill_in_form_estado_and_submit ""
 
       expect(current_path).to eq(estados_path)
       expect(page).to have_content("Nombre no puede estar en blanco")

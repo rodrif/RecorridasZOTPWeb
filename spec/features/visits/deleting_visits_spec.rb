@@ -41,7 +41,12 @@ RSpec.feature "Borrar visitas" do
 
   context "siendo voluntario" do
     let(:user) { create(:user_voluntario) }
+    scenario "no tiene permiso de borrar visitas" do
+      login_as user
+      visit "/"
 
-    include_examples "delete visit"
+      click_link "Ver Visitas"
+      expect(page).not_to have_xpath("//tr[contains(., '#{persona.nombre}')]/td/a[@title='Borrar']")
+    end
   end
 end

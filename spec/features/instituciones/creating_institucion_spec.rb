@@ -1,28 +1,24 @@
 require 'rails_helper'
 
-def fill_in_form_and_submit()
-  visit "/"
-
-  click_link "Nueva Institución"
-
-  fill_in "Nombre", with: institucion.nombre
-  select institucion.institucion_tipo.nombre, from: "Tipo"
-  fill_in "Descripción", with: institucion.descripcion
-  fill_in "Dirección", with: institucion.direccion
-  fill_in "Contacto", with: institucion.contacto
-  fill_in "Teléfono", with: institucion.telefono
-  fill_in "Código postal", with: institucion.codigo_postal
-  find("#institucion_latitud", visible: false).set institucion.latitud
-  find("#institucion_longitud", visible: false).set institucion.longitud
-
-  click_button "Aceptar"
-end
-
 RSpec.shared_examples "create institucion" do
   scenario "crea institución satisfactoriamente" do
     login_as user
 
-    fill_in_form_and_submit
+    visit "/"
+
+    click_link "Nueva Institución"
+
+    fill_in "Nombre", with: institucion.nombre
+    select institucion.institucion_tipo.nombre, from: "Tipo"
+    fill_in "Descripción", with: institucion.descripcion
+    fill_in "Dirección", with: institucion.direccion
+    fill_in "Contacto", with: institucion.contacto
+    fill_in "Teléfono", with: institucion.telefono
+    fill_in "Código postal", with: institucion.codigo_postal
+    find("#institucion_latitud", visible: false).set institucion.latitud
+    find("#institucion_longitud", visible: false).set institucion.longitud
+
+    click_button "Aceptar"
 
     expect(page).to have_content("Institución creada correctamente")
     expect(current_path).to eq(instituciones_path)

@@ -1,21 +1,16 @@
 require 'rails_helper'
 
-def fill_in_form_and_submit()
-  visit "/"
-
-  click_link "Sedes"
-  click_link "Nueva sede"
-
-  fill_in "Nombre", with: area.nombre
-  click_button "Aceptar"
-end
-
-
 RSpec.shared_examples "create area" do
   scenario "crea sede satisfactoriamente" do
     login_as user
 
-    fill_in_form_and_submit
+    visit "/"
+
+    click_link "Sedes"
+    click_link "Nueva sede"
+
+    fill_in "Nombre", with: area.nombre
+    click_button "Aceptar"
 
     expect(page).to have_content("Sede creada correctamente")
     expect(current_path).to eq(areas_path)
