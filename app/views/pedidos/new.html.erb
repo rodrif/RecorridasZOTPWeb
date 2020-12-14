@@ -1,16 +1,14 @@
 <h2 class="sub-header">Nuevo pedido</h2>
 
-    <div class="table-responsive well">
-        <div class="row-fluid">
-          <div class="col-xs-12 col-md-3 margen-vert">
+    <div class="table-responsive">
+        <div class="row">
+          <div class="col s12 m3">
             Sede
             <%= select 'aaa', 'area_id', Area.activas.collect {|a| [a.nombre, a.id]},
           { include_blank: 'Todas' } %>
           </div>
-        </div>
 
-        <div class="row-fluid">
-          <div class="col-xs-12 col-md-3 margen-vert">
+          <div class="col s12 m3">
             Zona
             <%= select 'zona', 'zone_id', Zone.activas.collect {|z| [z.nombre, z.id]},
           { include_blank: 'Todas' } %>

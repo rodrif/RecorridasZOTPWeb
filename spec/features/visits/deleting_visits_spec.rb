@@ -40,7 +40,7 @@ RSpec.feature "Borrar visitas" do
   end
 
   context "siendo voluntario" do
-    let(:user) { create(:user_referente) }
+    let(:user) { create(:user_voluntario) }
 
     include_examples "delete visit"
   end

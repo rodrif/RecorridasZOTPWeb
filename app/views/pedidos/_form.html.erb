@@ -6,43 +6,35 @@
 <% disabled = !puede_editar %>
 
 <%= form_for(@pedido, remote: remote, :html => {'data-model' => 'pedido', :class => 'form-horizontal container-fluid'})  do |f| %>
-  <% if @pedido.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
+  <%= render 'shared/errors', obj: @pedido %>
 
-      <ul>
-      <% @pedido.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label "Persona", class: "#{label_col} control-label", for: "pedido_person_id" %>
-    <div class="<%= input_col %>">
-      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control", :disabled => disabled} %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.collection_select :person_id, Person.activas, :id, :nombre, {:include_blank => true}, {:disabled => disabled} %>
+      <%= f.label :person_id, "Persona", class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :fecha, class: "#{label_col} control-label", for: "pedido_fecha" %>
-    <div class="<%= input_col %>">
-      <%= f.date_field :fecha, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :fecha, class: "datepicker", :disabled => disabled %>
+      <%= f.label :fecha, class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label 'Descripción', class: "#{label_col} control-label", for: "pedido_descripcion" %>
-    <div class="<%= input_col %>">
-      <%= f.text_field :descripcion, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_area :descripcion, class:"materialize-textarea", :disabled => disabled %>
+      <%= f.label :descripcion, 'Descripción', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label 'Completado', class: "#{label_col} control-label", for: "pedido_completado" %>
-    <div class="<%= input_col %>">
-      <%= f.check_box :completado, class: "form-control", :disabled => disabled %>
+  <div class="row">
+    <div class="col s12">
+      <label>
+        <%= f.check_box :completado, class:"filled-in", :disabled => disabled %>
+        <span>Completado</span>
+      </label>
     </div>
   </div>
 

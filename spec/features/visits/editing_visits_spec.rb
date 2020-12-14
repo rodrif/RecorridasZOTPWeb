@@ -57,7 +57,7 @@ RSpec.feature "Editar visita" do
   end
 
   context "siendo voluntario" do
-    let(:user) { create(:user_referente) }
+    let(:user) { create(:user_voluntario) }
 
     include_examples "update visit"
   end
