@@ -1,33 +1,50 @@
-<h2 class="sub-header">Ingresar</h2>
+<div class="row">
+  <div class="col s12 m4 offset-m4">
+    <div class="card">
+      <div class="card-action teal lighten-1 white-text center">
+        <h3>Ingresar</h3>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+      <div class="card-content">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'col s12'}) do |f| %>
 
- <div class="form-group">
-    <%= f.label :email, class: "col-md-1 control-label" %>
-    <div class="col-md-11">
-      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.email_field :email, autofocus: true %>
+              <%= f.label :email, class: "active" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.password_field :password, autocomplete: "off", :onkeypress => "if (event.keyCode == 13) { this.form.submit(); return false; }" %>
+              <%= f.label :password, "Contraseña", class: "active" %>
+            </div>
+          </div>
+
+          <% if devise_mapping.rememberable? && false %>
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <label>
+                  <%= f.check_box :remember_me, class:"filled-in" %>
+                  <span>Recordarme</span>
+                </label>
+              </div>
+            </div>
+          <% end -%>
+
+          <div class="row">
+            <div class="col s12">
+              <%= f.button 'Ingresar', class:"btn waves-effect waves-light col s12", type:"submit", name: "action", style:"witdth:100%" %>
+            </div>
+          </div>
+
+        <% end %>
+
+        <div class="container-fluid">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :password, "Contraseña", class: "col-md-1 control-label" %>
-    <div class="col-md-11">
-      <%= f.password_field :password, autocomplete: "off", class: "form-control", :onkeypress => "if (event.keyCode == 13) { this.form.submit(); return false; }" %>
-    </div>
-  </div>
-
-  <% if devise_mapping.rememberable? && false %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label "Recordarme" %>
-    </div>
-  <% end -%>
-
-  <div class="text-center">
-    <%= f.submit 'Ingresar', class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<div class="container-fluid">
-  <%= render "devise/shared/links" %>
 </div>

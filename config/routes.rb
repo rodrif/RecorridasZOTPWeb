@@ -34,8 +34,6 @@ Rails.application.routes.draw do
   get 'acceso_denegado', to: redirect('/401.html')
   get 'falta_confirmacion', to: redirect('/falta_confirmacion.html')
 
-  get 'configuraciones' => 'configuraciones#index'
-
   get 'common/update_zonas_filter', as: 'update_zonas_filter'
   get 'common/update_personas', as: 'update_personas'
   get 'common/update_pedidos_pendientes', as: 'update_pedidos_pendientes'
