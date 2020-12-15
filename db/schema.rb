@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_221220) do
+ActiveRecord::Schema.define(version: 2020_12_14_235005) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
@@ -157,6 +157,8 @@ ActiveRecord::Schema.define(version: 2020_12_14_221220) do
     t.bigint "state_id"
     t.datetime "prox_envio"
     t.boolean "finalizada"
+    t.bigint "evento_id"
+    t.index ["evento_id"], name: "index_notificaciones_on_evento_id"
     t.index ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id"
     t.index ["notificacion_tipo_id"], name: "index_notificaciones_on_notificacion_tipo_id"
     t.index ["state_id"], name: "index_notificaciones_on_state_id"
@@ -290,6 +292,7 @@ ActiveRecord::Schema.define(version: 2020_12_14_221220) do
   add_foreign_key "eventos", "users"
   add_foreign_key "instituciones", "institucion_tipos"
   add_foreign_key "instituciones", "states"
+  add_foreign_key "notificaciones", "eventos"
   add_foreign_key "notificaciones", "frecuencia_tipos"
   add_foreign_key "notificaciones", "notificacion_tipos"
   add_foreign_key "notificaciones", "states"

@@ -10,7 +10,7 @@ RSpec.feature "Crear evento" do
     login_as admin
     visit "/"
 
-    click_link "Calendario"
+    click_link "Calendario", match: :first
     click_link DateTime.now.day.to_s
 
     fill_in "Título", with: evento.titulo

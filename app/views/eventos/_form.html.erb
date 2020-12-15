@@ -1,55 +1,45 @@
-<%= form_for(@evento, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
-  <% if @evento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
+<%= form_for(@evento, :html => {:class => 'col s12'}) do |f| %>
+  <%= render 'shared/errors', obj: @evento %>
 
-      <ul>
-      <% @evento.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :titulo, "Título", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :titulo, class: "form-control" %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :titulo %>
+      <%= f.label :titulo, 'Título', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :descripcion, "Descripción", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :descripcion, class: "form-control" %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :descripcion %>
+      <%= f.label :descripcion, 'Descripción', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :fecha_desde, "Fecha Desde", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.datetime_select :fecha_desde, class: "form-control" %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :fecha_desde, class: "datepicker" %>
+      <%= f.label :fecha_desde, 'Fecha Desde', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :fecha_hasta, "Fecha Hasta", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.datetime_select :fecha_hasta, class: "form-control"  %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :fecha_hasta, class: "datepicker" %>
+      <%= f.label :fecha_hasta, 'Fecha Hasta', class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :ubicacion, "Ubicación", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :ubicacion, class: "form-control" %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :ubicacion %>
+      <%= f.label :ubicacion, "Ubicación", class: "active" %>
     </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :person_id, "Persona", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false}, {:class => "form-control"} %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false} %>
+      <%= f.label :person_id, "Persona", class: "active" %>
     </div>
   </div>
 

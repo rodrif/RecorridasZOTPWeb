@@ -1,6 +1,7 @@
 class Notificacion < ApplicationRecord
   belongs_to :frecuencia_tipo
   belongs_to :notificacion_tipo
+  belongs_to :evento
   belongs_to :state
   has_many :notificacion_roles
   has_many :roles, :through => :notificacion_roles # should be has_and_belongs_to_many

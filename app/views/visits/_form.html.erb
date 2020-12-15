@@ -1,7 +1,7 @@
 <% puede_editar ||= false %>
 <% disabled = !puede_editar %>
 
-<%= form_for(@visit, :html => {:class => 'form-horizontal container-fluid'})  do |f| %>
+<%= form_for(@visit, :html => {:class => 'col s12'})  do |f| %>
   <%= render 'shared/errors', obj: @visit %>
 
   <div class="row">
