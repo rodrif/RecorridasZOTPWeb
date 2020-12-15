@@ -12,7 +12,7 @@ class Notificacion < ApplicationRecord
   validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
   validates :areas, :presence => true
   validate :fecha_desde_mayor_fecha_hasta
-  validate :fecha_desde_en_el_pasado, on: :create
+  validate :fecha_desde_en_el_pasado
   validate :sin_roles
 
   def sin_roles

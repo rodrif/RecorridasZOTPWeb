@@ -26,10 +26,6 @@ class NotificacionesController < ApplicationController
   # GET /notificacion/new
   def new
     @notificacion = Notificacion.new
-    if params['date']
-      @notificacion.fecha_desde = params['date']
-      @notificacion.fecha_hasta = params['date']
-    end
     @notificacion.setup_roles!
   end
 
