@@ -3,8 +3,8 @@
 <div class="container-fluid">
   <div class="row">
     <%= form_for_filterrific @filterrific do |f| %>
-
-      <div class="col s3">
+    <div class="row">
+      <div class="col s2">
         <%= f.select(
           :with_accion,
           @filterrific.select_options[:with_accion],
@@ -13,7 +13,7 @@
         ) %>
       </div>
 
-      <div class="col s3">
+      <div class="col s2 offset-s2">
         <%= f.select(
           :with_entidad,
           @filterrific.select_options[:with_entidad],
@@ -22,17 +22,22 @@
         ) %>
       </div>
 
-      <div class="col s3">
+      <div class="col s3 offset-s3">
         <%= f.text_field(
           :with_email,
           class: 'filterrific-periodically-observed form-control',
           placeholder: 'Email'
         ) %>
       </div>
-
-      <%= render 'shared/filtroFecha', f: f %>
-
-      <%= render 'shared/filtroFecha', f: f, filtro: :fecha_lte, label: 'Hasta' %>
+    </div>
+    <div class="row">
+      <div class="col s3">
+        <%= render 'shared/filtroFecha', f: f %>
+      </div>
+      <div class="col s3">
+        <%= render 'shared/filtroFecha', f: f, filtro: :fecha_lte, label: 'Hasta' %>
+      </div>
+    </div>
 
     <% end %>
   </div>

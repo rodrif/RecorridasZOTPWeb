@@ -4,36 +4,36 @@
     <%= page_entries_info auditorias %>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Email</th>
-          <th>Acción</th>
-          <th>Entidad</th>
-          <th>Id</th>
-          <th>Descripción</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @auditorias.each do |auditoria| %>
+  <div class="card">
+    <div class="scroll">
+      <table class="form-table">
+        <thead>
           <tr>
-            <td><%= auditoria.fecha %></td>
-            <td><%= auditoria.email %></td>
-            <td><%= auditoria.accion %></td>
-            <td><%= auditoria.entidad %></td>
-            <td><%= auditoria.entity_id %></td>
-            <td><%= auditoria.descripcion %></td>
+            <th>Fecha</th>
+            <th>Email</th>
+            <th>Acción</th>
+            <th>Entidad</th>
+            <th>Id</th>
+            <th>Descripción</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @auditorias.each do |auditoria| %>
+            <tr>
+              <td><%= auditoria.fecha %></td>
+              <td><%= auditoria.email %></td>
+              <td><%= auditoria.accion %></td>
+              <td><%= auditoria.entidad %></td>
+              <td><%= auditoria.entity_id %></td>
+              <td><%= auditoria.descripcion %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="paginacion">
-    <%= will_paginate auditorias, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
-  </div>
+  <%= will_paginate auditorias %>
 
 </div>
