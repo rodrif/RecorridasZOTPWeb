@@ -2,6 +2,8 @@ class Departamento < ApplicationRecord
     belongs_to :state
     has_and_belongs_to_many :people
 
+    validates :nombre, presence: true
+
     scope :activos, -> { where.not(state_id: 3).order(:nombre) }
 
     def self.options_for_select
