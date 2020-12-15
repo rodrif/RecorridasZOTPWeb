@@ -10,13 +10,13 @@
 <div class="container-fluid well">
 
   <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+      <%= render 'shared/filtroArea', f: f %>
 
-    <%= render 'shared/filtroArea', f: f %>
+      <%= render 'shared/filtroTexto', f: f %>
 
-    <%= render 'shared/filtroTexto', f: f %>
-
-    <%= render 'shared/filtroFecha', f: f, filtro: :voluntarios_activos, defaulValue: @filterrific.to_hash()['voluntarios_activos'] %>
-
+      <%= render 'shared/filtroFecha', f: f, filtro: :voluntarios_activos, defaulValue: @filterrific.to_hash()['voluntarios_activos'] %>
+    </div>
   <% end %>
 
 </div>

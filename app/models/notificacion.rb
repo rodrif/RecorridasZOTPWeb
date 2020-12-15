@@ -1,6 +1,5 @@
 class Notificacion < ApplicationRecord
   belongs_to :frecuencia_tipo
-  belongs_to :notificacion_tipo
   belongs_to :evento
   belongs_to :state
   has_many :notificacion_roles
@@ -9,7 +8,7 @@ class Notificacion < ApplicationRecord
   accepts_nested_attributes_for :notificacion_roles, allow_destroy: true
   validates :titulo, :subtitulo, :fecha_desde, :frecuencia_tipo_id, :presence => true
   validates :fecha_hasta, :presence => true, unless: -> { frecuencia_tipo_id == 1 }
-  validates :frecuencia_cant, :presence => true, unless: -> { frecuencia_tipo_id == 1 || notificacion_tipo_id == 4 }
+  validates :frecuencia_cant, :presence => true, unless: -> { frecuencia_tipo_id == 1 }
   validates :frecuencia_cant, allow_blank: true, numericality: { greater_than: 0, only_integer: true }
   validates :areas, :presence => true
   validate :fecha_desde_mayor_fecha_hasta
@@ -96,10 +95,6 @@ class Notificacion < ApplicationRecord
     ]
   )
 
-  scope :with_tipo, lambda { |tipo|
-    where(notificacion_tipo: tipo)
-  }
-
   scope :fecha_gte, lambda { |reference_time|
     return nil if reference_time.blank?
     where('fecha_desde >= ?', reference_time.to_datetime.in_time_zone('Moscow').to_s)
@@ -135,14 +130,12 @@ class Notificacion < ApplicationRecord
 
   scope :activas, -> { where.not(state_id: 3).order(fecha_desde: :desc) }
 
-  scope :calendario, -> { where.not(state_id: 3).where(notificacion_tipo_id: 4).order(fecha_desde: :desc) }
-
   def frecuencia
     "#{frecuencia_cant if frecuencia_tipo_id != 1} #{frecuencia_tipo.nombre}"
   end
 
   def getDescripcionAuditoria
-    return "Título: #{titulo} Subtítulo: #{titulo} Tipo: #{notificacion_tipo.nombre if !notificacion_tipo.nil?} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Prox envio: #{prox_envio} Descripción: #{descripcion} Frecuencia #{frecuencia}"
+    return "Título: #{titulo} Subtítulo: #{titulo} Fecha desde: #{fecha_desde} Fecha hasta: #{fecha_hasta} Prox envio: #{prox_envio} Descripción: #{descripcion} Frecuencia #{frecuencia}"
   end
 
   def tiene_rol?(rol_id)

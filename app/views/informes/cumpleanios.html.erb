@@ -10,14 +10,15 @@
 <div class="table-responsive well">
 
   <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+      <%= render 'shared/filtroArea', f: f %>
 
-    <%= render 'shared/filtroArea', f: f %>
+      <%= render 'shared/filtroZona', f: f %>
 
-    <%= render 'shared/filtroZona', f: f %>
+      <%= render 'shared/filtroTexto', f: f, labelSearcher: 'Nombre / Apodo' %>
 
-    <%= render 'shared/filtroTexto', f: f, labelSearcher: 'Nombre / Apodo' %>
-
-    <%= render 'shared/filtroFecha', f: f, filtro: :personas_activas, defaulValue: @filterrific.to_hash()['personas_activas'] %>
+      <%= render 'shared/filtroFecha', f: f, filtro: :personas_activas, defaulValue: @filterrific.to_hash()['personas_activas'] %>
+    </div>
 
   <% end %>
 

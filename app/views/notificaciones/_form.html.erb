@@ -1,92 +1,67 @@
-<%= form_for(@notificacion, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
-  <% if @notificacion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
+<div class="row">
+  <%= form_for(@notificacion, :html => {:class => 'col s12'}) do |f| %>
+    <%= render 'shared/errors', obj: @notificacion %>
 
-      <ul>
-      <% @notificacion.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :titulo %>
+        <%= f.label :titulo, class: "active" %>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :subtitulo %>
+        <%= f.label :subtitulo, class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :fecha_desde, id: "datetimefrom" %>
+        <%= f.label :fecha_desde, 'Fecha Desde', class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :fecha_hasta, id: "datetimeto" %>
+        <%= f.label :fecha_hasta, 'Fecha Hasta', class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_area :descripcion, class:"materialize-textarea" %>
+        <%= f.label :descripcion, 'Descripción', class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s4">
+        <%= f.collection_select :frecuencia_tipo_id, FrecuenciaTipo.all, :id, :nombre, {:include_blank => false} %>
+        <%= f.label :frecuencia_tipo_id, 'Frecuencia', class: "active" %>
+      </div>
+
+      <div class="input-field col s4">
+        <%= f.text_field :frecuencia_cant %>
+        <%= f.label :frecuencia_cant, 'Repeticiones' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s4">
+        <%= f.collection_select :notificacion_roles, Rol.activos, :id, :nombre, {:include_blank => true}, {multiple: true} %>
+        <%= f.label :notificacion_roles, 'Roles', class: "active" %>
+      </div>
+
+      <div class="input-field col s4 offset-s2">
+        <%= f.collection_select :area_ids, Area.activas, :id, :nombre, {:include_blank => true}, {multiple: true} %>
+        <%= f.label :area_ids, "Sedes", class: "active"%>
+      </div>
+    </div>
+
+    <%= render 'layouts/buttons_submit', path: notificaciones_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.puede_ver_notificaciones(current_user) %>
+
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :titulo, class: "col-md-1 control-label", for: "notificacion_titulo" %>
-    <div class="col-md-10">
-      <%= f.text_field :titulo, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :subtitulo, class: "col-md-1 control-label", for: "notificacion_subtitulo" %>
-    <div class="col-md-10">
-      <%= f.text_field :subtitulo, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :fecha_desde, class: "col-md-1 control-label", id:"label_fecha_desde", for: "notificacion_fecha_desde" %>
-    <div class="col-md-10">
-      <%= f.datetime_select :fecha_desde, class: "form-control", discard_minute: true %>
-      hs
-    </div>
-  </div>
-
-  <div class="form-group" id="notificacion_fecha_hasta">
-    <%= f.label :fecha_hasta, class: "col-md-1 control-label", for: "notificacion_fecha_hasta" %>
-    <div class="col-md-10">
-      <%= f.datetime_select :fecha_hasta, class: "form-control", discard_minute: true %>
-      hs
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label 'Tipo', class: "col-md-1 control-label", for: "notificacion_tipo_id" %>
-    <div class="col-md-10">
-      <%= f.collection_select :notificacion_tipo_id, NotificacionTipo.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :descripcion, class: "col-md-1 control-label", for: "notificacion_descripcion" %>
-    <div class="col-md-10">
-      <%= f.text_area :descripcion, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group" id="notificacion_frecuencia">
-    <%= f.label 'Frecuencia', class: "col-md-1 control-label" %>
-    <div class="col-md-5">
-      <%= f.number_field :frecuencia_cant, class: "form-control" %>
-    </div>
-    <div class="col-md-5" id="frecuencia-tipo-content">
-      <%= f.collection_select :frecuencia_tipo_id, FrecuenciaTipo.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label 'Roles', class: "col-md-1 control-label", for: "notificacion_roles" %>
-    <div class="col-md-4">
-      <%= f.fields_for :notificacion_roles do |ff| %>
-        <div>
-          <%= ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0', '1' %>
-          <%= ff.label :_destroy, ff.object.rol.nombre %>
-          <%= ff.hidden_field :rol_id %>
-        </div>
-      <% end %>
-    </div>
-
-    <%= f.label 'Sedes', class: "col-md-1 control-label", for: "notificacion_area_nombre" %>
-    <div class="col-md-4">
-      <%= f.collection_check_boxes(:area_ids, Area.activas.all, :id, :nombre) do |b| %>
-        <div>
-          <%= b.label(:"data-value" => b.value) { b.check_box + ' ' + b.text } %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <%= render 'layouts/buttons_submit', path: notificaciones_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.puede_ver_notificaciones(current_user) %>
-
-<% end %>
+</div>

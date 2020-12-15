@@ -1,49 +1,35 @@
 
 <h2 class="sub-header">Notificaciones</h2>
 
-<div class="container-fluid well">
-  <%= form_for_filterrific @filterrific do |f| %>
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
-        <%= f.select(
-          :with_tipo,
-          @filterrific.select_options[:with_notificacion_tipo],
-          { include_blank: 'Tipo' },
-          { class: "form-control" }
-        ) %>
-      </div>
-    </div>
+<div class="container-fluid">
+  <div class="row">
+    <%= form_for_filterrific @filterrific do |f| %>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
+      <div class="col s2 m3">
         <%= f.text_field(
           :with_titulo,
           class: 'filterrific-periodically-observed form-control',
           placeholder: 'Título'
         ) %>
       </div>
-    </div>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
-        <%= f.date_field(
+      <div class="col s3 offset-s1">
+        <%= f.text_field(
           :fecha_gte,
           placeholder: 'Desde',
-          class: "form-control"
+          class: "datepicker"
         ) %>
       </div>
-    </div>
 
-    <div class="row-fluid">
-      <div class="col-xs-12 col-md-3 margen-vert">
-        <%= f.date_field(
+      <div class="col s3 offset-s1">
+        <%= f.text_field(
           :fecha_lte,
           placeholder: 'Hasta',
-          class: "form-control"
+          class: "datepicker"
         ) %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 <%= render 'list', notificaciones: @notificaciones %>

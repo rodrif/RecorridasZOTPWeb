@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_235005) do
+ActiveRecord::Schema.define(version: 2020_12_15_023054) do
 
   create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nombre"
@@ -136,19 +136,11 @@ ActiveRecord::Schema.define(version: 2020_12_14_235005) do
     t.index ["rol_id"], name: "index_notificacion_roles_on_rol_id"
   end
 
-  create_table "notificacion_tipos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "code"
-  end
-
   create_table "notificaciones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "titulo"
     t.string "subtitulo"
     t.datetime "fecha_desde"
     t.datetime "fecha_hasta"
-    t.bigint "notificacion_tipo_id"
     t.text "descripcion"
     t.integer "frecuencia_cant"
     t.bigint "frecuencia_tipo_id"
@@ -160,7 +152,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_235005) do
     t.bigint "evento_id"
     t.index ["evento_id"], name: "index_notificaciones_on_evento_id"
     t.index ["frecuencia_tipo_id"], name: "index_notificaciones_on_frecuencia_tipo_id"
-    t.index ["notificacion_tipo_id"], name: "index_notificaciones_on_notificacion_tipo_id"
     t.index ["state_id"], name: "index_notificaciones_on_state_id"
   end
 
@@ -294,7 +285,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_235005) do
   add_foreign_key "instituciones", "states"
   add_foreign_key "notificaciones", "eventos"
   add_foreign_key "notificaciones", "frecuencia_tipos"
-  add_foreign_key "notificaciones", "notificacion_tipos"
   add_foreign_key "notificaciones", "states"
   add_foreign_key "pedidos", "people"
   add_foreign_key "pedidos", "states"
