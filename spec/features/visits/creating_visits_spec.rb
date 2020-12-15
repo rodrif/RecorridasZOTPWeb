@@ -1,21 +1,25 @@
 require 'rails_helper'
 
+def fill_in_visit_form_for_create
+  visit "/"
+
+  click_link "Nueva Visita"
+
+  within('#new_visit') do
+    select persona.nombre, from: "Persona"
+    fill_in "Fecha", with: visita.fecha
+    fill_in "Comentario", with: visita.descripcion
+    fill_in "Latitud", with: visita.latitud
+    fill_in "Longitud", with: visita.longitud
+    click_button "Aceptar"
+  end
+end
 
 RSpec.shared_examples "create visit" do
   scenario "crea visita satisfactoriamente" do
     login_as user
-    visit "/"
 
-    click_link "Nueva Visita"
-
-    within('#new_visit') do
-      select persona.nombre, from: "Persona"
-      fill_in "Fecha", with: visita.fecha
-      fill_in "Comentario", with: visita.descripcion
-      fill_in "Latitud", with: visita.latitud
-      fill_in "Longitud", with: visita.longitud
-      click_button "Aceptar"
-    end
+    fill_in_visit_form_for_create
 
     expect(page).to have_content("Visita creada correctamente")
     expect(current_path).to eq(visits_path)
@@ -86,6 +90,33 @@ RSpec.feature "Crear visita" do
 
       visit people_path
       expect(page).to have_xpath("//tr[contains(., '#{persona_con_visitas.nombre}')]/td", :text => visita_nueva.direccion)
+    end
+  end
+
+  context "cuando la fecha de visita está vacía" do
+    let(:user) { create(:user_voluntario) }
+    let(:visita) { build(:visit)}
+
+    scenario "falla al crear la visita" do
+      visita.fecha = nil
+      login_as user
+      fill_in_visit_form_for_create
+
+      expect(page).to have_content("Fecha no puede estar en blanco")
+      expect(current_path).to eq(visits_path)
+    end
+  end
+
+  context "cuando la fecha es posterior a la fecha actual" do
+    let(:user) { create(:user_voluntario) }
+    let(:visita) { build(:visit, fecha: DateTime.now.advance(days: 10))}
+
+    scenario "falla al crear la visita" do
+      login_as user
+      fill_in_visit_form_for_create
+
+      expect(page).to have_content("Fecha no pueda ser futura")
+      expect(current_path).to eq(visits_path)
     end
   end
 
