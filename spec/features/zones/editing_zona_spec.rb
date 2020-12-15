@@ -5,7 +5,7 @@ RSpec.shared_examples "update zone" do
     login_as user
     visit "/"
 
-    click_link "Zonas"
+    click_link "Zonas", match: :first
     find(:xpath, "//tr[contains(., '#{zona.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
     fill_in "Nombre", with: zona_editada.nombre
@@ -52,7 +52,7 @@ RSpec.feature "Editar zona" do
       login_as user
       visit "/"
 
-      click_link "Zonas"
+      click_link "Zonas", match: :first
       find(:xpath, "//tr[contains(., '#{zona.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
       fill_in "Nombre", with: "ABCDE123456!?+="

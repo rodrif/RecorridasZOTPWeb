@@ -6,7 +6,7 @@ RSpec.shared_examples "create area" do
 
     visit "/"
 
-    click_link "Sedes"
+    click_link "Sedes", match: :first
     click_link "Nueva sede"
 
     fill_in "Nombre", with: area.nombre

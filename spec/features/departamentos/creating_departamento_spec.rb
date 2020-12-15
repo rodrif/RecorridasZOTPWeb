@@ -10,7 +10,7 @@ RSpec.feature "Crear area" do
     login_as @admin
     visit "/"
 
-    click_link "Áreas"
+    click_link "Áreas", match: :first
     click_link "Nueva área"
 
     fill_in "Nombre", with: "Psicologia"

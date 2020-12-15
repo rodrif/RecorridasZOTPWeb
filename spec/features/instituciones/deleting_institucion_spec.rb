@@ -4,7 +4,7 @@ RSpec.shared_examples "remove institucion" do
   scenario "elimina institucion satisfactoriamente" do
     login_as user
     visit "/"
-    click_link "Instituciones"
+    click_link "Instituciones", match: :first
 
     find(:xpath, "//tr[contains(., '#{institucion.nombre}')]/td/a[@title='Borrar']").click
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 def fill_in_form_estado_and_submit(nombre)
   visit "/"
 
-  click_link "Estados"
+  click_link "Estados", match: :first
   click_link "Nuevo estado"
 
   fill_in "Nombre", with: nombre

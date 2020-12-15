@@ -13,7 +13,7 @@ RSpec.feature "Ver areas" do
       login_as @admin
       visit "/"
 
-      click_link "Áreas"
+      click_link "Áreas", match: :first
 
       expect(page).to have_content(@departamento.nombre)
     end

@@ -5,7 +5,7 @@ RSpec.shared_examples "delete zone" do
     login_as user
     visit "/"
 
-    click_link "Zonas"
+    click_link "Zonas", match: :first
 
     find(:xpath, "//tr[contains(., '#{zona.nombre}')]/td/a[@title='Borrar']").click
 

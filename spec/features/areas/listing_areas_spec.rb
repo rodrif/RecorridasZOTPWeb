@@ -4,7 +4,7 @@ RSpec.shared_examples "list area" do
   scenario "lista sedes satisfactoriamente" do
     login_as user
     visit "/"
-    click_link "Sedes"
+    click_link "Sedes", match: :first
 
     expect(page).to have_content(area.nombre)
   end

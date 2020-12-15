@@ -4,7 +4,7 @@ RSpec.shared_examples "remove area" do
   scenario "elimina sede satisfactoriamente" do
     login_as user
     visit "/"
-    click_link "Sedes"
+    click_link "Sedes", match: :first
 
     find(:xpath, "//tr[contains(., '#{area.nombre}')]/td/a[@title='Borrar']").click
 

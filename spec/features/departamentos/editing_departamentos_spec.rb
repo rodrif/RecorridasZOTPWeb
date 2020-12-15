@@ -11,7 +11,7 @@ RSpec.feature "Editar area" do
     login_as @admin
     visit "/"
 
-    click_link "Áreas"
+    click_link "Áreas", match: :first
     find(:xpath, "//tr[contains(., '#{@departamento.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
     fill_in "Nombre", with: "Casos complejos"

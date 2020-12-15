@@ -11,7 +11,7 @@ RSpec.feature "Editar estado" do
     login_as @admin
     visit "/"
 
-    click_link "Estados"
+    click_link "Estados", match: :first
     click_link "Ver / Editar"
 
     nuevo_nombre_estado = "Casa"
@@ -28,7 +28,7 @@ RSpec.feature "Editar estado" do
     login_as @admin
     visit "/"
 
-    click_link "Estados"
+    click_link "Estados", match: :first
     click_link "Ver / Editar"
 
     fill_in "Nombre", with: ""

@@ -4,7 +4,7 @@ RSpec.shared_examples "list zone" do
   scenario "lista zonas satisfactoriamente" do
     login_as user
     visit "/"
-    click_link "Zonas"
+    click_link "Zonas", match: :first
 
     expect(page).to have_content(zona.nombre)
     expect(page).to have_content(zona.latitud)

@@ -15,7 +15,7 @@ RSpec.feature "Ver estados" do
       login_as @admin
       visit "/"
 
-      click_link "Estados"
+      click_link "Estados", match: :first
 
       expect(page).to have_content(@estado.nombre)
     end

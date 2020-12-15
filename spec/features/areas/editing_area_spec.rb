@@ -46,7 +46,7 @@ RSpec.feature "Editar sede" do
 
       visit "/"
 
-      click_link "Sedes"
+      click_link "Sedes", match: :first
       find(:xpath, "//tr[contains(., '#{area_existente.nombre}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
       fill_in "Nombre", with: "ABCDE123456"
