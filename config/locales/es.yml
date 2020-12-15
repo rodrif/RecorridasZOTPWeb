@@ -60,6 +60,7 @@ es:
         areas: Sedes
       pedido:
         person: Persona
+        descripcion: Descripción
       institucion:
         telefono: Teléfono
         descripcion: Descripción

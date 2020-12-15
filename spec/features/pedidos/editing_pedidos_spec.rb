@@ -1,18 +1,23 @@
 require 'rails_helper'
 
+def fill_in_form_edit_pedido
+  visit "/"
+
+  click_link "Ver Pedidos"
+  find(:xpath, "//tr[contains(., '#{persona.full_name}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
+
+  select persona.nombre, from: "Persona"
+  fill_in "Fecha", with: pedido.fecha
+  fill_in "Descripción", with: pedido.descripcion
+  check "Completado"
+  click_button "Aceptar"
+end
+
 RSpec.shared_examples "update pedido" do
   scenario "edita pedido satisfactoriamente" do
     login_as user
-    visit "/"
 
-    click_link "Ver Pedidos"
-    find(:xpath, "//tr[contains(., '#{persona.full_name}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
-
-    select persona.nombre, from: "Persona"
-    fill_in "Fecha", with: pedido.fecha
-    fill_in "Descripción", with: pedido.descripcion
-    check "Completado"
-    click_button "Aceptar"
+    fill_in_form_edit_pedido
 
     expect(page).to have_xpath("//tr[contains(., '#{persona.full_name}')]")
     expect(page).to have_xpath("//tr[contains(., '#{persona.full_name}')]/td", :text => pedido.fecha.to_date)
@@ -53,5 +58,47 @@ RSpec.feature "Editar pedido" do
     let(:user) { create(:user_voluntario) }
 
     include_examples "update pedido"
+  end
+
+  context "cuando la fecha de pedido está vacía" do
+    let(:user) { create(:user_admin) }
+    let(:pedido) { build(:pedido)}
+
+    scenario "falla al editarlo" do
+      pedido.fecha = nil
+      login_as user
+      fill_in_form_edit_pedido
+
+      expect(page).to have_content("Fecha no puede estar en blanco")
+    end
+  end
+
+  context "cuando la descripción del pedido está vacía" do
+    let(:user) { create(:user_admin) }
+    let(:pedido) { build(:pedido, descripcion: "")}
+
+    scenario "falla al editarlo" do
+      login_as user
+      fill_in_form_edit_pedido
+
+      expect(page).to have_content("Descripción no puede estar en blanco")
+    end
+  end
+
+  context "cuando no se selecciona persona" do
+    let(:user) { create(:user_admin) }
+
+    scenario "falla al editarlo" do
+      login_as user
+      fill_in_form_edit_pedido
+
+      visit "/"
+      click_link "Nuevo Pedido"
+
+      select "", from: "Persona"
+      click_button "Aceptar"
+
+      expect(page).to have_content("Persona no puede estar en blanco")
+    end
   end
 end
