@@ -51,8 +51,8 @@
 
     <div class="row">
       <div class="input-field col s4">
-        <%= f.collection_select :notificacion_roles, Rol.activos, :id, :nombre, {:include_blank => true}, {multiple: true} %>
-        <%= f.label :notificacion_roles, 'Roles', class: "active" %>
+        <%= f.collection_select :rol_ids, Rol.activos, :id, :nombre, {:include_blank => true}, {multiple: true} %>
+        <%= f.label :rol_ids, 'Roles', class: "active" %>
       </div>
 
       <div class="input-field col s4 offset-s2">

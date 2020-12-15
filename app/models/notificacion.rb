@@ -43,7 +43,7 @@ class Notificacion < ApplicationRecord
   end
 
   def fecha_desde_en_el_pasado
-    if (fecha_desde + 1.hour).past?
+    if (fecha_desde - 1.hour).past?
       errors.add(:fecha_desde, "no puede estar en el pasado")
     end
   end

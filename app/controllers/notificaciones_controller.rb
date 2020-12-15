@@ -1,7 +1,7 @@
 class NotificacionesController < ApplicationController
   include ApplicationHelper
   before_action :set_notificacion, only: [:show, :edit, :update, :destroy]
-  before_action :puede_ver_web
+  before_action :puede_ver_notificaciones
 
 	def index
     @filterrific = initialize_filterrific(
@@ -117,7 +117,7 @@ class NotificacionesController < ApplicationController
         :descripcion,
         :frecuencia_cant,
         :frecuencia_tipo_id,
-        notificacion_roles_attributes: [:_destroy, :id, :rol_id, :notificacion_id]
+        {rol_ids: []}
       )
     end
 end
