@@ -81,49 +81,97 @@
     <div class="nav-wrapper">
       <%= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'brand-logo'} %>
       <% if current_user && current_user.rol_id != 5 %>
-        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <div class="container">
           <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li class="<%= 'active' if params[:controller] == 'people' %>"><a class="dropdown-trigger" data-target="people-dropdown">Personas<i class="material-icons right">arrow_drop_down</i></a></li>
-              <% if RolDataAccess.puede_ver_institucion(current_user) %>
-                <li class="<%= 'active' if params[:controller] == 'instituciones' %>"><a class="dropdown-trigger" data-target="instituciones-dropdown">Instituciones<i class="material-icons right">arrow_drop_down</i></a></li>
-              <% end %>
+            <% if RolDataAccess.puede_ver_institucion(current_user) %>
+              <li class="<%= 'active' if params[:controller] == 'instituciones' %>"><a class="dropdown-trigger" data-target="instituciones-dropdown">Instituciones<i class="material-icons right">arrow_drop_down</i></a></li>
+            <% end %>
             <li class="<%= 'active' if params[:controller] == 'visits' %>"><a class="dropdown-trigger" data-target="visitas-dropdown">Visitas<i class="material-icons right">arrow_drop_down</i></a></li>
             <li class="<%= 'active' if params[:controller] == 'pedidos' %>"><a class="dropdown-trigger" data-target="pedidos-dropdown">Pedidos<i class="material-icons right">arrow_drop_down</i></a></li>
             <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><a class="dropdown-trigger" data-target="configuracion-dropdown">Configuración<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
       <% end %>
-        <ul class="right">
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to('Salir', destroy_user_session_path, :method => :delete) %>
-            </li>
-            <li>
-              <% if !current_user.name.blank? %>
-                <%= link_to(current_user.name, edit_user_registration_path(current_user)) %>
-              <% else %>
-                <%= link_to(current_user.email, edit_user_registration_path(current_user)) %>
-              <% end %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to('Ingresar', new_user_session_path)  %>
-            </li>
-          <% end %>
-        </ul>
+      <ul class="right">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to('Salir', destroy_user_session_path, :method => :delete) %>
+          </li>
+          <li>
+            <% if !current_user.name.blank? %>
+              <%= link_to(current_user.name, edit_user_registration_path(current_user)) %>
+            <% else %>
+              <%= link_to(current_user.email, edit_user_registration_path(current_user)) %>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to('Ingresar', new_user_session_path)  %>
+          </li>
+        <% end %>
+      </ul>
       </div>
     </div>
   </nav>
 </div>
 
-<% if current_user && current_user.rol_id != 5 %>
-  <ul class="sidenav" id="mobile-nav">
-    <li class="<%= 'active' if params[:controller] == 'people' %>"><a class="dropdown-trigger" data-target="people-mobile-dropdown">Personas<i class="material-icons right">arrow_drop_down</i></a></li>
-    <% if RolDataAccess.puede_ver_institucion(current_user) %>
-      <li class="<%= 'active' if params[:controller] == 'instituciones' %>"><a class="dropdown-trigger" data-target="instituciones-mobile-dropdown">Instituciones<i class="material-icons right">arrow_drop_down</i></a></li>
-    <% end %>
-    <li class="<%= 'active' if params[:controller] == 'visits' %>"><a class="dropdown-trigger" data-target="visitas-mobile-dropdown">Visitas<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li class="<%= 'active' if params[:controller] == 'pedidos' %>"><a class="dropdown-trigger" data-target="pedidos-mobile-dropdown">Pedidos<i class="material-icons right">arrow_drop_down</i></a></li>
-    <li class="<%= 'active' if params[:controller] == 'configuraciones' %>"><a class="dropdown-trigger" data-target="configuracion-mobile-dropdown">Configuración<i class="material-icons right">arrow_drop_down</i></a></li>
-  </ul>
-<% end %>
+<ul class="sidenav" id="mobile-demo">
+  <li><%= link_to 'Personas', people_path %></li>
+  <% if RolDataAccess.puede_ver_institucion(current_user) %>
+    <li><%= link_to 'Instituciones', instituciones_path %></li>
+  <% end %>
+  <li><%= link_to 'Visitas', visits_path %></li>
+  <li><%= link_to 'Pedidos', pedidos_path %></li>
+  <!--  <li><%#= link_to 'Configuración' %></li>-->
+</ul>
+<!--  <nav class="navbar-default barra">-->
+<!--    <div class="container-fluid">-->
+
+<!--      <div class="navbar-header">-->
+<!--        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+<!--          <span class="sr-only">Toggle navigation</span>-->
+<!--          <span class="icon-bar"></span>-->
+<!--          <span class="icon-bar"></span>-->
+<!--          <span class="icon-bar"></span>-->
+<!--        </button>-->
+<%#= link_to image_tag("logo22.png", size: "50x50", :alt => "TpRecorridasZO"), root_path, {class: 'logoRecorridas'} %>
+<!--      </div>-->
+
+
+<!--      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--        <ul class="nav navbar-nav">-->
+<%# if current_user && current_user.rol_id != 5 %>
+<!--            <li class="<%#= 'active' if params[:controller] == 'mapa' %>"><%#= link_to 'Inicio', root_path %></li>-->
+<!--            <li class="<%#= 'active' if params[:controller] == 'people' %>"><%#= link_to 'Personas', people_path %></li>-->
+<%# if RolDataAccess.puede_ver_institucion(current_user) %>
+<!--              <li class="<%#= 'active' if params[:controller] == 'instituciones' %>"><%#= link_to 'Instituciones', instituciones_path %></li>-->
+<%# end %>
+<!--            <li class="<%#= 'active' if params[:controller] == 'visits' %>"><%#= link_to 'Visitas', visits_path %></li>-->
+<!--            <li class="<%#= 'active' if params[:controller] == 'pedidos' %>"><%#= link_to 'Pedidos', pedidos_path %></li>-->
+<!--            <li class="<%#= 'active' if params[:controller] == 'configuraciones' %>"><%#= link_to 'Configuración', configuraciones_path %></li>-->
+<%# end %>
+<!--        </ul>-->
+
+<!--        <ul class="nav navbar-nav navbar-right">-->
+<%# if user_signed_in? %>
+<!--            <li>-->
+<%#= link_to('Salir', destroy_user_session_path, :method => :delete) %>
+<!--            </li>-->
+<!--            <li>-->
+<%# if !current_user.name.blank? %>
+<%#= link_to(current_user.name, edit_user_registration_path(current_user)) %>
+<%# else %>
+<%#= link_to(current_user.email, edit_user_registration_path(current_user)) %>
+<%# end %>
+<!--            </li>-->
+<%# else %>
+<!--            <li>-->
+<%#= link_to('Ingresar', new_user_session_path)  %>
+<!--            </li>-->
+<%# end %>
+<!--        </ul>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nav>-->

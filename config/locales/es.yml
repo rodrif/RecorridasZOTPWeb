@@ -63,6 +63,8 @@ es:
       institucion:
         telefono: Teléfono
         descripcion: Descripción
+      evento:
+
     models:
       departamento:
         zero:  Área

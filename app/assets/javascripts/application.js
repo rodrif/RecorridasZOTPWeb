@@ -27,7 +27,7 @@ $(document).on('turbolinks:load', function() {
     $('.modal').modal();
     $('.datepicker').datepicker({
         setDefaultDate: true,
-        defaultDate: new Date(),
+        defaultDate: null,
         yearRange: [new Date().getFullYear() - 100, new Date().getFullYear()],
         format: 'dd/mm/yyyy',
         i18n: {
@@ -39,6 +39,9 @@ $(document).on('turbolinks:load', function() {
         }
     });
     $('#fade-out-target').fadeOut(2000);
+
+    var DateFieldFrom = MaterialDateTimePicker.create($('#datetimefrom'));
+    var DateFieldTo = MaterialDateTimePicker.create($('#datetimeto'));
 });
 
 function MapaUbicacion(latitud, longitud, selectorLat, selectorLng, idMapa, mapDisabled) {

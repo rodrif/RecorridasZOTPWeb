@@ -16,8 +16,8 @@ RSpec.feature "Crear evento" do
     fill_in "Título", with: evento.titulo
     fill_in "Descripción", with: evento.descripcion
 
-    select_date_and_time evento.fecha_desde, from: "evento_fecha_desde"
-    select_date_and_time evento.fecha_hasta, from: "evento_fecha_hasta"
+    fill_in "datetimefrom", with: evento.fecha_desde
+    fill_in "datetimeto", with: evento.fecha_hasta
     select persona.nombre, from: "Persona"
     fill_in "Ubicación", with: evento.ubicacion
 
@@ -44,13 +44,6 @@ RSpec.feature "Crear evento" do
   end
 
   context "falla al crear" do
-    scenario "Titulo vacio falla" do
-      evento.titulo = ""
-      fill_form_and_create evento
-
-      expect(page).to have_content("Título no puede estar en blanco")
-    end
-
     scenario "fecha desde previa a actual falla" do
       evento.fecha_desde = DateTime.now.advance(hours: -1)
       fill_form_and_create evento
