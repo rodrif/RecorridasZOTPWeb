@@ -4,58 +4,53 @@
     <%= page_entries_info users %>
   </div>
 
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Sede</th>
-          <th>Rol</th>
-          <th>Email</th>
-          <th>Versión</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @users.each do |user| %>
+  <div class="card">
+    <div class="scroll">
+      <table class="form-table">
+        <thead>
           <tr>
-            <td><%= user.name %></td>
-            <td><%= user.apellido %></td>
-            <% if user.area.nil? %>
-              <td>Sin Sede</td>
-            <% else %>
-              <td><%= user.area.nombre %></td>
-            <% end %>
-            <% if user.rol.nil? %>
-              <td>Sin rol</td>
-            <% else %>
-              <td><%= user.rol.nombre %></td>
-            <% end %>
-            <td><%= user.email %></td>
-            <td><%= user.version %></td>
-            <td>
-              <%= link_to '', edit_user_path(user), {
-                  class: 'glyphicon glyphicon-edit',
-                  title: t("common.ver_editar")
-                }
-              %>
-              <%= link_to '', user,
-                method: :delete,
-                data: { confirm: '¿Estás seguro?' },
-                class: 'glyphicon glyphicon-remove',
-                title: 'Borrar'
-              %>
-            </td>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Sede</th>
+            <th>Rol</th>
+            <th>Email</th>
+            <th>Versión</th>
+            <th>Acciones</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.apellido %></td>
+              <% if user.area.nil? %>
+                <td>Sin Sede</td>
+              <% else %>
+                <td><%= user.area.nombre %></td>
+              <% end %>
+              <% if user.rol.nil? %>
+                <td>Sin rol</td>
+              <% else %>
+                <td><%= user.rol.nombre %></td>
+              <% end %>
+              <td><%= user.email %></td>
+              <td><%= user.version %></td>
+              <td>
+                <%=
+                  render 'layouts/acciones',
+                         current_user: current_user,
+                         edit_path: edit_user_path(user),
+                         delete_path: user
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <div class="paginacion">
-    <%= will_paginate users, renderer: BootstrapPagination::Rails, :class => 'estilos-paginacion' %>
-  </div>
+  <%= will_paginate users %>
 
 </div>

@@ -1,76 +1,62 @@
-<%= form_for(@user, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('common.errores.errores') %></h2>
+<div clas="row">
+  <%= form_for(@user, :html => {:class => 'form-horizontal container-fluid'}) do |f| %>
+    <%= render 'shared/errors', obj: @user %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.email_field :email, :readonly => true %>
+        <%= f.label :email, class: "active" %>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= f.text_field :name %>
+        <%= f.label :name, "Nombre", class: "active" %>
+      </div>
+
+      <div class="input-field col s6">
+        <%= f.text_field :apellido %>
+        <%= f.label :apellido, class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :telefono, type: "number" %>
+        <%= f.label :telefono, t("common.telefono"), class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_field :fecha_nacimiento, class: "datepicker" %>
+        <%= f.label :fecha_nacimiento, class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.collection_select :jornada_ids, Jornada.all, :id, :nombre, {:include_blank => true}, {multiple: true} %>
+        <%= f.label :jornada_ids, 'Días', class: "active" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s4">
+        <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false} %>
+        <%= f.label :area_id, "Sede", class: "active"%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s4">
+        <%= f.collection_select :rol_id, Rol.all, :id, :nombre, {:include_blank => false} %>
+        <%= f.label :rol_id, 'Roles', class: "active" %>
+      </div>
+    </div>
+
+    <%= render 'layouts/buttons_submit', path: users_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.puede_editar_usuarios(current_user) %>
+
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :email, class: "col-md-1 control-label"%>
-    <div class="col-md-10">
-      <%= f.text_field :email, class: "form-control", :readonly => true %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :name, "Nombre", class: "col-md-1 control-label"%>
-    <div class="col-md-10">
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :apellido, class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :apellido, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :telefono, t("common.telefono"), class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.text_field :telefono, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :fecha_nacimiento, class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.date_field :fecha_nacimiento, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :jornada_ids, 'Días', class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.collection_check_boxes(:jornada_ids, Jornada.all, :id, :nombre) do |b| %>
-        <span>
-          <%= b.label(:"data-value" => b.value) { b.check_box + ' ' + b.text } %>
-        </span>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :area_id, "Sede", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-      <%= f.collection_select :area_id, Area.activas, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :rol_id, "Roles", class: "col-md-1 control-label" %>
-    <div class="col-md-10">
-    <%= f.collection_select :rol_id, Rol.all, :id, :nombre, {:include_blank => false}, {:class => "form-control"} %>
-    </div>
-  </div>
-
-  <%= render 'layouts/buttons_submit', path: users_path, f: f, remote: false, mostrar_aceptar: RolDataAccess.puede_editar_usuarios(current_user) %>
-
-<% end %>
+</div>

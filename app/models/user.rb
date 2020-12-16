@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable #, :validatable por doble validacion
 
-  validates :telefono, allow_blank: true, numericality: { only_integer: true }
+  validates :telefono, allow_blank: true, numericality: { only_integer: true, message: I18n.t('common.errores.solo_numeros') }
 
   belongs_to :rol
   belongs_to :area

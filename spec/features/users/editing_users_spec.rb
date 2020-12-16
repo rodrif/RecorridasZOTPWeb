@@ -5,7 +5,7 @@ RSpec.shared_examples "edit user" do
     login_as user
 
     visit users_path
-    find(:xpath, "//tr[contains(., '#{saved.name}')]/td/a", :class => "glyphicon-edit").click
+    find(:xpath, "//tr[contains(., '#{saved.name}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
 
     expect(page).to have_field("Email", readonly: true)
     expect(page).not_to have_field("Contraseña")
@@ -44,5 +44,24 @@ RSpec.feature "Editar usuarios" do
     let(:user) { create(:user_coordinador) }
 
     it_behaves_like 'edit user'
+  end
+
+  context "cuando Teléfono contiene caracteres no numéricos" do
+    let(:user) { create(:user_admin) }
+    scenario "falla al crear" do
+      login_as user
+
+      visit users_path
+      find(:xpath, "//tr[contains(., '#{saved.name}')]/td/a[@title='#{I18n.t("common.ver_editar")}']").click
+
+      expect(page).to have_field("Email", readonly: true)
+      expect(page).not_to have_field("Contraseña")
+
+      fill_in "Teléfono", with: "4345-6789"
+
+      click_button "Aceptar"
+
+      expect(page).to have_content("Teléfono solo admite números")
+    end
   end
 end
