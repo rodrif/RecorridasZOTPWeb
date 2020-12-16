@@ -35,11 +35,6 @@ class RolDataAccess
     return current_user && (current_user.rol_id == 1 || current_user.rol_id == 2 || current_user.rol_id == 3)
   end
 
-  def self.puede_ver_web current_user = nil
-    # admin, referente, coordinador, voluntario
-    return current_user && (current_user.rol_id == 1 || current_user.rol_id == 2 || current_user.rol_id == 3 || current_user.rol_id == 4)
-  end
-
   def self.puede_editar_area current_user = nil # sede
     # admin, referente, coordinador
     return current_user && (current_user.rol_id == 1 || current_user.rol_id == 2 || current_user.rol_id == 3)

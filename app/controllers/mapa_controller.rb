@@ -1,5 +1,4 @@
 class MapaController < ApplicationController
-  before_action :puede_ver_web, only: [:index, :mostrar]
 
   def index
     @personas = PersonDataAccess.listPersonaMapa

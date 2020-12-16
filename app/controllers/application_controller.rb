@@ -52,12 +52,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def puede_ver_web
-    if !RolDataAccess.puede_ver_web(current_user)
-      redireccionar
-    end
-  end
-
   def puede_editar_area
     if !RolDataAccess.puede_editar_area(current_user)
       redireccionar
@@ -126,9 +120,6 @@ class ApplicationController < ActionController::Base
   private
 
   def redireccionar
-    if !current_user.rol.puede_ver_web
-      sign_out current_user
-    end
     redirect_to acceso_denegado_path
   end
 

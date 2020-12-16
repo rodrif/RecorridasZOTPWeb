@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/shared_examples_requests'
 
-RSpec.describe "People", type: :request do
+RSpec.describe "Personas", type: :request do
 
   let!(:area) { create(:area) }
   let!(:zona) { create(:zone, area: area) }

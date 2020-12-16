@@ -1,6 +1,5 @@
 class AreasController < ApplicationController
   before_action :set_area, only: [:show, :edit, :update, :destroy]
-  before_action :puede_ver_web
   before_action :puede_editar_area, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /areas

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/shared_examples_requests'
 
-RSpec.describe "People", type: :request do
+RSpec.describe "Visitas", type: :request do
 
   let!(:persona) { create(:person) }
   let!(:visita) { create(:visit, person: persona)}
