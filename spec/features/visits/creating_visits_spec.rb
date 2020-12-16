@@ -93,6 +93,25 @@ RSpec.feature "Crear visita" do
     end
   end
 
+  context "cuando se elige una persona en la vista de visitas" do
+    let(:visita) { build(:visit)}
+    let!(:persona_con_visitas) { create(:person, visits: [visita]) }
+    let(:visita_nueva) { build(:visit)}
+    let(:user) { create(:user_admin) }
+
+    scenario "aparece la persona seleccionada en las visitas" do
+      login_as user
+
+      visit people_path
+      fill_in "Nombre / Apodo", with: persona_con_visitas.nombre
+
+      visit new_visit_path
+      within('#new_visit') do
+        expect page.has_select?('Persona', selected: persona_con_visitas.nombre)
+      end
+    end
+  end
+
   context "cuando la fecha de visita está vacía" do
     let(:user) { create(:user_voluntario) }
     let(:visita) { build(:visit)}
