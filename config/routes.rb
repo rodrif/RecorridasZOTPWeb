@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     post '2.0/visita' => 'visits#get'
   end
 
+  get 'calendario' => 'calendario#index'
+
   resources :notificaciones
   resources :auditoria
   resources :users
@@ -56,6 +58,7 @@ Rails.application.routes.draw do
   resources :estados
   resources :instituciones
   resources :eventos
+  resources :events
 
   get 'informes' => 'informes#index'
   get 'informes/voluntarios' => 'informes#voluntarios'

@@ -16,57 +16,58 @@
  *= require material_icons
  */
 @import "simple_calendar";
+@import "fullcalendar";
 @import "materialize/components/color-variables";
 $primary-color: color("deep-purple", "lighten-2") !default;
 
 @import "materialize";
+//
+//body {
+//  display: flex;
+//  min-height: 100vh;
+//  flex-direction: column;
+//}
+//
+//main {
+//  flex: 1 0 auto;
+//}
+//
+//.container {
+//  margin: 0 auto;
+//  width: 90%;
+//}
+//
+//.scroll {
+//  width: calc(100% - var(--column-fixed-width));
+//  overflow: auto;
+//  /*box-shadow: inset -12px 0 9px -7px rgba(0,0,0,0.25);*/
+//  /*overflow-x: scroll;
+//  overflow-y: visible;*/
+//}
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-.container {
-  margin: 0 auto;
-  width: 90%;
-}
-
-.scroll {
-  width: calc(100% - var(--column-fixed-width));
-  overflow: auto;
-  /*box-shadow: inset -12px 0 9px -7px rgba(0,0,0,0.25);*/
-  /*overflow-x: scroll;
-  overflow-y: visible;*/
-}
-
-
-table {
-  width: 100%;
-  font-size: 13px;
-  border-spacing:0;
-  border-collapse: collapse;
-}
-
-table.form-table th {
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  min-width: 100px;
-}
-
-table.form-table td {
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  min-width: 100px;
-}
+//
+//table {
+//  width: 100%;
+//  font-size: 13px;
+//  border-spacing:0;
+//  border-collapse: collapse;
+//}
+//
+//table.form-table th {
+//  padding-right: 10px;
+//  padding-left: 10px;
+//  padding-top: 10px;
+//  padding-bottom: 10px;
+//  min-width: 100px;
+//}
+//
+//table.form-table td {
+//  padding-right: 10px;
+//  padding-left: 10px;
+//  padding-top: 10px;
+//  padding-bottom: 10px;
+//  min-width: 100px;
+//}
 
 .pagination li.active a {
   color: #fff;
