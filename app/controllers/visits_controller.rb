@@ -17,11 +17,12 @@ class VisitsController < ApplicationController
     render :json => Geocoder.coordinates(params['direccion'])
   end
 
-  def mobRecibirVisitasDesde
-    respuesta = VisitDataAccess.getVisitasDesde params['datos'], params['fecha']
-
-    render :json => respuesta
-  end
+  # No existe en código el dataAccess asociado
+  # def mobRecibirVisitasDesde
+  #   respuesta = VisitDataAccess.getVisitasDesde params['datos'], params['fecha']
+  #
+  #   render :json => respuesta
+  # end
 
   # GET /visits
   # GET /visits.json

@@ -40,7 +40,9 @@ Rails.application.routes.draw do
 
   get 'people/update_zonas', as: 'update_zonas'
 
-  post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
+  # No existe en el código el dataAccess relacionado
+  # post 'visits/mobRecibirVisitasDesde' => 'visits#mobRecibirVisitasDesde'
+
   get 'visits/getDireccion' => 'visits#getDireccion'
   get 'visits/getCoordenadas' => 'visits#getCoordenadas'
 

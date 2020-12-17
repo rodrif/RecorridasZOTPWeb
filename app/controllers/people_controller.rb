@@ -54,7 +54,7 @@ class PeopleController < ApplicationController
   def update_zonas
     @zonas = Zone.where("area_id = ?", params[:area_id])
     if @zonas.length == 0
-      @zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
+      @zonas.to_a.push(Zone.new(nombre: 'Ninguna', id: 0))
     end
     @selectorZona = params[:selector_zona]
     respond_to do |format|

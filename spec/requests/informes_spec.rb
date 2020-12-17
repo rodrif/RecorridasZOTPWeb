@@ -5,7 +5,7 @@ RSpec.describe "Informes", type: :request do
 
   let(:voluntario) { create(:user_voluntario)}
 
-  describe 'GE /informes' do
+  describe 'GET /informes' do
     context 'con user voluntario' do
       before do
         login_as voluntario

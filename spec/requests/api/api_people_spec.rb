@@ -116,4 +116,29 @@ RSpec.describe "Api People", type: :request do
     end
   end
 
+  describe 'POST /api/2.0/personas' do
+
+    context 'cuando el user es administrador' do
+      before do
+        auth_headers = admin.create_new_auth_token
+        post "/api/2.0/personas",headers: auth_headers
+      end
+
+      include_examples "response ok"
+    end
+  end
+
+  describe 'POST /api/2.0/persona' do
+
+    context 'cuando el user es administrador' do
+      let!(:persona) { create(:person) }
+      before do
+        auth_headers = admin.create_new_auth_token
+        post "/api/2.0/persona", params: {id: persona.id}, headers: auth_headers
+      end
+
+      include_examples "response ok"
+    end
+  end
+
 end

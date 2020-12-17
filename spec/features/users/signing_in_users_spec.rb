@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature "Registración de usuario" do
+RSpec.feature "Ingreso de usuario" do
 
   before do
     @voluntario = create(:user_voluntario)

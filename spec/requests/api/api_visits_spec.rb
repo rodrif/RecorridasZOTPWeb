@@ -104,4 +104,16 @@ RSpec.describe "Api Visits", type: :request do
     end
   end
 
+  describe 'POST /api/2.0/visitas' do
+
+    context 'cuando el user es administrador' do
+      before do
+        auth_headers = admin.create_new_auth_token
+        post "/api/2.0/visitas",headers: auth_headers
+      end
+
+      include_examples "response ok"
+    end
+  end
+
 end

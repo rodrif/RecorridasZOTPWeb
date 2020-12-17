@@ -17,6 +17,13 @@
 
   <div class="row">
     <div class="input-field col s12">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false} %>
+      <%= f.label :person_id, "Persona", class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
       <%= f.text_field :fecha_desde, id: "datetimefrom" %>
       <%= f.label :fecha_desde, 'Fecha Desde', class: "active" %>
     </div>
@@ -33,13 +40,6 @@
     <div class="input-field col s12">
       <%= f.text_field :ubicacion %>
       <%= f.label :ubicacion, "Ubicación", class: "active" %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="input-field col s12">
-      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false} %>
-      <%= f.label :person_id, "Persona", class: "active" %>
     </div>
   </div>
 
