@@ -1,0 +1,53 @@
+<%= form_for(@event, remote: true) do |f| %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :title %>
+      <%= f.label :title, 'Título', class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :description %>
+      <%= f.label :description, 'Descripción', class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :start, id: "datetimefrom" %>
+      <%= f.label :start, 'Fecha Desde', class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :end, id: "datetimeto" %>
+      <%= f.label :end, 'Fecha Hasta', class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.text_field :location %>
+      <%= f.label :location, "Ubicación", class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.collection_select :person_id, Person.activas, :id, :full_name, {:include_blank => false} %>
+      <%= f.label :person_id, "Persona", class: "active" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to 'Delete',
+                event,
+                method: :delete,
+                class: 'btn btn-danger',
+                data: { confirm: 'Are you sure?' },
+                remote: true unless @event.new_record? %>
+  </div>
+<% end %>
