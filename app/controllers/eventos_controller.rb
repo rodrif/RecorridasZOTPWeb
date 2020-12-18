@@ -35,7 +35,7 @@ class EventosController < ApplicationController
     respond_to do |format|
       if @evento.save
         Notificacion.schedule(@evento.titulo, @evento.person.full_name, @evento.fecha_desde, @evento.fecha_hasta, @evento.fecha_desde.advance(hours: -1), [current_user.area.id], [1,2,3,4], @evento)
-        format.html { redirect_to @evento, notice: 'Evento creado correctamente.' }
+        format.html { redirect_to eventos_url, notice: 'Evento creado correctamente.' }
         format.json { render :show, status: :created, location: @evento }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class EventosController < ApplicationController
   def update
     respond_to do |format|
       if @evento.update(evento_params)
-        format.html { redirect_to @evento, notice: 'Evento actualizado correctamente.' }
+        format.html { redirect_to eventos_url, notice: 'Evento actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @evento }
       else
         format.html { render :edit }

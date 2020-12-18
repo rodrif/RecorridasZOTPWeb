@@ -24,23 +24,25 @@ RSpec.feature "Crear evento" do
     click_button "Aceptar"
   end
 
-  scenario "satisfactoriamente" do
-    fill_form_and_create evento
+  context "crear un evento" do
+    scenario "satisfactoriamente" do
+      fill_form_and_create evento
 
-    expect(page).to have_content("Evento creado correctamente")
-  end
+      expect(page).to have_content("Evento creado correctamente")
+    end
 
-  scenario "al crear crea una notificación asociada, una hora antes para todos los roles del area del user" do
-    fill_form_and_create evento
+    scenario "al crear crea una notificación asociada, una hora antes para todos los roles del area del user" do
+      fill_form_and_create evento
 
-    expect(page).to have_content("Evento creado correctamente")
+      expect(page).to have_content("Evento creado correctamente")
 
-    notificacion = Evento.first.notificacion
-    expect(notificacion.titulo).to eq(evento.titulo)
-    expect(notificacion.subtitulo).to eq(persona.full_name)
-    expect(notificacion.areas).to include(admin.area)
-    expect(notificacion.rol_ids).to eq([1,2,3,4])
-    expect(notificacion.prox_envio).to eq(evento.fecha_desde.advance(hours: -1).change(:min => 0))
+      notificacion = Evento.first.notificacion
+      expect(notificacion.titulo).to eq(evento.titulo)
+      expect(notificacion.subtitulo).to eq(persona.full_name)
+      expect(notificacion.areas).to include(admin.area)
+      expect(notificacion.rol_ids).to eq([1,2,3,4])
+      expect(notificacion.prox_envio).to eq(evento.fecha_desde.advance(hours: -1).change(:min => 0))
+    end
   end
 
   context "falla al crear" do
