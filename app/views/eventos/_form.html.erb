@@ -37,9 +37,24 @@
   </div>
 
   <div class="row">
+    <div class="input-field col s3">
+      <%= f.hidden_field :latitud %>
+    </div>
+    <div class="input-field col s3">
+      <%= f.hidden_field :longitud %>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="input-field col s12">
       <%= f.text_field :ubicacion %>
       <%= f.label :ubicacion, "Ubicación", class: "active" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s10">
+      <div id="googleMapPersona" class="mapaUbicacionPersona"></div>
     </div>
   </div>
 
@@ -55,3 +70,7 @@
   </div>
 
 <% end %>
+
+<script defer>
+    loadMapaScript('cargarUbicacionEvento');
+</script>

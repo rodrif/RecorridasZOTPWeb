@@ -7,7 +7,7 @@ class VisitsController < ApplicationController
   def getDireccion
     direccion = Geocoder.search(params['lat'] + "," + params['lng'])
     if direccion.first
-      render :plain => direccion.first.data['formatted_address']
+      render :plain => direccion.first.address
     else
       render :plain => ''
     end

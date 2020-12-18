@@ -2,7 +2,7 @@
   <%= link_to date.strftime("%-d"), new_evento_path({date: date})%>
   <% eventos.each do |evento| %>
     <div>
-      <%= link_to evento.titulo, edit_evento_path(evento), class: "btn sm" %>
+      <%= link_to evento.titulo, edit_evento_path(evento) %>
     </div>
   <% end %>
 <% end %>
