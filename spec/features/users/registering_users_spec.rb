@@ -20,45 +20,56 @@ RSpec.feature "Registración de usuario" do
     click_button "Registrarse"
   end
 
-  scenario "registración exitosa" do
-    fill_form_and_sign_up
+  context "cuando la registración es exitosa" do
+    scenario "se muestra un mensaje de regitración exitosa en la pantalla" do
+      fill_form_and_sign_up
 
-    expect(page).to have_content("Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta.")
+      expect(page).to have_content("Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta.")
+    end
+
+    scenario "el user registrado es seteado con rol invitado" do
+      fill_form_and_sign_up
+
+      user_saved = User.find_by_email(user.email)
+      expect(user_saved.rol_id).to eq(Rol::INVITADO)
+    end
+
+    scenario "se envía un mail al usuario registrado" do
+      expect{ (fill_form_and_sign_up) }.to change { Enviador.deliveries.count }.by(3)
+      mail_to_registrado = open_email(user.email)
+
+      expect(mail_to_registrado.subject).to eq("Instrucciones de confirmación")
+    end
+
+    scenario "se envía un mail a los coordinadores de la sede" do
+      fill_form_and_sign_up
+      mail_to_coordinador = open_email(coordinador.email)
+
+      expect(mail_to_coordinador.subject).to eq("Un voluntario se registró en la web")
+    end
+
+    scenario "se envía un mail al admin general" do
+      fill_form_and_sign_up
+      mail_to_diego = open_email('diegopintos81@gmail.com')
+
+      expect(mail_to_diego.subject).to eq("Un voluntario se registró en la web")
+    end
   end
 
-  scenario "al registrarse el user es seteado con rol invitado" do
-    fill_form_and_sign_up
+  context "la registración falla" do
+    scenario "cuando el email está en blanco" do
+      user.email = ""
+      fill_form_and_sign_up
 
-    user_saved = User.find_by_email(user.email)
-    expect(user_saved.rol_id).to eq(Rol::INVITADO)
-  end
+      expect(page).to have_content("Email no puede estar en blanco")
+    end
 
-  scenario "al registrarse se envía un mail al usuario registrado" do
-    expect{ (fill_form_and_sign_up) }.to change { Enviador.deliveries.count }.by(3)
-    mail_to_registrado = open_email(user.email)
+    scenario "cuando el email ya existe" do
+      user.email = coordinador.email
+      fill_form_and_sign_up
 
-    expect(mail_to_registrado.subject).to eq("Instrucciones de confirmación")
-  end
-
-  scenario "al registrarse se envía un mail a los coordinadores de la sede" do
-    fill_form_and_sign_up
-    mail_to_coordinador = open_email(coordinador.email)
-
-    expect(mail_to_coordinador.subject).to eq("Un voluntario se registró en la web")
-  end
-
-  scenario "a Diego Pintos" do
-    fill_form_and_sign_up
-    mail_to_diego = open_email('diegopintos81@gmail.com')
-
-    expect(mail_to_diego.subject).to eq("Un voluntario se registró en la web")
-  end
-
-  scenario "si el mail registrado ya existe falla" do
-    user.email = coordinador.email
-    fill_form_and_sign_up
-
-    expect(page).to have_content("Email ya ha sido tomado")
+      expect(page).to have_content("Email ya ha sido tomado")
+    end
   end
 
 end

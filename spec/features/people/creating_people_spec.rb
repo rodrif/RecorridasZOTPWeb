@@ -79,18 +79,6 @@ RSpec.feature "Crear persona" do
       include_examples "create user"
     end
 
-
-
-    # scenario "siendo administrador carga todos los campos" do
-    #   expect(page).to have_select("Estado")
-    #   expect(page).to have_css("input", id: "person_dni")
-    #   expect(page).to have_css("input", id: "person_fecha_nacimiento")
-    #   expect(page).to have_css("input", id: "person_pantalon")
-    #   expect(page).to have_css("input", id: "person_remera")
-    #   expect(page).to have_css("input", id: "person_zapatillas")
-    #   expect(page).to have_css("label", text: "Áreas")
-    # end
-
     scenario "solo nombre, sede y zona" do
       login_as @admin
       visit "/"
@@ -166,7 +154,7 @@ RSpec.feature "Crear persona" do
     end
   end
 
-  context "falla al crear" do
+  context "la creación falla" do
     before do
       Pedido.delete_all
       Visit.delete_all
@@ -174,7 +162,7 @@ RSpec.feature "Crear persona" do
       Zone.delete_all
     end
 
-    scenario "nombre está vacío" do
+    scenario "cuando el nombre está vacío" do
       login_as @admin
       visit new_person_path
 
@@ -186,7 +174,7 @@ RSpec.feature "Crear persona" do
       expect(page).to have_content("Nombre no puede estar en blanco")
     end
 
-    scenario "nombre contiene números" do
+    scenario "cuando el nombre contiene caracters no alfabéticos" do
       login_as @admin
       visit new_person_path
 
@@ -200,7 +188,7 @@ RSpec.feature "Crear persona" do
       expect(page).to have_content("Nombre solo admite letras")
     end
 
-    scenario "apellido contiene números" do
+    scenario "cuando el apellido contiene caracters no alfabéticos" do
       login_as @admin
       visit new_person_path
 
@@ -215,7 +203,7 @@ RSpec.feature "Crear persona" do
       expect(page).to have_content("Apellido solo admite letras")
     end
 
-    scenario "DNI contiene caracteres no numéricos" do
+    scenario "cuando el DNI contiene caracteres no numéricos" do
       login_as @admin
       visit new_person_path
 
@@ -230,7 +218,7 @@ RSpec.feature "Crear persona" do
       expect(page).to have_content("Dni solo admite números")
     end
 
-    scenario "Teléfono contiene caracteres no numéricos" do
+    scenario "cuando el teléfono contiene caracteres no numéricos" do
       login_as @admin
       visit new_person_path
 
@@ -245,7 +233,7 @@ RSpec.feature "Crear persona" do
       expect(page).to have_content("Teléfono solo admite números")
     end
 
-    scenario "Zona está vacía" do
+    scenario "cuando la zona está vacía" do
       login_as @admin
       visit new_person_path
 
