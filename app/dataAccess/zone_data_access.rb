@@ -1,6 +1,6 @@
 class ZoneDataAccess
 
-  def self.download fecha = nil
+  def self.download datosJson = nil, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
@@ -15,7 +15,7 @@ class ZoneDataAccess
     respuesta
   end
 
-  def self.upload user, json
+  def self.upload user, json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     zones = ActiveSupport::JSON.decode(json)

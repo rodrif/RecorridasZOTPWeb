@@ -1,6 +1,6 @@
 class PedidoDataAccess
 
-	def self.download fecha = nil
+	def self.download datosJson = nil, fecha = nil
 
 		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, completado, state_id AS estado, updated_at'
     if fecha.nil?
@@ -23,7 +23,7 @@ class PedidoDataAccess
 		resultado
 	end
 
-	def self.upload user, json
+	def self.upload user, json, fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
     pedidos = ActiveSupport::JSON.decode(json)

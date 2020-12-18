@@ -1,14 +1,14 @@
 # AreaDataAccess se encarga de manejar los datos de sedes
 class AreaDataAccess
 
-  def self.download user, fecha = nil, version = nil
+  def self.download user, datosJson = nil, fecha = nil, version = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
-    if fecha
-      respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
-    else
+    if fecha.nil?
       respuesta['datos'] = Area.select("id AS web_id, nombre, state_id AS estado, updated_at")
+    else
+      respuesta['datos'] = Area.where('updated_at > ?', fecha).select("id AS web_id, nombre, state_id AS estado, updated_at")
     end
     if !version.blank?
       user.version = version.to_i
@@ -22,7 +22,7 @@ class AreaDataAccess
     respuesta
   end
 
-  def self.upload user, json
+  def self.upload user, json, fecha = nil
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     areas = ActiveSupport::JSON.decode(json)
