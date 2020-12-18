@@ -7,7 +7,7 @@ class PersonDataAccess
       WHERE (p.estado_id is null OR estados.nombre != 'Inactivo') AND p.state_id != 3 AND v.fecha = (SELECT MAX(v2.fecha) FROM visits v2 WHERE v2.person_id = p.id)")
 	end
 
-	def self.download datosJson = nil, fecha = nil
+	def self.download fecha = nil
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
 		respuesta['fecha'] = DateTime.now.utc.strftime('%Y-%m-%d %H:%M:%S.%L')
@@ -45,7 +45,7 @@ class PersonDataAccess
     Person.joins(:zone).where('people.id = ?', id).select(select)
   end
 
-  def self.upload user, json, fecha = nil
+  def self.upload user, json
     respuesta = Hash.new
     respuesta['datos'] = Hash.new
     personas = ActiveSupport::JSON.decode(json)

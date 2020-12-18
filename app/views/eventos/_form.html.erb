@@ -43,5 +43,15 @@
     </div>
   </div>
 
-  <%= render 'layouts/buttons_submit', path: eventos_path, f: f, remote: false, mostrar_aceptar: true %>
+  <div class="row">
+    <div class="col s3">
+      <%= render 'layouts/buttons_submit', path: eventos_path, f: f, remote: false, mostrar_aceptar: true %>
+    </div>
+    <div class="col s3 offset-s6">
+      <% if @evento.id %>
+        <%= link_to 'Eliminar', evento_path(@evento), method: :delete, data: { confirm: "¿Estás seguro?"}, class: "btn btn-outline-danger" %>
+      <% end %>
+    </div>
+  </div>
+
 <% end %>

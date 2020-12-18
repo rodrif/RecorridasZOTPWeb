@@ -1,6 +1,6 @@
 class VisitDataAccess
 
-	def self.download datosJson = nil, fecha = nil
+	def self.download fecha = nil
 
 		query = 'id AS web_id, person_id AS web_person_id, fecha, descripcion, latitud, longitud, state_id AS estado, updated_at'
     if fecha.nil?
@@ -28,7 +28,7 @@ class VisitDataAccess
     Visit.joins(person: :zone).select(select)
   end
 
-	def self.upload user, json, fecha = nil
+	def self.upload user, json
 		respuesta = Hash.new
 		respuesta['datos'] = Hash.new
     visitas = ActiveSupport::JSON.decode(json)
