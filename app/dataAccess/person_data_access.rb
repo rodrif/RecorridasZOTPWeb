@@ -4,7 +4,7 @@ class PersonDataAccess
     Person.readonly.find_by_sql("SELECT p.id AS persona_id, p.nombre, p.apellido, v.latitud, v.longitud, v.fecha
       FROM people p INNER JOIN visits v ON p.id = v.person_id
       LEFT JOIN estados ON estados.id = p.estado_id
-      WHERE (p.estado_id is null OR estados.nombre != 'Inactivo') AND p.state_id != 3 AND v.fecha = (SELECT MAX(v2.fecha) FROM visits v2 WHERE v2.person_id = p.id)")
+      WHERE (p.estado_id is null OR (estados.nombre != 'Inactivo' AND estados.nombre != 'Fallecido')) AND p.state_id != 3 AND v.fecha = (SELECT MAX(v2.fecha) FROM visits v2 WHERE v2.person_id = p.id)")
 	end
 
 	def self.download datosJson = nil, fecha = nil
