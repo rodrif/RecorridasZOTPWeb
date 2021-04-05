@@ -236,265 +236,484 @@ Institucion.create([
     state_id: 1
   }
 ])
-
 Person.create([
-  {
-    id: 1,
-    nombre: 'persona a',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 2,
-    nombre: 'persona b',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 3,
-    nombre: 'persona c',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 4,
-    nombre: 'persona d',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 5,
-    nombre: 'persona e',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 6,
-    nombre: 'persona f',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 7,
-    nombre: 'persona g',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 8,
-    nombre: 'persona h',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 9,
-    nombre: 'persona i',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 10,
-    nombre: 'persona j',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 11,
-    nombre: 'persona k',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 12,
-    nombre: 'persona l',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 13,
-    nombre: 'persona m',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 14,
-    nombre: 'persona n',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 15,
-    nombre: 'persona o',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 16,
-    nombre: 'persona p',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 17,
-    nombre: 'persona q',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 18,
-    nombre: 'persona r',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 19,
-    nombre: 'persona s',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 20,
-    nombre: 'persona t',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 21,
-    nombre: 'persona u',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 22,
-    nombre: 'persona v',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 23,
-    nombre: 'persona w',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 24,
-    nombre: 'persona x',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 25,
-    nombre: 'persona y',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 26,
-    nombre: 'persona z',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  },
-  {
-    id: 27,
-    nombre: 'persona aa',
-    zone_id: 2,
-    state_id: 1,
-    dni: 11111111,
-    fecha_nacimiento: '2020-11-22',
-    descripcion: 'Una descripcion'
-  }
-])
+                  {
+                      id: 1,
+                      nombre: 'Abril Acusta',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 2,
+                      nombre: 'Nicolas Rosso',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 3,
+                      nombre: 'Nicolas Decinvente',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 4,
+                      nombre: 'Andrés Bottardo',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 5,
+                      nombre: 'Santiago Pez',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 6,
+                      nombre: 'Leandro Gallo',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 7,
+                      nombre: 'Mario Bros',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 8,
+                      nombre: 'Luciano Rapanui',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 9,
+                      nombre: 'Colorado Pedrazo',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 10,
+                      nombre: 'Belen Tonduza',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 11,
+                      nombre: 'Magali Sallai',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 12,
+                      nombre: 'Camila Russeno',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 13,
+                      nombre: 'Azul Gudeci',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 14,
+                      nombre: 'Emilio Tichois',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 15,
+                      nombre: 'Tomas Dabliuy',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 16,
+                      nombre: 'Jose Castillo',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 17,
+                      nombre: 'JuanMa Tomesito',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 18,
+                      nombre: 'Cesar Gaona',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 19,
+                      nombre: 'Tati Corredero',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 20,
+                      nombre: 'JuanMa Barzano',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 21,
+                      nombre: 'Carlo Ancelotti',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 22,
+                      nombre: 'Carlos Xavier',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 23,
+                      nombre: 'Mike Wazowski',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 24,
+                      nombre: 'Ned Stark',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 25,
+                      nombre: 'persona y',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 26,
+                      nombre: 'persona z',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  },
+                  {
+                      id: 27,
+                      nombre: 'persona aa',
+                      zone_id: 2,
+                      state_id: 1,
+                      dni: 11111111,
+                      fecha_nacimiento: '2020-11-22',
+                      descripcion: 'Una descripcion'
+                  }
+              ])
 
 Visit.create([
-  {
-    id: 1,
-    descripcion: 'Persona vista por primera vez',
-    fecha: '2020-11-22 03:00:00',
-    person_id: 1,
-    latitud: -34.64018822007153000,
-    longitud: -58.52389718458151000,
-    state_id: 1,
-    direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
-  }
-])
+                 {
+                     id: 1,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 1,
+                     latitud: -34.64018822007153000,
+                     longitud: -58.52389718458151000,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 2,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 2,
+                     latitud: -34.55943852477665,
+                     longitud: -58.464892385113956,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 3,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 3,
+                     latitud: -34.55859030228831,
+                     longitud: -58.458197591412784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 4,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 4,
+                     latitud: -34.55659030228831,
+                     longitud: -58.458197591412784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 5,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 5,
+                     latitud: -34.55659030128831,
+                     longitud: -58.458197591412784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 6,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 6,
+                     latitud: -34.55659030128831,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 7,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 7,
+                     latitud: -34.55659030228831,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 8,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 8,
+                     latitud: -34.55659030128831,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 9,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 9,
+                     latitud: -34.55659031128831,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 10,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 10,
+                     latitud: -34.55659011128831,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 11,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 11,
+                     latitud: -34.55659011128931,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 12,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 12,
+                     latitud: -34.55659011128831,
+                     longitud: -58.458197501212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 13,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 13,
+                     latitud: -34.55659011128831,
+                     longitud: -58.458197491212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 14,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 14,
+                     latitud: -34.55659011128831,
+                     longitud: -58.458197691212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 15,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 15,
+                     latitud: -34.55659011128838,
+                     longitud: -58.458197591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 16,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 16,
+                     latitud: -34.55659011118831,
+                     longitud: -58.458196591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 17,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 17,
+                     latitud: -34.55659021128831,
+                     longitud: -58.458196591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 18,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 18,
+                     latitud: -34.55659021128831,
+                     longitud: -58.458197691212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 19,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 19,
+                     latitud: -34.55659011228831,
+                     longitud: -58.458197501212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 20,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 20,
+                     latitud: -34.55659061128831,
+                     longitud: -58.458198591212784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 21,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 21,
+                     latitud: -34.55659011138831,
+                     longitud: -58.458197591212785,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 22,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 22,
+                     latitud: -34.55659030228831,
+                     longitud: -58.458197591412784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+                 {
+                     id: 23,
+                     descripcion: 'Persona vista por primera vez',
+                     fecha: '2020-11-22 03:00:00',
+                     person_id: 23,
+                     latitud: -34.55659030228831,
+                     longitud: -58.458197591412784,
+                     state_id: 1,
+                     direccion: '6916, Coronel Ramón Lorenzo Falcón, Liniers, Autonomous City of Buenos Aires, Comuna 9, C1408DSI, Argentina'
+                 },
+             ])
 
 Pedido.create([
   {
