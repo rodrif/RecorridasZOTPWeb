@@ -40,7 +40,7 @@ class Zone < ApplicationRecord
   }
 
   scope :with_area_id, lambda { |area_id|
-    where("area_id = ?", area_id)
+    where("area_id = ?", area_id).order(:nombre)
   }
 
 	def self.options_for_select

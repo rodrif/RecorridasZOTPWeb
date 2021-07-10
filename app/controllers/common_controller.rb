@@ -4,7 +4,7 @@ class CommonController < ApplicationController
         if params[:area_id].blank?
             @zonas = Zone.activas
         else
-            @zonas = Zone.where("area_id = ?", params[:area_id])
+            @zonas = Zone.where("area_id = ?", params[:area_id]).order(:nombre)
         end
         @selectorZona = params[:selector_zona]
         respond_to do |format|

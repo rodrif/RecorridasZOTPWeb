@@ -54,7 +54,7 @@ class PeopleController < ApplicationController
   end
 
   def update_zonas
-    @zonas = Zone.where("area_id = ?", params[:area_id])
+    @zonas = Zone.where("area_id = ?", params[:area_id]).order(:nombre)
     if @zonas.length == 0
       @zonas.push(Zone.new(nombre: 'Ninguna', id: 0))
     end
@@ -79,7 +79,7 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person.area_id = @person.zone.area_id
-    @zonas = Zone.where(:area_id => @person.area_id)
+    @zonas = Zone.where(:area_id => @person.area_id).order(:nombre)
   end
 
   # POST /people
