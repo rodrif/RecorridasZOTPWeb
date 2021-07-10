@@ -3,9 +3,9 @@ class Person < ApplicationRecord
   extend ModelHelper
 
   validates :nombre, presence: true,
-    format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
+    format: { with: getRexExpSoloLetrasYNumeros, message: I18n.t('common.errores.solo_alfanumerico') }
   validates :apellido, allow_blank: true,
-    format: { with: getRexExpSoloLetras, message: I18n.t('common.errores.solo_letras') }
+    format: { with: getRexExpSoloLetrasYNumeros, message: I18n.t('common.errores.solo_alfanumerico') }
   validates :dni, allow_blank: true, numericality: { only_integer: true, message: I18n.t('common.errores.solo_numeros') }
   validates :telefono, allow_blank: true, numericality: { only_integer: true, message: I18n.t('common.errores.solo_numeros') }
   validates :zone, presence: true
