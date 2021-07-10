@@ -176,6 +176,15 @@
     </div>
   <% end %>
 
+  <% if RolDataAccess.puede_ver_datos_persona(current_user) %>
+    <div class="form-group">
+      <%= f.label 'Documentos', class: "col-md-1 control-label" %>
+      <div class="col-md-10" style="margin-top: 7px">
+        <a href="https://drive.google.com/drive/folders/1lyx0PKo9E9RpJt2SCx6-QwNfqy1H_Pf6?usp=sharing">Drive Link</a>
+      </div>
+    </div>
+  <% end %>
+
   <%= render 'layouts/buttons_submit', path: path, f: f, mostrar_aceptar: puede_editar %>
 
 <% end %>
